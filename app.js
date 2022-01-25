@@ -5,21 +5,19 @@ const storePanel = document.getElementById('storePanel')
 
 const repeat = document.getElementById('repeat')
 
-let red = document.getElementById('red');
-let green = document.getElementById('green');
-let blue = document.getElementById('blue');
+const redIncrease = document.getElementById('redIncrease')
+const greenIncrease = document.getElementById('greenIncrease')
+const blueIncrease = document.getElementById('blueIncrease')
+
+const red = document.getElementById('red');
+const green = document.getElementById('green');
+const blue = document.getElementById('blue');
 
 let hex 
 
 function rgbToHex(r, g, b) {
   hex = "#" + ((1 << 24) + (Number(r) << 16) + (Number(g) << 8) + Number(b)).toString(16).slice(1);
   return
-}
-
-const store = () => {
-  if(!currentColours.childNodes.length === 0) {
-    storePanel.innerHTML += mainPanel.innerHTML;
-  }
 }
 
 const clearPalette = () => {
@@ -29,20 +27,33 @@ const clearPalette = () => {
   }
 }
 
+const store = () => {
+  storePanel.innerHTML += mainPanel.innerHTML;
+  clearPalette()
+  // if(!currentColours.childNodes.length === 0) {
+  // }
+}
+
 generate.addEventListener('click', function() {
-  console.log(repeat)
   let i = 0
+
+  if (repeat.value < 1) {
+    iziToast.error({
+      title: 'Pick number or repeats',
+    });  
+  }
+
   while(i < repeat.value * 1) {
-    red.value = Number(red.value) + 8
-    green.value = Number(green.value) + 19
-    blue.value = Number(blue.value) + 14
+    red.value = Number(red.value) + (Number(blueIncrease.value) || 8)
+    green.value = Number(green.value) + (Number(greenIncrease.value) || 8)
+    blue.value = Number(blue.value) + (Number(blueIncrease.value) || 8)
       
-    if (blue.value > 255) {
+    if (blue.value > 255 || green.value > 255 ||red.value > 255) {
       iziToast.error({
       title: 'Going beyond the limits',
       message: 'Values must stay below 255'
       });
-    clearPalette()
+    // clearPalette()
     break
     }
     
