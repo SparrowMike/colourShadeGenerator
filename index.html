@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="app.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div id="sidePanel">
+      <form>
+        <h4>RGB</h4>
+        <div id='inputs'>
+          <input type="number" id="red" name="red" max="255" placeholder="red">
+          
+          <input type="number" id="green" name="green" max="255" placeholder="green">
+          
+          <input type="number" id="blue" name="blue" max="255" placeholder="blue">
+        </div>
+        <br>
+
+        <h4>INCREASE BY</h4>
+        <div id='inputs'>
+          <input type="number" id="red" name="red" min="1" max="255" value="8">
+          
+          <input type="number" id="green" name="green" min="1" max="255" value="8">
+          
+          <input type="number" id="blue" name="blue" min="1" max="255" value="8"> 
+        </div>
+        <br>
+
+        <h4>REPEAT</h4>
+        <div id='inputs'>
+          <input type="number" id="repeat" name="repeat" min="1" max="20" placeholder="repeat"> 
+        </div>        
+        <br>
+
+        <h4>Buttons</h4>
+        <div id='buttons'>
+          <div class="button" id="generate">Generate</div>
+  
+          <div class="button" onclick="store()" id="store">Store</div>
+  
+          <div class="button" onclick="clearPalette()" id="clearPalette">Reset</div>          
+        </div>
+
+      <form>  
+    </div>
+
+    <div id="mainPanel">
+      <div id="currentColours"></div>
+    </div>
+    <div id="storePanel">
+      
+    </div>
+  </div>
+</body>
+
+</html>
