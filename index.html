@@ -17,6 +17,7 @@
       <form>
         <h4>RGB</h4>
         <div id='inputs'>
+          <!-- <input type="string" id="RGB" name="RGB" max="255" placeholder="red"> -->
           <input type="number" id="red" name="red" max="255" placeholder="red">
           
           <input type="number" id="green" name="green" max="255" placeholder="green">
@@ -27,17 +28,17 @@
 
         <h4>INCREASE BY</h4>
         <div id='inputs'>
-          <input type="number" id="redIncrease" name="redIncrease" min="1" max="20" placeholder="red">
+          <input type="number" id="redIncrease" name="redIncrease" min="1" max="40" value="12" placeholder="red">
           
-          <input type="number" id="greenIncrease" name="greenIncrease" min="1" max="20" placeholder="green">
+          <input type="number" id="greenIncrease" name="greenIncrease" min="1" max="40" value="12" placeholder="green">
           
-          <input type="number" id="blueIncrease" name="blueIncrease" min="1" max="20" placeholder="blue"> 
+          <input type="number" id="blueIncrease" name="blueIncrease" min="1" max="40" value="12" placeholder="blue"> 
         </div>
         <br>
 
         <h4>REPEAT</h4>
         <div id='inputs'>
-          <input type="number" id="repeat" name="repeat" min="1" max="20" placeholder="repeat"> 
+          <input type="number" id="repeat" name="repeat" min="1" max="20" value="12" placeholder="repeat"> 
         </div>        
         <br>
 
@@ -47,7 +48,7 @@
   
           <div class="button" onclick="store()" id="store">Store</div>
   
-          <div class="button" onclick="clearPalette()" id="clearPalette">Reset</div>          
+          <div class="button" onclick="reset()" id="reset">Reset</div>          
         </div>
 
       <form>  
