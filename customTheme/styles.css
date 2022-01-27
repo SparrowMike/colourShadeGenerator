@@ -1,0 +1,193 @@
+:root {
+  --text-common-one: #FCFCFC !important;
+  --text-common-two: #323232 !important;
+  --text-common-two: #111111 !important;
+  
+  --primary-dark: rgb(229, 151, 29) !important; /* *(-15, -18, -22) */
+  --primary-medium: rgb(244, 169, 51) !important; /* *base */ 
+  --primary-light: rgb(253, 194, 102) !important; /* *(+9, +25, +51) */
+
+  --background-variant-one: #141414 !important;
+  --background-variant-two: #252529 !important;
+  --background-variant-three: #2D2E34 !important;
+  --background-variant-four: #43464F !important;
+}
+
+[data-theme='light']{
+  --text-common-one: #1B1C1D !important;
+  --text-common-two: #767777 !important;
+  --text-common-two: #828a8a !important;
+  
+  --primary-dark: #304161 !important;
+  --primary-medium: #405782 !important; 
+  --primary-light: #9FABC0 !important;
+
+  --background-variant-one: #767777 !important;
+  --background-variant-two: #A7A9AB !important;
+  --background-variant-three: #E4E4E4 !important;
+  --background-variant-four: #FCFCFC !important;
+}
+
+[data-theme='custom-theme']
+
+/* need a class in the body */
+.custom {
+  --color: white;
+}
+
+.dark {
+  --text-common-one: #FCFCFC !important;
+  --text-common-two: #323232 !important;
+  --text-common-two: #111111 !important;
+  
+  --primary-dark: rgb(229, 151, 29) !important; /* *(-15, -18, -22) */
+  --primary-medium: rgb(244, 169, 51) !important; /* *base */ 
+  --primary-light: rgb(253, 194, 102) !important; /* *(+9, +25, +51) */
+
+  --background-variant-one: #141414 !important;
+  --background-variant-two: #252529 !important;
+  --background-variant-three: #2D2E34 !important;
+  --background-variant-four: #43464F !important;
+}
+
+.light {
+  --text-common-one: #1B1C1D !important;
+  --text-common-two: #767777 !important;
+  --text-common-two: #828a8a !important;
+  
+  --primary-dark: #304161 !important;
+  --primary-medium: #405782 !important; 
+  --primary-light: #9FABC0 !important;
+
+  --background-variant-one: #767777 !important;
+  --background-variant-two: #A7A9AB !important;
+  --background-variant-three: #E4E4E4 !important;
+  --background-variant-four: #FCFCFC !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+body {
+  color: var(--text-common-one) !important;
+  background-color: var(--background-variant-four) !important;
+}
+
+h1, h3 {
+  text-align: center;
+  margin: 10px !important;
+}
+
+#picker button {
+  width: 100px;
+  height: 100%;
+  background: var(--primary-dark);
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid var(--primary-medium);
+  margin: 10px;
+  box-shadow: 1px 1px 1px var(--primary-light)
+}
+
+#picker button:hover {
+  background: var(--primary-light);
+}
+
+#picker > #themeSelector div {
+  display: flex;
+  justify-self: space-around;
+}
+
+#main {
+  display: flex;  
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#main #modal, #main #picker {
+  width: auto;
+  height: 500px;
+  border: 2px solid var(--background-variant-one);
+  border-radius: 10px;
+  background-color: var(--background-variant-two);
+  box-shadow: 10px 10px 10px var(--background-variant-three);
+}
+
+#color {
+  margin-left: 10%;
+  width:50%;
+}
+
+
+
+
+
+
+/* SAMPLE CARD */
+.container {
+  padding: 15px;
+  
+}
+
+input {
+  background: var(--background-variant-four) !important;
+  border-radius: 3px;
+  padding: 5px;
+  padding: 0.4em 1em;
+  width: 350px;
+  resize: none;
+  border: 0px;
+  color: var(--text-color-one) !important;
+  -webkit-border-radius: 3px;
+}
+
+input:focus {
+  border: 1px solid var(--background-variant-three) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.containerButtons {
+  border-radius: 8px;
+  margin: 10px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.containerButtons .button {
+  color: var(--text-common-one); 
+  border: 1px solid var(--background-variant-three) !important;
+  background: var(--background-variant-three);
+}
+
+.containerButtons .button:not(.active):hover {
+  color: var(--text-common-three); 
+  border: 1px solid var(--background-variant-four) !important;
+  background: var(--background-variant-four);
+}
+
+.containerButtons .active {
+  color: var(--primary-dark) !important;
+  border: 1px solid var(--primary-medium) !important;
+  background: var(--background-variant-two) !important;
+}
+
+.containerButtons .active:hover {
+  color: var(--primary-medium) !important;
+  border: 1px solid var(--primary-light) !important;
+  background: var(--background-variant-three) !important;
+}
+
+
+
+.colourPicker {
+  margin: 20px;
+}
