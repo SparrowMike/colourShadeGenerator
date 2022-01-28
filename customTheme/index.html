@@ -1,108 +1,136 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
-<head>
-  <meta charset="UTF-8">
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
-  
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  
-  
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/js/bootstrap-colorpicker.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.css" rel="stylesheet">
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <script src="app.js" defer></script>
-  <link rel="stylesheet" href="styles.css">
-  <title>Theme</title>
-</head>
-<body ng-controller="theme" class="dark">
-  <div id="main">
-    <div id='modal'>
-      <h1>Sample Card</h1>
-      <div class="ui divider"></div>
-      <div class="container">
-        <h4>Channel Name</h4>
-        <input type="text" name="title" placeholder="new channel">
-      </div>
-      <div class="ui divider"></div>
-      
-      <div class='containerButtons'>
-        <div ng-repeat="server in ['Public Servere', 'Private Server']" ng-click="active = !active" ng-class="{'active': active}" class="ui floated button">{{server}}</div>
-      </div>
-      
-      <div class="ui divider"></div>
+  <head>
+    <meta charset="UTF-8" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/js/bootstrap-colorpicker.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.css"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+      integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Theme</title>
+  </head>
+  <body ng-controller="theme" class="dark">
+    <div id="topPanel"></div>
+    <div id="sidePanel"></div>
+    <div id="main">
+      <div id="modal">
+        <h1>Sample Card</h1>
+        <div class="ui divider"></div>
+        <div class="container">
+          <h4>Channel Name</h4>
+          <input
+            type="text"
+            name="title"
+            placeholder="new channel"
+            class="form-control"
+          />
+        </div>
+        <div class="ui divider"></div>
+
+        <div class="containerButtons">
+          <div
+            ng-repeat="server in ['Public Servere', 'Private Server']"
+            ng-class="{'active': $first}"
+            class="ui floated button"
+          >
+            {{server}}
+          </div>
+        </div>
+
+        <div class="ui divider"></div>
+      </div>
+
+      <div id="picker">
+        <div id="themeSelector">
+          <h3>Themes</h3>
+          <div class="ui divider"></div>
+          <div>
+            <button class="ui button" ng-click="changeTheme('light')">
+              Light
+            </button>
+            <button class="ui button" ng-click="changeTheme('dark')">
+              Dark
+            </button>
+            <button class="ui button" ng-click="changeTheme('custom')">
+              Custom
+            </button>
+          </div>
+
+          <div class="ui divider"></div>
+        </div>
+
+        <div class="colourPicker">
+          <div id="primary">
+            <h1>Primary</h1>
+            <input
+              id="primary"
+              type="text"
+              value="rgb(241, 138, 49)"
+              class="form-control"
+            />
+          </div>
+          <div id="text">
+            <h1>Text</h1>
+            <input
+              id="text"
+              type="text"
+              value="rgb(241, 138, 49)"
+              class="form-control"
+            />
+          </div>
+          <div id="background">
+            <h1>Background</h1>
+            <input
+              id="background"
+              type="text"
+              value="rgb(241, 138, 49)"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div id='picker'>
-      <div id='themeSelector'>
-        <h3>Themes</h3>
-        <div class="ui divider"></div>
-        <div>
-          <button class="ui button" ng-click="changeTheme('light')">Light</button>
-          <button class="ui button" ng-click="changeTheme('dark')">Dark</button>
-          <button class="ui button" ng-click="changeTheme('custom')">Custom</button>
-        </div>
-        <div class="ui divider"></div>
-
-
-        
-
-
-
-
-      </div>
-      <!-- <div id='customTheme'>
-        <div>
-          <h3>Text</h3>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button> 
-        </div>
-
-        <div>
-          <h3>Primary</h3>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button>=
-        </div>
-
-        <div>
-          <h3>Background</h3>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button>
-          <button class="ui button" ng-click="changeTheme('custom-theme')">Custom</button>
-        </div>
-        <div class="ui divider"></div>
-      </div> -->
-
-      <div class="colourPicker">
-        <div id="primary">
-          <h1>Primary</h1>
-          <input id="primary" type="text" value="rgb(241, 138, 49)" class="form-control" />
-        </div>
-        <div id="text">
-          <h1>Text</h1>
-          <input id="text" type="text" value="rgb(241, 138, 49)" class="form-control" />
-        </div>
-        <div id="background">
-          <h1>Background</h1>
-          <input id="background" type="text" value="rgb(241, 138, 49)" class="form-control" />
-        </div>
-      </div>
-<!-- 
-      <div>
-        <button ng-click="customTheme()">Generate</button>
-      </div> -->
-
-      </div>
-    </div>
-
-</body>
+  </body>
 </html>
