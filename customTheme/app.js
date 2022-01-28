@@ -2,7 +2,10 @@ var app = angular.module("myApp", []);
 
 app.controller("theme", function ($scope) {
   const body = $("body").get(0).style; //? FOR COLOURPICKER
-  let cssObject = {};
+
+  //? LOAD THE THEME ON START
+  const theme = localStorage.getItem("theme");
+  if (theme) $("body").removeClass("light dark custom").addClass(theme);
 
   //? PALETTE VARIABLES FOR THE PICKER TO FEED FROM
   const palette = {
@@ -53,24 +56,26 @@ app.controller("theme", function ($scope) {
   //!============================================================================
 
   //?=====SEARCH THE HTML HEAD TO FIND THE RIGHT CSS
-  const css = document.styleSheets;
-  for (c in css) {
-    if (
-      typeof css[c].href === "string" &&
-      css[c].href.endsWith("styles.css")
-    ) {
-      console.log(`styles.css found at position ${c} of all styleSheets`);
-      console.log(css[c].cssRules[1].cssText);
-
+  const checkCurrentStyles = () => {
+    const css = document.styleSheets;
+    for (c in css) {
+      if (
+        typeof css[c].href === "string" &&
+        css[c].href.endsWith("styles.css")
+        ) {
+          console.log(`styles.css found at position ${c} of all styleSheets`);
+          console.log(css[c].cssRules[1].cssText);
+        }
+      }
     }
-  }
+
   //?========================================
 
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
   };
 
-  $scope.loadValues = () => {
+  $scope.loadValues = function () {
     const data = JSON.parse(localStorage.getItem("customTheme"))
     for (d in data) {
       for (i in data[d]) {
@@ -78,12 +83,11 @@ app.controller("theme", function ($scope) {
       }
     } 
   }
+  if (theme === 'custom') {
+    $scope.loadValues()
+  }
 
   //!============================================================================
-
-  //? LOAD THE THEME ON START
-  const theme = localStorage.getItem("theme");
-  if (theme) $("body").removeClass("light dark custom").addClass(theme);
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
@@ -102,7 +106,10 @@ app.controller("theme", function ($scope) {
           .addClass("dark");
         break;
       case "custom":
-        $("body").removeClass("light dark").addClass("custom");
+        if(theme==='custom') $scope.loadValues()
+        $("body")
+          .removeClass("light dark")
+          .addClass("custom");
         break;
     }
   };
@@ -182,6 +189,7 @@ app.controller("theme", function ($scope) {
 
 //TODO============================================================================
 //? - how can random values be simplified instead of hardcoding????
+//? - load all the styles into the object of the curently selected theme
 //? - create a better sample theme for user to messaround? needs a design from UI/UX
 
 
