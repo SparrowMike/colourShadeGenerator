@@ -1,7 +1,8 @@
 var app = angular.module("myApp", []);
 
 app.controller("theme", function ($scope) {
-  const body = $("body").get(0).style //? FOR COLOURPICKER
+  const body = $("body").get(0).style; //? FOR COLOURPICKER
+  let cssObject = {};
 
   //? PALETTE VARIABLES FOR THE PICKER TO FEED FROM
   const palette = {
@@ -26,10 +27,59 @@ app.controller("theme", function ($scope) {
 
   //? OBJECT TO STORE THE CUSTOM THEME
   let storedPalette = {
-  primary: {},
-  background: {},
-  text: {},
+    primary: {
+      "--primary-dark": "rgb(229, 151, 29)",
+      "--primary-medium": "rgb(244, 169, 51)",
+      "--primary-light": "rgb(253, 194, 102)",
+    },
+    background: {
+      "--main-bg-darkest": "rgb(20, 20, 20)",
+      "--main-bg-darker": "rgb(27, 28, 29)",
+      "--main-bg-dark": "rgb(37, 37, 41)",
+      "--main-bg": "rgb(37, 38, 43)",
+      "--main-bg-light": "rgb(45, 46, 52)",
+      "--main-bg-lighter": "rgb(51, 52, 60)",
+      "--main-bg-lightest": "rgb(67, 70, 79)",
+    },
+    text: {
+      "--main-text": "rgb(252, 252, 252)",
+      "--main-text-dark1": "rgb(227, 227, 227)",
+      "--main-text-dark2": "rgb(170, 169, 169)",
+      "--main-text-dark3": "rgb(166, 166, 168)",
+      "--main-text-dark4": "rgb(153, 153, 153)",
+    },
   };
+
+  //!============================================================================
+
+  //?=====SEARCH THE HTML HEAD TO FIND THE RIGHT CSS
+  const css = document.styleSheets;
+  for (c in css) {
+    if (
+      typeof css[c].href === "string" &&
+      css[c].href.endsWith("styles.css")
+    ) {
+      console.log(`styles.css found at position ${c} of all styleSheets`);
+      console.log(css[c].cssRules[1].cssText);
+
+    }
+  }
+  //?========================================
+
+  $scope.saveValues = () => {
+    localStorage.setItem("customTheme", JSON.stringify(storedPalette));
+  };
+
+  $scope.loadValues = () => {
+    const data = JSON.parse(localStorage.getItem("customTheme"))
+    for (d in data) {
+      for (i in data[d]) {
+        body.setProperty(`${i}`, `${data[d][i]}`)
+      }
+    } 
+  }
+
+  //!============================================================================
 
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
@@ -57,7 +107,7 @@ app.controller("theme", function ($scope) {
     }
   };
 
-  let obj = {}; //! obj - will hold the RGB destructured values (from "rgb(171, 140, 113)" to {red: 171, green: 140, blue: 113})
+  let rgbValues = new Object();
 
   function rgbToObj(rgb) {
     let colors = ["red", "green", "blue", "alpha"];
@@ -65,112 +115,74 @@ app.controller("theme", function ($scope) {
       .slice(rgb.indexOf("(") + 1, rgb.indexOf(")"))
       .split(/, | ,|,/);
     colorArr.forEach((k, i) => {
-      obj[colors[i]] = Number(k);
+      rgbValues[colors[i]] = Number(k);
     });
-    return obj;
+    return rgbValues;
   }
 
-  //! CUSTOM COLOUR PICKER 
+  //! CUSTOM COLOUR PICKER
   $(function () {
     $("#primary") //!========PRIMARY========
       .colorpicker({})
       .on("colorpickerChange", function (e) {
-        new_color = e.color.toString();
-        rgbToObj(new_color);
-        body.setProperty(
-            `${palette.primary[0]}`,
-            `rgb(${obj.red - 15},${obj.green - 18},${obj.blue - 22})`
-          );
-        body.setProperty(
-            `${palette.primary[1]}`,
-            `rgb(${obj.red},${obj.green},${obj.blue})`
-          );
-        body.setProperty(
-            `${palette.primary[2]}`,
-            `rgb(${obj.red + 9},${obj.green + 25},${obj.blue + 51})`
-          );
+        
+        rgbToObj(e.color.toString());
+
+        storedPalette.primary['--primary-dark'] = `rgb(${rgbValues.red - 15},${rgbValues.green - 18},${rgbValues.blue - 22})`
+        storedPalette.primary['--primary-medium'] = `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
+        storedPalette.primary['--primary-light'] = `rgb(${rgbValues.red + 9},${rgbValues.green + 25},${rgbValues.blue + 51})`
+
+        body.setProperty(`${palette.primary[0]}`,`rgb(${rgbValues.red - 15},${rgbValues.green - 18},${rgbValues.blue - 22})`);
+        body.setProperty(`${palette.primary[1]}`,`rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`);
+        body.setProperty(`${palette.primary[2]}`,`rgb(${rgbValues.red + 9},${rgbValues.green + 25},${rgbValues.blue + 51})`);
       });
 
     $("#text") //!========TEXT========
       .colorpicker({})
       .on("colorpickerChange", function (e) {
-        new_color = e.color.toString();
-        rgbToObj(new_color);
-        body.setProperty(
-            `${palette.text[0]}`,
-            `rgb(${obj.red + 99},${obj.green + 99},${obj.blue + 99})`
-          );
-        body.setProperty(
-            `${palette.text[1]}`,
-            `rgb(${obj.red + 74},${obj.green + 74},${obj.blue + 74})`
-          );
-        body.setProperty(
-            `${palette.text[2]}`,
-            `rgb(${obj.red + 17},${obj.green + 16},${obj.blue + 16})`
-          );
-        body.setProperty(
-            `${palette.text[3]}`,
-            `rgb(${obj.red + 13},${obj.green + 13},${obj.blue + 13})`
-          );
-        body.setProperty(
-            `${palette.text[5]}`,
-            `rgb(${obj.red},${obj.green},${obj.blue})`
-          );
-      });
+        
+        rgbToObj(e.color.toString());
+
+        storedPalette.text["--main-text"] = `rgb(${rgbValues.red + 99},${rgbValues.green + 99},${rgbValues.blue + 99})` 
+        storedPalette.text["--main-text-dark1"] = `rgb(${rgbValues.red + 74},${rgbValues.green + 74},${rgbValues.blue + 74})` 
+        storedPalette.text["--main-text-dark2"] = `rgb(${rgbValues.red + 17},${rgbValues.green + 16},${rgbValues.blue + 16})`
+        storedPalette.text["--main-text-dark3"] = `rgb(${rgbValues.red + 13},${rgbValues.green + 13},${rgbValues.blue + 13})`
+        storedPalette.text["--main-text-dark4"] = `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
+
+        body.setProperty(`${palette.text[0]}`,`rgb(${rgbValues.red + 99},${rgbValues.green + 99},${rgbValues.blue + 99})`);
+        body.setProperty(`${palette.text[1]}`,`rgb(${rgbValues.red + 74},${rgbValues.green + 74},${rgbValues.blue + 74})`);
+        body.setProperty(`${palette.text[2]}`,`rgb(${rgbValues.red + 17},${rgbValues.green + 16},${rgbValues.blue + 16})`);
+        body.setProperty(`${palette.text[3]}`,`rgb(${rgbValues.red + 13},${rgbValues.green + 13},${rgbValues.blue + 13})`);
+        body.setProperty(`${palette.text[5]}`,`rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`);});
 
     $("#background") //!========BACKGROUND========
       .colorpicker({})
       .on("colorpickerChange", function (e) {
-        new_color = e.color.toString();
-        rgbToObj(new_color);
-        body.setProperty(
-            `${palette.background[0]}`,
-            `rgb(${obj.red - 17},${obj.green - 17},${obj.blue - 17})`
-          );
-        body.setProperty(
-            `${palette.background[1]}`,
-            `rgb(${obj.red - 10},${obj.green - 10},${obj.blue - 14})`
-          );
-        body.setProperty(
-            `${palette.background[2]}`,
-            `rgb(${obj.red - 0},${obj.green - 1},${obj.blue - 2})`
-          );
-        body.setProperty(
-            `${palette.background[3]}`,
-            `rgb(${obj.red},${obj.green},${obj.blue})`
-          );
-        body.setProperty(
-            `${palette.background[4]}`,
-            `rgb(${obj.red + 8},${obj.green + 8},${obj.blue + 8})`
-          );
-        body.setProperty(
-            `${palette.background[5]}`,
-            `rgb(${obj.red + 14},${obj.green + 14},${obj.blue + 17})`
-          );
-        body.setProperty(
-            `${palette.background[6]}`,
-            `rgb(${obj.red + 30},${obj.green + 32},${obj.blue + 36})`
-          );
+        
+        rgbToObj(e.color.toString());
+
+        storedPalette.background["--main-bg-darkest"] = `rgb(${rgbValues.red - 17},${rgbValues.green - 17},${rgbValues.blue - 17})`
+        storedPalette.background["--main-bg-darker"] = `rgb(${rgbValues.red - 10},${rgbValues.green - 10},${rgbValues.blue - 14})` 
+        storedPalette.background["--main-bg-dark"] = `rgb(${rgbValues.red - 0},${rgbValues.green - 1},${rgbValues.blue - 2})`
+        storedPalette.background["--main-bg"] = `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
+        storedPalette.background["--main-bg-light"] = `rgb(${rgbValues.red + 8},${rgbValues.green + 8},${rgbValues.blue + 8})`
+        storedPalette.background["--main-bg-lighter"] = `rgb(${rgbValues.red + 14},${rgbValues.green + 14},${rgbValues.blue + 17})`
+        storedPalette.background["--main-bg-lightest"] = `rgb(${rgbValues.red + 30},${rgbValues.green + 32},${rgbValues.blue + 36})`
+
+        body.setProperty(`${palette.background[0]}`,`rgb(${rgbValues.red - 17},${rgbValues.green - 17},${rgbValues.blue - 17})`);
+        body.setProperty(`${palette.background[1]}`,`rgb(${rgbValues.red - 10},${rgbValues.green - 10},${rgbValues.blue - 14})`);
+        body.setProperty(`${palette.background[2]}`,`rgb(${rgbValues.red - 0},${rgbValues.green - 1},${rgbValues.blue - 2})`);
+        body.setProperty(`${palette.background[3]}`,`rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`);
+        body.setProperty(`${palette.background[4]}`,`rgb(${rgbValues.red + 8},${rgbValues.green + 8},${rgbValues.blue + 8})`);
+        body.setProperty(`${palette.background[5]}`,`rgb(${rgbValues.red + 14},${rgbValues.green + 14},${rgbValues.blue + 17})`);
+        body.setProperty(`${palette.background[6]}`,`rgb(${rgbValues.red + 30},${rgbValues.green + 32},${rgbValues.blue + 36})`);
       });
   });
 });
 
-
-
 //TODO============================================================================
-//! - store the custom theme in a object - local storage (for now)
-//! - render custom theme object
-//? - how can random values be simplified instead of hardcoding 
-//? - create a better sample them for user to messaround? needs a design from UI/UX
-
-
-
-
-
-
-
-
-
+//? - how can random values be simplified instead of hardcoding????
+//? - create a better sample theme for user to messaround? needs a design from UI/UX
 
 
 
@@ -244,3 +256,46 @@ app.controller("theme", function ($scope) {
 //     "--main-text-dark4": "rgb(153, 153, 153)",
 //   },
 // };
+
+// `rgb(${rgbValues.red - 15},${rgbValues.green - 18},${rgbValues.blue - 22})`
+// `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
+// `rgb(${rgbValues.red + 9},${rgbValues.green + 25},${rgbValues.blue + 51})`
+
+// `rgb(${rgbValues.red + 99},${rgbValues.green + 99},${rgbValues.blue + 99})`
+// `rgb(${rgbValues.red + 74},${rgbValues.green + 74},${rgbValues.blue + 74})`
+// `rgb(${rgbValues.red + 17},${rgbValues.green + 16},${rgbValues.blue + 16})`
+// `rgb(${rgbValues.red + 13},${rgbValues.green + 13},${rgbValues.blue + 13})`
+// `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
+
+// `rgb(${rgbValues.red - 17},${rgbValues.green - 17},${rgbValues.blue - 17})`
+// `rgb(${rgbValues.red - 10},${rgbValues.green - 10},${rgbValues.blue - 14})`
+// `rgb(${rgbValues.red - 0},${rgbValues.green - 1},${rgbValues.blue - 2})`
+// `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
+// `rgb(${rgbValues.red + 8},${rgbValues.green + 8},${rgbValues.blue + 8})`
+// `rgb(${rgbValues.red + 14},${rgbValues.green + 14},${rgbValues.blue + 17})`
+// `rgb(${rgbValues.red + 30},${rgbValues.green + 32},${rgbValues.blue + 36})`
+
+
+// function parseCSSText(cssText) {
+//   var cssTxt = cssText.replace(/\/\*(.|\s)*?\*\//g, " ").replace(/\s+/g, " ");
+//   var style = {},
+//     [, ruleName, rule] = cssTxt.match(/ ?(.*?) ?{([^}]*)}/) || [, , cssTxt];
+//   var cssToJs = (s) =>
+//     s.replace(/\W+\w/g, (match) => match.slice(-1).toUpperCase());
+//   var properties = rule
+//     .split(";")
+//     .map((o) => o.split(":").map((x) => x && x.trim()));
+//   for (var [property, value] of properties) style[cssToJs(property)] = value;
+//   return { cssText, ruleName, style };
+// }
+
+// console.log(parseCSSText(document.querySelector(".custom").style.cssText))
+
+// var css = {};
+
+
+// console.log($('body').get(0).style)
+// console.log($('.custom').prop())
+// $('body').css("backgroundColor");
+// const declaration = document.styleSheets[4].cssRules[1].style;
+// const propvalue = declaration.getPropertyValue("--main-bg");
