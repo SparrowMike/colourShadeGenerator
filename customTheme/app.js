@@ -1,31 +1,36 @@
 var app = angular.module("myApp", []);
 
 app.controller("theme", function ($scope) {
+
   const body = $("body").get(0).style; //? FOR COLOURPICKER
 
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   if (theme) $("body").removeClass("light dark custom").addClass(theme);
 
-  //? PALETTE VARIABLES FOR THE PICKER TO FEED FROM
-  const palette = {
-    background: [
-      "--main-bg-darkest",
-      "--main-bg-darker",
-      "--main-bg-dark",
-      "--main-bg",
-      "--main-bg-light",
-      "--main-bg-lighter",
-      "--main-bg-lightest",
-    ],
-    text: [
-      "--main-text",
-      "--main-text-dark1",
-      "--main-text-dark2",
-      "--main-text-dark3",
-      "--main-text-dark4",
-    ],
-    primary: ["--primary-dark", "--primary-medium", "--primary-light"],
+  //? OBJECT STORING PALETTE INCREMENT VALUES
+  const paletteToFeed = {
+    primary: {
+      "--primary-dark": { r: -15, g: -18, b: -22 },
+      "--primary-medium": { r: 0, g: 0, b: 0 },
+      "--primary-light": { r: 9, g: 25, b: 51 },
+    },
+    text: {
+      "--main-text": { r: 99, g: 99, b: 99 },
+      "--main-text-dark1": { r: 74, g: 74, b: 74 },
+      "--main-text-dark2": { r: 17, g: 16, b: 16 },
+      "--main-text-dark3": { r: 13, g: 13, b: 15 },
+      "--main-text-dark4": { r: 0, g: 0, b: 0 },
+    },
+    background: {
+      "--main-bg-darkest": { r: -17, g: -18, b: -23 },
+      "--main-bg-darker": { r: -10, g: -10, b: -14 },
+      "--main-bg-dark": { r: 0, g: -1, b: -2 },
+      "--main-bg": { r: 0, g: 0, b: 0 },
+      "--main-bg-light": { r: 8, g: 8, b: 9 },
+      "--main-bg-lighter": { r: 14, g: 14, b: 17 },
+      "--main-bg-lightest": { r: 30, g: 32, b: 36 },
+    },
   };
 
   //? OBJECT TO STORE THE CUSTOM THEME
@@ -53,41 +58,23 @@ app.controller("theme", function ($scope) {
     },
   };
 
-  //!============================================================================
-
-  //?=====SEARCH THE HTML HEAD TO FIND THE RIGHT CSS
-  const checkCurrentStyles = () => {
-    const css = document.styleSheets;
-    for (c in css) {
-      if (
-        typeof css[c].href === "string" &&
-        css[c].href.endsWith("styles.css")
-        ) {
-          console.log(`styles.css found at position ${c} of all styleSheets`);
-          console.log(css[c].cssRules[1].cssText);
-        }
-      }
-    }
-
-  //?========================================
-
+  //?===================SAVE/LOAD=====================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
   };
 
+  //?=====Load values will load last stored custom theme, bypassing css 
   $scope.loadValues = function () {
-    const data = JSON.parse(localStorage.getItem("customTheme"))
+    const data = JSON.parse(localStorage.getItem("customTheme"));
     for (d in data) {
       for (i in data[d]) {
-        body.setProperty(`${i}`, `${data[d][i]}`)
+        body.setProperty(`${i}`, `${data[d][i]}`);
       }
-    } 
+    }
+  };
+  if (theme === "custom") {
+    $scope.loadValues();
   }
-  if (theme === 'custom') {
-    $scope.loadValues()
-  }
-
-  //!============================================================================
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
@@ -106,18 +93,38 @@ app.controller("theme", function ($scope) {
           .addClass("dark");
         break;
       case "custom":
-        if(theme==='custom') $scope.loadValues()
-        $("body")
-          .removeClass("light dark")
-          .addClass("custom");
+        if (theme === "custom") $scope.loadValues();
+        $("body").removeClass("light dark").addClass("custom");
         break;
     }
   };
 
-  let rgbValues = new Object();
+  //!================================================================================================================
+  //? Split the string of styles collected from DOM - turn it to a object and feed it back to the picker 
+  function cssSplit(str) {
+    // console.log(str)
+    let obj = {},
+      // S = str.match(/([^:;]+)/g) ||  [];
+      S = str.match(/([\w-]*)\s*:\s*([^;]*)/g) || [];
+    while (S.length) {
+      obj[S.shift()] = S.shift() || "";
+    }
 
+    for (o in obj) body.setProperty(`${o}`, `${obj[o]}`);
+
+    return obj;
+  }
+
+  //! https://www.generacodice.com/en/articolo/1775775/javascript-convert-css-style-string-into-js-object
+
+  cssSplit(
+    "--primary-dark: rgb(229, 151, 29); --primary-medium: rgb(244, 169, 51); --primary-light: rgb(253, 194, 102); --main-bg-darkest: rgb(20, 20, 20); --main-bg-darker: rgb(27, 28, 29); --main-bg-dark: rgb(37, 37, 41); --main-bg: rgb(37, 38, 43); --main-bg-light: rgb(45, 46, 52); --main-bg-lighter: rgb(51, 52, 60); --main-bg-lightest: rgb(67, 70, 79); --main-text: rgb(252, 252, 252); --main-text-dark1: rgb(227, 227, 227); --main-text-dark2: rgb(170, 169, 169); --main-text-dark3: rgb(166, 166, 168); --main-text-dark4: rgb(153, 153, 153);"
+  );
+  //!================================================================================================================
+
+  let rgbValues = new Object();
   function rgbToObj(rgb) {
-    let colors = ["red", "green", "blue", "alpha"];
+    let colors = ["r", "g", "b", "a"];
     let colorArr = rgb
       .slice(rgb.indexOf("(") + 1, rgb.indexOf(")"))
       .split(/, | ,|,/);
@@ -132,57 +139,63 @@ app.controller("theme", function ($scope) {
     $("#primary") //!========PRIMARY========
       .colorpicker({})
       .on("colorpickerChange", function (e) {
-        
         rgbToObj(e.color.toString());
 
-        storedPalette.primary['--primary-dark'] = `rgb(${rgbValues.red - 15},${rgbValues.green - 18},${rgbValues.blue - 22})`
-        storedPalette.primary['--primary-medium'] = `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
-        storedPalette.primary['--primary-light'] = `rgb(${rgbValues.red + 9},${rgbValues.green + 25},${rgbValues.blue + 51})`
-
-        body.setProperty(`${palette.primary[0]}`,`rgb(${rgbValues.red - 15},${rgbValues.green - 18},${rgbValues.blue - 22})`);
-        body.setProperty(`${palette.primary[1]}`,`rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`);
-        body.setProperty(`${palette.primary[2]}`,`rgb(${rgbValues.red + 9},${rgbValues.green + 25},${rgbValues.blue + 51})`);
+        for (p in storedPalette.primary) {
+          storedPalette.primary[p] = `rgb(${
+            rgbValues.r + paletteToFeed.primary[p].r
+          },${rgbValues.g + paletteToFeed.primary[p].g},${
+            rgbValues.b + paletteToFeed.primary[p].b
+          })`;
+          body.setProperty(
+            p,
+            `rgb(${rgbValues.r + paletteToFeed.primary[p].r},${
+              rgbValues.g + paletteToFeed.primary[p].g
+            },${rgbValues.b + paletteToFeed.primary[p].b})`
+          );
+        }
+        console.info(storedPalette.primary);
       });
 
     $("#text") //!========TEXT========
       .colorpicker({})
       .on("colorpickerChange", function (e) {
-        
         rgbToObj(e.color.toString());
 
-        storedPalette.text["--main-text"] = `rgb(${rgbValues.red + 99},${rgbValues.green + 99},${rgbValues.blue + 99})` 
-        storedPalette.text["--main-text-dark1"] = `rgb(${rgbValues.red + 74},${rgbValues.green + 74},${rgbValues.blue + 74})` 
-        storedPalette.text["--main-text-dark2"] = `rgb(${rgbValues.red + 17},${rgbValues.green + 16},${rgbValues.blue + 16})`
-        storedPalette.text["--main-text-dark3"] = `rgb(${rgbValues.red + 13},${rgbValues.green + 13},${rgbValues.blue + 13})`
-        storedPalette.text["--main-text-dark4"] = `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
-
-        body.setProperty(`${palette.text[0]}`,`rgb(${rgbValues.red + 99},${rgbValues.green + 99},${rgbValues.blue + 99})`);
-        body.setProperty(`${palette.text[1]}`,`rgb(${rgbValues.red + 74},${rgbValues.green + 74},${rgbValues.blue + 74})`);
-        body.setProperty(`${palette.text[2]}`,`rgb(${rgbValues.red + 17},${rgbValues.green + 16},${rgbValues.blue + 16})`);
-        body.setProperty(`${palette.text[3]}`,`rgb(${rgbValues.red + 13},${rgbValues.green + 13},${rgbValues.blue + 13})`);
-        body.setProperty(`${palette.text[5]}`,`rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`);});
+        for (p in storedPalette.text) {
+          storedPalette.text[p] = `rgb(${
+            rgbValues.r + paletteToFeed.text[p].r
+          },${rgbValues.g + paletteToFeed.text[p].g},${
+            rgbValues.b + paletteToFeed.text[p].b
+          })`;
+          body.setProperty(
+            p,
+            `rgb(${rgbValues.r + paletteToFeed.text[p].r},${
+              rgbValues.g + paletteToFeed.text[p].g
+            },${rgbValues.b + paletteToFeed.text[p].b})`
+          );
+        }
+        console.info(storedPalette.text);
+      });
 
     $("#background") //!========BACKGROUND========
       .colorpicker({})
       .on("colorpickerChange", function (e) {
-        
         rgbToObj(e.color.toString());
-
-        storedPalette.background["--main-bg-darkest"] = `rgb(${rgbValues.red - 17},${rgbValues.green - 17},${rgbValues.blue - 17})`
-        storedPalette.background["--main-bg-darker"] = `rgb(${rgbValues.red - 10},${rgbValues.green - 10},${rgbValues.blue - 14})` 
-        storedPalette.background["--main-bg-dark"] = `rgb(${rgbValues.red - 0},${rgbValues.green - 1},${rgbValues.blue - 2})`
-        storedPalette.background["--main-bg"] = `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
-        storedPalette.background["--main-bg-light"] = `rgb(${rgbValues.red + 8},${rgbValues.green + 8},${rgbValues.blue + 8})`
-        storedPalette.background["--main-bg-lighter"] = `rgb(${rgbValues.red + 14},${rgbValues.green + 14},${rgbValues.blue + 17})`
-        storedPalette.background["--main-bg-lightest"] = `rgb(${rgbValues.red + 30},${rgbValues.green + 32},${rgbValues.blue + 36})`
-
-        body.setProperty(`${palette.background[0]}`,`rgb(${rgbValues.red - 17},${rgbValues.green - 17},${rgbValues.blue - 17})`);
-        body.setProperty(`${palette.background[1]}`,`rgb(${rgbValues.red - 10},${rgbValues.green - 10},${rgbValues.blue - 14})`);
-        body.setProperty(`${palette.background[2]}`,`rgb(${rgbValues.red - 0},${rgbValues.green - 1},${rgbValues.blue - 2})`);
-        body.setProperty(`${palette.background[3]}`,`rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`);
-        body.setProperty(`${palette.background[4]}`,`rgb(${rgbValues.red + 8},${rgbValues.green + 8},${rgbValues.blue + 8})`);
-        body.setProperty(`${palette.background[5]}`,`rgb(${rgbValues.red + 14},${rgbValues.green + 14},${rgbValues.blue + 17})`);
-        body.setProperty(`${palette.background[6]}`,`rgb(${rgbValues.red + 30},${rgbValues.green + 32},${rgbValues.blue + 36})`);
+        for (p in storedPalette.background) {
+          storedPalette.background[p] = `rgb(${
+            rgbValues.r + paletteToFeed.background[p].r
+          },${rgbValues.g + paletteToFeed.background[p].g},${
+            rgbValues.b + paletteToFeed.background[p].b
+          })`;
+          body.setProperty(
+            p,
+            `rgb(${rgbValues.r + paletteToFeed.background[p].r},${
+              rgbValues.g + paletteToFeed.background[p].g
+            },${rgbValues.b + paletteToFeed.background[p].b})`
+          );
+        }
+        console.info(storedPalette.background);
       });
   });
 });
@@ -190,7 +203,10 @@ app.controller("theme", function ($scope) {
 //TODO============================================================================
 //? - how can random values be simplified instead of hardcoding????
 //? - load all the styles into the object of the curently selected theme
+//? - use simpler picker? DRY...
+//? - switch case for the picker....DRY...DRY....
 //? - create a better sample theme for user to messaround? needs a design from UI/UX
+//? - most dominant color should always be the base?
 
 
 
@@ -283,7 +299,6 @@ app.controller("theme", function ($scope) {
 // `rgb(${rgbValues.red + 14},${rgbValues.green + 14},${rgbValues.blue + 17})`
 // `rgb(${rgbValues.red + 30},${rgbValues.green + 32},${rgbValues.blue + 36})`
 
-
 // function parseCSSText(cssText) {
 //   var cssTxt = cssText.replace(/\/\*(.|\s)*?\*\//g, " ").replace(/\s+/g, " ");
 //   var style = {},
@@ -301,9 +316,23 @@ app.controller("theme", function ($scope) {
 
 // var css = {};
 
-
 // console.log($('body').get(0).style)
 // console.log($('.custom').prop())
 // $('body').css("backgroundColor");
 // const declaration = document.styleSheets[4].cssRules[1].style;
 // const propvalue = declaration.getPropertyValue("--main-bg");
+
+//!============================================================================
+
+//?=====SEARCH THE HTML HEAD TO FIND THE RIGHT CSS
+const checkCurrentStyles = () => {
+  const css = document.styleSheets;
+  for (c in css) {
+    if (typeof css[c].href === "string" && css[c].href.endsWith("styles.css")) {
+      console.log(`styles.css found at position ${c} of all styleSheets`);
+      console.log(css[c].cssRules[1].cssText);
+    }
+  }
+};
+
+// checkCurrentStyles()
