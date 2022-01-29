@@ -1,8 +1,7 @@
 var app = angular.module("myApp", []);
 
 app.controller("theme", function ($scope) {
-
-  const body = $("body").get(0).style; //? FOR COLOURPICKER
+  const body = $("body").get(0).style; //? FOR THE COLOURPICKER
 
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
@@ -63,7 +62,7 @@ app.controller("theme", function ($scope) {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
   };
 
-  //?=====Load values will load last stored custom theme, bypassing css 
+  //?=====Load values will load last stored custom theme, bypassing css
   $scope.loadValues = function () {
     const data = JSON.parse(localStorage.getItem("customTheme"));
     for (d in data) {
@@ -100,7 +99,7 @@ app.controller("theme", function ($scope) {
   };
 
   //!================================================================================================================
-  //? Split the string of styles collected from DOM - turn it to a object and feed it back to the picker 
+  //? Split the string of styles collected from DOM - turn it to a object and feed it back to the picker
   function cssSplit(str) {
     // console.log(str)
     let obj = {},
@@ -134,77 +133,42 @@ app.controller("theme", function ($scope) {
     return rgbValues;
   }
 
-  //! CUSTOM COLOUR PICKER
-  $(function () {
-    $("#primary") //!========PRIMARY========
+  //? CUSTOM COLOUR PICKER
+  $scope.changeColor = (type) => {
+    $(`#${type}`)
       .colorpicker({})
       .on("colorpickerChange", function (e) {
         rgbToObj(e.color.toString());
 
-        for (p in storedPalette.primary) {
-          storedPalette.primary[p] = `rgb(${
-            rgbValues.r + paletteToFeed.primary[p].r
-          },${rgbValues.g + paletteToFeed.primary[p].g},${
-            rgbValues.b + paletteToFeed.primary[p].b
-          })`;
-          body.setProperty(
-            p,
-            `rgb(${rgbValues.r + paletteToFeed.primary[p].r},${
-              rgbValues.g + paletteToFeed.primary[p].g
-            },${rgbValues.b + paletteToFeed.primary[p].b})`
-          );
-        }
-        console.info(storedPalette.primary);
-      });
+        for (color in storedPalette[type]) {
+          const rgbArr = [
+            rgbValues.r + paletteToFeed[type][color].r,
+            rgbValues.g + paletteToFeed[type][color].g,
+            rgbValues.b + paletteToFeed[type][color].b,
+          ];
+          for(a in rgbArr) {
+            if (rgbArr[color] >= 255) rgbArr[color] = 255
+            if (rgbArr[color] <= 0) rgbArr[color] = 0 
+          }
+          const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
 
-    $("#text") //!========TEXT========
-      .colorpicker({})
-      .on("colorpickerChange", function (e) {
-        rgbToObj(e.color.toString());
+          //? keep the generated colour in the storePalette Object
+          storedPalette[type][color] = rgb;
 
-        for (p in storedPalette.text) {
-          storedPalette.text[p] = `rgb(${
-            rgbValues.r + paletteToFeed.text[p].r
-          },${rgbValues.g + paletteToFeed.text[p].g},${
-            rgbValues.b + paletteToFeed.text[p].b
-          })`;
-          body.setProperty(
-            p,
-            `rgb(${rgbValues.r + paletteToFeed.text[p].r},${
-              rgbValues.g + paletteToFeed.text[p].g
-            },${rgbValues.b + paletteToFeed.text[p].b})`
-          );
+          //? display the currently generated colours
+          body.setProperty(color, rgb);
         }
-        console.info(storedPalette.text);
+        console.info(storedPalette[type]);
       });
-
-    $("#background") //!========BACKGROUND========
-      .colorpicker({})
-      .on("colorpickerChange", function (e) {
-        rgbToObj(e.color.toString());
-        for (p in storedPalette.background) {
-          storedPalette.background[p] = `rgb(${
-            rgbValues.r + paletteToFeed.background[p].r
-          },${rgbValues.g + paletteToFeed.background[p].g},${
-            rgbValues.b + paletteToFeed.background[p].b
-          })`;
-          body.setProperty(
-            p,
-            `rgb(${rgbValues.r + paletteToFeed.background[p].r},${
-              rgbValues.g + paletteToFeed.background[p].g
-            },${rgbValues.b + paletteToFeed.background[p].b})`
-          );
-        }
-        console.info(storedPalette.background);
-      });
-  });
+  };
 });
 
 //TODO============================================================================
-//? - how can random values be simplified instead of hardcoding????
-//? - load all the styles into the object of the curently selected theme
-//? - use simpler picker? DRY...
-//? - switch case for the picker....DRY...DRY....
+//? - load the slected styles into the object
+//? - use simpler picker?
+
+//? - ng-repeat for themes
+
 //? - create a better sample theme for user to messaround? needs a design from UI/UX
 //? - most dominant color should always be the base?
 
@@ -255,49 +219,6 @@ app.controller("theme", function ($scope) {
 //       ]),
 //     []
 //   );
-
-//! DARK THEME PALETTE OBEJCT WITH VALUES (as CSS)
-// const paletteObj = {
-//   primary: {
-//     "--primary-dark": "rgb(229, 151, 29)",
-//     "--primary-medium": "rgb(244, 169, 51)",
-//     "--primary-light": "rgb(253, 194, 102)",
-//   },
-//   background: {
-//     "--main-bg-darkest": "rgb(20, 20, 20)",
-//     "--main-bg-darker": "rgb(27, 28, 29)",
-//     "--main-bg-dark": "rgb(37, 37, 41)",
-//     "--main-bg": "rgb(37, 38, 43)",
-//     "--main-bg-light": "rgb(45, 46, 52)",
-//     "--main-bg-lighter": "rgb(51, 52, 60)",
-//     "--main-bg-lightest": "rgb(67, 70, 79)",
-//   },
-//   text: {
-//     "--main-text": "rgb(252, 252, 252)",
-//     "--main-text-dark1": "rgb(227, 227, 227)",
-//     "--main-text-dark2": "rgb(170, 169, 169)",
-//     "--main-text-dark3": "rgb(166, 166, 168)",
-//     "--main-text-dark4": "rgb(153, 153, 153)",
-//   },
-// };
-
-// `rgb(${rgbValues.red - 15},${rgbValues.green - 18},${rgbValues.blue - 22})`
-// `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
-// `rgb(${rgbValues.red + 9},${rgbValues.green + 25},${rgbValues.blue + 51})`
-
-// `rgb(${rgbValues.red + 99},${rgbValues.green + 99},${rgbValues.blue + 99})`
-// `rgb(${rgbValues.red + 74},${rgbValues.green + 74},${rgbValues.blue + 74})`
-// `rgb(${rgbValues.red + 17},${rgbValues.green + 16},${rgbValues.blue + 16})`
-// `rgb(${rgbValues.red + 13},${rgbValues.green + 13},${rgbValues.blue + 13})`
-// `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
-
-// `rgb(${rgbValues.red - 17},${rgbValues.green - 17},${rgbValues.blue - 17})`
-// `rgb(${rgbValues.red - 10},${rgbValues.green - 10},${rgbValues.blue - 14})`
-// `rgb(${rgbValues.red - 0},${rgbValues.green - 1},${rgbValues.blue - 2})`
-// `rgb(${rgbValues.red},${rgbValues.green},${rgbValues.blue})`
-// `rgb(${rgbValues.red + 8},${rgbValues.green + 8},${rgbValues.blue + 8})`
-// `rgb(${rgbValues.red + 14},${rgbValues.green + 14},${rgbValues.blue + 17})`
-// `rgb(${rgbValues.red + 30},${rgbValues.green + 32},${rgbValues.blue + 36})`
 
 // function parseCSSText(cssText) {
 //   var cssTxt = cssText.replace(/\/\*(.|\s)*?\*\//g, " ").replace(/\s+/g, " ");
