@@ -2,9 +2,7 @@
 <html lang="en" ng-app="myApp">
   <head>
     <meta charset="UTF-8" />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
-
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -15,7 +13,6 @@
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"
     ></script>
-
     <script
       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
@@ -32,7 +29,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.css"
       rel="stylesheet"
     />
-
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
       integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
@@ -46,7 +42,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
     <script src="app.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
     <title>Theme</title>
@@ -68,7 +63,6 @@
           />
         </div>
         <div class="ui divider"></div>
-
         <div class="containerButtons">
           <div
             ng-repeat="server in ['Public Servere', 'Private Server']"
@@ -78,60 +72,40 @@
             {{server}}
           </div>
         </div>
-
         <div class="ui divider"></div>
       </div>
-
       <div id="picker">
         <div id="themeSelector">
           <h3>Themes</h3>
           <div class="ui divider"></div>
           <div>
-            <button class="ui button" ng-click="changeTheme('light')">
-              Light
-            </button>
-            <button class="ui button" ng-click="changeTheme('dark')">
-              Dark
-            </button>
-            <button class="ui button" ng-click="changeTheme('custom')">
-              Custom
+            <button class="ui button" ng-repeat="theme in ['light', 'dark', 'custom']" ng-click="changeTheme(theme)">
+              {{theme[0].toUpperCase() + theme.slice(1)}}
             </button>
           </div>
-
           <div class="ui divider"></div>
         </div>
 
         <div class="colourPicker">
-          <div id="primary">
-            <h1>Primary</h1>
-            <input ng-click="changeColor('primary')"
-              id="primary"
+          <div ng-repeat="type in ['primary', 'text', 'background']" id='{{type}}'>
+            <h1>{{type[0].toUpperCase() + type.slice(1)}}</h1>
+            <div class="inputContainer">
+              <input ng-click="changeColor(type)"
+              id='{{type}}'
               type="text"
               value="rgb(241, 138, 49)"
               class="form-control"
-            />
-          </div>
-          <div id="text">
-            <h1>Text</h1>
-            <input ng-click="changeColor('text')"
-              id="text"
-              type="text"
-              value="rgb(241, 138, 49)"
-              class="form-control"
-            />
-          </div>
-          <div id="background">
-            <h1>Background</h1>
-            <input ng-click="changeColor('background')"
-              id="background"
-              type="text"
-              value="rgb(241, 138, 49)"
-              class="form-control"
-            />
+              />
+              <!-- !======work in progress====== -->
+              <div class="primary_color" id="one{{type}}"></div>
+              <!-- <div class="primary_color" id="two{{type}}"></div>
+              <div class="primary_color" id="three{{type}}"></div> -->
+            </div>
           </div>
         </div>
-        <button ng-click="saveValues(); changeTheme('custom')"">Save</button>
-        <button ng-click="loadValues(); changeTheme('custom')"">Load</button>
+
+        <button ng-click="saveValues(); changeTheme('custom')">Save</button>
+        <!-- <button ng-click="loadValues(); changeTheme('custom')"">Load</button> -->
       </div>
     </div>
   </body>
