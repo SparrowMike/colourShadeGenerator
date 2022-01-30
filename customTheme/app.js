@@ -1,11 +1,6 @@
 var app = angular.module("myApp", []);
 
 app.controller("theme", function ($scope) {
-  const body = $("body").get(0).style; //? FOR THE COLOURPICKER
-
-  //? LOAD THE THEME ON START
-  const theme = localStorage.getItem("theme");
-  if (theme) $("body").removeClass("light dark custom").addClass(theme);
 
   //? OBJECT STORING PALETTE INCREMENT VALUES
   const paletteToFeed = {
@@ -57,6 +52,13 @@ app.controller("theme", function ($scope) {
     },
   };
 
+  const body = $("body").get(0).style; //? FOR THE COLOURPICKER
+
+  //? LOAD THE THEME ON START
+  const theme = localStorage.getItem("theme");
+  let currentTheme = theme ? `.${theme}` : '.dark'
+  if (theme) $("body").removeClass("light dark custom").addClass(theme);
+
   //?===================SAVE/LOAD=====================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
@@ -64,20 +66,24 @@ app.controller("theme", function ($scope) {
 
   //?=====Load values will load last stored custom theme, bypassing css
   $scope.loadValues = function () {
-    const data = JSON.parse(localStorage.getItem("customTheme"));
-    for (d in data) {
-      for (i in data[d]) {
-        body.setProperty(`${i}`, `${data[d][i]}`);
+    const types = JSON.parse(localStorage.getItem("customTheme"));
+    for (t in types) {
+      for (v in types[t]) {
+        body.setProperty(`${v}`, `${types[t][v]}`);
       }
     }
   };
   if (theme === "custom") {
     $scope.loadValues();
   }
-
+  
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     localStorage.setItem("theme", theme);
+    currentTheme = `.${theme}`
+    // loadCurrentCss()
+    loadSelectedTheme(loadCurrentCss())
+
     switch (theme) {
       case "light":
         $("body")
@@ -98,32 +104,43 @@ app.controller("theme", function ($scope) {
     }
   };
 
-  //!================================================================================================================
-  //? Split the string of styles collected from DOM - turn it to a object and feed it back to the picker
-  function cssSplit(str) {
-    // console.log(str)
-    let obj = {},
-      // S = str.match(/([^:;]+)/g) ||  [];
-      S = str.match(/([\w-]*)\s*:\s*([^;]*)/g) || [];
-    while (S.length) {
-      obj[S.shift()] = S.shift() || "";
+//!================================================work in progress=========================================================
+    //?=====SEARCH THE HTML HEAD TO FIND THE RIGHT CSS
+    const loadCurrentCss = () => {
+      const files = document.styleSheets;
+      for (f in files) {
+        if (typeof files[f].href === "string" && files[f].href.endsWith("styles.css")) {
+          // console.log(`styles.css found at position ${f} of all styleSheets`);
+          for (c in files[f].cssRules) {
+            if (files[f].cssRules[c].selectorText === `${currentTheme}`)
+            return files[f].cssRules[c].cssText
+          }
+        }
+      }
+    };
+  
+    //? Split the string of styles collected from DOM - turn it to a object and feed it back to the picker
+    const loadSelectedTheme = (input) => {
+      input = input.substring(input.indexOf('-'), input.indexOf('}'))
+      let results = {}, 
+        attributes = input.split('; ');
+      for (i = 0; i < attributes.length; i++) {
+        let entry = attributes[i].split(':');
+        results[entry.splice(0,1)[0]] = entry.join(':');
+      }
+  
+      for (r in results) {
+        if (results[r] === '' || results[r] === undefined) delete results[r]
+        body.setProperty(r, results[r]);
+      }
     }
+    
+//!================================================================================================================
 
-    for (o in obj) body.setProperty(`${o}`, `${obj[o]}`);
-
-    return obj;
-  }
-
-  //! https://www.generacodice.com/en/articolo/1775775/javascript-convert-css-style-string-into-js-object
-
-  cssSplit(
-    "--primary-dark: rgb(229, 151, 29); --primary-medium: rgb(244, 169, 51); --primary-light: rgb(253, 194, 102); --main-bg-darkest: rgb(20, 20, 20); --main-bg-darker: rgb(27, 28, 29); --main-bg-dark: rgb(37, 37, 41); --main-bg: rgb(37, 38, 43); --main-bg-light: rgb(45, 46, 52); --main-bg-lighter: rgb(51, 52, 60); --main-bg-lightest: rgb(67, 70, 79); --main-text: rgb(252, 252, 252); --main-text-dark1: rgb(227, 227, 227); --main-text-dark2: rgb(170, 169, 169); --main-text-dark3: rgb(166, 166, 168); --main-text-dark4: rgb(153, 153, 153);"
-  );
-  //!================================================================================================================
-
+  //? CONVERT INCOMING RGB STRING TO OBJECT
   let rgbValues = new Object();
   function rgbToObj(rgb) {
-    let colors = ["r", "g", "b", "a"];
+    let colors = ["r", "g", "b"];
     let colorArr = rgb
       .slice(rgb.indexOf("(") + 1, rgb.indexOf(")"))
       .split(/, | ,|,/);
@@ -164,10 +181,9 @@ app.controller("theme", function ($scope) {
 });
 
 //TODO============================================================================
-//? - load the slected styles into the object
+//? - changing only one colour and saving it will break - load all
+//? - the colours loading on start - glitching on saved theme
 //? - use simpler picker?
-
-//? - ng-repeat for themes
 
 //? - create a better sample theme for user to messaround? needs a design from UI/UX
 //? - most dominant color should always be the base?
@@ -181,8 +197,6 @@ app.controller("theme", function ($scope) {
 
 
 //!=========================================GRAVEYARD - for now at least===================================================
-// https://stackoverflow.com/questions/55935261/how-to-make-a-smooth-transition-between-pages-that-have-a-dark-light-mode
-
 // https://stackoverflow.com/questions/1720320/how-to-dynamically-create-css-class-in-javascript-and-apply
 
 // var root = document.querySelector(':root');
@@ -190,7 +204,6 @@ app.controller("theme", function ($scope) {
 // var red = rootStyle.getPropertyValue('--primary-dark');
 // root.style.setProperty('--primary-dark', 'red');
 
-// console.log(document.styleSheets[4].rules) //! check styleSheets
 // document.documentElement.setAttribute('data-theme', theme); //? probably better to simply change the class of the body
 
 //! TO GET ALL THE VARIABLES OF SELECTED CLASS
@@ -233,27 +246,5 @@ app.controller("theme", function ($scope) {
 //   return { cssText, ruleName, style };
 // }
 
-// console.log(parseCSSText(document.querySelector(".custom").style.cssText))
-
-// var css = {};
-
-// console.log($('body').get(0).style)
-// console.log($('.custom').prop())
-// $('body').css("backgroundColor");
 // const declaration = document.styleSheets[4].cssRules[1].style;
 // const propvalue = declaration.getPropertyValue("--main-bg");
-
-//!============================================================================
-
-//?=====SEARCH THE HTML HEAD TO FIND THE RIGHT CSS
-const checkCurrentStyles = () => {
-  const css = document.styleSheets;
-  for (c in css) {
-    if (typeof css[c].href === "string" && css[c].href.endsWith("styles.css")) {
-      console.log(`styles.css found at position ${c} of all styleSheets`);
-      console.log(css[c].cssRules[1].cssText);
-    }
-  }
-};
-
-// checkCurrentStyles()
