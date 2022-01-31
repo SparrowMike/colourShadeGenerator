@@ -105,18 +105,17 @@ app.controller("theme", function ($scope) {
       let entry = attributes[i].split(":");
       results[entry.splice(0, 1)[0]] = entry.join(":");
     }
-
-    // if (currentTheme === '.custom' && localStorage.getItem("customTheme") !== null) {
-    //   return
-    // }
-    
     for (r in results) {
       if (results[r] === "" || results[r] === undefined) delete results[r];
-      if (r.includes("primary")) storedPalette.primary[r] = `${results[r]}`;
-      if (r.includes("text")) storedPalette.text[r] = `${results[r]}`;
-      if (r.includes("bg")) storedPalette.background[r] = `${results[r]}`;
-      // body.setProperty(r, results[r]);
+      if (r.includes("primary")) storedPalette.primary[r] = `${results[r].trim()}`;
+      if (r.includes("text")) storedPalette.text[r] = `${results[r].trim()}`;
+      if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
+      // body.setProperty(r, results[r]); //* load colours with js
     }
+    console.log(storedPalette.background)
+    $(`input#background`).val(storedPalette.background["--main-bg"]);
+    $(`input#primary`).val(storedPalette.primary["--primary-medium"]);
+    $(`input#text`).val(storedPalette.text["--main-text-dark4"]);
   };
   loadSelectedTheme(loadCurrentCss());
 
@@ -154,7 +153,6 @@ app.controller("theme", function ($scope) {
           const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           //? keep the generated colour in the storePalette Object
           storedPalette[type][color] = rgb;
-
           //? display the currently generated colours
           body.setProperty(color, rgb);
         }
@@ -164,9 +162,7 @@ app.controller("theme", function ($scope) {
 });
 
 //TODO============================================================================
-//? - changing only one colour and saving it will break - load all
-//? - saving without a change will load css styles
-//? - load current value into input field
+//? - saving without a change will load css styles instead of stored values - custom only
 
 //? - create a better sample theme for user to messaround? needs a design from UI/UX
 //? - most dominant color should always be the base?
