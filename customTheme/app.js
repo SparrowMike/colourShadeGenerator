@@ -27,7 +27,7 @@ app.controller("theme", function ($scope) {
   };
 
   //? OBJECT TO STORE THE CUSTOM THEME
-  const storedPalette = { primary: {}, text: {}, background: {} };
+  let storedPalette = { primary: {}, text: {}, background: {} };
 
   const body = $("body").get(0).style; //? FOR THE COLOURPICKER
 
@@ -79,7 +79,7 @@ app.controller("theme", function ($scope) {
     loadValues();
   }
 
-  //?=====GET COLOURS OF THE CURRENT THEME - SRTING=====
+  //?=====GET COLOURS OF THE CURRENT THEME - CSS OR LOCALSTORAGE=====
   const loadCurrentCss = () => {
     const files = document.styleSheets;
     for (f in files) {
@@ -105,19 +105,30 @@ app.controller("theme", function ($scope) {
       let entry = attributes[i].split(":");
       results[entry.splice(0, 1)[0]] = entry.join(":");
     }
-    for (r in results) {
-      if (results[r] === "" || results[r] === undefined) delete results[r];
-      if (r.includes("primary")) storedPalette.primary[r] = `${results[r].trim()}`;
-      if (r.includes("text")) storedPalette.text[r] = `${results[r].trim()}`;
-      if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
-      // body.setProperty(r, results[r]); //* load colours with js
+
+    if (currentTheme === '.custom' && localStorage.getItem("customTheme") !== null) {
+      const gotback = JSON.parse(localStorage.getItem("customTheme")) 
+      storedPalette.text = {...gotback.text}
+      storedPalette.background = {...gotback.background}
+      storedPalette.primary = {...gotback.primary}
+    } else {
+      for (r in results) {
+        if (results[r] === "" || results[r] === undefined) delete results[r];
+        if (r.includes("primary")) storedPalette.primary[r] = `${results[r].trim()}`;
+        if (r.includes("text")) storedPalette.text[r] = `${results[r].trim()}`;
+        if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
+        // body.setProperty(r, results[r]); //* load colours with js
+      }
     }
-    console.log(storedPalette.background)
+
     $(`input#background`).val(storedPalette.background["--main-bg"]);
     $(`input#primary`).val(storedPalette.primary["--primary-medium"]);
     $(`input#text`).val(storedPalette.text["--main-text-dark4"]);
   };
-  loadSelectedTheme(loadCurrentCss());
+
+  $(document).ready(function () {
+    loadSelectedTheme(loadCurrentCss());
+  });
 
   //!================================================================================================================
 
@@ -162,7 +173,8 @@ app.controller("theme", function ($scope) {
 });
 
 //TODO============================================================================
-//? - saving without a change will load css styles instead of stored values - custom only
+//? - make theme button show currently selected theme
 
-//? - create a better sample theme for user to messaround? needs a design from UI/UX
+//? - create a better sample theme for user to messaround?
+//? - more than one custom themes?
 //? - most dominant color should always be the base?
