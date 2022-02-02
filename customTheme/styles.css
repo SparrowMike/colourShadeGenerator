@@ -79,13 +79,18 @@ h3 {
   flex-grow: 1;
   border-radius: 4px;
   margin: 10px;
-  border: 2px solid var(--primary-dark) !important;
-  background: var(--main-bg-lightest) !important;
-  box-shadow: 1px 1px 1px var(--primary-light) !important;
+  border: 2px solid var(--main-bg-darkest);
+  background: var(--main-bg-lightest);
+  box-shadow: 1px 1px 1px var(--main-bg-light);
+}
+#picker button.active {
+  border: 2px solid var(--primary-dark);
+  background: var(--main-bg-darkest);
 }
 
-#picker button:hover {
-  background: var(--primary-light);
+#picker button:hover:not(.active) {
+  background: var(--main-bg-darkest);
+  border: 2px solid var(--primary-dark);
 }
 
 #picker > #themeSelector div {

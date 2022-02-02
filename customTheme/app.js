@@ -34,10 +34,12 @@ app.controller("theme", function ($scope) {
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   let currentTheme = theme ? `.${theme}` : ".dark";
+  $scope.selected = theme;
   if (theme) $("body").removeClass("light dark custom").addClass(theme);
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
+    $scope.selected = theme
     localStorage.setItem("theme", theme);
     currentTheme = `.${theme}`;
     switch (theme) {
@@ -173,8 +175,9 @@ app.controller("theme", function ($scope) {
 });
 
 //TODO============================================================================
-//? - make theme button show currently selected theme
+//! substring undefined?
+//? clean up functions unecessary loading when custom 
 
 //? - create a better sample theme for user to messaround?
 //? - more than one custom themes?
-//? - most dominant color should always be the base?
+//? - most dominant color should always be the base

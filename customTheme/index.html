@@ -83,6 +83,7 @@
               class="ui button"
               ng-repeat="theme in ['light', 'dark', 'custom']"
               ng-click="changeTheme(theme)"
+              ng-class="{active: theme == selected}"
             >
               {{theme[0].toUpperCase() + theme.slice(1)}}
             </button>
