@@ -34,12 +34,12 @@ app.controller("theme", function ($scope) {
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   let currentTheme = theme ? `.${theme}` : ".dark";
-  $scope.selected = theme ? theme : 'dark'
+  $scope.selected = theme ? theme : "dark";
   if (theme) $("body").removeClass("light dark custom").addClass(theme);
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
-    $scope.selected = theme
+    $scope.selected = theme;
     localStorage.setItem("theme", theme);
     currentTheme = `.${theme}`;
     switch (theme) {
@@ -99,11 +99,14 @@ app.controller("theme", function ($scope) {
 
   //?========CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=========
   const loadSelectedTheme = (input) => {
-    if (currentTheme === '.custom' && localStorage.getItem("customTheme") !== null) {
-      const gotback = JSON.parse(localStorage.getItem("customTheme")) 
-      storedPalette.text = {...gotback.text}
-      storedPalette.background = {...gotback.background}
-      storedPalette.primary = {...gotback.primary}
+    if (
+      currentTheme === ".custom" &&
+      localStorage.getItem("customTheme") !== null
+    ) {
+      const gotback = JSON.parse(localStorage.getItem("customTheme"));
+      storedPalette.text = { ...gotback.text };
+      storedPalette.background = { ...gotback.background };
+      storedPalette.primary = { ...gotback.primary };
     } else {
       input = input.substring(input.indexOf("-"), input.indexOf("}"));
       let results = {},
@@ -114,9 +117,11 @@ app.controller("theme", function ($scope) {
       }
       for (r in results) {
         if (results[r] === "" || results[r] === undefined) delete results[r];
-        if (r.includes("primary")) storedPalette.primary[r] = `${results[r].trim()}`;
+        if (r.includes("primary"))
+          storedPalette.primary[r] = `${results[r].trim()}`;
         if (r.includes("text")) storedPalette.text[r] = `${results[r].trim()}`;
-        if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
+        if (r.includes("bg"))
+          storedPalette.background[r] = `${results[r].trim()}`;
         // body.setProperty(r, results[r]); //* load colours with js
       }
     }
@@ -143,12 +148,50 @@ app.controller("theme", function ($scope) {
     return rgbValues;
   }
 
-  //? CUSTOM COLOUR PICKER
-  $scope.changeColor = (type) => {
-    $(`#${type}`)
-      .colorpicker({})
-      .on("colorpickerChange", function (e) {
-        rgbToObj(e.color.toString());
+//!======================PICKR============================
+  $(document).ready(function () {
+    let $input = $("input.pickr-field");
+    let current_color = $(".pickr-field").val() || "#041";
+    let pickr;
+
+    Object.keys(storedPalette).forEach((type) => {
+      pickr = new Pickr({
+        el: $(`.${type}Color`)[0],
+        theme: "nano",
+        swatches: [
+          'rgba(244, 67, 54, 1)',
+          'rgba(233, 30, 99, 0.95)',
+          'rgba(156, 39, 176, 0.9)',
+          'rgba(103, 58, 183, 0.85)',
+          'rgba(63, 81, 181, 0.8)',
+          'rgba(33, 150, 243, 0.75)',
+          'rgba(3, 169, 244, 0.7)',
+          'rgba(0, 188, 212, 0.7)',
+          'rgba(0, 150, 136, 0.75)',
+          'rgba(76, 175, 80, 0.8)',
+          'rgba(139, 195, 74, 0.85)',
+          'rgba(205, 220, 57, 0.9)',
+          'rgba(255, 235, 59, 0.95)',
+          'rgba(255, 193, 7, 1)'
+      ],
+        defaultRepresentation: "RGBA",
+        closeWithKey: "Escape",
+        // default: current_color,
+        comparison: false,
+        components: {
+          preview: true,
+          hue: true,
+          interaction: {
+            rgba: true,
+            input: true,
+          },
+        },
+      });
+      pickr.on("change", function (color, instance) {
+        current_color = color.toRGBA().toString(0);
+        $input.val(current_color).trigger("change");
+
+        rgbToObj(current_color);
         for (color in storedPalette[type]) {
           const rgbArr = [
             rgbValues.r + paletteToFeed[type][color].r,
@@ -165,14 +208,42 @@ app.controller("theme", function ($scope) {
           //? display the currently generated colours
           body.setProperty(color, rgb);
         }
-        console.info(storedPalette[type]);
+        // console.info(storedPalette['primary']);
       });
-  };
+    });
+  });
+  
+  //!=======================================================
+  //? CUSTOM COLOUR PICKER
+  // $scope.changeColor = (type) => {
+  //   $(`#${type}`)
+  //     .colorpicker({})
+  //     .on("colorpickerChange", function (e) {
+  //       rgbToObj(e.color.toString());
+  //       for (color in storedPalette[type]) {
+  //         const rgbArr = [
+  //           rgbValues.r + paletteToFeed[type][color].r,
+  //           rgbValues.g + paletteToFeed[type][color].g,
+  //           rgbValues.b + paletteToFeed[type][color].b,
+  //         ];
+  //         for (c in rgbArr) {
+  //           if (rgbArr[c] >= 255) rgbArr[c] = 255;
+  //           if (rgbArr[c] <= 0) rgbArr[c] = 0;
+  //         }
+  //         const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+  //         //? keep the generated colour in the storePalette Object
+  //         storedPalette[type][color] = rgb;
+  //         //? display the currently generated colours
+  //         body.setProperty(color, rgb);
+  //       }
+  //       console.info(storedPalette[type]);
+  //     });
+  // };
 });
 
 //TODO============================================================================
 //! - substring undefined?
-//? - clean up functions unecessary loading when custom 
+//? - clean up functions unecessary loading when custom
 //? - color picker values when picker shown???
 
 //? - create a better sample theme for user to messaround?

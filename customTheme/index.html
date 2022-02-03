@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
     <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+    ></script>
+    
+    <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
+    <!-- <script
       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
@@ -28,7 +29,8 @@
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.css"
       rel="stylesheet"
-    />
+    /> -->
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
       integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
@@ -42,73 +44,44 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+
+    
     <script src="app.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
     <title>Theme</title>
   </head>
-  <body ng-controller="theme" class="dark">
-    <div id="topPanel"></div>
-    <div id="sidePanel"></div>
-    <div id="main">
-      <div id="modal">
-        <h1>Sample Card</h1>
-        <div class="ui divider"></div>
-        <div class="container">
-          <h4>Channel Name</h4>
-          <input
-            type="text"
-            name="title"
-            placeholder="new channel"
-            class="form-control"
-          />
+  <body ng-controller="theme" class="light">
+
+    <div id="mainWindow">
+      <div style="width:200px; height: 200px; background: var(--primary-dark)"></div>
+      <div style="width:200px; height: 200px; background: var(--main-text)"></div>
+      <div style="width:200px; height: 200px; background: var(--main-bg-light)"></div>
+    </div>
+
+    <div id="sidePanel">
+      <div id="colorTemplates">
+        <h2>Color Templates</h2>
+
+        <div ng-repeat="theme in ['light', 'dark', 'custom']" id="defaultTheme" class={{theme}} ng-class="{active: theme == selected}" ng-click="changeTheme(theme)">
+          <h4>{{theme[0].toUpperCase() + theme.slice(1)}}</h4>
+          <div id="circles">
+            <div ng-repeat="c in ['one', 'two', 'three', 'four', 'five']" class={{c}}></div>
+          </div> 
         </div>
-        <div class="ui divider"></div>
-        <div class="containerButtons">
-          <div
-            ng-repeat="server in ['Public Servere', 'Private Server']"
-            ng-class="{'active': $first}"
-            class="ui floated button"
-          >
-            {{server}}
-          </div>
-        </div>
-        <div class="ui divider"></div>
       </div>
-      <div id="picker">
-        <div id="themeSelector">
-          <h3>Themes</h3>
-          <div class="ui divider"></div>
-          <div>
-            <button
-              class="ui button"
-              ng-repeat="theme in ['light', 'dark', 'custom']"
-              ng-click="changeTheme(theme)"
-              ng-class="{active: theme == selected}"
-            >
-              {{theme[0].toUpperCase() + theme.slice(1)}}
-            </button>
+      <div id="colors">
+        <h2>Colors</h2>
+        <div ng-repeat="type in ['primary', 'text', 'background']" id="{{type}}">
+          <div id="pickerContainer" >
+            <h4>{{type[0].toUpperCase() + type.slice(1)}}</h4>
+            <div class="{{type}}Color"></div>
           </div>
           <div class="ui divider"></div>
         </div>
-        <div class="colourPicker">
-          <div
-            ng-repeat="type in ['primary', 'text', 'background']"
-            id="{{type}}"
-          >
-            <h1>{{type[0].toUpperCase() + type.slice(1)}}</h1>
-            <div class="inputContainer">
-              <input
-                ng-click="changeColor(type)"
-                id="{{type}}"
-                type="text"
-                value="rgb(241, 138, 49)"
-                class="form-control"
-              />
-              <div class="primary_color" id="one{{type}}"></div>
-            </div>
-          </div>
-        </div>
-        <button ng-click="saveValues(); changeTheme('custom')">Save</button>
       </div>
     </div>
   </body>

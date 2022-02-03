@@ -1,5 +1,12 @@
 * {
   transition: background-color 0.3s ease, color 0.1s ease; /* *helps out with smoother transition between the theme changes* */
+  padding:0px;
+  margin: 0px;
+  color:rgb(107,114,128);
+}
+
+body {
+display: flex;
 }
 
 .dark {
@@ -61,164 +68,101 @@
   --main-bg-lightest: rgb(67, 60, 56);
 }
 
-body,
-html {
-  color: var(--main-text) !important;
-  background-color: var(--main-bg-light) !important;
-}
-
-h1,
-h3 {
-  text-align: center;
-  margin: 10px !important;
-}
-
-#picker button {
-  color: var(--main-text-dark1);
-  text-align: center;
-  flex-grow: 1;
-  border-radius: 4px;
-  margin: 10px;
-  border: 2px solid var(--main-bg-darkest);
-  background: var(--main-bg-lightest);
-  box-shadow: 1px 1px 1px var(--main-bg-light);
-}
-#picker button.active {
-  border: 2px solid var(--primary-dark);
-  background: var(--main-bg-darkest);
-}
-
-#picker button:hover:not(.active) {
-  background: var(--main-bg-darkest);
-  border: 2px solid var(--primary-dark);
-}
-
-#picker > #themeSelector div {
-  display: flex;
-  justify-self: space-around;
-}
-
-#main {
-  display: flex;
-  height: 100%;
-  justify-content: space-around;
-  align-items: center;
-}
-
-#main #modal,
-#main #picker {
-  width: 396px;
-  height: 500px;
-  border: 2px solid var(--main-bg-light);
-  border-radius: 10px;
-  background-color: var(--main-bg-lighter);
-  box-shadow: 10px 10px 10px var(--main-bg);
-}
-
-#color {
-  margin-left: 10%;
-  width: 50%;
-}
-
-/* SAMPLE CARD */
-.container {
-  padding: 15px;
-}
-
-input {
-  background: var(--main-bg-lightest) !important;
-  border-radius: 3px;
-  padding: 5px;
-  /* width: 50%; */
-  /* width: 75%; */
-  color: var(--main-text) !important;
-  -webkit-border-radius: 3px;
-}
-
-input:focus {
-  border: 1px solid var(--primary-dark) !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-/* input::placeholder {
-  color: var(--main-text-dark3) !important;
-} */
-
-.containerButtons {
-  border-radius: 8px;
-  margin: 10px 0px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.containerButtons .button {
-  color: var(--main-text);
-  border: 1px solid var(--main-bg) !important;
-  background: var(--main-bg-lighter);
-}
-
-.containerButtons .button:not(.active):hover {
-  color: var(--main-text-dark3);
-  border: 1px solid var(--main-bg-light) !important;
-  background: var(--main-bg-light);
-}
-
-.containerButtons .active {
-  color: var(--primary-dark) !important;
-  border: 1px solid var(--primary-medium) !important;
-  background: var(--main-bg-light) !important;
-}
-
-.containerButtons .active:hover {
-  color: var(--primary-medium) !important;
-  border: 1px solid var(--primary-light) !important;
-  background: var(--main-bg-light) !important;
-}
-
-.colourPicker {
-  margin: 20px;
-}
-
+/* ================SIDE PANEL============== */
 #sidePanel {
-  position: absolute;
-  width: 200px;
-  height: 100%;
-  background-color: var(--main-bg-dark);
+  width: 20vw;
+  height: 100vh;
+  min-width: 275px;
+  background: rgb(247,247,247);
+  float: right;
+  box-shadow: 2px 4px 5px black
 }
+/* ==================================== */
 
-#topPanel {
-  position: absolute;
-  background-color: var(--main-bg-dark);
-  width: 100%;
-  height: 50px;
+
+
+/* =============== COLORS TEMPLATES =============== */
+#colorTemplates, #colors {
+  padding: 10px
 }
-
-.primary_color{
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  border: 3px solid black;
-  outline: none;
-  background-color: lightblue;
-  margin: 0 4px;
-}
-
-.inputContainer {
+#defaultTheme {
   display: flex;
-  justify-content: center;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid darkgrey;
+  border-radius: 7px;
+  margin: 8px 0;
+}
+#defaultTheme:hover{
+  border: 2px solid rgb(36,65,128);
+  cursor: pointer;
+}
+#defaultTheme.active {
+  border: 2px solid black;
+}
+#defaultTheme h4 {
+  padding-left: 10px;
+  margin: 0;
+}
+#defaultTheme #circles {
+  display: flex;
+  padding-right: 10px;
+}
+#defaultTheme #circles > div {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 2px;
+  border: 1px solid black;
+}
+#defaultTheme #circles > .one {
+  background: var(--primary-light);
+}
+#defaultTheme #circles > .two {
+  background: var(--primary-dark);
+}
+#defaultTheme #circles > .three {
+  background: var(--main-bg-darkest);
+}
+#defaultTheme #circles > .four {
+  background: var(--main-bg-lightest);
+}
+#defaultTheme #circles > .five {
+  background: var(--main-text-dark4);
+}
+/* ================================ */
+
+
+/* ============ COLORS =========== */
+#pickerContainer {
+  display: flex;
+  height: 30px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px
 }
 
-.inputContainer .form-control {
-  width: 60%;
+.pickr .pcr-button:after {
+  /* width: 33px; */
+  /* height: 33px; */
+  /* border-radius: 50%; */
+  border: 2px solid black;
 }
-
-#oneprimary {
+#primary #pickerContainer .pickr .pcr-button:after {
   background: var(--primary-medium);
 }
-#onetext {
-  background: var(--main-text);
+#text #pickerContainer .pickr .pcr-button:after {
+  background: var(--main-text-dark4);
 }
-#onebackground {
-  background: var(--main-bg-dark);
+#background #pickerContainer .pickr .pcr-button:after {
+  background: var(--main-bg);
+}
+/* ============================== */
+
+/* ============= MAIN WINDOW ================= */
+#mainWindow {
+  width: 80vw;
+  height: 100vh;
+  background: lightgrey;
 }
