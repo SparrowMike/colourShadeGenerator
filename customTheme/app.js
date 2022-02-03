@@ -34,7 +34,7 @@ app.controller("theme", function ($scope) {
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   let currentTheme = theme ? `.${theme}` : ".dark";
-  $scope.selected = theme;
+  $scope.selected = theme ? theme : 'dark'
   if (theme) $("body").removeClass("light dark custom").addClass(theme);
 
   //? CHANGE THE THEMES - TOGGLING CLASS
@@ -97,23 +97,21 @@ app.controller("theme", function ($scope) {
     }
   };
 
-  //!================================================work in progress=========================================================
   //?========CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=========
   const loadSelectedTheme = (input) => {
-    input = input.substring(input.indexOf("-"), input.indexOf("}"));
-    let results = {},
-      attributes = input.split("; ");
-    for (i = 0; i < attributes.length; i++) {
-      let entry = attributes[i].split(":");
-      results[entry.splice(0, 1)[0]] = entry.join(":");
-    }
-
     if (currentTheme === '.custom' && localStorage.getItem("customTheme") !== null) {
       const gotback = JSON.parse(localStorage.getItem("customTheme")) 
       storedPalette.text = {...gotback.text}
       storedPalette.background = {...gotback.background}
       storedPalette.primary = {...gotback.primary}
     } else {
+      input = input.substring(input.indexOf("-"), input.indexOf("}"));
+      let results = {},
+        attributes = input.split("; ");
+      for (i = 0; i < attributes.length; i++) {
+        let entry = attributes[i].split(":");
+        results[entry.splice(0, 1)[0]] = entry.join(":");
+      }
       for (r in results) {
         if (results[r] === "" || results[r] === undefined) delete results[r];
         if (r.includes("primary")) storedPalette.primary[r] = `${results[r].trim()}`;
@@ -131,8 +129,6 @@ app.controller("theme", function ($scope) {
   $(document).ready(function () {
     loadSelectedTheme(loadCurrentCss());
   });
-
-  //!================================================================================================================
 
   //? CONVERT INCOMING RGB STRING TO OBJECT
   let rgbValues = new Object();
@@ -175,8 +171,9 @@ app.controller("theme", function ($scope) {
 });
 
 //TODO============================================================================
-//! substring undefined?
-//? clean up functions unecessary loading when custom 
+//! - substring undefined?
+//? - clean up functions unecessary loading when custom 
+//? - color picker values when picker shown???
 
 //? - create a better sample theme for user to messaround?
 //? - more than one custom themes?
