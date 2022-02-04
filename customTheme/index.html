@@ -2,54 +2,19 @@
 <html lang="en" ng-app="myApp">
   <head>
     <meta charset="UTF-8" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"
-    ></script>
-    
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <!-- <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/js/bootstrap-colorpicker.js"></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.css"
-      rel="stylesheet"
-    /> -->
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
-      integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-      integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
 
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+
     <script src="app.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
     <title>Theme</title>
@@ -57,15 +22,55 @@
   <body ng-controller="theme" class="light">
 
     <div id="mainWindow">
-      <div style="width:200px; height: 200px; background: var(--primary-dark)"></div>
-      <div style="width:200px; height: 200px; background: var(--main-text)"></div>
-      <div style="width:200px; height: 200px; background: var(--main-bg-light)"></div>
+      <div class="mainNavbar" >
+        <div class="mainServer">
+          <img ng-src="https://s3.us-east-2.amazonaws.com/forexchatroom/9e74d3c2ce207188de721d7e7e090b7.png" src="https://s3.us-east-2.amazonaws.com/forexchatroom/9e74d3c2ce207188de721d7e7e090b7.png">
+          <div class="content">Genesiv<div><i class="bullhorn icon"></i>Welcome</div></div>
+        </div>
+        <div class="mainIcons">
+          <svg class='active' width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.3671 2H3.47617C2.66198 2 2 2.66231 2 3.47617V11.3491C2 12.1633 2.66198 12.8253 3.47617 12.8253C4.50916 12.8253 4.64792 12.8253 4.64792 12.8253H4.95234V15.2856C4.95234 15.7245 5.48442 15.9414 5.79212 15.6337C7.16594 14.2595 6.20118 15.2246 8.45615 12.9697C8.54865 12.8771 8.67331 12.8253 8.80419 12.8253H14.3671C15.181 12.8253 15.8433 12.1633 15.8433 11.3491C15.8433 6.75461 15.8433 8.08186 15.8433 3.47617C15.8433 2.66231 15.181 2 14.3671 2ZM4.46032 4.95234H11.4148C11.6867 4.95234 11.9068 5.17245 11.9068 5.4444C11.9068 5.71634 11.6867 5.93646 11.4148 5.93646H4.46032C4.18837 5.93646 3.96826 5.71634 3.96826 5.4444C3.96826 5.17245 4.18837 4.95234 4.46032 4.95234ZM9.44653 9.87298H4.46032C4.18837 9.87298 3.96826 9.65286 3.96826 9.38092C3.96826 9.10898 4.18837 8.88886 4.46032 8.88886H9.44653C9.71847 8.88886 9.93858 9.10898 9.93858 9.38092C9.93858 9.65286 9.71847 9.87298 9.44653 9.87298ZM13.383 7.90472H4.46032C4.18837 7.90472 3.96826 7.6846 3.96826 7.41266C3.96826 7.14071 4.18837 6.9206 4.46032 6.9206H13.383C13.655 6.9206 13.8751 7.14071 13.8751 7.41266C13.8751 7.6846 13.655 7.90472 13.383 7.90472Z" fill="#939393"></path>
+            <path d="M17.2244 4.47168H16.7554V11.7186C16.7554 13.0505 15.6827 14.1343 14.3722 14.1343H9.25826L8.24414 15.0941H12.2739L14.9868 17.8578C15.2849 18.1607 15.7983 17.9481 15.7983 17.5162V15.0941H17.2244C18.0108 15.0941 18.6505 14.4504 18.6505 13.6512V5.92109C18.6505 5.12184 18.0108 4.47168 17.2244 4.47168Z" fill="#939393"></path>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.667 6.70601V13.833C17.667 14.496 17.4036 15.1319 16.9348 15.6008C16.4659 16.0696 15.83 16.333 15.167 16.333H4.16699C3.50395 16.333 2.86807 16.0696 2.39923 15.6008C1.93038 15.1319 1.66699 14.496 1.66699 13.833V6.70601L9.41299 11.264C9.48995 11.3094 9.57765 11.3333 9.66699 11.3333C9.75633 11.3333 9.84404 11.3094 9.92099 11.264L17.667 6.70601ZM15.167 3.33301C15.7821 3.33291 16.3757 3.55961 16.8342 3.96975C17.2927 4.37988 17.5838 4.94465 17.652 5.55601L9.66699 10.253L1.68199 5.55601C1.75015 4.94465 2.04132 4.37988 2.49979 3.96975C2.95826 3.55961 3.55185 3.33291 4.16699 3.33301H15.167Z" fill="#939393"></path>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.1902 13.3324C17.1254 13.2543 17.0617 13.1762 16.9992 13.1008C16.1398 12.0613 15.6199 11.434 15.6199 8.49141C15.6199 6.96797 15.2554 5.71797 14.5371 4.78047C14.0074 4.08789 13.2914 3.5625 12.3476 3.17422C12.3355 3.16746 12.3246 3.1586 12.3156 3.14805C11.9761 2.01133 11.0472 1.25 9.99959 1.25C8.95193 1.25 8.02342 2.01133 7.68396 3.14687C7.6749 3.15704 7.66421 3.16562 7.65232 3.17227C5.44998 4.07891 4.37967 5.81836 4.37967 8.49023C4.37967 11.434 3.86052 12.0613 3.00037 13.0996C2.93787 13.175 2.8742 13.2516 2.80935 13.3312C2.64185 13.5333 2.53573 13.779 2.50354 14.0394C2.47135 14.2999 2.51444 14.5641 2.62771 14.8008C2.86873 15.3086 3.3824 15.6238 3.96873 15.6238H16.0347C16.6183 15.6238 17.1285 15.309 17.3703 14.8035C17.4841 14.5667 17.5276 14.3023 17.4956 14.0416C17.4637 13.7809 17.3577 13.5348 17.1902 13.3324V13.3324Z" fill="#939393"></path>
+            <path d="M10.0007 18.75C10.5652 18.7495 11.119 18.5963 11.6035 18.3066C12.0879 18.0168 12.4849 17.6014 12.7523 17.1043C12.7649 17.0805 12.7711 17.0538 12.7704 17.0269C12.7696 16.9999 12.7619 16.9736 12.748 16.9506C12.7341 16.9275 12.7144 16.9084 12.6909 16.8952C12.6675 16.8819 12.641 16.875 12.614 16.875H7.38824C7.36126 16.8749 7.33471 16.8818 7.31119 16.895C7.28766 16.9082 7.26796 16.9273 7.25399 16.9504C7.24003 16.9735 7.23228 16.9998 7.23151 17.0268C7.23073 17.0537 7.23696 17.0804 7.24957 17.1043C7.51697 17.6013 7.91389 18.0168 8.39825 18.3065C8.8826 18.5962 9.43634 18.7495 10.0007 18.75Z" fill="#939393"></path>
+          </svg>
+          <img ng-src="https://staging.genesiv.com/img/user-avatar.png" src="https://staging.genesiv.com/img/user-avatar.png">
+        </div>
+      </div>
+      
+      <div class="serverNavbar">
+        <div class="servers explore">
+          <svg width="20" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 9.42688C9.512 9.42688 9.12 9.81888 9.12 10.3069C9.12 10.7949 9.512 11.1869 10 11.1869C10.488 11.1869 10.88 10.7949 10.88 10.3069C10.88 9.81888 10.488 9.42688 10 9.42688ZM10 2.30688C5.584 2.30688 2 5.89088 2 10.3069C2 14.7229 5.584 18.3069 10 18.3069C14.416 18.3069 18 14.7229 18 10.3069C18 5.89088 14.416 2.30688 10 2.30688ZM11.752 12.0589L5.2 15.1069L8.248 8.55488L14.8 5.50688L11.752 12.0589Z" fill="#AAA9A9"></path>
+          </svg>
+        </div>
+        <div class="servers active">
+          <div>
+            <h4>Genesiv</h4>
+          </div>
+          <div class="icon">
+            <i class="angle down icon"></i>
+          </div>
+        </div>
+        <div class="servers"><h4>Tester</h4></div>
+        <div class="ui mini icon"><i class="plus icon"></i></div>
+      </div>
+
+      <div class="chatWindow">
+        <div class="chat">
+        </div>
+        <div class="channelSidePanel"></div>
+      </div>
     </div>
 
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
-
         <div ng-repeat="theme in ['light', 'dark', 'custom']" id="defaultTheme" class={{theme}} ng-class="{active: theme == selected}" ng-click="changeTheme(theme)">
           <h4>{{theme[0].toUpperCase() + theme.slice(1)}}</h4>
           <div id="circles">

@@ -148,7 +148,7 @@ app.controller("theme", function ($scope) {
     return rgbValues;
   }
 
-//!======================PICKR============================
+  //!======================PICKR============================
   $(document).ready(function () {
     let $input = $("input.pickr-field");
     let current_color = $(".pickr-field").val() || "#041";
@@ -157,31 +157,34 @@ app.controller("theme", function ($scope) {
     Object.keys(storedPalette).forEach((type) => {
       pickr = new Pickr({
         el: $(`.${type}Color`)[0],
-        theme: "nano",
+        theme: "classic",
         swatches: [
-          'rgba(244, 67, 54, 1)',
-          'rgba(233, 30, 99, 0.95)',
-          'rgba(156, 39, 176, 0.9)',
-          'rgba(103, 58, 183, 0.85)',
-          'rgba(63, 81, 181, 0.8)',
-          'rgba(33, 150, 243, 0.75)',
-          'rgba(3, 169, 244, 0.7)',
-          'rgba(0, 188, 212, 0.7)',
-          'rgba(0, 150, 136, 0.75)',
-          'rgba(76, 175, 80, 0.8)',
-          'rgba(139, 195, 74, 0.85)',
-          'rgba(205, 220, 57, 0.9)',
-          'rgba(255, 235, 59, 0.95)',
-          'rgba(255, 193, 7, 1)'
-      ],
+          "rgba(244, 67, 54, 1)",
+          "rgba(233, 30, 99, 1)",
+          "rgba(156, 39, 176, 1)",
+          "rgba(103, 58, 183, 1)",
+          "rgba(63, 81, 181, 1)",
+          "rgba(33, 150, 243, 1)",
+          "rgba(3, 169, 244, 1)",
+          "rgba(0, 188, 212, 1)",
+          "rgba(0, 150, 136, 1)",
+          "rgba(76, 175, 80, 1)",
+          "rgba(139, 195, 74, 1)",
+          "rgba(205, 220, 57, 1)",
+          "rgba(255, 193, 7, 1)",
+          "rgba(255, 223, 1, 1)",
+          "rgba(255, 235, 59, 1)",
+        ],
         defaultRepresentation: "RGBA",
         closeWithKey: "Escape",
+        useAsButton: false,
         // default: current_color,
         comparison: false,
         components: {
           preview: true,
           hue: true,
           interaction: {
+            hex: true,
             rgba: true,
             input: true,
           },
@@ -212,33 +215,6 @@ app.controller("theme", function ($scope) {
       });
     });
   });
-  
-  //!=======================================================
-  //? CUSTOM COLOUR PICKER
-  // $scope.changeColor = (type) => {
-  //   $(`#${type}`)
-  //     .colorpicker({})
-  //     .on("colorpickerChange", function (e) {
-  //       rgbToObj(e.color.toString());
-  //       for (color in storedPalette[type]) {
-  //         const rgbArr = [
-  //           rgbValues.r + paletteToFeed[type][color].r,
-  //           rgbValues.g + paletteToFeed[type][color].g,
-  //           rgbValues.b + paletteToFeed[type][color].b,
-  //         ];
-  //         for (c in rgbArr) {
-  //           if (rgbArr[c] >= 255) rgbArr[c] = 255;
-  //           if (rgbArr[c] <= 0) rgbArr[c] = 0;
-  //         }
-  //         const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
-  //         //? keep the generated colour in the storePalette Object
-  //         storedPalette[type][color] = rgb;
-  //         //? display the currently generated colours
-  //         body.setProperty(color, rgb);
-  //       }
-  //       console.info(storedPalette[type]);
-  //     });
-  // };
 });
 
 //TODO============================================================================

@@ -1,12 +1,14 @@
 * {
   transition: background-color 0.3s ease, color 0.1s ease; /* *helps out with smoother transition between the theme changes* */
-  padding:0px;
-  margin: 0px;
-  color:rgb(107,114,128);
+  /* color: rgb(107, 114, 128); */
 }
 
-body {
-display: flex;
+html,body {  
+  margin:0; 
+  padding:0; 
+  height:100%; 
+  width:100%; 
+  display: flex;
 }
 
 .dark {
@@ -71,19 +73,20 @@ display: flex;
 /* ================SIDE PANEL============== */
 #sidePanel {
   width: 20vw;
-  height: 100vh;
+  height: 100%;
+  overflow: auto;
   min-width: 275px;
-  background: rgb(247,247,247);
+  background: rgb(247, 247, 247);
+  z-index: 1;
   float: right;
-  box-shadow: 2px 4px 5px black
+  box-shadow: 2px 4px 5px black;
 }
 /* ==================================== */
 
-
-
 /* =============== COLORS TEMPLATES =============== */
-#colorTemplates, #colors {
-  padding: 10px
+#colorTemplates,
+#colors {
+  padding: 10px;
 }
 #defaultTheme {
   display: flex;
@@ -94,8 +97,8 @@ display: flex;
   border-radius: 7px;
   margin: 8px 0;
 }
-#defaultTheme:hover{
-  border: 2px solid rgb(36,65,128);
+#defaultTheme:hover {
+  border: 2px solid rgb(36, 65, 128);
   cursor: pointer;
 }
 #defaultTheme.active {
@@ -131,8 +134,6 @@ display: flex;
 #defaultTheme #circles > .five {
   background: var(--main-text-dark4);
 }
-/* ================================ */
-
 
 /* ============ COLORS =========== */
 #pickerContainer {
@@ -140,13 +141,10 @@ display: flex;
   height: 30px;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5px
+  padding: 0 5px;
 }
 
 .pickr .pcr-button:after {
-  /* width: 33px; */
-  /* height: 33px; */
-  /* border-radius: 50%; */
   border: 2px solid black;
 }
 #primary #pickerContainer .pickr .pcr-button:after {
@@ -158,11 +156,111 @@ display: flex;
 #background #pickerContainer .pickr .pcr-button:after {
   background: var(--main-bg);
 }
-/* ============================== */
 
 /* ============= MAIN WINDOW ================= */
 #mainWindow {
-  width: 80vw;
-  height: 100vh;
-  background: lightgrey;
+  width: 80%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--main-bg-light);
+}
+
+/* ============= MAIN NAVBAR ================= */
+.mainNavbar {
+  width: 100%;
+  height: 44px;
+  background: var(--main-bg-light);
+  display: flex;
+  justify-content: space-between;
+}
+.mainNavbar .mainServer img, .mainNavbar .mainIcons img {
+  height: 40px;
+  padding: 1px;
+}
+.mainNavbar .mainServer .content {
+  margin: 0 15px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--main-text)
+}
+.mainNavbar .mainServer .content i, .mainNavbar .mainServer .content div {  
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--main-text)
+}
+.mainNavbar .mainIcons, .mainNavbar .mainServer {
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+.mainNavbar .mainIcons svg{
+  margin: 0 15px;
+}
+.mainNavbar .mainIcons .active path {
+  fill: var(--primary-medium);
+}
+
+/* ============= SERVER NAVBAR ================= */
+.serverNavbar {
+  height: 34px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--main-bg);
+  /* position: relative; */
+  box-shadow: 1px 1px 3px 2px var(--main-bg-darker);
+}
+.serverNavbar .servers {
+  height: 100%;
+  width: 170px;
+  display: flex;
+  border-right: 1px solid var(--main-bg-lightest);
+  justify-content: center; 
+  align-items: center;
+}
+.serverNavbar .servers.explore {
+  width: 40px;
+}
+.serverNavbar .servers.explore path{
+  fill: var(--main-text-dark2);
+}
+.serverNavbar .servers.active {
+  background: var(--main-bg-light);
+}
+.serverNavbar .servers.active .icon {
+  position: relative;
+  left: 22%;
+  color: var(--main-text-dark2);
+  
+}
+.serverNavbar .servers h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--main-text-dark2);
+}
+.serverNavbar .mini {
+  height: 34px;
+  padding: 7px;
+}
+.serverNavbar .mini .plus {
+  color: var(--main-text-dark2)
+}
+.serverNavbar .exploreServers:hover, .serverNavbar .servers:hover, .serverNavbar .mini:hover {
+  background-color: var(--main-bg-lightest);
+}
+
+/* ============= CHAT WINDOW ================= */
+.chatWindow {
+  display: flex;
+  border-top: 1px solid var(--main-bg-darker);
+  height: 100%;
+}
+.chatWindow .chat {
+  background: var(--main-bg-light);
+  flex-grow: 5;  
+}
+.chatWindow .channelSidePanel {
+  border-left: 1px solid var(--main-bg-lightest);
+  background: var(--main-bg-dark);
+  flex-grow: 1;  
 }
