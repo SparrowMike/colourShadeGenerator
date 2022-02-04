@@ -21,7 +21,9 @@
   </head>
   <body ng-controller="theme" class="light">
 
+<!-- !=====================MAIN WINDOW===================== -->
     <div id="mainWindow">
+      <!-- ?====================MAIN NAVBAR====================== -->
       <div class="mainNavbar" >
         <div class="mainServer">
           <img ng-src="https://s3.us-east-2.amazonaws.com/forexchatroom/9e74d3c2ce207188de721d7e7e090b7.png" src="https://s3.us-east-2.amazonaws.com/forexchatroom/9e74d3c2ce207188de721d7e7e090b7.png">
@@ -42,7 +44,8 @@
           <img ng-src="https://staging.genesiv.com/img/user-avatar.png" src="https://staging.genesiv.com/img/user-avatar.png">
         </div>
       </div>
-      
+
+      <!-- ?====================SERVER NAVBAR====================== -->
       <div class="serverNavbar">
         <div class="servers explore">
           <svg width="20" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,13 +64,47 @@
         <div class="ui mini icon"><i class="plus icon"></i></div>
       </div>
 
+      <!-- !====================CHAT WINDOW====================== -->
       <div class="chatWindow">
+        <!-- ?====================CHAT====================== -->
         <div class="chat">
+          <div class="displayMessages">
+            <div class="day-separator">
+              <div class="date-tooltip"><span class="day-node">YESTERDAY</span></div>
+              
+            </div>
+          </div>
+
+          <div class="inputMessageField">
+            <div class="emoji-wysiwyg-editor" contenteditable="true" data-text="Type here..."></div>
+            <div class="ui right floated inverted segment">
+              <div class="ui icon inverted button"><i class="icon attach"></i></div>
+              <div id="emojiKeyboard" class="ui icon inverted button"><i class="icon smile emoji"></i></div>
+              <div class="ui icon inverted button">GIF</div>
+            </div>
+          </div>
         </div>
-        <div class="channelSidePanel"></div>
+        <!-- ?====================CHAT INPUT MESSAGE FIELD====================== -->
+        
+        <!-- ?====================CHAT WINDOW SIDE PANEL====================== -->
+        <div class="chatSidePanel">
+          <div class="channelsUsersButtons">
+            <div ng-repeat="type in ['channels', 'users']" class={{type}} ng-class="{'active': $first}"=>
+              <h4>{{type[0].toUpperCase() + type.slice(1)}}</h4>
+            </div>
+          </div>
+          <div class="channelsColumn action">
+            <div class="ui icon input">
+              <i class="search icon"></i>
+              <input type="text" placeholder="Search...">
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
 
+<!-- !====================SIDE PANEL====================== -->
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
@@ -87,6 +124,7 @@
           </div>
           <div class="ui divider"></div>
         </div>
+        <button style="width: 100%; font-size: large;" class="ui primary button" ng-click="saveValues(); changeTheme('custom')">Save</button>
       </div>
     </div>
   </body>

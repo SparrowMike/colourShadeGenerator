@@ -3,11 +3,12 @@
   /* color: rgb(107, 114, 128); */
 }
 
-html,body {  
-  margin:0; 
-  padding:0; 
-  height:100%; 
-  width:100%; 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
   display: flex;
 }
 
@@ -70,10 +71,10 @@ html,body {
   --main-bg-lightest: rgb(67, 60, 56);
 }
 
-/* ================SIDE PANEL============== */
+/* ?================SIDE PANEL============== */
 #sidePanel {
   width: 20vw;
-  height: 100%;
+  height: 100%; 
   overflow: auto;
   min-width: 275px;
   background: rgb(247, 247, 247);
@@ -81,9 +82,8 @@ html,body {
   float: right;
   box-shadow: 2px 4px 5px black;
 }
-/* ==================================== */
 
-/* =============== COLORS TEMPLATES =============== */
+/* ?=============== COLORS TEMPLATES =============== */
 #colorTemplates,
 #colors {
   padding: 10px;
@@ -135,7 +135,7 @@ html,body {
   background: var(--main-text-dark4);
 }
 
-/* ============ COLORS =========== */
+/* ?============ COLORS =========== */
 #pickerContainer {
   display: flex;
   height: 30px;
@@ -157,7 +157,7 @@ html,body {
   background: var(--main-bg);
 }
 
-/* ============= MAIN WINDOW ================= */
+/* ?============= MAIN WINDOW ================= */
 #mainWindow {
   width: 80%;
   height: 100%;
@@ -165,7 +165,7 @@ html,body {
   background: var(--main-bg-light);
 }
 
-/* ============= MAIN NAVBAR ================= */
+/* ?============= MAIN NAVBAR ================= */
 .mainNavbar {
   width: 100%;
   height: 44px;
@@ -173,7 +173,8 @@ html,body {
   display: flex;
   justify-content: space-between;
 }
-.mainNavbar .mainServer img, .mainNavbar .mainIcons img {
+.mainNavbar .mainServer img,
+.mainNavbar .mainIcons img {
   height: 40px;
   padding: 1px;
 }
@@ -181,26 +182,31 @@ html,body {
   margin: 0 15px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--main-text)
+  color: var(--main-text);
 }
-.mainNavbar .mainServer .content i, .mainNavbar .mainServer .content div {  
+.mainNavbar .mainServer .content i,
+.mainNavbar .mainServer .content div {
   font-size: 14px;
   font-weight: 400;
-  color: var(--main-text)
+  color: var(--main-text);
 }
-.mainNavbar .mainIcons, .mainNavbar .mainServer {
+.mainNavbar .mainIcons,
+.mainNavbar .mainServer {
   padding: 0 15px;
   display: flex;
   align-items: center;
 }
-.mainNavbar .mainIcons svg{
+.mainNavbar .mainIcons svg {
   margin: 0 15px;
+}
+.mainNavbar .mainIcons path {
+  fill: var(--main-text-dark2)
 }
 .mainNavbar .mainIcons .active path {
   fill: var(--primary-medium);
 }
 
-/* ============= SERVER NAVBAR ================= */
+/* ?============= SERVER NAVBAR ================= */
 .serverNavbar {
   height: 34px;
   width: 100%;
@@ -215,13 +221,13 @@ html,body {
   width: 170px;
   display: flex;
   border-right: 1px solid var(--main-bg-lightest);
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 .serverNavbar .servers.explore {
   width: 40px;
 }
-.serverNavbar .servers.explore path{
+.serverNavbar .servers.explore path {
   fill: var(--main-text-dark2);
 }
 .serverNavbar .servers.active {
@@ -231,7 +237,6 @@ html,body {
   position: relative;
   left: 22%;
   color: var(--main-text-dark2);
-  
 }
 .serverNavbar .servers h4 {
   font-size: 14px;
@@ -243,13 +248,15 @@ html,body {
   padding: 7px;
 }
 .serverNavbar .mini .plus {
-  color: var(--main-text-dark2)
+  color: var(--main-text-dark2);
 }
-.serverNavbar .exploreServers:hover, .serverNavbar .servers:hover, .serverNavbar .mini:hover {
+.serverNavbar .exploreServers:hover,
+.serverNavbar .servers:hover,
+.serverNavbar .mini:hover {
   background-color: var(--main-bg-lightest);
 }
 
-/* ============= CHAT WINDOW ================= */
+/* ?============= CHAT WINDOW ================= */
 .chatWindow {
   display: flex;
   border-top: 1px solid var(--main-bg-darker);
@@ -257,10 +264,122 @@ html,body {
 }
 .chatWindow .chat {
   background: var(--main-bg-light);
-  flex-grow: 5;  
+  flex-grow: 5;
+  position: relative;
 }
-.chatWindow .channelSidePanel {
+.chatWindow .chat .displayMessages {
+  padding: 0 14px;
+}
+.chatWindow .chat .inputMessageField {
+  position: absolute;
+  height: 150px;
+  bottom: 0;
+  width: 100%;
+}
+.emoji-wysiwyg-editor:focus {
+  outline: 0;
+}
+[contentEditable="true"]:empty:not(:focus):before {
+  content: attr(data-text);
+  color: var(--main-text-dark4);
+}
+.emoji-wysiwyg-editor {
+  background-color: var(--main-bg);
+  color: var(--main-text);
+  margin-bottom: 0;
+  padding: 7px;
+  font-size: 14px;
+  border: none !important;
+  margin-top: 2px;
+}
+.chatWindow .chat .ui.icon.inverted.button {
+  padding: 6px;
+}
+.chatWindow .chat .ui.right.floated.inverted.segment {
+  margin: 0;
+  padding: 4px;
+  background: inherit;
+}
+.chatWindow .chat .ui.right.floated.inverted.segment .icon {
+  color: var(--main-text-dark2);
+  margin: 0px;
+  font-size: 14px;
+}
+.chatWindow .chat .ui.right.floated.inverted.segment .icon:hover {
+  color: var(--primary-medium);
+  background: none;
+}
+.ui.inverted.button {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+.ui.inverted.button:hover {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+/*! divider  */
+.date-tooltip {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+}
+.date-tooltip .day-node {
+  color: var(--main-text-dark2) !important;
+  border: 1px solid var(--main-bg-lightest);
+  background: var(--main-bg-light);
+  border-radius: 5px;
+  padding: 0px 16px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.day-separator:before {
+  content: "";
+  border-top: 1px solid var(--main-bg-lightest);
+  display: inline-block;
+  width: calc(100% - 15px);
+  margin-bottom: -14.5px;
+}
+
+/* ?============= CHAT WINDOW SIDE PANEL ================= */
+.chatWindow .chatSidePanel {
   border-left: 1px solid var(--main-bg-lightest);
   background: var(--main-bg-dark);
-  flex-grow: 1;  
+  flex-grow: 1;
+}
+.chatWindow .chatSidePanel .channelsUsersButtons {
+  display: flex;
+}
+.chatWindow .chatSidePanel .channels,
+.chatWindow .chatSidePanel .users {
+  background: var(--main-bg-light);
+  width: 100%;
+  height: 35px;
+  border-bottom: 1px solid var(--main-bg-lightest);
+}
+.chatWindow .chatSidePanel > div > div {
+  display: flex;
+  color: var(--main-text-dark2);
+  justify-content: center;
+  align-items: center;
+}
+.chatWindow .chatSidePanel > div > div > h4 {
+  font-size: 11px;
+  font-weight: 700;
+}
+.chatWindow .chatSidePanel > div > .active {
+  color: var(--main-text-dark1);
+  background: var(--main-bg-lightst);
+}
+.channelsColumn .ui.icon input {
+  background: var(--main-bg-light);
+  border: none!important;
+  box-shadow: none!important;
+  padding: 11px 30px 11px 15px;
+  cursor: text;
+  color: var(--main-text);
+  width: 100%;
+  outline: 0;
+}
+.channelsColumn .ui.icon input::placeholder {
+  color: var(--main-text-dark4);
 }

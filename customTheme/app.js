@@ -56,7 +56,8 @@ app.controller("theme", function ($scope) {
           .addClass("dark");
         break;
       case "custom":
-        if (theme === "custom") loadValues();
+        if (JSON.parse(localStorage.getItem("customTheme")) === null) $("body").removeAttr("style")
+        loadValues();
         $("body").removeClass("light dark").addClass("custom");
         break;
     }
