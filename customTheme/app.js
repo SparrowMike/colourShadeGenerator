@@ -37,6 +37,8 @@ app.controller("theme", function ($scope) {
   $scope.selected = theme ? theme : "dark";
   if (theme) $("body").removeClass("light dark custom").addClass(theme);
 
+
+
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
@@ -67,6 +69,12 @@ app.controller("theme", function ($scope) {
   //?===================SAVE=====================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
+
+    $(`#defaultTheme.custom #circles > .one`).css("background", storedPalette.primary["--primary-light"]);
+    $(`#defaultTheme.custom #circles > .two`).css("background", storedPalette.primary["--primary-dark"]);
+    $(`#defaultTheme.custom #circles > .three`).css("background", storedPalette.background["--main-bg-darkest"]);
+    $(`#defaultTheme.custom #circles > .four`).css("background", storedPalette.background["--main-bg-lightest"]);
+    $(`#defaultTheme.custom #circles > .five`).css("background", storedPalette.text["--main-text-dark4"]);
   };
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
@@ -126,14 +134,17 @@ app.controller("theme", function ($scope) {
         // body.setProperty(r, results[r]); //* load colours with js
       }
     }
-
-    $(`input#background`).val(storedPalette.background["--main-bg"]);
-    $(`input#primary`).val(storedPalette.primary["--primary-medium"]);
-    $(`input#text`).val(storedPalette.text["--main-text-dark4"]);
   };
 
   $(document).ready(function () {
     loadSelectedTheme(loadCurrentCss());
+    if (localStorage.getItem("customTheme") !== null) {
+      $(`#defaultTheme.custom #circles > .one`).css("background", storedPalette.primary["--primary-light"]);
+      $(`#defaultTheme.custom #circles > .two`).css("background", storedPalette.primary["--primary-dark"]);
+      $(`#defaultTheme.custom #circles > .three`).css("background", storedPalette.background["--main-bg-darkest"]);
+      $(`#defaultTheme.custom #circles > .four`).css("background", storedPalette.background["--main-bg-lightest"]);
+      $(`#defaultTheme.custom #circles > .five`).css("background", storedPalette.text["--main-text-dark4"]);
+    }
   });
 
   //? CONVERT INCOMING RGB STRING TO OBJECT
@@ -221,7 +232,6 @@ app.controller("theme", function ($scope) {
 //TODO============================================================================
 //! - substring undefined?
 //? - clean up functions unecessary loading when custom
-//? - color picker values when picker shown???
 
 //? - create a better sample theme for user to messaround?
 //? - more than one custom themes?
