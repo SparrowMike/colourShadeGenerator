@@ -25,9 +25,10 @@ app.controller("theme", function ($scope) {
       "--main-bg-lightest": { r: 30, g: 32, b: 36 },
     },
   };
+  Object.freeze(paletteToFeed)
 
   //? OBJECT TO STORE THE CUSTOM THEME
-  let storedPalette = { primary: {}, text: {}, background: {} };
+  const storedPalette = { primary: {}, text: {}, background: {} };
 
   const body = $("body").get(0).style; //? FOR THE COLOURPICKER
 
@@ -36,8 +37,6 @@ app.controller("theme", function ($scope) {
   let currentTheme = theme ? `.${theme}` : ".dark";
   $scope.selected = theme ? theme : "dark";
   if (theme) $("body").removeClass("light dark custom").addClass(theme);
-
-
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
@@ -66,15 +65,21 @@ app.controller("theme", function ($scope) {
     loadSelectedTheme(loadCurrentCss());
   };
 
+  //?===================UPDATE CUSTOM PALETTE=====================
+  const customPaletteColors = () => {
+    const theme = JSON.parse(localStorage.getItem("customTheme"))
+    $(`#defaultTheme.custom #circles > .one`).css("background", theme.primary["--primary-light"]);
+    $(`#defaultTheme.custom #circles > .two`).css("background", theme.primary["--primary-dark"]);
+    $(`#defaultTheme.custom #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
+    $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
+    $(`#defaultTheme.custom #circles > .five`).css("background", theme.text["--main-text-dark4"]);
+  }
+
+
   //?===================SAVE=====================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
-
-    $(`#defaultTheme.custom #circles > .one`).css("background", storedPalette.primary["--primary-light"]);
-    $(`#defaultTheme.custom #circles > .two`).css("background", storedPalette.primary["--primary-dark"]);
-    $(`#defaultTheme.custom #circles > .three`).css("background", storedPalette.background["--main-bg-darkest"]);
-    $(`#defaultTheme.custom #circles > .four`).css("background", storedPalette.background["--main-bg-lightest"]);
-    $(`#defaultTheme.custom #circles > .five`).css("background", storedPalette.text["--main-text-dark4"]);
+    customPaletteColors()
   };
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
@@ -126,11 +131,9 @@ app.controller("theme", function ($scope) {
       }
       for (r in results) {
         if (results[r] === "" || results[r] === undefined) delete results[r];
-        if (r.includes("primary"))
-          storedPalette.primary[r] = `${results[r].trim()}`;
+        if (r.includes("primary")) storedPalette.primary[r] = `${results[r].trim()}`;
         if (r.includes("text")) storedPalette.text[r] = `${results[r].trim()}`;
-        if (r.includes("bg"))
-          storedPalette.background[r] = `${results[r].trim()}`;
+        if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
         // body.setProperty(r, results[r]); //* load colours with js
       }
     }
@@ -139,11 +142,7 @@ app.controller("theme", function ($scope) {
   $(document).ready(function () {
     loadSelectedTheme(loadCurrentCss());
     if (localStorage.getItem("customTheme") !== null) {
-      $(`#defaultTheme.custom #circles > .one`).css("background", storedPalette.primary["--primary-light"]);
-      $(`#defaultTheme.custom #circles > .two`).css("background", storedPalette.primary["--primary-dark"]);
-      $(`#defaultTheme.custom #circles > .three`).css("background", storedPalette.background["--main-bg-darkest"]);
-      $(`#defaultTheme.custom #circles > .four`).css("background", storedPalette.background["--main-bg-lightest"]);
-      $(`#defaultTheme.custom #circles > .five`).css("background", storedPalette.text["--main-text-dark4"]);
+      customPaletteColors()
     }
   });
 
@@ -165,7 +164,6 @@ app.controller("theme", function ($scope) {
     let $input = $("input.pickr-field");
     let current_color = $(".pickr-field").val() || "#041";
     let pickr;
-
     Object.keys(storedPalette).forEach((type) => {
       pickr = new Pickr({
         el: $(`.${type}Color`)[0],
@@ -223,7 +221,7 @@ app.controller("theme", function ($scope) {
           //? display the currently generated colours
           body.setProperty(color, rgb);
         }
-        // console.info(storedPalette['primary']);
+        console.info(storedPalette[type]);
       });
     });
   });
