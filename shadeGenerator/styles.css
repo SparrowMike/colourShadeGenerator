@@ -1,5 +1,5 @@
 h4 {
-  margin:0;
+  margin: 0;
   text-align: center;
   padding: 2px;
 }
@@ -9,7 +9,7 @@ body {
   left: 50%;
   top: 30%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
   border-radius: 10px;
   width: 90%;
   height: 400px;
@@ -31,6 +31,7 @@ form {
 #inputs {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 input {
@@ -38,12 +39,32 @@ input {
   margin: 2px;
 }
 
+input[type="color"] {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
 #mainPanel {
   flex: 8;
   flex-wrap: wrap;
 }
 
-#mainPanel, #sidePanel {
+#mainPanel,
+#sidePanel {
   border: 3px solid black;
   border-radius: 10px;
 }
@@ -81,23 +102,21 @@ input {
   display: flex;
 }
 
-
-.button{
-  display:inline-block;
-  padding:0.5em 3em;
-  border:0.16em solid #212529;
-  margin:0 0.3em 0.3em 0;
+.button {
+  display: inline-block;
+  padding: 0.5em 3em;
+  border: 0.16em solid #212529;
+  margin: 0 0.3em 0.3em 0;
   box-sizing: border-box;
-  font-weight:400;
+  font-weight: 400;
   color: #212529;
-  text-align:center;
+  text-align: center;
   transition: all 0.15s;
   width: 100%;
   cursor: pointer;
 }
 
-.button:hover{
-  color:#6c757d;
-  border-color:#6c757d;
+.button:hover {
+  color: #6c757d;
+  border-color: #6c757d;
 }
-
