@@ -5,6 +5,7 @@
 
 html,
 body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -179,17 +180,17 @@ body {
   padding: 1px;
 }
 .mainNavbar .mainServer .content {
-  margin: 0 15px;
+  margin: 0 8px;
   font-size: 15px;
   font-weight: 700;
   color: var(--main-text);
 }
-.mainNavbar .mainServer .content i,
+/* .mainNavbar .mainServer .content i,
 .mainNavbar .mainServer .content div {
   font-size: 14px;
   font-weight: 400;
   color: var(--main-text);
-}
+} */
 .mainNavbar .mainIcons,
 .mainNavbar .mainServer {
   padding: 0 15px;
@@ -205,6 +206,10 @@ body {
 .mainNavbar .mainIcons .active path {
   fill: var(--primary-medium);
 }
+.mainNavbar .mainIcons > div:hover path {
+  fill: var(--primary-medium);
+  cursor: pointer;
+}
 
 /* ?============= SERVER NAVBAR ================= */
 .serverNavbar {
@@ -213,7 +218,6 @@ body {
   display: flex;
   align-items: center;
   background: var(--main-bg);
-  /* position: relative; */
   box-shadow: 1px 1px 3px 2px var(--main-bg-darker);
 }
 .serverNavbar .servers {
@@ -253,6 +257,7 @@ body {
 .serverNavbar .exploreServers:hover,
 .serverNavbar .servers:hover,
 .serverNavbar .mini:hover {
+  cursor: pointer;
   background-color: var(--main-bg-lightest);
 }
 
@@ -264,11 +269,11 @@ body {
 }
 .chatWindow .chat {
   background: var(--main-bg-light);
-  flex-grow: 5;
+  flex-grow: 6;
   position: relative;
 }
 .chatWindow .chat .displayMessages {
-  padding: 0 14px;
+  padding: 0 0 0 14px;
 }
 .chatWindow .chat .inputMessageField {
   position: absolute;
@@ -317,7 +322,7 @@ body {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
 }
-/*! divider  */
+/*! =====divider=====  */
 .date-tooltip {
   font-size: 12px;
   display: flex;
@@ -339,47 +344,218 @@ body {
   width: calc(100% - 15px);
   margin-bottom: -14.5px;
 }
-
-/* ?============= CHAT WINDOW SIDE PANEL ================= */
-.chatWindow .chatSidePanel {
-  border-left: 1px solid var(--main-bg-lightest);
-  background: var(--main-bg-dark);
-  flex-grow: 1;
-}
-.chatWindow .chatSidePanel .channelsUsersButtons {
+.chat .messagesFrom {
+  background: var(--main-bg-lightest);
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.chatWindow .chatSidePanel .channels,
-.chatWindow .chatSidePanel .users {
-  background: var(--main-bg-light);
-  width: 100%;
-  height: 35px;
-  border-bottom: 1px solid var(--main-bg-lightest);
-}
-.chatWindow .chatSidePanel > div > div {
+.chat .messagesFrom .avatarName {
   display: flex;
-  color: var(--main-text-dark2);
-  justify-content: center;
+  height: 60px;
   align-items: center;
 }
-.chatWindow .chatSidePanel > div > div > h4 {
-  font-size: 11px;
-  font-weight: 700;
+.chat .messagesFrom .avatarName .avatar {
+  width: 44px;
+  margin-left: 14px; 
 }
-.chatWindow .chatSidePanel > div > .active {
+.chat .messagesFrom .avatarName .online {
+  width: 12px;
+  height: 12px;
+  background: #77D570;
+  position: absolute;
+  top: 41px;
+  left: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--main-bg-dark)
+
+}
+.chat .messagesFrom .avatarName .name {
+  margin-left: 20px;
+}
+.chat .messagesFrom .avatarName h4 {
   color: var(--main-text-dark1);
-  background: var(--main-bg-lightst);
+  margin: 0;
 }
-.channelsColumn .ui.icon input {
+.chat .messagesFrom .avatarName p {
+  color: var(--main-text);
+  font-size: 12px;
+  font-weight: 400;
+}
+.chat .messagesFrom i {
+  color: var(--main-text);
+  margin-right: 25px;
+}
+/* ?============= CHAT WINDOW FRIENDS LIST ================= */
+.chatWindow .chatHistory {
+  min-width: 200px;
+  background: var(--main-bg);
+  flex-grow: .75;
+}
+.chatWindow .chatHistory .ui.icon {
+  width: 100%;
+}
+.chatWindow .chatHistory .ui.icon i {
+  color: var(--main-text); 
+}
+.chatWindow .chatHistory .ui.icon input {
   background: var(--main-bg-light);
   border: none!important;
   box-shadow: none!important;
   padding: 11px 30px 11px 15px;
   cursor: text;
   color: var(--main-text);
-  width: 100%;
   outline: 0;
+  border-radius: 0;
 }
-.channelsColumn .ui.icon input::placeholder {
+.chatWindow .chatHistory .ui.icon input::placeholder {
   color: var(--main-text-dark4);
+}
+ 
+/* ?============= CHAT WINDOW FRIENDS PANEL ================= */
+.chatWindow .chatSidePanel {
+  min-width: 270px;
+  /* border-left: 1px solid var(--main-bg-lightest); */
+  background: var(--main-bg-dark);
+  height: 100%;
+  flex-grow: .75;
+}
+.chatWindow .chatSidePanel .friendsPanel .header {
+  height: 39px;
+  padding: 11px 19px;
+  background: var(--main-bg);
+}
+.chatWindow .chatSidePanel .friendsPanel .header h4 {
+  color: var(--main-text);
+}
+.chatWindow .chatSidePanel .friendsPanel .filterTypes,
+.chatWindow .chatHistory .filterTypes {
+  display: flex;
+}
+.chatWindow .chatSidePanel .filter,
+.chatWindow .chatHistory .filterTypes .filter {
+  margin:1px;
+  background: var(--main-bg-light);
+  width: 100%;
+  height: 34px;
+  /* border-bottom: 1px solid var(--main-bg-lightest); */
+}
+.chatWindow .chatSidePanel .filter .OnlineDot {
+  margin-right: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--main-bg-dark);
+  background: #77D570;
+}
+.chatWindow .chatSidePanel .friendsPanel .filterTypes .filter, 
+.chatWindow .chatHistory .filterTypes .filter {
+  display: flex;
+  color: var(--main-text-dark2);
+  justify-content: center;
+  align-items: center;
+}
+.chatWindow .chatSidePanel .filter h4,
+.chatWindow .chatHistory .filterTypes .filter h4 {
+  color: var(--main-text);
+  font-size: 14px;
+  font-weight: 500;
+}
+.chatWindow .chatSidePanel > .friendsPanel .filterTypes > .active, 
+.chatWindow .chatHistory .filterTypes > .active {
+  color: var(--main-text-dark1);
+  background: var(--main-bg-lightest);
+}
+.chatWindow .chatSidePanel > .friendsPanel .filterTypes .filter:hover,
+.chatWindow .chatHistory .filterTypes .filter:hover {
+  color: var(--main-text-dark1);
+  background: var(--main-bg-lightest);
+  cursor: pointer;
+}
+.chatWindow .chatSidePanel .friendsList {
+  height: 100vh;
+
+  overflow: auto;
+}
+.chatWindow .chatSidePanel .friendsList .friend {
+  display: flex;
+  height: 38px;
+  border-radius: 4px;
+  margin: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+.chatWindow .chatSidePanel .friendsList .friend:hover {
+  background: var(--main-bg-light);
+}
+.chatWindow .chatSidePanel .user {
+  position: relative;
+  display: flex;  
+  align-items: center;
+}
+.chatWindow .chatSidePanel .user h4 {
+  color: var(--main-text);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+.chatWindow .chatSidePanel .user .avatar {
+  margin: 0 11px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+.chatWindow .chatSidePanel .user .online {
+  position: absolute;
+  top: 18px;
+  left: 29px;
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+  background: #77D570; 
+  border: 2px solid var(--main-bg-dark);
+}
+.chatWindow .chatSidePanel .icons {
+  display: flex;
+}
+.chatWindow .chatSidePanel .icons > .icon {
+  position: relative;
+  margin-right: 11px;
+  height: 28px;
+  width: 28px;  
+  border-radius: 50%;
+  background: var(--main-bg-dark);
+}
+.chatWindow .chatSidePanel .icons > .icon > i {
+  font-size: 16px;
+  font-weight: 300;
+  position: absolute;
+  top: 2.5px;
+  left: 4.5px;
+}
+.chatWindow .chatSidePanel .icons > .message {
+  color: var(--main-text);
+}
+.chatWindow .chatSidePanel .icons > .trash {
+  color: #EB5757;
+}
+.chatWindow .chatSidePanel .icons > .icon:hover {
+  background: var(--main-bg-lightest);
+}
+
+/* ?====================SCROLL BAR==================== */
+.friendsList::-webkit-scrollbar {
+  width: 7px;
+  height: 20px;
+}
+/* .friendsList::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+} */
+.friendsList::-webkit-scrollbar-thumb {
+  background: var(--main-bg-lightest); 
+  border-radius: 10px;
+}
+.friendsList::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-medium); 
 }
