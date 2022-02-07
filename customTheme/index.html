@@ -94,16 +94,19 @@
           <div
             ng-repeat="type in ['primary', 'text', 'background']"
             id="{{type}}"
+            ng-click="changeColor(type)"
           >
             <h1>{{type[0].toUpperCase() + type.slice(1)}}</h1>
             <div class="inputContainer">
               <input
-                ng-click="changeColor(type)"
                 id="{{type}}"
                 type="text"
                 value="rgb(241, 138, 49)"
                 class="form-control"
               />
+              <span class="input-group-append">
+                <span class="input-group-text colorpicker-input-addon"><i></i></span>
+              </span>
               <div class="primary_color" id="one{{type}}"></div>
             </div>
           </div>

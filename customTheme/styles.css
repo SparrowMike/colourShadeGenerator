@@ -212,13 +212,29 @@ input:focus {
 .inputContainer .form-control {
   width: 60%;
 }
+input[type="text"] {
+  display: none;
+}
 
-#oneprimary {
+#oneprimary, #primary div span i{
   background: var(--primary-medium);
 }
-#onetext {
+#onetext, #text div span i {
   background: var(--main-text);
 }
-#onebackground {
+#onebackground, #background div span i {
   background: var(--main-bg-dark);
+}
+span.input-group-text.colorpicker-input-addon {
+  padding: 0px;
+  border-radius: 50%;
+  border: 5px solid black;
+}
+.inputContainer span span i {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.colorpicker-input-addon:before {
+  background: black;
 }

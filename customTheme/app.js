@@ -124,6 +124,10 @@ app.controller("theme", function ($scope) {
     $(`input#background`).val(storedPalette.background["--main-bg"]);
     $(`input#primary`).val(storedPalette.primary["--primary-medium"]);
     $(`input#text`).val(storedPalette.text["--main-text-dark4"]);
+
+    $('#background div span i').css('background',storedPalette.background["--main-bg"]);
+    $('#primary div span i').css('background', storedPalette.primary["--primary-medium"]);
+    $('#text div span i').css('background', storedPalette.text["--main-text-dark4"]);
   };
 
   $(document).ready(function () {
@@ -146,7 +150,28 @@ app.controller("theme", function ($scope) {
   //? CUSTOM COLOUR PICKER
   $scope.changeColor = (type) => {
     $(`#${type}`)
-      .colorpicker({})
+      .colorpicker({ 
+        // inline: true,
+        container: true,
+        popover: {
+          placement: 'left'
+        },
+        useAlpha: false,
+        extensions: [
+          {
+            name: 'swatches', // extension name to load
+            options: { // extension options
+              colors: {
+                'primary': '#337ab7',
+                'success': '#5cb85c',
+                'info': '#5bc0de',
+                'warning': '#f0ad4e',
+                'danger': '#d9534f'
+              },
+              namesAsValues: true
+            }
+          }
+        ]})
       .on("colorpickerChange", function (e) {
         rgbToObj(e.color.toString());
         for (color in storedPalette[type]) {
