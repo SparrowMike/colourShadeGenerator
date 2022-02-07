@@ -9,6 +9,9 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles.css" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
@@ -172,7 +175,8 @@
         <div ng-repeat="type in ['primary', 'text', 'background']" id="{{type}}">
           <div id="pickerContainer" >
             <h4>{{type[0].toUpperCase() + type.slice(1)}}</h4>
-            <div class="{{type}}Color"></div>
+              <input type="text" data-coloris class=coloris>
+            <!-- <div class="{{type}}Color"></div> -->
           </div>
           <div class="ui divider"></div>
         </div>

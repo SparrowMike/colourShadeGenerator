@@ -159,6 +159,33 @@ app.controller("theme", function ($scope) {
     return rgbValues;
   }
 
+  //!======================COLORIS============================
+  Coloris({
+    el: '.coloris',
+    wrap: true,
+    theme: 'polaroid',
+    themeMode: 'dark',
+    margin: 10,
+    format: 'rgb',
+    formatToggle: false,
+    alpha: false,
+    swatchesOnly: false,
+    focusInput: true,
+    swatches: [
+      '#264653',
+      '#2a9d8f',
+      '#e9c46a',
+      'rgb(244,162,97)',
+      '#e76f51',
+      '#d62828',
+      'navy',
+      '#07b',
+      '#0096c7',
+      '#00b4d8',
+      'rgba(19,119,118)'
+    ]
+  });
+
   //!======================PICKR============================
   $(document).ready(function () {
     let $input = $("input.pickr-field");
