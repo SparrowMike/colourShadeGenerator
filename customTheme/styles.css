@@ -169,14 +169,14 @@ body {
 /* ?============= MAIN NAVBAR ================= */
 .mainNavbar {
   width: 100%;
-  height: 44px;
+  height: 2.25vw;
   background: var(--main-bg-light);
   display: flex;
   justify-content: space-between;
 }
 .mainNavbar .mainServer img,
 .mainNavbar .mainIcons img {
-  height: 40px;
+  height: 2vw;
   padding: 1px;
 }
 .mainNavbar .mainServer .content {
@@ -192,7 +192,9 @@ body {
   align-items: center;
 }
 .mainNavbar .mainIcons svg {
-  margin: 0 15px;
+  margin: 0 0.7vw;
+  width: 1vw;
+  height: 1vw;
 }
 .mainNavbar .mainIcons path {
   fill: var(--main-text-dark2)
@@ -207,7 +209,7 @@ body {
 
 /* ?============= SERVER NAVBAR ================= */
 .serverNavbar {
-  height: 34px;
+  height: 1.75vw;
   width: 100%;
   display: flex;
   align-items: center;
@@ -216,14 +218,14 @@ body {
 }
 .serverNavbar .servers {
   height: 100%;
-  width: 170px;
+  width: 10vw;
   display: flex;
   border-right: 1px solid var(--main-bg-lightest);
   justify-content: center;
   align-items: center;
 }
 .serverNavbar .servers.explore {
-  width: 40px;
+  width: 2vw;
 }
 .serverNavbar .servers.explore path {
   fill: var(--main-text-dark2);
@@ -237,13 +239,12 @@ body {
   color: var(--main-text-dark2);
 }
 .serverNavbar .servers h4 {
-  font-size: 14px;
+  font-size: 0.75vw;
   font-weight: 700;
   color: var(--main-text-dark2);
 }
 .serverNavbar .mini {
-  height: 34px;
-  padding: 7px;
+  padding: 0.5vw;
 }
 .serverNavbar .mini .plus {
   color: var(--main-text-dark2);
@@ -263,15 +264,15 @@ body {
 }
 .chatWindow .chat {
   background: var(--main-bg-light);
-  flex-grow: 6;
+  /* flex-grow: 6; */
   position: relative;
 }
 .chatWindow .chat .displayMessages {
-  padding: 0 0 0 14px;
+  padding: 0 0 0 0.75vw;
 }
 .chatWindow .chat .inputMessageField {
   position: absolute;
-  height: 150px;
+  height: 8vw;
   bottom: 0;
   width: 100%;
 }
@@ -286,23 +287,23 @@ body {
   background-color: var(--main-bg);
   color: var(--main-text);
   margin-bottom: 0;
-  padding: 7px;
-  font-size: 14px;
+  padding: 0.5vw;
+  font-size: 0.75vw;
   border: none !important;
-  margin-top: 2px;
+  /* margin-top: 1vw; */
 }
 .chatWindow .chat .ui.icon.inverted.button {
-  padding: 6px;
+  padding: 0.25vw;
 }
 .chatWindow .chat .ui.right.floated.inverted.segment {
   margin: 0;
-  padding: 4px;
+  padding: 0.25vw;
   background: inherit;
 }
 .chatWindow .chat .ui.right.floated.inverted.segment .icon {
   color: var(--main-text-dark2);
-  margin: 0px;
-  font-size: 14px;
+  margin: 0;
+  font-size: 0.75vw;
 }
 .chatWindow .chat .ui.right.floated.inverted.segment .icon:hover {
   color: var(--primary-medium);
@@ -318,7 +319,7 @@ body {
 }
 /*! =====divider=====  */
 .date-tooltip {
-  font-size: 12px;
+  /* font-size: 12px; */
   display: flex;
   justify-content: center;
 }
@@ -327,15 +328,15 @@ body {
   border: 1px solid var(--main-bg-lightest);
   background: var(--main-bg-light);
   border-radius: 5px;
-  padding: 0px 16px;
-  font-size: 11px;
+  padding: 0 1vw;
+  font-size: 0.5vw;
   text-transform: uppercase;
 }
 .day-separator:before {
   content: "";
   border-top: 1px solid var(--main-bg-lightest);
   display: inline-block;
-  width: calc(100% - 15px);
+  width: calc(100% - 1vw);
   margin-bottom: -14.5px;
 }
 .chat .messagesFrom {
@@ -346,39 +347,39 @@ body {
 }
 .chat .messagesFrom .avatarName {
   display: flex;
-  height: 62px;
+  height: 4vw;
   align-items: center;
 }
 .chat .messagesFrom .avatarName .avatar {
-  width: 54px;
+  width: 3vw;
   border-radius: 50%;
-  margin-left: 14px; 
+  margin-left: 0.5vw; 
 }
 .chat .messagesFrom .avatarName .online {
-  width: 12px;
-  height: 12px;
+  width: .75vw;
+  height: .75vw;
   background: #77D570;
   position: absolute;
-  top: 46px;
-  left: 50px;
+  top: 2.75vw;
+  left: 2.75vw;
   border-radius: 50%;
   border: 2px solid var(--main-bg-dark)
 }
 .chat .messagesFrom .avatarName .name {
-  margin-left: 20px;
+  margin-left: 1vw;
 }
 .chat .messagesFrom .avatarName h4 {
+  font-size: 1vw;
   color: var(--main-text-dark1);
   margin: 0;
 }
 .chat .messagesFrom .avatarName p {
   color: var(--main-text);
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 0.75vw;
 }
 .chat .messagesFrom i {
   color: var(--main-text);
-  margin-right: 25px;
+  margin-right: 1.5vw;
 }
 .chat .displayMessages .directMsg .directMsgAvtNname, 
 .chat .displayMessages .directMsg .message {
@@ -388,21 +389,21 @@ body {
 }
 
 .chat .displayMessages .directMsg {
-  margin-left: 10px;
+  margin-left: 0.5vw;
   position: relative;
 }
 .chat .displayMessages .directMsg .directMsgAvtNname .avatar {
-  width: 54px;
-  margin-right: 10px;
+  width: 3vw;
+  margin-right: 1vw;
   border-radius: 50%;
 }
 .chat .displayMessages .directMsg .directMsgAvtNname .online {
-  width: 12px;
-  height: 12px;
+  width: 0.75vw;
+  height: 0.75vw;
   background: #77D570;
   position: absolute;
-  top: 42px;
-  left: 38px;
+  top: 2.25vw;
+  left: 2.25vw;
   border-radius: 50%;
   border: 2px solid var(--main-bg-dark)
 }
@@ -410,39 +411,40 @@ body {
   color: var(--main-text);
 }
 .chat .displayMessages .directMsg .message h4 {
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: 400;
+  margin-top: 0.5vw;
+  font-size: 0.75vw;
   color: var(--main-text);
 }
 .chat .displayMessages .directMsg .message p {
-  font-size: 12px;
+  font-size: 0.75vw;
   color: var(--main-text-dark4);
-  margin: 5px;
-  width: 100px;
-  font-weight: 400;
+  margin: 0.5vw;
+  width: 8vw;
 }
 
 /* ?============= CHAT WINDOW MESSAGE HISTORY LIST ================= */
 .chatWindow .chatHistory {
-  min-width: 345px;
+  min-width: 17vw;
   background: var(--main-bg);
   /* flex-grow: .75; */
 }
 .chatWindow .chatHistory .ui.icon i {
+  font-size: 0.75vw;
   color: var(--main-text); 
 }
 .chatWindow .chatHistory .ui.icon input {
   background: var(--main-bg-light);
   border: none!important;
   box-shadow: none!important;
-  padding: 11px 30px 11px 15px;
+  padding: 0.85;
   cursor: text;
   color: var(--main-text);
   outline: 0;
   border-radius: 0;
+  font-size: 0.75vw;
 }
 .chatWindow .chatHistory .ui.icon input::placeholder {
+  font-size: 0.75vw;
   color: var(--main-text-dark4);
 }
 .chatWindow .chatHistory .searchMessage{
@@ -458,21 +460,19 @@ body {
   justify-content: center;
   align-items: center;
   background: var(--primary-dark);
-  border-radius: 4px;
-  height: 28px;
-  padding: 10px;
-  margin: 0 10px;
+  border-radius: 0.25vw;
+  height: 1.5vw;
+  padding: 0.25vw;
+  margin: 0 0.1vw;
 }
 .chatWindow .chatHistory .newMessage h4 {
   margin: 0;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 0.75vw;
   color: var(--main-bg-darkest);
 }
 .chatWindow .chatHistory .newMessage .comments {
-  margin: 0 5px 8px 0;
-  font-size: 12px;
-  font-weight: 700;
+  /* margin: 0 1vw 1vw 0; */
+  font-size: 0.75vw;
   color: var(--main-bg-darkest);
 }
 .chatWindow .chatHistory .messageHistory {
@@ -482,7 +482,7 @@ body {
 .chatWindow .chatHistory .messageHistory #messageContainer {
   display: flex;
   align-items: center;
-  height: 65px;
+  height: 3vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer.active {
   background-color: var(--main-bg-lightest);
@@ -492,24 +492,24 @@ body {
   display: flex;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage {
-  margin-left: 10px;
+  margin-left: 0.75vw;
   flex: 2;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .avatarContainer {
   position: relative;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .avatarContainer .avatar {
-  width: 48px;
+  width: 2.25vw;
   border-radius: 50%;
-  margin-left: 16px;
+  margin-left: 0.5vw;
 }
 .chatHistory .messageHistory #messageContainer .online {
   position: absolute;
-  top: 36px;
-  left: 50px;
+  top: 1.75vw;
+  left: 2.15vw;
   border-radius: 50%;
-  width: 11px;
-  height: 11px;
+  width: 0.6vw;
+  height: 0.6vw;
   background: #77D570;
   border: 2px solid var(--main-bg-dark);
 }
@@ -522,75 +522,71 @@ body {
   flex-direction: column;
   align-items: center;
   align-items: flex-end;
-  margin-right: 10px;
+  margin-right: 1vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer h4 {
   margin: 0;
   color: var(--main-text);
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 0.75vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage p {
-  margin: 1px 0 0 0;
+  margin: 0.2vw 0 0 0;
   color: var(--main-text-dark4);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 0.7vw;
 }
 
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .doubleCheck {
   position: relative;
-  margin-right: 10px;
+  margin-right: 0.25vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .doubleCheck .second {
   position: absolute;
-  left: 5px;
-  top: 3px;
+  left: 0.3vw;
+  top: 0.35vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .doubleCheck .icon {
   color: var(--primary-medium);
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .icon {
-  margin-right: 3px;
+  margin-right: 0.25vw;
   color: var(--main-text-dark4);
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 0.75vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty .time {
   color: var(--main-text-dark4);
   margin: 0;
-  font-size: 10px;
-  font-weight: 400;
+  font-size: 0.65vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty .noty {
   background: #EB5757;
-  border-radius: 20px;
-  min-width: 14px;
-  min-height: 14px;
+  border-radius: 1vw;
+  min-width: .75vw;
+  min-height: .75vw;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty .noty p {
   color: var(--main-text);
-  font-size: 10px;
-  padding: 1px 5px 0 4px;
-  font-weight: 700;
+  font-size: .5vw;
+  padding: 0.05vw 0.25vw 0 0.25vw;
 }
 /* ?============= CHAT WINDOW FRIENDS PANEL ================= */
 .chatWindow .chatSidePanel {
-  min-width: 280px;
+  min-width: 16vw;
   /* border-left: 1px solid var(--main-bg-lightest); */
   background: var(--main-bg-dark);
   height: 100%;
-  flex-grow: .75;
+  /* flex-grow: .75; */
 }
 .chatWindow .chatSidePanel .friendsPanel .header {
-  height: 39px;
-  padding: 11px 19px;
+  height: 2vw;
+  padding: 0.5vw 0.5vw;
   background: var(--main-bg);
 }
 .chatWindow .chatSidePanel .friendsPanel .header h4 {
   color: var(--main-text);
+  font-size: 1vw;
 }
 .chatWindow .chatSidePanel .friendsPanel .filterTypes,
 .chatWindow .chatHistory .filterTypes {
@@ -598,16 +594,16 @@ body {
 }
 .chatWindow .chatSidePanel .filter,
 .chatWindow .chatHistory .filterTypes .filter {
-  margin:1px;
+  margin: 0.05vw;
   background: var(--main-bg-light);
   width: 100%;
-  height: 34px;
+  height: 2vw;
   /* border-bottom: 1px solid var(--main-bg-lightest); */
 }
 .chatWindow .chatSidePanel .filter .OnlineDot {
-  margin-right: 5px;
-  width: 9px;
-  height: 9px;
+  margin-right: 0.25vw;
+  width: 0.5vw;
+  height: 0.5vw;
   border-radius: 50%;
   border: 1px solid var(--main-bg-dark);
   background: #77D570;
@@ -622,8 +618,7 @@ body {
 .chatWindow .chatSidePanel .filter h4,
 .chatWindow .chatHistory .filterTypes .filter h4 {
   color: var(--main-text);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 0.75vw;
 }
 .chatWindow .chatSidePanel > .friendsPanel .filterTypes > .active, 
 .chatWindow .chatHistory .filterTypes > .active {
@@ -642,9 +637,9 @@ body {
 }
 .chatWindow .chatSidePanel .friendsList .friend {
   display: flex;
-  height: 38px;
-  border-radius: 4px;
-  margin: 5px;
+  height: 1.75vw;
+  border-radius: 0.25vw;
+  margin: 0.25vw;
   align-items: center;
   justify-content: space-between;
 }
@@ -658,68 +653,61 @@ body {
 }
 .chatWindow .chatSidePanel .user h4 {
   color: var(--main-text);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 0.75vw;
   margin: 0;
 }
 .chatWindow .chatSidePanel .user .avatar {
-  margin: 0 11px;
-  width: 28px;
-  height: 28px;
+  margin: 0 0.5vw;
+  width: 1.5vw;
+  height: 1.5vw;
   border-radius: 50%;
 }
 .chatWindow .chatSidePanel .user .online {
   position: absolute;
-  top: 18px;
-  left: 29px;
+  top: 1vw;
+  left: 1.5vw;
   border-radius: 50%;
-  width: 11px;
-  height: 11px;
+  width: 0.6vw;
+  height: 0.6vw;
   background: #77D570; 
   border: 2px solid var(--main-bg-dark);
 }
 .chatWindow .chatSidePanel .icons {
   display: flex;
 }
-.chatWindow .chatSidePanel .icons > .icon {
+/* .chatWindow .chatSidePanel .icons > .icon {
   position: relative;
-  margin-right: 11px;
-  height: 28px;
-  width: 28px;  
+  margin-right: .5vw;
+  height: 1.5vw;
+  width: 1.5vw;  
+} */
+.chatWindow .chatSidePanel .icons > .icon {
+  font-size: 0.8vw;
   border-radius: 50%;
+  margin-right: 0.25vw;
+  padding: 0.2vw;
   background: var(--main-bg-dark);
 }
-.chatWindow .chatSidePanel .icons > .icon > i {
-  font-size: 16px;
-  font-weight: 300;
-  position: absolute;
-  top: 2.5px;
-  left: 4.5px;
-}
-.chatWindow .chatSidePanel .icons > .message {
+.chatWindow .chatSidePanel .icons > .comments {
   color: var(--main-text);
 }
 .chatWindow .chatSidePanel .icons > .trash {
   color: #EB5757;
 }
-.chatWindow .chatSidePanel .icons > .icon:hover {
+.chatWindow .chatSidePanel .icons .icon:hover {
   background: var(--main-bg-lightest);
 }
 
 /* ?====================SCROLL BAR==================== */
 .friendsList::-webkit-scrollbar,
 .messageHistory::-webkit-scrollbar {
-  width: 7px;
-  height: 20px;
+  width: 0.3vw;
+  height: 2vw;
 }
-/* .friendsList::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-} */
 .friendsList::-webkit-scrollbar-thumb,
 .messageHistory::-webkit-scrollbar-thumb {
   background: var(--main-bg-lightest); 
-  border-radius: 10px;
+  border-radius: 1vw;
 }
 .friendsList::-webkit-scrollbar-thumb:hover,
 .messageHistory::-webkit-scrollbar-thumb:hover {
