@@ -352,11 +352,12 @@ body {
 }
 .chat .messagesFrom .avatarName {
   display: flex;
-  height: 60px;
+  height: 62px;
   align-items: center;
 }
 .chat .messagesFrom .avatarName .avatar {
-  width: 44px;
+  width: 54px;
+  border-radius: 50%;
   margin-left: 14px; 
 }
 .chat .messagesFrom .avatarName .online {
@@ -364,8 +365,8 @@ body {
   height: 12px;
   background: #77D570;
   position: absolute;
-  top: 41px;
-  left: 44px;
+  top: 46px;
+  left: 50px;
   border-radius: 50%;
   border: 2px solid var(--main-bg-dark)
 
@@ -386,14 +387,11 @@ body {
   color: var(--main-text);
   margin-right: 25px;
 }
-/* ?============= CHAT WINDOW FRIENDS LIST ================= */
+/* ?============= CHAT WINDOW MESSAGE HISTORY LIST ================= */
 .chatWindow .chatHistory {
-  min-width: 200px;
+  /* width: 340px; */
   background: var(--main-bg);
-  flex-grow: .75;
-}
-.chatWindow .chatHistory .ui.icon {
-  width: 100%;
+  /* flex-grow: .75; */
 }
 .chatWindow .chatHistory .ui.icon i {
   color: var(--main-text); 
@@ -411,7 +409,137 @@ body {
 .chatWindow .chatHistory .ui.icon input::placeholder {
   color: var(--main-text-dark4);
 }
- 
+.chatWindow .chatHistory .searchMessage{
+  display: flex;
+  align-items: center;
+  background: var(--main-bg-light);
+}
+.chatWindow .chatHistory .searchMessage .input {
+  flex-grow: 1;
+}
+.chatWindow .chatHistory .messages .newMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-dark);
+  border-radius: 4px;
+  height: 28px;
+  padding: 10px;
+  margin: 0 10px;
+}
+.chatWindow .chatHistory .newMessage h4 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--main-bg-darkest);
+}
+.chatWindow .chatHistory .newMessage .comments {
+  margin: 0 5px 8px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--main-bg-darkest);
+}
+.chatWindow .chatHistory .messageHistory {
+  height: 90%;
+  overflow: auto;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer {
+  display: flex;
+  align-items: center;
+  height: 65px;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer.active {
+  background-color: var(--main-bg-lightest);
+
+}
+.chatWindow .chatHistory .messageHistory #messageContainer {
+  display: flex;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage {
+  margin-left: 10px;
+  flex: 2;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .avatarContainer {
+  position: relative;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .avatarContainer .avatar {
+  width: 48px;
+  border-radius: 50%;
+  margin-left: 16px;
+}
+.chatHistory .messageHistory #messageContainer .online {
+  position: absolute;
+  top: 36px;
+  left: 50px;
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+  background: #77D570;
+  border: 2px solid var(--main-bg-dark);
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .message {
+  display: flex;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: flex-end;
+  margin-right: 10px;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer h4 {
+  margin: 0;
+  color: var(--main-text);
+  font-size: 16px;
+  font-weight: 500;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage p {
+  margin: 1px 0 0 0;
+  color: var(--main-text-dark4);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .doubleCheck {
+  position: relative;
+  margin-right: 10px;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .doubleCheck .second {
+  position: absolute;
+  left: 4.5px;
+  top: 3px;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .doubleCheck .icon {
+  color: var(--primary-medium);
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .icon {
+  margin-right: 3px;
+  color: var(--main-text-dark4);
+  font-size: 13px;
+  font-weight: 400;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty .time {
+  color: var(--main-text-dark4);
+  margin: 0;
+  font-size: 10px;
+  font-weight: 400;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty .noty {
+  background: #EB5757;
+  border-radius: 20px;
+  min-width: 14px;
+  min-height: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty .noty p {
+  color: var(--main-text);
+  font-size: 10px;
+  padding: 1px 5px 0 4px;
+  font-weight: 700;
+}
 /* ?============= CHAT WINDOW FRIENDS PANEL ================= */
 .chatWindow .chatSidePanel {
   min-width: 270px;
@@ -473,8 +601,7 @@ body {
   cursor: pointer;
 }
 .chatWindow .chatSidePanel .friendsList {
-  height: 100vh;
-
+  height: 85vh;
   overflow: auto;
 }
 .chatWindow .chatSidePanel .friendsList .friend {
@@ -544,7 +671,8 @@ body {
 }
 
 /* ?====================SCROLL BAR==================== */
-.friendsList::-webkit-scrollbar {
+.friendsList::-webkit-scrollbar,
+.messageHistory::-webkit-scrollbar {
   width: 7px;
   height: 20px;
 }
@@ -552,10 +680,12 @@ body {
   box-shadow: inset 0 0 5px grey; 
   border-radius: 10px;
 } */
-.friendsList::-webkit-scrollbar-thumb {
+.friendsList::-webkit-scrollbar-thumb,
+.messageHistory::-webkit-scrollbar-thumb {
   background: var(--main-bg-lightest); 
   border-radius: 10px;
 }
-.friendsList::-webkit-scrollbar-thumb:hover {
+.friendsList::-webkit-scrollbar-thumb:hover,
+.messageHistory::-webkit-scrollbar-thumb:hover {
     background: var(--primary-medium); 
 }

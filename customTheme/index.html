@@ -73,10 +73,16 @@
       <div class="chatWindow">
         <!-- ?====================MESSAGES HISTORY LIST====================== -->
         <div class="chatHistory">
-          <div>
+          <div class="searchMessage">
             <div class="ui left icon input">
               <i class="search icon"></i>
               <input type="text" placeholder="Search">
+            </div>
+            <div class="messages">
+              <div class="newMessage">
+                <i class="comments outline icon"></i>
+                <h4>New Message</h4>
+              </div>
             </div>
           </div> 
           <div class="filterTypes">
@@ -86,17 +92,41 @@
               </div>
             </div>
           </div>
-          <div class="messageHistory"></div>
+          <div class="messageHistory">
+            <div id="messageContainer" ng-repeat="message in messagesHistory" ng-class="{'active': $index == 4}">
+              <div class="avatarContainer">
+                <img class="avatar" src="{{message.thumbnail}}">
+                <div class="online"></div>
+              </div>
+              <div class="nameAndMessage">
+                <h4>{{message.name}}</h4>
+                <div class="message">
+                  <i ng-if="message.msg==1" class="check icon"></i>
+                  <div ng-if="message.msg==2" class="doubleCheck">
+                    <i class="check icon"></i>
+                    <i class="check icon second"></i>
+                  </div>
+                  <p>{{message.body}}</p>
+                </div>
+              </div>
+              <div class="timeAndNoty">
+                  <p class="time">{{message.time}}</p>
+                  <div ng-if="message.noty !== 0"class="noty">
+                    <p>{{message.noty}}</p>
+                  </div>
+              </div>
+            </div>
+          </div>
         </div>
-          
+
         <!-- ?====================CHAT====================== -->
         <div class="chat">
           <div class="messagesFrom">
             <div class="avatarName">
-              <img class="avatar" ng-src="https://staging.genesiv.com/img/user-avatar.png" src="https://staging.genesiv.com/img/user-avatar.png">
+              <img class="avatar" src="https://randomuser.me/api/portraits/thumb/women/68.jpg">
               <div class="online"></div>
               <div class="name">
-                <h4>Giveme Thename</h4>
+                <h4></h4>
                 <p>1 mutal server</p>
               </div>
             </div>
@@ -133,11 +163,11 @@
               </div>
             </div>
             <div class="friendsList" >
-              <div class="friend" ng-repeat="num in [1,2,3,4,5,6,7,8,9,10,11]">
+              <div class="friend" ng-repeat="user in onlineFriends">
                 <div class="user">
-                  <img class="avatar" ng-src="https://staging.genesiv.com/img/user-avatar.png" src="https://staging.genesiv.com/img/user-avatar.png">
+                  <img class="avatar" src="{{user.picture.thumbnail}}">
                   <div class="online"></div>
-                  <h4 class="userName">The Dude</h4>
+                  <h4 class="userName">{{user.name.first + ' ' + user.name.last}}</h4>
                 </div>
                 <div class="icons" >
                   <div class="icon message">

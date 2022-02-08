@@ -1,6 +1,13 @@
 var app = angular.module("myApp", []);
 
-app.controller("theme", function ($scope) {
+app.controller("theme", function ($scope, $http) {
+  $http.get('data/onlineFriends.json').then(function(response) {
+    $scope.onlineFriends = response.data;
+  })
+  $http.get('data/messagesHistory.json').then(function(response) {
+    $scope.messagesHistory = response.data;
+  })
+  
   //? OBJECT STORING PALETTE INCREMENT VALUES
   const paletteToFeed = {
     primary: {
