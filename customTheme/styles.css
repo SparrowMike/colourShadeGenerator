@@ -185,12 +185,6 @@ body {
   font-weight: 700;
   color: var(--main-text);
 }
-/* .mainNavbar .mainServer .content i,
-.mainNavbar .mainServer .content div {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--main-text);
-} */
 .mainNavbar .mainIcons,
 .mainNavbar .mainServer {
   padding: 0 15px;
@@ -369,7 +363,6 @@ body {
   left: 50px;
   border-radius: 50%;
   border: 2px solid var(--main-bg-dark)
-
 }
 .chat .messagesFrom .avatarName .name {
   margin-left: 20px;
@@ -387,9 +380,52 @@ body {
   color: var(--main-text);
   margin-right: 25px;
 }
+.chat .displayMessages .directMsg .directMsgAvtNname, 
+.chat .displayMessages .directMsg .message {
+  display: flex;
+  padding: 2px;
+  align-items: center;
+}
+
+.chat .displayMessages .directMsg {
+  margin-left: 10px;
+  position: relative;
+}
+.chat .displayMessages .directMsg .directMsgAvtNname .avatar {
+  width: 54px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.chat .displayMessages .directMsg .directMsgAvtNname .online {
+  width: 12px;
+  height: 12px;
+  background: #77D570;
+  position: absolute;
+  top: 42px;
+  left: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--main-bg-dark)
+}
+.chat .displayMessages .directMsg .directMsgAvtNname h4 {
+  color: var(--main-text);
+}
+.chat .displayMessages .directMsg .message h4 {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--main-text);
+}
+.chat .displayMessages .directMsg .message p {
+  font-size: 12px;
+  color: var(--main-text-dark4);
+  margin: 5px;
+  width: 100px;
+  font-weight: 400;
+}
+
 /* ?============= CHAT WINDOW MESSAGE HISTORY LIST ================= */
 .chatWindow .chatHistory {
-  /* width: 340px; */
+  min-width: 345px;
   background: var(--main-bg);
   /* flex-grow: .75; */
 }
@@ -507,7 +543,7 @@ body {
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .doubleCheck .second {
   position: absolute;
-  left: 4.5px;
+  left: 5px;
   top: 3px;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage .doubleCheck .icon {
@@ -542,7 +578,7 @@ body {
 }
 /* ?============= CHAT WINDOW FRIENDS PANEL ================= */
 .chatWindow .chatSidePanel {
-  min-width: 270px;
+  min-width: 280px;
   /* border-left: 1px solid var(--main-bg-lightest); */
   background: var(--main-bg-dark);
   height: 100%;
