@@ -1,6 +1,6 @@
 [
   {
-    "noty": 2,
+    "noty": 0,
     "msg": 1,
     "time": "7:15 PM",
     "thumbnail": "https://randomuser.me/api/portraits/thumb/women/34.jpg",
@@ -16,7 +16,7 @@
     "name": "Ervin Howell"
   },
   {
-    "noty": 12,
+    "noty": 0,
     "msg": 2,
     "time": "2:39 PM",
     "thumbnail": "https://randomuser.me/api/portraits/thumb/women/6.jpg",
@@ -32,7 +32,7 @@
     "name": "Patricia Lebsack"
   },
   {
-    "noty": 4,
+    "noty": 0,
     "msg": 1,
     "time": "4/02/22",
     "thumbnail": "https://randomuser.me/api/portraits/thumb/women/68.jpg",
@@ -40,7 +40,7 @@
     "name": "Chelsey Dietrich"
   },
   {
-    "noty": 0,
+    "noty": 12,
     "msg": 0,
     "time": "2/02/22",
     "thumbnail": "https://randomuser.me/api/portraits/thumb/men/25.jpg",
@@ -72,7 +72,7 @@
     "name": "Glenna Reichert"
   },
   {
-    "noty": 0,
+    "noty": 4,
     "msg": 0,
     "time": "18/01/22",
     "thumbnail": "https://randomuser.me/api/portraits/thumb/women/0.jpg",
