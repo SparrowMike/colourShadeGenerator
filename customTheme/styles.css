@@ -14,6 +14,11 @@ body {
   display: flex;
 }
 
+:root {
+  --divider-light:rgb(170, 169, 169);
+  --divider-dark: rgb(87, 87, 87);
+}
+
 .dark {
   /*? Primary colors */
   --primary-dark: rgb(229, 151, 29); /* *(-15, -18, -22) */
@@ -261,6 +266,15 @@ body {
 }
 
 /* ?============= CHAT WINDOW ================= */
+.avatar.myFriend {
+  border: 0.25vw solid #51A8FF;
+}
+.myFriend {
+  color: #51A8FF !important;
+} 
+.mySelf {
+  color: var(--primary-light) !important;
+}
 .chatWindow {
   display: flex;
   border-top: 1px solid var(--main-bg-darker);
@@ -274,7 +288,7 @@ body {
 .chatWindow .chat .displayMessages {
   height: calc(100% - 12vw);
   overflow: auto;
-  /* padding: 0 0.75vw; */
+  padding-top: 0.5vw
 }
 .chatWindow .chat .inputMessageField {
   position: absolute;
@@ -312,8 +326,7 @@ body {
   margin: 0;
   font-size: 0.75vw;
 }
-.chatWindow .chat .ui.right.floated.inverted.segment .icon:hover,
-.chat .displayMessages .directMsg .message .icons i:hover {
+.chatWindow .chat .ui.right.floated.inverted.segment .icon:hover {
   color: var(--primary-medium);
   background: none;
 }
@@ -327,28 +340,22 @@ body {
 }
 /*! ==========divider==========  */
 .ui.divider {
-  margin: 0;
+  display: relative;
+  margin: 0 0.5vw;
+  /* border-top: 0.0001vw solid var(--divider-dark) !important; */
+  border-bottom: 0.1vw solid var(--divider-dark) !important;
 }
-.date-tooltip {
-  /* font-size: 12px; */
-  display: flex;
-  justify-content: center;
-}
-.date-tooltip .day-node {
-  color: var(--main-text-dark2) !important;
-  border: 1px solid var(--main-bg-lightest);
-  background: var(--main-bg-light);
-  border-radius: 5px;
-  padding: 0 1vw;
+.ui.divider span {
+  position: sticky;
+  left: 22vw;
+  top: 4.1vw;
+  color: var(--divider-dark);
   font-size: 0.5vw;
-  text-transform: uppercase;
-}
-.day-separator:before {
-  content: "";
-  border-top: 0.1vw solid var(--main-bg-lightest);
-  display: inline-block;
-  width: calc(100%);
-  margin-bottom: -0.85vw;
+  border: 0.1vw solid var(--divider-dark);
+  padding: 0.1vw;
+  border-radius: 0.25vw;
+  z-index: 1;
+  background: var(--main-bg-light);
 }
 .chat .messagesFrom {
   background: var(--main-bg-lighter);
@@ -385,7 +392,7 @@ body {
   margin: 0;
 }
 .chat .messagesFrom .avatarName p {
-  color: var(--main-text);
+  color: var(--main-text-dark3);
   font-size: 0.75vw;
 }
 .chat .messagesFrom i {
@@ -400,28 +407,30 @@ body {
   position: relative;
 }
 .chat .displayMessages .directMsg .message .icons {
-  display: flex;
   display: none;
   position: absolute;
   bottom: 10.5vw;
   right: 1vw;
   background: var(--main-bg-lighter);
-  padding: 0.4vw;
   border-radius: 0.5vw 0.5vw 0 0;
+}
+.chat .displayMessages .directMsg .message .icons div {
+  padding: 0.3vw;
+}
+.chat .displayMessages .directMsg .message .icons div:hover {
+  background: var(--main-bg-lightest);
 }
 .chat .displayMessages .directMsg .message .icons i {
   font-size: 0.8vw;
-  margin-right: 0.5vw;
   color: var(--main-text-dark4)
 }
 .chat .displayMessages .directMsg:hover .icons {
-  display: block;
+  display: flex;
 }
 .chat .displayMessages .directMsg:hover {
   background: var(--main-bg-lighter);
 }
 .chat .displayMessages .directMsg {
-  /* margin-left: 0.5vw; */
   position: relative;
   padding: 1vw;
 }
