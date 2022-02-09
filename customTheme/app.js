@@ -151,6 +151,10 @@ app.controller("theme", function ($scope, $http) {
     if (localStorage.getItem("customTheme") !== null) {
       customPaletteColors()
     }
+  //? ==============UI MODAL================
+  $scope.modal = () => {
+    $('#mainWindow .ui.modal').modal('show');
+  }
   });
 
   //? CONVERT INCOMING RGB STRING TO OBJECT

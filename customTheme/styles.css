@@ -92,7 +92,8 @@ body {
 
 /* ?=============== COLORS TEMPLATES =============== */
 #colorTemplates,
-#colors {
+#colors,
+#previewSection {
   padding: 10px;
 }
 #defaultTheme {
@@ -532,7 +533,7 @@ body {
   height: 3vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer:hover {
-  background-color: var(--main-bg-lighter);
+  background-color: var(--main-bg-light);
 }
 .chatWindow .chatHistory .messageHistory #messageContainer.active {
   background-color: var(--main-bg-light);
@@ -668,7 +669,7 @@ body {
   .timeAndNoty
   .noty
   p {
-  color: var(--main-text);
+  color: #FCFCFC;
   font-size: 0.5vw;
   padding: 0.05vw 0.3vw 0 0.25vw;
 }
@@ -731,7 +732,7 @@ body {
 .chatWindow .chatSidePanel > .friendsPanel .filterTypes .filter:hover,
 .chatWindow .chatHistory .filterTypes .filter:hover {
   color: var(--main-text-dark1);
-  background: var(--main-bg-lightest);
+  background: var(--main-bg-lighter);
   cursor: pointer;
 }
 .chatWindow .chatSidePanel .friendsList {
@@ -815,4 +816,13 @@ body {
 .displayMessages::-webkit-scrollbar-thumb:hover,
 .messageHistory::-webkit-scrollbar-thumb:hover {
   background: var(--primary-medium);
+}
+/* ?========================MODAL======================= */
+.ui.modal {
+  background: var(--main-bg);    
+  padding: 2vw;
+  margin-top: 10vw;
+  margin-left: 35vw;
+  width: 30vw;
+  height: 30vw;
 }

@@ -9,10 +9,10 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles.css" />
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
     <script src="app.js" defer></script>
 
     <title>Custom Theme</title>
@@ -21,6 +21,28 @@
 
 <!-- !=====================MAIN WINDOW===================== -->
     <div id="mainWindow">
+      <!-- ?====================MODAL====================== -->
+      <div class="ui modal">
+        <h1 style="color: var(--main-text)">TEXT</h1>
+        <h1 style="color: var(--primary-medium)">PRIMARY</h1>
+        <div id="colors">
+          <h2 style="color: var(--primary-medium)">Colors</h2>
+          <div ng-repeat="type in ['primary', 'text', 'background']" id="{{type}}">
+            <div id="pickerContainer" >
+              <h4 style="color: var(--main-text-dark3)">{{type[0].toUpperCase() + type.slice(1)}}</h4>
+              <div class="{{type}}Color"></div>
+            </div>
+            <div class="ui divider"></div>
+          </div>
+          <button style="width: 100%; font-size: large; margin-top: 5px;" class="ui primary button" ng-click="saveValues(); changeTheme('custom')">Save</button>
+        </div>
+      </div>
+      
+      
+
+
+
+
       <!-- ?====================MAIN NAVBAR====================== -->
       <div class="mainNavbar" >
         <div class="mainServer">
@@ -239,6 +261,11 @@
           <div class="ui divider"></div>
         </div>
         <button style="width: 100%; font-size: large; margin-top: 5px;" class="ui primary button" ng-click="saveValues(); changeTheme('custom')">Save</button>
+      </div>
+      <div id="previewSection">
+        <h2>PreviewSection</h2>
+        <div class="ui primary button" ng-click="modal()">Modal</div> 
+        </div>
       </div>
     </div>
   </body>
