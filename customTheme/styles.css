@@ -26,9 +26,9 @@ body {
 
 .dark {
   /*? ======Primary====== */
-  --primary-dark: rgb(229, 151, 29); /* *(-15, -18, -22) */
-  --primary-medium: rgb(244, 169, 51); /* *base */
-  --primary-light: rgb(253, 194, 102); /* *(+9, +25, +51) */
+  --accent-dark: rgb(229, 151, 29); /* *(-15, -18, -22) */
+  --accent: rgb(244, 169, 51); /* *base */
+  --accent-light: rgb(253, 194, 102); /* *(+9, +25, +51) */
 
   /*? ======Secondary====== */
   --main-secondary: rgb(252, 252, 252); /* *base */
@@ -66,9 +66,9 @@ body {
   --main-secondary-dark5: rgb(0, 0, 0);
   --main-secondary-dark6: rgb(0, 0, 0);
 
-  --primary-dark: rgb(58, 125, 131);
-  --primary-medium: rgb(73, 143, 153);
-  --primary-light: rgb(82, 168, 204);
+  --accent-dark: rgb(58, 125, 131);
+  --accent: rgb(73, 143, 153);
+  --accent-light: rgb(82, 168, 204);
 }
 
 .custom {
@@ -88,9 +88,9 @@ body {
   --main-bg-lighter: rgb(51, 42, 37);
   --main-bg-lightest: rgb(67, 60, 56);
 
-  --primary-dark: rgb(215, 91, 63);
-  --primary-medium: rgb(230, 109, 85);
-  --primary-light: rgb(239, 134, 136);
+  --accent-dark: rgb(215, 91, 63);
+  --accent: rgb(230, 109, 85);
+  --accent-light: rgb(239, 134, 136);
 }
 
 /* ?================SIDE PANEL============== */
@@ -143,10 +143,10 @@ body {
   border: 1px solid black;
 }
 #defaultTheme #circles > .one {
-  background: var(--primary-light);
+  background: var(--accent-light);
 }
 #defaultTheme #circles > .two {
-  background: var(--primary-dark);
+  background: var(--accent-dark);
 }
 #defaultTheme #circles > .three {
   background: var(--main-bg-darkest);
@@ -173,10 +173,10 @@ body {
 .pickr .pcr-button:after {
   border: 2px solid black;
 }
-#primary #pickerContainer .pickr .pcr-button:after {
-  background: var(--primary-medium);
+#accent #pickerContainer .pickr .pcr-button:after {
+  background: var(--accent);
 }
-#text #pickerContainer .pickr .pcr-button:after {
+#secondary #pickerContainer .pickr .pcr-button:after {
   background: var(--main-secondary);
 }
 #background #pickerContainer .pickr .pcr-button:after {
@@ -225,10 +225,10 @@ body {
   fill: var(--main-secondary-dark2);
 }
 .mainNavbar .mainIcons .active path {
-  fill: var(--primary-medium);
+  fill: var(--accent);
 }
 .mainNavbar .mainIcons > div:hover path {
-  fill: var(--primary-medium);
+  fill: var(--accent);
   cursor: pointer;
 }
 
@@ -343,7 +343,7 @@ body {
   font-size: 0.75vw;
 }
 .chatWindow .chat .ui.right.floated.inverted.segment .icon:hover {
-  color: var(--primary-medium);
+  color: var(--accent);
   background: none;
 }
 .ui.inverted.button {
@@ -520,7 +520,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--primary-dark);
+  background: var(--accent-dark);
   border-radius: 0.25vw;
   height: 1.5vw;
   padding: 0.2vw 0.5vw;
@@ -650,7 +650,7 @@ body {
   .doubleCheck
   .icon {
   font-size: 0.65vw;
-  color: var(--primary-medium);
+  color: var(--accent);
 }
 .chatWindow
   .chatHistory
@@ -830,7 +830,7 @@ body {
 .friendsList::-webkit-scrollbar-thumb:hover,
 .displayMessages::-webkit-scrollbar-thumb:hover,
 .messageHistory::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-medium);
+  background: var(--accent);
 }
 /* ?========================MODAL======================= */
 .ui.modal {

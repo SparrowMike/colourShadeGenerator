@@ -11,9 +11,9 @@ app.controller("theme", function ($scope, $http) {
   //? OBJECT STORING PALETTE INCREMENT VALUES
   const paletteToFeed = {
     primary: {
-      "--primary-dark": { r: -15, g: -18, b: -22 },
-      "--primary-medium": { r: 0, g: 0, b: 0 },
-      "--primary-light": { r: 9, g: 25, b: 51 },
+      "--accent-dark": { r: -15, g: -18, b: -22 },
+      "--accent": { r: 0, g: 0, b: 0 },
+      "--accent-light": { r: 9, g: 25, b: 51 },
     },
     // text: {
     //   "--main-text": { r: 99, g: 99, b: 99 },
@@ -51,7 +51,7 @@ app.controller("theme", function ($scope, $http) {
   }
 
   //? OBJECT TO STORE THE CUSTOM THEME
-  const storedPalette = { primary: {}, secondary: {}, background: {} };
+  const storedPalette = { accent: {}, secondary: {}, background: {} };
 
   const body = $("body").get(0).style; //? FOR THE COLOURPICKER
 
@@ -91,8 +91,8 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom #circles > .one`).css("background", theme.primary["--primary-light"]);
-    $(`#defaultTheme.custom #circles > .two`).css("background", theme.primary["--primary-dark"]);
+    $(`#defaultTheme.custom #circles > .one`).css("background", theme.accent["--accent-light"]);
+    $(`#defaultTheme.custom #circles > .two`).css("background", theme.accent["--accent-dark"]);
     $(`#defaultTheme.custom #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
     $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
     $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary"]);
@@ -143,7 +143,7 @@ app.controller("theme", function ($scope, $http) {
       const gotback = JSON.parse(localStorage.getItem("customTheme"));
       storedPalette.text = { ...gotback.text };
       storedPalette.background = { ...gotback.background };
-      storedPalette.primary = { ...gotback.primary };
+      storedPalette.accent = { ...gotback.accent };
     } else {
       try {
         input = input.substring(input.indexOf("-"), input.indexOf("}"));
@@ -158,7 +158,7 @@ app.controller("theme", function ($scope, $http) {
       }
       for (r in results) {
         if (results[r] === "" || results[r] === undefined) delete results[r];
-        if (r.includes("primary")) storedPalette.primary[r] = `${results[r].trim()}`;
+        if (r.includes("accent")) storedPalette.accent[r] = `${results[r].trim()}`;
         if (r.includes("secondary")) storedPalette.secondary[r] = `${results[r].trim()}`;
         if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
         // body.setProperty(r, results[r]); //* load colours with js
