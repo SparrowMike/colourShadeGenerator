@@ -34,6 +34,13 @@ app.controller("theme", function ($scope, $http) {
   };
   Object.freeze(paletteToFeed)
 
+  //? ==============UI MODAL================
+  $scope.modal = () => {
+    $('.ui.modal')
+      .modal('show')
+    ;
+  }
+
   //? OBJECT TO STORE THE CUSTOM THEME
   const storedPalette = { primary: {}, text: {}, background: {} };
 
@@ -129,7 +136,11 @@ app.controller("theme", function ($scope, $http) {
       storedPalette.background = { ...gotback.background };
       storedPalette.primary = { ...gotback.primary };
     } else {
-      input = input.substring(input.indexOf("-"), input.indexOf("}"));
+      try {
+        input = input.substring(input.indexOf("-"), input.indexOf("}"));
+      } catch(e) {
+        console.error(e)
+      }
       let results = {},
         attributes = input.split("; ");
       for (i = 0; i < attributes.length; i++) {
@@ -151,10 +162,6 @@ app.controller("theme", function ($scope, $http) {
     if (localStorage.getItem("customTheme") !== null) {
       customPaletteColors()
     }
-  //? ==============UI MODAL================
-  $scope.modal = () => {
-    $('#mainWindow .ui.modal').modal('show');
-  }
   });
 
   //? CONVERT INCOMING RGB STRING TO OBJECT

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -23,26 +23,10 @@
     <div id="mainWindow">
       <!-- ?====================MODAL====================== -->
       <div class="ui modal">
-        <h1 style="color: var(--main-text)">TEXT</h1>
-        <h1 style="color: var(--primary-medium)">PRIMARY</h1>
-        <div id="colors">
-          <h2 style="color: var(--primary-medium)">Colors</h2>
-          <div ng-repeat="type in ['primary', 'text', 'background']" id="{{type}}">
-            <div id="pickerContainer" >
-              <h4 style="color: var(--main-text-dark3)">{{type[0].toUpperCase() + type.slice(1)}}</h4>
-              <div class="{{type}}Color"></div>
-            </div>
-            <div class="ui divider"></div>
-          </div>
-          <button style="width: 100%; font-size: large; margin-top: 5px;" class="ui primary button" ng-click="saveValues(); changeTheme('custom')">Save</button>
-        </div>
+        
       </div>
       
       
-
-
-
-
       <!-- ?====================MAIN NAVBAR====================== -->
       <div class="mainNavbar" >
         <div class="mainServer">
@@ -68,7 +52,7 @@
               <path d="M10.0007 18.75C10.5652 18.7495 11.119 18.5963 11.6035 18.3066C12.0879 18.0168 12.4849 17.6014 12.7523 17.1043C12.7649 17.0805 12.7711 17.0538 12.7704 17.0269C12.7696 16.9999 12.7619 16.9736 12.748 16.9506C12.7341 16.9275 12.7144 16.9084 12.6909 16.8952C12.6675 16.8819 12.641 16.875 12.614 16.875H7.38824C7.36126 16.8749 7.33471 16.8818 7.31119 16.895C7.28766 16.9082 7.26796 16.9273 7.25399 16.9504C7.24003 16.9735 7.23228 16.9998 7.23151 17.0268C7.23073 17.0537 7.23696 17.0804 7.24957 17.1043C7.51697 17.6013 7.91389 18.0168 8.39825 18.3065C8.8826 18.5962 9.43634 18.7495 10.0007 18.75Z" fill="#939393"></path>
             </svg>
           </div>
-          <img ng-src="https://staging.genesiv.com/img/user-avatar.png" src="https://staging.genesiv.com/img/user-avatar.png">
+          <img ng-src="https://staging.genesiv.com/img/user-avatar.png" >
         </div>
       </div>
 
@@ -117,7 +101,7 @@
           <div class="messageHistory">
             <div id="messageContainer" ng-repeat="message in messagesHistory" ng-class="{'active': $index == 3}">
               <div class="avatarContainer" >
-                <img class="avatar" src="{{message.thumbnail}}" ng-class="{'myFriend': message.myFriend}">
+                <img class="avatar" ng-src="{{message.thumbnail}}" ng-class="{'myFriend': message.myFriend}">
                 <div class="online"></div>
               </div>
               <div class="nameAndMessage">
@@ -176,11 +160,9 @@
               </div>
               <div class="message">
                 <div class="icons">
-                  <div><i class="icon smile emoji"></i></div>
-                  <div><i class="reply icon"></i></div>
-                  <div><i class="pencil alternate icon"></i></div>
-                  <div><i class="share square icon"></i></div>
-                  <div><i class="trash alternate icon"></i></div>
+                  <div ng-repeat="icon in ['smile emoji', 'reply', 'pencil alternate', 'share square', 'trash alternate']">
+                    <i class="{{icon}} icon"></i>
+                  </div>
                 </div>
                 <div>
                   <h4>Est natus enim lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti reprehenderit vitae, iusto asperiores eveniet dolores officia a illo ex, ipsum earum consectetur rerum consequuntur fugit nihil dolorum doloribus voluptatem harum. Ullam asperiores excepturi quia aspernatur corrupti, eveniet debitis quaerat vel cumque animi molestiae mollitia repellendus facere consectetur est.</h4>
@@ -219,7 +201,7 @@
             <div class="friendsList" >
               <div class="friend" ng-repeat="user in onlineFriends">
                 <div class="user">
-                  <img class="avatar" src="{{user.picture.thumbnail}}">
+                  <img class="avatar" ng-src="{{user.picture.thumbnail}}">
                   <div class="online"></div>
                   <h4 class="userName">{{user.name.first + ' ' + user.name.last}}</h4>
                 </div>
