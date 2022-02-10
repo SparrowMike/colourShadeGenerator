@@ -13,17 +13,33 @@ body {
 }
 
 :root {
-  --divider-light: rgb(170, 169, 169);
-  --divider-dark: rgb(87, 87, 87);
+  /*? ======Success====== */
+  --success-dark: rgb(64, 146, 95); /* */
+  --success: rgb(80, 170, 119); /* */
+  --success-light: rbg(167, 213, 187); /* */
+
+  /*? ======Error======  */
+  --error-dark: rgb(176, 65, 65); /* */
+  --error: rgb(235, 87, 87); /* */
+  --error-light: rgb(245, 171, 171); /* */
 }
 
 .dark {
-  /*? Primary colors */
+  /*? ======Primary====== */
   --primary-dark: rgb(229, 151, 29); /* *(-15, -18, -22) */
   --primary-medium: rgb(244, 169, 51); /* *base */
   --primary-light: rgb(253, 194, 102); /* *(+9, +25, +51) */
 
-  /*? Main colors */
+  /*? ======Secondary====== */
+  --main-secondary: rgb(252, 252, 252); /* *base */
+  --main-secondary-dark1: rgb(227, 227, 227); /* *(-25, -25, -25) */ 
+  --main-secondary-dark2: rgb(170, 169, 169); /* *(-82, -83, -83) */
+  --main-secondary-dark3: rgb(166, 166, 168); /* *(-86, -86, -84) */ 
+  --main-secondary-dark4: rgb(153, 153, 153); /* *(-99, -99, -99) */
+  --main-secondary-dark5: rgb(87, 87, 87); /* *(-165, -165, -165) */
+  --main-secondary-dark6: rgb(50, 50, 50); /* *(-202, -202, -202) */
+
+  /*? ======Main BG====== */
   --main-bg-darkest: rgb(20, 20, 20); /* *(-17,-18,-23) */
   --main-bg-darker: rgb(27, 28, 29); /* *(-10,-10,-14) */
   --main-bg-dark: rgb(37, 37, 41); /* *(0, -1, -2) */
@@ -31,13 +47,6 @@ body {
   --main-bg-light: rgb(45, 46, 52); /* *(+8, +8, +9) */
   --main-bg-lighter: rgb(51, 52, 60); /* *(+14, +14, +17) */
   --main-bg-lightest: rgb(67, 70, 79); /* *(+30, +32, +36) */
-
-  /*? Text colors */
-  --main-text: rgb(252, 252, 252); /* *(+99, +99, +99) */
-  --main-text-dark1: rgb(227, 227, 227); /* *(+74, +74, +74) */
-  --main-text-dark2: rgb(170, 169, 169); /* *(+17, +16, +16) */
-  --main-text-dark3: rgb(166, 166, 168); /* *(+13, +13, +15) */
-  --main-text-dark4: rgb(153, 153, 153); /* *base */
 }
 
 .light {
@@ -48,25 +57,29 @@ body {
   --main-bg-light: rgb(217, 210, 203);
   --main-bg-lighter: rgb(223, 216, 212);
   --main-bg-lightest: rgb(239, 234, 231);
-  --main-text: rgb(143, 132, 138);
-  --main-text-dark1: rgb(118, 107, 113);
-  --main-text-dark2: rgb(61, 49, 55);
-  --main-text-dark3: rgb(57, 46, 52);
-  --main-text-dark4: rgb(44, 33, 39);
+
+  --main-secondary: rgb(143, 132, 138);
+  --main-secondary-dark1: rgb(118, 107, 113);
+  --main-secondary-dark2: rgb(61, 49, 55);
+  --main-secondary-dark3: rgb(57, 46, 52);
+  --main-secondary-dark4: rgb(44, 33, 39);
+  --main-secondary-dark5: rgb(0, 0, 0);
+  --main-secondary-dark6: rgb(0, 0, 0);
+
   --primary-dark: rgb(58, 125, 131);
   --primary-medium: rgb(73, 143, 153);
   --primary-light: rgb(82, 168, 204);
 }
 
 .custom {
-  --primary-dark: rgb(215, 91, 63);
-  --primary-medium: rgb(230, 109, 85);
-  --primary-light: rgb(239, 134, 136);
-  --main-text: rgb(256, 175, 106);
-  --main-text-dark1: rgb(231, 150, 81);
-  --main-text-dark2: rgb(174, 92, 23);
-  --main-text-dark3: rgb(170, 89, 20);
-  --main-text-dark4: rgb(157, 76, 7);
+  --main-secondary: rgb(256, 175, 106);
+  --main-secondary-dark1: rgb(231, 150, 81);
+  --main-secondary-dark2: rgb(174, 92, 23);
+  --main-secondary-dark3: rgb(170, 89, 20);
+  --main-secondary-dark4: rgb(157, 76, 7);
+  --main-secondary-dark5: rgb(91, 10, 0);
+  --main-secondary-dark6: rgb(54, 0, 0);
+
   --main-bg-darkest: rgb(20, 11, 3);
   --main-bg-darker: rgb(27, 18, 6);
   --main-bg-dark: rgb(37, 27, 18);
@@ -74,6 +87,10 @@ body {
   --main-bg-light: rgb(45, 36, 28);
   --main-bg-lighter: rgb(51, 42, 37);
   --main-bg-lightest: rgb(67, 60, 56);
+
+  --primary-dark: rgb(215, 91, 63);
+  --primary-medium: rgb(230, 109, 85);
+  --primary-light: rgb(239, 134, 136);
 }
 
 /* ?================SIDE PANEL============== */
@@ -138,7 +155,7 @@ body {
   background: var(--main-bg-lightest);
 }
 #defaultTheme #circles > .five {
-  background: var(--main-text-dark4);
+  background: var(--main-secondary-dark4);
 }
 
 /* ?============ COLORS =========== */
@@ -160,7 +177,7 @@ body {
   background: var(--primary-medium);
 }
 #text #pickerContainer .pickr .pcr-button:after {
-  background: var(--main-text-dark4);
+  background: var(--main-secondary);
 }
 #background #pickerContainer .pickr .pcr-button:after {
   background: var(--main-bg);
@@ -191,7 +208,7 @@ body {
   margin: 0 8px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--main-text);
+  color: var(--main-secondary);
 }
 .mainNavbar .mainIcons,
 .mainNavbar .mainServer {
@@ -205,7 +222,7 @@ body {
   height: 1vw;
 }
 .mainNavbar .mainIcons path {
-  fill: var(--main-text-dark2);
+  fill: var(--main-secondary-dark2);
 }
 .mainNavbar .mainIcons .active path {
   fill: var(--primary-medium);
@@ -236,7 +253,7 @@ body {
   width: 2vw;
 }
 .serverNavbar .servers.explore path {
-  fill: var(--main-text-dark2);
+  fill: var(--main-secondary-dark2);
 }
 .serverNavbar .servers.active {
   background: var(--main-bg-light);
@@ -244,18 +261,18 @@ body {
 .serverNavbar .servers.active .icon {
   position: relative;
   left: 22%;
-  color: var(--main-text-dark2);
+  color: var(--main-secondary-dark2);
 }
 .serverNavbar .servers h4 {
   font-size: 0.75vw;
   font-weight: 700;
-  color: var(--main-text-dark2);
+  color: var(--main-secondary-dark2);
 }
 .serverNavbar .mini {
   padding: 0.5vw;
 }
 .serverNavbar .mini .plus {
-  color: var(--main-text-dark2);
+  color: var(--main-secondary-dark2);
 }
 .serverNavbar .exploreServers:hover,
 .serverNavbar .servers:hover,
@@ -301,11 +318,11 @@ body {
 }
 [contentEditable="true"]:empty:not(:focus):before {
   content: attr(data-text);
-  color: var(--main-text-dark4);
+  color: var(--main-secondary-dark4);
 }
 .emoji-wysiwyg-editor {
   background-color: var(--main-bg);
-  color: var(--main-text);
+  color: var(--main-secondary);
   margin-bottom: 0;
   padding: 0.5vw;
   font-size: 0.75vw;
@@ -321,7 +338,7 @@ body {
   background: inherit;
 }
 .chatWindow .chat .ui.right.floated.inverted.segment .icon {
-  color: var(--main-text-dark2);
+  color: var(--main-secondary-dark2);
   margin: 0;
   font-size: 0.75vw;
 }
@@ -342,15 +359,15 @@ body {
   display: relative;
   margin: 0 0.5vw;
   /* border-top: 1px solid var(--divider-light) !important; */
-  border-bottom: 1px solid var(--divider-dark) !important;
+  border-bottom: 1px solid var(--main-secondary-dark5) !important;
 }
 .ui.divider span {
   position: sticky;
   left: 24vw;
   top: 4.1vw;
-  color: var(--divider-dark);
+  color: var(--main-secondary-dark5);
   font-size: 0.5vw;
-  border: 0.1vw solid var(--divider-dark);
+  border: 0.05vw solid var(--main-secondary-dark5);
   padding: 0.1vw;
   border-radius: 0.25vw;
   z-index: 1;
@@ -387,15 +404,15 @@ body {
 }
 .chat .messagesFrom .avatarName h4 {
   font-size: 1vw;
-  color: var(--main-text-dark1);
+  color: var(--main-secondary-dark1);
   margin: 0;
 }
 .chat .messagesFrom .avatarName p {
-  color: var(--main-text-dark3);
+  color: var(--main-secondary-dark3);
   font-size: 0.75vw;
 }
 .chat .messagesFrom i {
-  color: var(--main-text);
+  color: var(--main-secondary);
   margin-right: 1.5vw;
 }
 .chat .displayMessages .directMsg .directMsgAvtNname,
@@ -421,7 +438,7 @@ body {
 }
 .chat .displayMessages .directMsg .message .icons i {
   font-size: 0.8vw;
-  color: var(--main-text-dark4);
+  color: var(--main-secondary-dark4);
 }
 .chat .displayMessages .directMsg:hover .icons {
   display: flex;
@@ -450,16 +467,16 @@ body {
 }
 .chat .displayMessages .directMsg .directMsgAvtNname h4 {
   font-size: 0.9vw;
-  color: var(--main-text);
+  color: var(--main-secondary);
 }
 .chat .displayMessages .directMsg .message h4 {
   margin-top: 0.5vw;
   font-size: 0.75vw;
-  color: var(--main-text);
+  color: var(--main-secondary);
 }
 .chat .displayMessages .directMsg .message p {
   font-size: 0.75vw;
-  color: var(--main-text-dark4);
+  color: var(--main-secondary-dark4);
   /* margin: 0.5vw; */
   min-width: 3vw;
   margin-left: 1vw;
@@ -473,7 +490,7 @@ body {
 }
 .chatWindow .chatHistory .ui.icon i {
   font-size: 0.75vw;
-  color: var(--main-text);
+  color: var(--main-secondary);
 }
 .chatWindow .chatHistory .ui.icon input {
   background: var(--main-bg-light);
@@ -481,7 +498,7 @@ body {
   box-shadow: none !important;
   padding: 0.85;
   cursor: text;
-  color: var(--main-text);
+  color: var(--main-secondary);
   outline: 0;
   border-radius: 0;
   font-size: 0.75vw;
@@ -489,7 +506,7 @@ body {
 }
 .chatWindow .chatHistory .ui.icon input::placeholder {
   font-size: 0.75vw;
-  color: var(--main-text-dark4);
+  color: var(--main-secondary-dark4);
 }
 .chatWindow .chatHistory .searchMessage {
   display: flex;
@@ -584,12 +601,12 @@ body {
 }
 .chatWindow .chatHistory .messageHistory #messageContainer h4 {
   margin: 0;
-  color: var(--main-text);
+  color: var(--main-secondary);
   font-size: 0.75vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage p {
   margin: 0.2vw 0 0 0;
-  color: var(--main-text-dark4);
+  color: var(--main-secondary-dark4);
   font-size: 0.7vw;
 }
 
@@ -643,11 +660,11 @@ body {
   .message
   > i {
   margin: 0.2vw 0.2vw 0 0;
-  color: var(--main-text-dark4);
+  color: var(--main-secondary-dark4);
   font-size: 0.65vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty .time {
-  color: var(--main-text-dark4);
+  color: var(--main-secondary-dark4);
   margin: 0;
   font-size: 0.65vw;
 }
@@ -687,7 +704,7 @@ body {
   background: var(--main-bg-light);
 }
 .chatWindow .chatSidePanel .friendsPanel .header h4 {
-  color: var(--main-text);
+  color: var(--main-secondary);
   font-size: 1vw;
 }
 .chatWindow .chatSidePanel .friendsPanel .filterTypes,
@@ -713,23 +730,23 @@ body {
 .chatWindow .chatSidePanel .friendsPanel .filterTypes .filter,
 .chatWindow .chatHistory .filterTypes .filter {
   display: flex;
-  color: var(--main-text-dark2);
+  color: var(--main-secondary-dark2);
   justify-content: center;
   align-items: center;
 }
 .chatWindow .chatSidePanel .filter h4,
 .chatWindow .chatHistory .filterTypes .filter h4 {
-  color: var(--main-text);
+  color: var(--main-secondary);
   font-size: 0.75vw;
 }
 .chatWindow .chatSidePanel > .friendsPanel .filterTypes > .active,
 .chatWindow .chatHistory .filterTypes > .active {
-  color: var(--main-text-dark1);
+  color: var(--main-secondary-dark1);
   background: var(--main-bg-lighter);
 }
 .chatWindow .chatSidePanel > .friendsPanel .filterTypes .filter:hover,
 .chatWindow .chatHistory .filterTypes .filter:hover {
-  color: var(--main-text-dark1);
+  color: var(--main-secondary-dark1);
   background: var(--main-bg-lighter);
   cursor: pointer;
 }
@@ -749,7 +766,7 @@ body {
   background: var(--main-bg-lighter);
 }
 .chatWindow .chatSidePanel .friendsList .friend:hover h4 {
-  color: var(--main-text);
+  color: var(--main-secondary);
 }
 .chatWindow .chatSidePanel .user {
   position: relative;
@@ -757,7 +774,7 @@ body {
   align-items: center;
 }
 .chatWindow .chatSidePanel .user h4 {
-  color: var(--main-text-dark4);
+  color: var(--main-secondary-dark4);
   font-size: 0.75vw;
   margin: 0;
 }
@@ -788,7 +805,7 @@ body {
   background: var(--main-bg-light);
 }
 .chatWindow .chatSidePanel .icons > .comments {
-  color: var(--main-text);
+  color: var(--main-secondary);
 }
 .chatWindow .chatSidePanel .icons > .trash {
   color: #eb5757;

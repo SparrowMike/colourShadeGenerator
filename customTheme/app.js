@@ -15,12 +15,21 @@ app.controller("theme", function ($scope, $http) {
       "--primary-medium": { r: 0, g: 0, b: 0 },
       "--primary-light": { r: 9, g: 25, b: 51 },
     },
-    text: {
-      "--main-text": { r: 99, g: 99, b: 99 },
-      "--main-text-dark1": { r: 74, g: 74, b: 74 },
-      "--main-text-dark2": { r: 17, g: 16, b: 16 },
-      "--main-text-dark3": { r: 13, g: 13, b: 15 },
-      "--main-text-dark4": { r: 0, g: 0, b: 0 },
+    // text: {
+    //   "--main-text": { r: 99, g: 99, b: 99 },
+    //   "--main-text-dark1": { r: 74, g: 74, b: 74 },
+    //   "--main-text-dark2": { r: 17, g: 16, b: 16 },
+    //   "--main-text-dark3": { r: 13, g: 13, b: 15 },
+    //   "--main-text-dark4": { r: 0, g: 0, b: 0 },
+    // },
+    secondary: {
+      "--main-secondary": {r: 0, g: 0, b: 0},
+      "--main-secondary-dark1": {r: -25, g: -25, b: -25},
+      "--main-secondary-dark2": {r: -82, g: -83, b: -83},
+      "--main-secondary-dark3": {r: -86, g: -86, b: -84},
+      "--main-secondary-dark4": {r: -99, g: -99, b: -99},
+      "--main-secondary-dark5": {r: -165, g: -165, b: -165},
+      "--main-secondary-dark6": {r: -202, g: -202, b: -202}
     },
     background: {
       "--main-bg-darkest": { r: -17, g: -18, b: -23 },
@@ -42,7 +51,7 @@ app.controller("theme", function ($scope, $http) {
   }
 
   //? OBJECT TO STORE THE CUSTOM THEME
-  const storedPalette = { primary: {}, text: {}, background: {} };
+  const storedPalette = { primary: {}, secondary: {}, background: {} };
 
   const body = $("body").get(0).style; //? FOR THE COLOURPICKER
 
@@ -86,7 +95,7 @@ app.controller("theme", function ($scope, $http) {
     $(`#defaultTheme.custom #circles > .two`).css("background", theme.primary["--primary-dark"]);
     $(`#defaultTheme.custom #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
     $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
-    $(`#defaultTheme.custom #circles > .five`).css("background", theme.text["--main-text-dark4"]);
+    $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary"]);
   }
 
 
@@ -150,7 +159,7 @@ app.controller("theme", function ($scope, $http) {
       for (r in results) {
         if (results[r] === "" || results[r] === undefined) delete results[r];
         if (r.includes("primary")) storedPalette.primary[r] = `${results[r].trim()}`;
-        if (r.includes("text")) storedPalette.text[r] = `${results[r].trim()}`;
+        if (r.includes("secondary")) storedPalette.secondary[r] = `${results[r].trim()}`;
         if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
         // body.setProperty(r, results[r]); //* load colours with js
       }

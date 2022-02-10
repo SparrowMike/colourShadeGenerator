@@ -23,7 +23,9 @@
     <div id="mainWindow">
       <!-- ?====================MODAL====================== -->
       <div class="ui modal">
-        
+        <div>
+          
+        </div> 
       </div>
       
       
@@ -129,7 +131,7 @@
         <div class="chat">
           <div class="messagesFrom">
             <div class="avatarName">
-              <img class="avatar" src="https://randomuser.me/api/portraits/thumb/women/7.jpg">
+              <img class="avatar myFriend" src="https://randomuser.me/api/portraits/thumb/women/7.jpg">
               <div class="online"></div>
               <div class="name">
                 <h4 class='myFriend'>Patricia Lebsack</h4>
@@ -235,7 +237,7 @@
       </div>
       <div id="colors">
         <h2>Colors</h2>
-        <div ng-repeat="type in ['primary', 'text', 'background']" id="{{type}}">
+        <div ng-repeat="type in ['primary', 'secondary', 'background']" id="{{type}}">
           <div id="pickerContainer" >
             <h4>{{type[0].toUpperCase() + type.slice(1)}}</h4>
             <div class="{{type}}Color"></div>
