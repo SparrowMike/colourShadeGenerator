@@ -18,6 +18,8 @@ body {
     --success: rgb(80, 170, 119) !important; /* *base  */
     --success-light: rbg(167, 213, 187) !important; /* *(+87, +84, +68) */
 
+    --button-text-color: rgb(252, 252, 252);
+
     /*? ======Error======  */
     --error-dark: rgb(176, 65, 65) !important; /* *(-59, -22, -22) */
     --error: rgb(235, 87, 87) !important; /* *base */
@@ -847,3 +849,5 @@ body {
   top: 15%;
   left: 30%;
 }
+
+/* ?========================TABLE======================= */

@@ -225,6 +225,7 @@ app.controller("theme", function ($scope, $http) {
         $input.val(current_color).trigger("change");
 
         $('tbody tr').remove()
+
         rgbToObj(current_color);
         for (color in storedPalette[type]) {
           const rgbArr = [
@@ -243,10 +244,8 @@ app.controller("theme", function ($scope, $http) {
           //? display the currently generated colours
           body.setProperty(color, rgb);
           
-          $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 0 0 2px black;'>${type}</td><td>${storedPalette[type][color]}</td></tr>`)
+          $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 0 0 2px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[type][color]}</td></tr>`)
         }
-          
-        
         // console.info(storedPalette[type]);
       });
     });
