@@ -47,13 +47,13 @@ app.controller("theme", function ($scope, $http) {
   //? OBJECT TO STORE THE CUSTOM THEME
   const storedPalette = { accent: {}, secondary: {}, background: {} };
 
-  const body = $("body").get(0).style; //? FOR THE COLOURPICKER
+  const body = $("html").get(0).style; //? FOR THE COLOURPICKER
 
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   let currentTheme = theme ? `.${theme}` : ".dark";
   $scope.selected = theme ? theme : "dark";
-  if (theme) $("body").removeClass("light dark custom").addClass(theme);
+  if (theme) $("html").removeClass("light dark custom").addClass(theme);
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
@@ -62,21 +62,21 @@ app.controller("theme", function ($scope, $http) {
     currentTheme = `.${theme}`;
     switch (theme) {
       case "light":
-        $("body")
+        $("html")
           .removeAttr("style")
           .removeClass("dark custom")
           .addClass("light");
         break;
       case "dark":
-        $("body")
+        $("html")
           .removeAttr("style")
           .removeClass("light custom")
           .addClass("dark");
         break;
       case "custom":
-        if (JSON.parse(localStorage.getItem("customTheme")) === null) $("body").removeAttr("style")
+        if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
         loadValues();
-        $("body").removeClass("light dark").addClass("custom");
+        $("html").removeClass("light dark").addClass("custom");
         break;
     }
     loadSelectedTheme(loadCurrentCss());
@@ -245,7 +245,7 @@ app.controller("theme", function ($scope, $http) {
           //? display the currently generated colours
           body.setProperty(color, rgb);
           
-          $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 0 0 2px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[type][color]}</td></tr>`)
+          $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 1px 1px 1.5px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[type][color]}</td></tr>`)
         }
         // console.info(storedPalette[type]);
       });
