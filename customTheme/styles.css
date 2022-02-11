@@ -13,20 +13,20 @@ body {
 }
 
 :root {
-    /*? ======Success====== */
-    --success-dark: rgb(64, 146, 95) !important; /* *(-16, -34, -24) */
-    --success: rgb(80, 170, 119) !important; /* *base  */
-    --success-light: rbg(167, 213, 187) !important; /* *(+87, +84, +68) */
+  /*? ======Success====== */
+  --success-dark: rgb(64, 146, 95); /* *(-16, -34, -24) */
+  --success: rgb(80, 170, 119); /* *base  */
+  --success-light: rbg(167, 213, 187); /* *(+87, +84, +68) */
 
-    --button-text-color: rgb(252, 252, 252);
+  --button-text-color: rgb(252, 252, 252);
 
-    /*? ======Error======  */
-    --error-dark: rgb(176, 65, 65) !important; /* *(-59, -22, -22) */
-    --error: rgb(235, 87, 87) !important; /* *base */
-    --error-light: rgb(245, 171, 171) !important; /* *(+10, +84, +84) */
-    
-    /*? ======Error======  */
-    --friend: rgb(81, 168, 255) !important;  
+  /*? ======Error======  */
+  --error-dark: rgb(176, 65, 65); /* *(-59, -22, -22) */
+  --error: rgb(235, 87, 87); /* *base */
+  --error-light: rgb(245, 171, 171); /* *(+10, +84, +84) */
+
+  /*? ======Error======  */
+  --friend: rgb(81, 168, 255);
 }
 
 .dark {
@@ -36,14 +36,14 @@ body {
   --accent-light: rgb(253, 194, 102); /* *(+9, +25, +51) */
 
   /*? ======Secondary====== */
-  --main-secondary: rgb(252, 252, 252) !important; /* *base */
-  --main-secondary-dark1: rgb(227, 227, 227) !important; /* *(-25, -25, -25) */ 
-  --main-secondary-dark2: rgb(196, 196, 196) !important; /* *(-56, -56, -56) */ 
-  --main-secondary-dark3: rgb(170, 169, 169) !important; /* *(-82, -83, -83) */
-  --main-secondary-dark4: rgb(166, 166, 168) !important; /* *(-86, -86, -84) */ 
-  --main-secondary-dark5: rgb(153, 153, 153) !important; /* *(-99, -99, -99) */
-  --main-secondary-dark6: rgb(87, 87, 87) !important; /* *(-165, -165, -165) */
-  --main-secondary-dark7: rgb(50, 50, 50) !important; /* *(-202, -202, -202) */
+  --main-secondary: rgb(252, 252, 252); /* *base */
+  --main-secondary-dark1: rgb(227, 227, 227); /* *(-25, -25, -25) */
+  --main-secondary-dark2: rgb(196, 196, 196); /* *(-56, -56, -56) */
+  --main-secondary-dark3: rgb(170, 169, 169); /* *(-82, -83, -83) */
+  --main-secondary-dark4: rgb(166, 166, 168); /* *(-86, -86, -84) */
+  --main-secondary-dark5: rgb(153, 153, 153); /* *(-99, -99, -99) */
+  --main-secondary-dark6: rgb(87, 87, 87); /* *(-165, -165, -165) */
+  --main-secondary-dark7: rgb(50, 50, 50); /* *(-202, -202, -202) */
 
   /*? ======Main BG====== */
   --main-bg-darkest: rgb(20, 20, 20); /* *(-17,-18,-23) */
@@ -842,7 +842,7 @@ body {
 }
 /* ?========================MODAL======================= */
 .ui.modal {
-  background: var(--main-bg);    
+  background: var(--main-bg);
   padding: 2vw;
   width: 40%;
   height: 60%;

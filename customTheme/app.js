@@ -18,11 +18,12 @@ app.controller("theme", function ($scope, $http) {
     secondary: {
       "--main-secondary": {r: 0, g: 0, b: 0},
       "--main-secondary-dark1": {r: -25, g: -25, b: -25},
-      "--main-secondary-dark2": {r: -82, g: -83, b: -83},
-      "--main-secondary-dark3": {r: -86, g: -86, b: -84},
-      "--main-secondary-dark4": {r: -99, g: -99, b: -99},
-      "--main-secondary-dark5": {r: -165, g: -165, b: -165},
-      "--main-secondary-dark6": {r: -202, g: -202, b: -202}
+      "--main-secondary-dark2": {r: -56, g: -56, b: -56},
+      "--main-secondary-dark3": {r: -82, g: -83, b: -83},
+      "--main-secondary-dark4": {r: -86, g: -86, b: -84},
+      "--main-secondary-dark5": {r: -99, g: -99, b: -99},
+      "--main-secondary-dark6": {r: -165, g: -165, b: -165},
+      "--main-secondary-dark7": {r: -202, g: -202, b: -202}
     },
     background: {
       "--main-bg-darkest": { r: -17, g: -18, b: -23 },
@@ -134,9 +135,9 @@ app.controller("theme", function ($scope, $http) {
       localStorage.getItem("customTheme") !== null
     ) {
       const gotback = JSON.parse(localStorage.getItem("customTheme"));
+      storedPalette.accent = { ...gotback.accent };
       storedPalette.secondary = { ...gotback.secondary };
       storedPalette.background = { ...gotback.background };
-      storedPalette.accent = { ...gotback.accent };
     } else {
       try {
         input = input.substring(input.indexOf("-"), input.indexOf("}"));
@@ -169,7 +170,7 @@ app.controller("theme", function ($scope, $http) {
   //? CONVERT INCOMING RGB STRING TO OBJECT
   let rgbValues = new Object();
   function rgbToObj(rgb) {
-    let colors = ["r", "g", "b"];
+    let colors = ["r", "g", "b", "a"];
     let colorArr = rgb
       .slice(rgb.indexOf("(") + 1, rgb.indexOf(")"))
       .split(/, | ,|,/);
@@ -214,7 +215,7 @@ app.controller("theme", function ($scope, $http) {
           preview: true,
           hue: true,
           interaction: {
-            hex: true,
+            // hex: true,
             rgba: true,
             input: true,
           },
