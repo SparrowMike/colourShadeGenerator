@@ -68,14 +68,14 @@ body {
   --main-bg-lighter: rgb(223, 216, 212);
   --main-bg-lightest: rgb(239, 234, 231);
 
-  --main-secondary: rgb(143, 132, 138);
-  --main-secondary-dark1: rgb(118, 107, 113);
-  --main-secondary-dark2: rgb(86, 76, 82);
-  --main-secondary-dark2: rgb(61, 49, 55);
-  --main-secondary-dark3: rgb(57, 46, 52);
-  --main-secondary-dark4: rgb(44, 33, 39);
-  --main-secondary-dark5: rgb(0, 0, 0);
-  --main-secondary-dark6: rgb(0, 0, 0);
+  --main-secondary:rgb(0, 0, 0); 
+  --main-secondary-dark1:rgb(25, 25, 25); 
+  --main-secondary-dark2:rgb(56, 56, 56); 
+  --main-secondary-dark3:rgb(82, 83, 83); 
+  --main-secondary-dark4:rgb(86, 86, 84); 
+  --main-secondary-dark5:rgb(99, 99, 99); 
+  --main-secondary-dark6:rgb(165, 165, 165); 
+  --main-secondary-dark7:rgb(202, 202, 202);
 }
 
 .custom {
@@ -189,6 +189,15 @@ body {
 }
 #background #pickerContainer .pickr .pcr-button:after {
   background: var(--main-bg);
+}
+.pickr-theme {
+  background:#2D2E34;
+  border-radius: 10px;
+  width: 10vw;
+}
+.pickr-theme .pcr-swatches {
+  display: flex;
+  justify-content: center;
 }
 
 /* ?============= MAIN WINDOW ================= */

@@ -35,6 +35,17 @@ app.controller("theme", function ($scope, $http) {
       "--main-bg-lightest": { r: 30, g: 32, b: 36 },
     },
   };
+  //! =========================================
+  // const secondary = {
+  //   "--main-secondary": {r: 0, g: 0, b: 0},
+  //   "--main-secondary-dark1": {r: 25, g: 25, b: 25},
+  //   "--main-secondary-dark2": {r: 56, g: 56, b: 56},
+  //   "--main-secondary-dark3": {r: 82, g: 83, b: 83},
+  //   "--main-secondary-dark4": {r: 86, g: 86, b: 84},
+  //   "--main-secondary-dark5": {r: 99, g: 99, b: 99},
+  //   "--main-secondary-dark6": {r: 165, g: 165, b: 165},
+  //   "--main-secondary-dark7": {r: 202, g: 202, b: 202}
+  // }
   Object.freeze(paletteToFeed)
 
   //? ==============UI MODAL================
@@ -188,7 +199,8 @@ app.controller("theme", function ($scope, $http) {
     Object.keys(storedPalette).forEach((type) => {
       pickr = new Pickr({
         el: $(`.${type}Color`)[0],
-        theme: "classic",
+        theme: "monolith",
+        appClass: 'pickr-theme',
         swatches: [
           "rgba(244, 67, 54, 1)",
           "rgba(233, 30, 99, 1)",
@@ -202,17 +214,19 @@ app.controller("theme", function ($scope, $http) {
           "rgba(76, 175, 80, 1)",
           "rgba(139, 195, 74, 1)",
           "rgba(205, 220, 57, 1)",
-          "rgba(255, 193, 7, 1)",
           "rgba(255, 223, 1, 1)",
-          "rgba(255, 235, 59, 1)",
+          "rgba(255, 193, 7, 1)",
+          // "rgba(255, 235, 59, 1)",
         ],
         defaultRepresentation: "RGBA",
         closeWithKey: "Escape",
+        // Any combinations of top, left, bottom or right with one of these optional modifiers: start, middle, end
+        position: 'left-start',
         useAsButton: false,
         // default: current_color,
         comparison: false,
         components: {
-          preview: true,
+          preview: false,
           hue: true,
           interaction: {
             // hex: true,
