@@ -10,18 +10,11 @@ app.controller("theme", function ($scope, $http) {
   
   //? OBJECT STORING PALETTE INCREMENT VALUES
   const paletteToFeed = {
-    primary: {
+    accent: {
       "--accent-dark": { r: -15, g: -18, b: -22 },
       "--accent": { r: 0, g: 0, b: 0 },
       "--accent-light": { r: 9, g: 25, b: 51 },
     },
-    // text: {
-    //   "--main-text": { r: 99, g: 99, b: 99 },
-    //   "--main-text-dark1": { r: 74, g: 74, b: 74 },
-    //   "--main-text-dark2": { r: 17, g: 16, b: 16 },
-    //   "--main-text-dark3": { r: 13, g: 13, b: 15 },
-    //   "--main-text-dark4": { r: 0, g: 0, b: 0 },
-    // },
     secondary: {
       "--main-secondary": {r: 0, g: 0, b: 0},
       "--main-secondary-dark1": {r: -25, g: -25, b: -25},
@@ -141,7 +134,7 @@ app.controller("theme", function ($scope, $http) {
       localStorage.getItem("customTheme") !== null
     ) {
       const gotback = JSON.parse(localStorage.getItem("customTheme"));
-      storedPalette.text = { ...gotback.text };
+      storedPalette.secondary = { ...gotback.secondary };
       storedPalette.background = { ...gotback.background };
       storedPalette.accent = { ...gotback.accent };
     } else {
@@ -231,6 +224,7 @@ app.controller("theme", function ($scope, $http) {
         current_color = color.toRGBA().toString(0);
         $input.val(current_color).trigger("change");
 
+        $('tbody tr').remove()
         rgbToObj(current_color);
         for (color in storedPalette[type]) {
           const rgbArr = [
@@ -245,10 +239,15 @@ app.controller("theme", function ($scope, $http) {
           const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           //? keep the generated colour in the storePalette Object
           storedPalette[type][color] = rgb;
+          
           //? display the currently generated colours
           body.setProperty(color, rgb);
+          
+          $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 0 0 2px black;'>${type}</td><td>${storedPalette[type][color]}</td></tr>`)
         }
-        console.info(storedPalette[type]);
+          
+        
+        // console.info(storedPalette[type]);
       });
     });
   });
