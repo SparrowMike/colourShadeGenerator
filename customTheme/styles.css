@@ -380,8 +380,7 @@ body {
 }
 .ui.divider span {
   position: sticky;
-  left: 24vw;
-  top: 4.1vw;
+  left: 45%;
   color: var(--main-secondary-dark6);
   font-size: 0.5vw;
   border: 0.05vw solid var(--main-secondary-dark6);

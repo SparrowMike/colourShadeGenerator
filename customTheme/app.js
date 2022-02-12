@@ -35,17 +35,6 @@ app.controller("theme", function ($scope, $http) {
       "--main-bg-lightest": { r: 30, g: 32, b: 36 },
     },
   };
-  //! =========================================
-  // const secondary = {
-  //   "--main-secondary": {r: 0, g: 0, b: 0},
-  //   "--main-secondary-dark1": {r: 25, g: 25, b: 25},
-  //   "--main-secondary-dark2": {r: 56, g: 56, b: 56},
-  //   "--main-secondary-dark3": {r: 82, g: 83, b: 83},
-  //   "--main-secondary-dark4": {r: 86, g: 86, b: 84},
-  //   "--main-secondary-dark5": {r: 99, g: 99, b: 99},
-  //   "--main-secondary-dark6": {r: 165, g: 165, b: 165},
-  //   "--main-secondary-dark7": {r: 202, g: 202, b: 202}
-  // }
   Object.freeze(paletteToFeed)
 
   //? ==============UI MODAL================
@@ -241,13 +230,22 @@ app.controller("theme", function ($scope, $http) {
 
         $('tbody tr').remove()
 
-        rgbToObj(current_color);
+        const currentValue = rgbToObj(current_color);
         for (color in storedPalette[type]) {
-          const rgbArr = [
-            rgbValues.r + paletteToFeed[type][color].r,
-            rgbValues.g + paletteToFeed[type][color].g,
-            rgbValues.b + paletteToFeed[type][color].b,
-          ];
+          let rgbArr = []
+          if (type == 'secondary' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127)) {
+            rgbArr = [
+              rgbValues.r - paletteToFeed[type][color].r,
+              rgbValues.g - paletteToFeed[type][color].g,
+              rgbValues.b - paletteToFeed[type][color].b,
+            ];
+          } else {
+            rgbArr = [
+              rgbValues.r + paletteToFeed[type][color].r,
+              rgbValues.g + paletteToFeed[type][color].g,
+              rgbValues.b + paletteToFeed[type][color].b,
+            ];
+          }
           for (c in rgbArr) {
             if (rgbArr[c] >= 255) rgbArr[c] = 255;
             if (rgbArr[c] <= 0) rgbArr[c] = 0;
@@ -261,7 +259,8 @@ app.controller("theme", function ($scope, $http) {
           
           $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 1px 1px 1.5px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[type][color]}</td></tr>`)
         }
-        // console.info(storedPalette[type]);
+        // console.log(storedPalette[type]);
+        // console.log(rgbValues(storedPalette[type]['--main-secondary-dark4']));
       });
     });
   });
