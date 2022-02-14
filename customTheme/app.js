@@ -155,7 +155,7 @@ app.controller("theme", function ($scope, $http) {
         if (r.includes("accent")) storedPalette.accent[r] = `${results[r].trim()}`;
         if (r.includes("secondary")) storedPalette.secondary[r] = `${results[r].trim()}`;
         if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
-        // body.setProperty(r, results[r]); //* load colours with js
+        body.setProperty(r, results[r]); //* load colours with js
       }
     }
   };
