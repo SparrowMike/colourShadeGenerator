@@ -16,25 +16,17 @@
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
     <script src="app.js" defer></script>
 
-    <title>Custom Theme</title>
+    <title>Mockup</title>
   </head>
   <body ng-controller="theme">
-
-<!-- !=====================MAIN WINDOW===================== -->
     <div id="mainWindow">
-      <!-- ?====================MODAL====================== -->
       <div class="ui modal">
         <div>
           
         </div> 
       </div>
-      
-      
-      <!-- ?====================MAIN NAVBAR====================== -->
       <div class="mainNavbar" >
         <div class="mainServer">
-          <!-- <img ng-src="https://s3.us-east-2.amazonaws.com/forexchatroom/9e74d3c2ce207188de721d7e7e090b7.png" src="https://s3.us-east-2.amazonaws.com/forexchatroom/9e74d3c2ce207188de721d7e7e090b7.png"> -->
-          <!-- <div class="content">Genesiv<div><i class="bullhorn icon"></i>Welcome</div></div> -->
           <h1 class="content">Direct Messages</h1>
         </div>
         <div class="mainIcons">
@@ -58,8 +50,6 @@
           <img ng-src="https://staging.genesiv.com/img/user-avatar.png" >
         </div>
       </div>
-
-      <!-- ?====================SERVER NAVBAR====================== -->
       <div class="serverNavbar">
         <div class="servers explore">
           <svg width="20" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,10 +67,7 @@
         <div class="servers"><h4>Tester</h4></div>
         <div class="ui mini icon"><i class="plus icon"></i></div>
       </div>
-
-      <!-- !====================CHAT WINDOW====================== -->
       <div class="chatWindow">
-        <!-- ?====================MESSAGES HISTORY LIST====================== -->
         <div class="chatHistory">
           <div class="searchMessage">
             <div class="ui left icon input">
@@ -127,8 +114,6 @@
             </div>
           </div>
         </div>
-
-        <!-- ?====================CHAT====================== -->
         <div class="chat">
           <div class="messagesFrom">
             <div class="avatarName">
@@ -186,8 +171,6 @@
             </div>
           </div>
         </div>
-        
-        <!-- ?====================CHAT WINDOW FRIENDS PANEL====================== -->
         <div class="chatSidePanel">
           <div class="friendsPanel">
             <div class="header">
@@ -224,8 +207,6 @@
         </div>
       </div>
     </div>
-
-<!-- !====================PICKER SIDE PANEL====================== -->
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
@@ -246,22 +227,6 @@
           <div class="ui divider"></div>
         </div>
         <button style="width: 100%; font-size: large; margin-top: 5px;" class="ui primary button" ng-click="saveValues(); changeTheme('custom')">Save</button>
-      </div>
-      <div id="previewSection">
-        <h2>PreviewSection</h2>
-        <div class="ui primary button" ng-click="modal()">Modal</div> 
-      </div>
-      <div id="showRgbValues" style="margin:10px">
-        <table class="ui celled table">
-          <!-- <thead>
-            <tr>
-                <th colspan="4">Current Colours</th>
-            </tr>
-          </thead> -->
-            <tbody>
-              
-            </tbody>
-          </table>
       </div>
       </div>
     </div>

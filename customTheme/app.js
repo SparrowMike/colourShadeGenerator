@@ -254,23 +254,8 @@ app.controller("theme", function ($scope, $http) {
           const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           //? keep the generated colour in the storePalette Object
           storedPalette[type][color] = rgb;
-          
-          //? display the currently generated colours
-          body.setProperty(color, rgb);
-          
-          $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 1px 1px 1.5px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[type][color]}</td></tr>`)
         }
-        // console.log(storedPalette[type]);
-        // console.log(rgbValues(storedPalette[type]['--main-secondary-dark4']));
       });
     });
   });
 });
-
-//TODO============================================================================
-//! - substring undefined?
-//? - clean up functions unecessary loading when custom
-
-//? - create a better sample theme for user to messaround?
-//? - more than one custom themes?
-//? - most dominant color should always be the base
