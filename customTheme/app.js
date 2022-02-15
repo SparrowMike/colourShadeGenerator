@@ -42,30 +42,25 @@ app.controller("theme", function ($scope, $http) {
 
   const body = $("html").get(0).style; //? FOR THE COLOURPICKER
 
+    //? =========Recieve Message==========
+    const eventMethod = window.addEventListener
+        ? "addEventListener"
+        : "attachEvent";
+    const eventer = window[eventMethod];
+    const messageEvent = eventMethod === "attachEvent"
+      ? "onmessage"
+      : "message";
+
+    eventer(messageEvent, function (e) {
+      // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+      localStorage.setItem("theme", e.data);
+    });
+
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   let currentTheme = theme ? `.${theme}` : ".dark";
   $scope.selected = theme ? theme : "dark";
   if (theme) $("html").removeClass("light dark custom").addClass(theme);
-
-  //? =========Post Message==========
-  const eventMethod = window.addEventListener
-			? "addEventListener"
-			: "attachEvent";
-	const eventer = window[eventMethod];
-	const messageEvent = eventMethod === "attachEvent"
-		? "onmessage"
-		: "message";
-
-	eventer(messageEvent, function (e) {
-		
-		// if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
-		
-		if (e.data === "myevent" || e.message === "myevent") 
-			alert('Message from main just came!');
-		
-		console.log(e);
-	});
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
@@ -94,18 +89,18 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom #circles > .one`).css("background", theme.accent["--accent-light"]);
     $(`#defaultTheme.custom #circles > .two`).css("background", theme.accent["--accent-dark"]);
+    $(`#defaultTheme.custom #circles > .one`).css("background", theme.accent["--accent-light"]);
     $(`#defaultTheme.custom #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
     $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
     $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary"]);
   }
-
+  theme
   //?===================SAVE=====================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
-    parent.postMessage(storedPalette, '*')
+    parent.postMessage([storedPalette, theme], '*')
   };
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
