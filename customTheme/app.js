@@ -50,9 +50,11 @@ app.controller("theme", function ($scope, $http) {
     const messageEvent = eventMethod === "attachEvent"
       ? "onmessage"
       : "message";
-
     eventer(messageEvent, function (e) {
+      
+      console.log(e.data)      
       // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+
       localStorage.setItem("theme", e.data);
     });
 
