@@ -848,14 +848,3 @@ body {
 .messageHistory::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
-/* ?========================MODAL======================= */
-.ui.modal {
-  background: var(--main-bg);
-  padding: 2vw;
-  width: 40%;
-  height: 60%;
-  top: 15%;
-  left: 30%;
-}
-
-/* ?========================TABLE======================= */
