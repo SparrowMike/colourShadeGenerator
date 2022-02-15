@@ -37,13 +37,6 @@ app.controller("theme", function ($scope, $http) {
   };
   Object.freeze(paletteToFeed)
 
-  //? ==============UI MODAL================
-  $scope.modal = () => {
-    $('.ui.modal')
-      .modal('show')
-    ;
-  }
-
   //? OBJECT TO STORE THE CUSTOM THEME
   const storedPalette = { accent: {}, secondary: {}, background: {} };
 
@@ -55,28 +48,44 @@ app.controller("theme", function ($scope, $http) {
   $scope.selected = theme ? theme : "dark";
   if (theme) $("html").removeClass("light dark custom").addClass(theme);
 
+  //? =========Post Message==========
+  const eventMethod = window.addEventListener
+			? "addEventListener"
+			: "attachEvent";
+	const eventer = window[eventMethod];
+	const messageEvent = eventMethod === "attachEvent"
+		? "onmessage"
+		: "message";
+
+	eventer(messageEvent, function (e) {
+		
+		// if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+		
+		if (e.data === "myevent" || e.message === "myevent") 
+			alert('Message from main just came!');
+		
+		console.log(e);
+	});
+
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
-    currentTheme = `.${theme}`;
+    currentTheme = `.${theme}`; 
+    $("html").removeAttr("style").removeClass()
     switch (theme) {
       case "light":
         $("html")
-          .removeAttr("style")
-          .removeClass("dark custom")
           .addClass("light");
         break;
       case "dark":
         $("html")
-          .removeAttr("style")
-          .removeClass("light custom")
           .addClass("dark");
         break;
       case "custom":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
         loadValues();
-        $("html").removeClass("light dark").addClass("custom");
+        $("html").addClass("custom");
         break;
     }
     loadSelectedTheme(loadCurrentCss());
@@ -91,7 +100,6 @@ app.controller("theme", function ($scope, $http) {
     $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
     $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary"]);
   }
-
 
   //?===================SAVE=====================
   $scope.saveValues = () => {
@@ -206,11 +214,9 @@ app.controller("theme", function ($scope, $http) {
           "rgba(205, 220, 57, 1)",
           "rgba(255, 223, 1, 1)",
           "rgba(255, 193, 7, 1)",
-          // "rgba(255, 235, 59, 1)",
         ],
         defaultRepresentation: "RGBA",
         closeWithKey: "Escape",
-        // Any combinations of top, left, bottom or right with one of these optional modifiers: start, middle, end
         position: 'left-start',
         useAsButton: false,
         // default: current_color,
