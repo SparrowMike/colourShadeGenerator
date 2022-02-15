@@ -95,7 +95,6 @@ app.controller("theme", function ($scope, $http) {
 
   //?===================SAVE=====================
   $scope.saveValues = () => {
-    console.log(message)
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
     parent.postMessage(storedPalette, '*')
