@@ -47,8 +47,6 @@ app.controller("theme", function ($scope, $http) {
   //? OBJECT TO STORE THE CUSTOM THEME
   const storedPalette = { accent: {}, secondary: {}, background: {} };
 
-  window.parent.postMessage(storedPalette, '*');
-
   const body = $("html").get(0).style; //? FOR THE COLOURPICKER
 
   //? LOAD THE THEME ON START
@@ -99,6 +97,7 @@ app.controller("theme", function ($scope, $http) {
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
+    parent.postMessage('storedPalette', '*')
   };
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
