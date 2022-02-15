@@ -254,6 +254,10 @@ app.controller("theme", function ($scope, $http) {
           const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           //? keep the generated colour in the storePalette Object
           storedPalette[type][color] = rgb;
+          
+          //? display the currently generated colours
+          body.setProperty(color, rgb);
+          
         }
       });
     });
