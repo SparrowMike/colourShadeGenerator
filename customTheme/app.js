@@ -42,27 +42,26 @@ app.controller("theme", function ($scope, $http) {
 
   const body = $("html").get(0).style; //? FOR THE COLOURPICKER
 
-    //? =========Recieve Message==========
-    const eventMethod = window.addEventListener
-        ? "addEventListener"
-        : "attachEvent";
-    const eventer = window[eventMethod];
-    const messageEvent = eventMethod === "attachEvent"
-      ? "onmessage"
-      : "message";
-    eventer(messageEvent, function (e) {
-      
-      console.log(e.data)      
-      // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
-
-      localStorage.setItem("theme", e.data);
-    });
-
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   let currentTheme = theme ? `.${theme}` : ".dark";
   $scope.selected = theme ? theme : "dark";
   if (theme) $("html").removeClass("light dark custom").addClass(theme);
+
+  //? =========Recieve Message==========
+  const eventMethod = window.addEventListener
+    ? "addEventListener"
+    : "attachEvent";
+  const eventer = window[eventMethod];
+  const messageEvent = eventMethod === "attachEvent"
+    ? "onmessage"
+    : "message";
+  eventer(messageEvent, function (e) {
+    
+  // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+
+    localStorage.setItem("theme", e.data);
+  });
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
