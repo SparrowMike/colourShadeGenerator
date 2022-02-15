@@ -260,8 +260,7 @@ app.controller("theme", function ($scope, $http) {
           
           $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 1px 1px 1.5px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[type][color]}</td></tr>`)
         }
-        // console.log(storedPalette[type]);
-        // console.log(rgbValues(storedPalette[type]['--main-secondary-dark4']));
+        console.log(storedPalette[type]);
       });
     });
   });
