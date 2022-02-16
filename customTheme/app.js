@@ -60,7 +60,7 @@ app.controller("theme", function ($scope, $http) {
     
   // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
 
-    localStorage.setItem("theme", e.data);
+    $scope.selected = e.data;
   });
 
   //? CHANGE THE THEMES - TOGGLING CLASS
