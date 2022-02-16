@@ -52,9 +52,8 @@ app.controller("theme", function ($scope, $http) {
   window.addEventListener('message', function (e) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
-
-    console.log('e.data', data)
     $scope.selected = data;
+    $("html").removeClass().addClass(data);
   });
 
   //? CHANGE THE THEMES - TOGGLING CLASS
@@ -82,10 +81,10 @@ app.controller("theme", function ($scope, $http) {
       case "rustic-pottery":
         $("html").addClass("rustic-pottery");
         break;
-      case "custom":
+      case "custom-theme":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
         loadValues();
-        $("html").addClass("custom");
+        $("html").addClass("custom-theme");
         break;
     }
     loadSelectedTheme(loadCurrentCss());

@@ -152,7 +152,7 @@ body {
   --main-secondary-dark7: rgb(202, 202, 202);
 }
 /*! TBC */
-.custom {
+.custom-theme {
   --accent-dark: rgb(172, 89, 85);
   --accent: rgb(187, 107, 107);
   --accent-light: rgb(196, 132, 158);
