@@ -44,9 +44,9 @@ app.controller("theme", function ($scope, $http) {
 
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
-  let currentTheme = theme ? `.${theme}` : ".dark";
+  let currentTheme = theme ? `.${theme}` : ".dark-knight";
   $scope.selected = theme ? theme : "dark";
-  if (theme) $("html").removeClass("light dark custom").addClass(theme);
+  if (theme) $("html").removeClass().addClass(theme);
 
   //? =========Recieve Message==========
   window.addEventListener('message', function (e) {
@@ -64,13 +64,23 @@ app.controller("theme", function ($scope, $http) {
     currentTheme = `.${theme}`; 
     $("html").removeAttr("style").removeClass()
     switch (theme) {
-      case "light":
-        $("html")
-          .addClass("light");
+      case "light-theme":
+        $("html").addClass("light-theme");
         break;
-      case "dark":
-        $("html")
-          .addClass("dark");
+      case "black-beauty":
+        $("html").addClass("black-beauty");
+        break;
+      case "dark-knight":
+        $("html").addClass("dark-knight");
+      break;
+      case "botanical-forest":
+        $("html").addClass("botanical-forest");
+        break;
+      case "pyramid-of-giza":
+        $("html").addClass("pyramid-of-giza");
+        break;
+      case "rustic-pottery":
+        $("html").addClass("rustic-pottery");
         break;
       case "custom":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
@@ -78,6 +88,7 @@ app.controller("theme", function ($scope, $http) {
         $("html").addClass("custom");
         break;
     }
+    console.log(storedPalette);
     loadSelectedTheme(loadCurrentCss());
   };
 
@@ -139,7 +150,7 @@ app.controller("theme", function ($scope, $http) {
       storedPalette.background = { ...gotback.background };
     } else {
       try {
-        input = input.substring(input.indexOf("-"), input.indexOf("}"));
+        input = input.substring(input.indexOf("--"), input.indexOf("}"));
       } catch(e) {
         console.error(e)
       }
@@ -154,7 +165,7 @@ app.controller("theme", function ($scope, $http) {
         if (r.includes("accent")) storedPalette.accent[r] = `${results[r].trim()}`;
         if (r.includes("secondary")) storedPalette.secondary[r] = `${results[r].trim()}`;
         if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
-        body.setProperty(r, results[r]); //* load colours with js
+        // body.setProperty(r, results[r]); //* load colours with js
       }
     }
   };
@@ -225,8 +236,6 @@ app.controller("theme", function ($scope, $http) {
         current_color = color.toRGBA().toString(0);
         $input.val(current_color).trigger("change");
 
-        $('tbody tr').remove()
-
         const currentValue = rgbToObj(current_color);
         for (color in storedPalette[type]) {
           let rgbArr = []
@@ -254,7 +263,6 @@ app.controller("theme", function ($scope, $http) {
           
           //? display the currently generated colours
           body.setProperty(color, rgb);
-          
         }
       });
     });

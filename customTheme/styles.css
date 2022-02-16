@@ -13,29 +13,24 @@ body {
 }
 
 :root {
-  /*? ======Success====== */
   --success-dark: rgb(64, 146, 95); /* *(-16, -34, -24) */
   --success: rgb(80, 170, 119); /* *base  */
   --success-light: rbg(167, 213, 187); /* *(+87, +84, +68) */
 
   --button-text-color: rgb(252, 252, 252);
 
-  /*? ======Error======  */
   --error-dark: rgb(176, 65, 65); /* *(-59, -22, -22) */
   --error: rgb(235, 87, 87); /* *base */
   --error-light: rgb(245, 171, 171); /* *(+10, +84, +84) */
 
-  /*? ======Error======  */
   --friend: rgb(81, 168, 255);
 }
 
-.dark {
-  /*? ======Primary====== */
+.black-beauty {
   --accent-dark: rgb(229, 151, 29); /* *(-15, -18, -22) */
   --accent: rgb(244, 169, 51); /* *base */
   --accent-light: rgb(253, 194, 102); /* *(+9, +25, +51) */
 
-  /*? ======Secondary====== */
   --main-secondary: rgb(252, 252, 252); /* *base */
   --main-secondary-dark1: rgb(227, 227, 227); /* *(-25, -25, -25) */
   --main-secondary-dark2: rgb(196, 196, 196); /* *(-56, -56, -56) */
@@ -45,7 +40,6 @@ body {
   --main-secondary-dark6: rgb(87, 87, 87); /* *(-165, -165, -165) */
   --main-secondary-dark7: rgb(50, 50, 50); /* *(-202, -202, -202) */
 
-  /*? ======Main BG====== */
   --main-bg-darkest: rgb(20, 20, 20); /* *(-17,-18,-23) */
   --main-bg-darker: rgb(27, 28, 29); /* *(-10,-10,-14) */
   --main-bg-dark: rgb(37, 37, 41); /* *(0, -1, -2) */
@@ -54,35 +48,72 @@ body {
   --main-bg-lighter: rgb(51, 52, 60); /* *(+14, +14, +17) */
   --main-bg-lightest: rgb(67, 70, 79); /* *(+30, +32, +36) */
 }
-
-.light {
-  --accent-dark: rgb(58, 125, 131);
-  --accent: rgb(73, 143, 153);
-  --accent-light: rgb(82, 168, 204);
-
-  --main-bg-darkest: rgb(192, 185, 178);
-  --main-bg-darker: rgb(199, 192, 181);
-  --main-bg-dark: rgb(209, 201, 193);
-  --main-bg: rgb(209, 202, 195);
-  --main-bg-light: rgb(217, 210, 203);
-  --main-bg-lighter: rgb(223, 216, 212);
-  --main-bg-lightest: rgb(239, 234, 231);
-
-  --main-secondary:rgb(0, 0, 0); 
-  --main-secondary-dark1:rgb(25, 25, 25); 
-  --main-secondary-dark2:rgb(56, 56, 56); 
-  --main-secondary-dark3:rgb(82, 83, 83); 
-  --main-secondary-dark4:rgb(86, 86, 84); 
-  --main-secondary-dark5:rgb(99, 99, 99); 
-  --main-secondary-dark6:rgb(165, 165, 165); 
-  --main-secondary-dark7:rgb(202, 202, 202);
+.dark-knight {
+  --accent-dark: rgb(224, 208, 162);
+  --accent: rgb(239, 225, 186, 1);
+  --accent-light: rgb(250, 240, 212);
+  --main-bg-darkest: rgb(6, 9, 33, 1);
+  --main-bg-darker: rgb(13, 17, 42);
+  --main-bg-dark: rgb(23, 26, 54);
+  --main-bg: rgb(23, 27, 56);
+  --main-bg-light: rgb(31, 35, 65);
+  --main-bg-lighter: rgb(37, 41, 73);
+  --main-bg-lightest: rgb(53, 59, 92);
+  --main-secondary: rgb(252, 252, 252, 1);
+  --main-secondary-dark1: rgb(210, 217, 224);
+  --main-secondary-dark2: rgb(200, 210, 220);
+  --main-secondary-dark3: rgb(158, 171, 185);
+  --main-secondary-dark4: rgb(151, 165, 181);
+  --main-secondary-dark5: rgb(133, 147, 164);
+  --main-secondary-dark6: rgb(79, 92, 108);
+  --main-secondary-dark7: rgb(29, 40, 53);
 }
+.botanical-forest {
+  --accent-dark: rgba(233, 115, 123);
+  --accent: rgba(238, 153, 159);
+  --accent-light: rgba(241, 179, 184);
+  --main-bg-darkest: rgba(0, 44, 38);
+  --main-bg-darker: rgba(5, 52, 47);
+  --main-bg-dark: rgba(15, 61, 59);
+  --main-bg: rgba(15, 62, 61);
+  --main-bg-light: rgba(23, 70, 70);
+  --main-bg-lighter: rgba(29, 76, 78);
+  --main-bg-lightest: rgba(45, 95, 97);
+  --main-secondary: rgba(228, 241, 238);
+  --main-secondary-dark1: rgba(172, 213, 203);
+  --main-secondary-dark2: rgba(159, 201, 191);
+  --main-secondary-dark3: rgba(132, 178, 167);
+  --main-secondary-dark4: rgba(110, 164, 151);
+  --main-secondary-dark5: rgba(102, 149, 138);
+  --main-secondary-dark6: rgba(69, 128, 114);
+  --main-secondary-dark7: rgba(0, 58, 60);
+}
+.pyramid-of-giza {
+  --accent-dark: rgba(186, 113, 0);
+  --accent: rgba(207, 135, 23);
+  --accent-light: rgba(239, 153, 19);
 
-.custom {
+  --main-bg-darkest: rgba(39, 27, 0);
+  --main-bg-darker: rgba(53, 38, 2);
+  --main-bg-dark: rgba(64, 47, 6);
+  --main-bg: rgba(64, 48, 8);
+  --main-bg-light: rgba(72, 56, 16);
+  --main-bg-lighter: rgba(78, 60, 25);
+  --main-bg-lightest: rgba(94, 71, 44);
+
+  --main-secondary: rgba(250, 241, 209);
+  --main-secondary-dark1: rgba(241, 231, 196);
+  --main-secondary-dark2: rgba(229, 218, 179);
+  --main-secondary-dark3: rgba(205, 194, 154);
+  --main-secondary-dark4: rgba(181, 169, 129);
+  --main-secondary-dark5: rgba(165, 157, 129);
+  --main-secondary-dark6: rgba(116, 96, 72);
+  --main-secondary-dark7: rgba(53, 39, 5);
+}
+.rustic-pottery {
   --accent-dark: rgb(215, 91, 63);
   --accent: rgb(230, 109, 85);
   --accent-light: rgb(239, 134, 136);
-
   --main-bg-darkest: rgb(20, 11, 3);
   --main-bg-darker: rgb(27, 18, 6);
   --main-bg-dark: rgb(37, 27, 18);
@@ -90,7 +121,6 @@ body {
   --main-bg-light: rgb(45, 36, 28);
   --main-bg-lighter: rgb(51, 42, 37);
   --main-bg-lightest: rgb(67, 60, 56);
-
   --main-secondary: rgb(256, 175, 106);
   --main-secondary-dark1: rgb(231, 150, 81);
   --main-secondary-dark2: rgb(200, 119, 50);
@@ -99,6 +129,48 @@ body {
   --main-secondary-dark5: rgb(157, 76, 7);
   --main-secondary-dark6: rgb(91, 10, 0);
   --main-secondary-dark7: rgb(54, 0, 0);
+}
+/*! TBC */
+.light-theme {
+  --accent-dark: rgb(58, 125, 131);
+  --accent: rgb(73, 143, 153);
+  --accent-light: rgb(82, 168, 204);
+  --main-bg-darkest: rgb(218, 219, 232);
+  --main-bg-darker: rgb(225, 227, 241);
+  --main-bg-dark: rgb(235, 236, 253);
+  --main-bg: rgb(235, 237, 255);
+  --main-bg-light: rgb(243, 245, 255);
+  --main-bg-lighter: rgb(249, 251, 255);
+  --main-bg-lightest: rgb(255, 255, 255);
+  --main-secondary: rgb(0, 0, 0);
+  --main-secondary-dark1: rgb(25, 25, 25);
+  --main-secondary-dark2: rgb(56, 56, 56);
+  --main-secondary-dark3: rgb(82, 83, 83);
+  --main-secondary-dark4: rgb(86, 86, 84);
+  --main-secondary-dark5: rgb(99, 99, 99);
+  --main-secondary-dark6: rgb(165, 165, 165);
+  --main-secondary-dark7: rgb(202, 202, 202);
+}
+/*! TBC */
+.custom {
+  --accent-dark: rgb(172, 89, 85);
+  --accent: rgb(187, 107, 107);
+  --accent-light: rgb(196, 132, 158);
+  --main-secondary: rgb(1, 1, 1);
+  --main-secondary-dark1: rgb(26, 26, 26);
+  --main-secondary-dark2: rgb(57, 57, 57);
+  --main-secondary-dark3: rgb(83, 84, 84);
+  --main-secondary-dark4: rgb(87, 87, 85);
+  --main-secondary-dark5: rgb(100, 100, 100);
+  --main-secondary-dark6: rgb(166, 166, 166);
+  --main-secondary-dark7: rgb(203, 203, 203);
+  --main-bg-darkest: rgb(255, 255, 227);
+  --main-bg-darker: rgb(255, 254, 218);
+  --main-bg-dark: rgb(255, 245, 206);
+  --main-bg: rgb(255, 244, 204);
+  --main-bg-light: rgb(247, 236, 195);
+  --main-bg-lighter: rgb(241, 230, 187);
+  --main-bg-lightest: rgb(225, 212, 168);
 }
 
 /* ?================SIDE PANEL============== */
@@ -191,7 +263,7 @@ body {
   background: var(--main-bg);
 }
 .pickr-theme {
-  background:#2D2E34;
+  background: #2d2e34;
   border-radius: 10px;
   width: 10vw;
 }
@@ -302,12 +374,12 @@ body {
 .avatar.myFriend {
   border: 0.25vw solid #51a8ff;
 }
-.myFriend {
+/* .myFriend {
   color: #51a8ff !important;
 }
 .mySelf {
-  color: rgba(176, 141, 87, 1) !important;
-}
+  color: rgb(176, 141, 87) !important;
+} */
 .chatWindow {
   display: flex;
   border-top: 1px solid var(--main-bg-darker);
@@ -700,7 +772,7 @@ body {
   .timeAndNoty
   .noty
   p {
-  color: #FCFCFC;
+  color: #fcfcfc;
   font-size: 0.5vw;
   padding: 0.05vw 0.3vw 0 0.25vw;
 }

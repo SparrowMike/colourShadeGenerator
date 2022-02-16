@@ -205,8 +205,8 @@
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
-        <div ng-repeat="theme in ['light', 'dark', 'custom']" id="defaultTheme" class={{theme}} ng-class="{active: theme == selected}" ng-click="changeTheme(theme)">
-          <h4>{{theme[0].toUpperCase() + theme.slice(1)}}</h4>
+        <div ng-repeat="theme in ['dark-knight', 'black-beauty', 'botanical-forest', 'pyramid-of-giza', 'rustic-pottery', 'light-theme', 'custom']" id="defaultTheme" class={{theme}} ng-class="{active: theme == selected}" ng-click="changeTheme(theme)">
+          <h4>{{theme[0].toUpperCase() + theme.slice(1).split('-').join(' ');}}</h4>
           <div id="circles">
             <div ng-repeat="c in ['one', 'two', 'three', 'four', 'five']" class={{c}}></div>
           </div> 
