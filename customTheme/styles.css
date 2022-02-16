@@ -286,7 +286,7 @@ body {
   color: var(--main-secondary-dark3);
 }
 .serverNavbar .mini {
-  padding: 0.5vw;
+  padding: 0.15vw 0.25vw 0.15vw 0.4vw;
 }
 .serverNavbar .mini .plus {
   color: var(--main-secondary-dark3);

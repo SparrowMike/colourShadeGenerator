@@ -58,8 +58,9 @@ app.controller("theme", function ($scope, $http) {
     : "message";
   eventer(messageEvent, function (e) {
     
-  // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
-
+    // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+    console.log(e.origin)
+    console.log(e.data, 'e.data <==> scope.selected' ,$scope.selected)
     $scope.selected = e.data;
   });
 
@@ -99,7 +100,7 @@ app.controller("theme", function ($scope, $http) {
   theme
   //?===================SAVE=====================
   $scope.saveValues = () => {
-    localStorage.setItem("customTheme", JSON.stringify(storedPalette));
+    // localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
     parent.postMessage({currentPalette: storedPalette, theme: theme}, '*')
   };
