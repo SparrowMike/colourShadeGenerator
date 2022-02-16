@@ -237,7 +237,8 @@ app.controller("theme", function ($scope, $http) {
         const currentValue = rgbToObj(current_color);
         for (color in storedPalette[type]) {
           let rgbArr = []
-          if (type == 'secondary' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127)) {
+          if (type == 'secondary' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127)|| 
+          type == 'background' && (currentValue.r >= 200 || currentValue.g >= 200 || currentValue.b >= 256)) {
             rgbArr = [
               rgbValues.r - paletteToFeed[type][color].r,
               rgbValues.g - paletteToFeed[type][color].g,
