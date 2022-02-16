@@ -93,11 +93,11 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom #circles > .one`).css("background", theme.accent["--accent-light"]);
-    $(`#defaultTheme.custom #circles > .two`).css("background", theme.accent["--accent-dark"]);
-    $(`#defaultTheme.custom #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
-    $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
-    $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary-dark5"]);
+    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme.accent["--accent-light"]);
+    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme.accent["--accent-dark"]);
+    $(`#defaultTheme.custom-theme #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
+    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
+    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme.secondary["--main-secondary-dark5"]);
   }
   
   //?===================SAVE=====================
