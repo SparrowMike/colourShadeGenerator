@@ -45,7 +45,7 @@ app.controller("theme", function ($scope, $http) {
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   let currentTheme = theme ? `.${theme}` : ".dark-knight";
-  $scope.selected = theme ? theme : "dark";
+  $scope.selected = theme ? theme : "dark-knight";
   if (theme) $("html").removeClass().addClass(theme);
 
   //? =========Recieve Message==========
@@ -88,7 +88,6 @@ app.controller("theme", function ($scope, $http) {
         $("html").addClass("custom");
         break;
     }
-    console.log(storedPalette);
     loadSelectedTheme(loadCurrentCss());
   };
 
@@ -165,7 +164,7 @@ app.controller("theme", function ($scope, $http) {
         if (r.includes("accent")) storedPalette.accent[r] = `${results[r].trim()}`;
         if (r.includes("secondary")) storedPalette.secondary[r] = `${results[r].trim()}`;
         if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
-        // body.setProperty(r, results[r]); //* load colours with js
+        body.setProperty(r, results[r]); //* load colours with js
       }
     }
   };
