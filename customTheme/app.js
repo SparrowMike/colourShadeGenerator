@@ -58,10 +58,11 @@ app.controller("theme", function ($scope, $http) {
     : "message";
   eventer(messageEvent, function (e) {
     
-    // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+    // if (e.origin !== 'http://localhost:1337') return;
     console.log(e.origin)
-    console.log(e.data, 'e.data <==> scope.selected' ,$scope.selected)
-    $scope.selected = e.data;
+    setTimeout(()=>{
+      $scope.selected = e.data;
+    },10)
   });
 
   //? CHANGE THE THEMES - TOGGLING CLASS
@@ -91,16 +92,17 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom #circles > .two`).css("background", theme.accent["--accent-dark"]);
+    console.log(theme)
     $(`#defaultTheme.custom #circles > .one`).css("background", theme.accent["--accent-light"]);
+    $(`#defaultTheme.custom #circles > .two`).css("background", theme.accent["--accent-dark"]);
     $(`#defaultTheme.custom #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
     $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
     $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary"]);
   }
-  theme
+  
   //?===================SAVE=====================
   $scope.saveValues = () => {
-    // localStorage.setItem("customTheme", JSON.stringify(storedPalette));
+    localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
     parent.postMessage({currentPalette: storedPalette, theme: theme}, '*')
   };
