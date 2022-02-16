@@ -49,20 +49,12 @@ app.controller("theme", function ($scope, $http) {
   if (theme) $("html").removeClass("light dark custom").addClass(theme);
 
   //? =========Recieve Message==========
-  const eventMethod = window.addEventListener
-    ? "addEventListener"
-    : "attachEvent";
-  const eventer = window[eventMethod];
-  const messageEvent = eventMethod === "attachEvent"
-    ? "onmessage"
-    : "message";
-  eventer(messageEvent, function (e) {
-    
+  window.addEventListener('message', function (e) {
+    const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
-    console.log(e.origin)
-    setTimeout(()=>{
-      $scope.selected = e.data;
-    },10)
+
+    console.log('e.data', data)
+    $scope.selected = data;
   });
 
   //? CHANGE THE THEMES - TOGGLING CLASS
@@ -92,12 +84,11 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    console.log(theme)
     $(`#defaultTheme.custom #circles > .one`).css("background", theme.accent["--accent-light"]);
     $(`#defaultTheme.custom #circles > .two`).css("background", theme.accent["--accent-dark"]);
     $(`#defaultTheme.custom #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
     $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
-    $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary"]);
+    $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary-dark5"]);
   }
   
   //?===================SAVE=====================
