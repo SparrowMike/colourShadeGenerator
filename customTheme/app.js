@@ -42,18 +42,35 @@ app.controller("theme", function ($scope, $http) {
 
   const body = $("html").get(0).style; //? FOR THE COLOURPICKER
 
+  //? =========Recieve Message==========
+  // window.addEventListener('message', function (e) {
+  //   const data = e.data;
+  //   console.log(data)
+  //   // if (e.origin !== 'http://localhost:1337') return;
+  //   if (data.selectedTheme !== undefined) $scope.changeTheme(data.selectedTheme)
+  // });
+
+  window.onmessage = function(e) {
+    const data = e.data;
+    console.log(data)
+    // if (e.origin !== 'http://localhost:1337') return;
+    $scope.changeTheme(data.theme)
+  };
+  
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
   let currentTheme = theme ? `.${theme}` : ".dark-knight";
   $scope.selected = theme ? theme : "dark-knight";
   if (theme) $("html").removeClass().addClass(theme);
 
+  $scope.sendCurrentTheme = () => {
+    parent.postMessage({storedPalette: '', theme: $scope.selected}, '*')
+  }
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
     currentTheme = `.${theme}`; 
-    parent.postMessage({storedPalette: '', theme: theme}, '*')
 
     $("html").removeAttr("style").removeClass()
     switch (theme) {
@@ -104,7 +121,7 @@ app.controller("theme", function ($scope, $http) {
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
-    parent.postMessage({storedPalette: storedPalette, theme: theme}, '*')
+    parent.postMessage({storedPalette: storedPalette, theme: $scope.selected}, '*')
   };
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
@@ -173,14 +190,6 @@ app.controller("theme", function ($scope, $http) {
     if (localStorage.getItem("customTheme") !== null) {
       customPaletteColors()
     }
-  });
-
-  //? =========Recieve Message==========
-  window.addEventListener('message', function (e) {
-    const data = e.data;
-    // if (e.origin !== 'http://localhost:1337') return;
-    console.log(data)
-    $scope.selected = data.currentTheme;
   });
 
   //? CONVERT INCOMING RGB STRING TO OBJECT
