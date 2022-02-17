@@ -97,7 +97,9 @@ app.controller("theme", function ($scope, $http) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
     console.log('inside the iframe', data)
-    if (data.theme !== undefined) $scope.changeTheme(data.theme)
+    setTimeout(()=>{
+      if (data.theme !== undefined) $scope.changeTheme(data.theme)
+    }, 100)
   };
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
