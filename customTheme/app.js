@@ -40,34 +40,31 @@ app.controller("theme", function ($scope, $http) {
   //? OBJECT TO STORE THE CUSTOM THEME
   const storedPalette = { accent: {}, secondary: {}, background: {} };
 
-  const body = $("html").get(0).style; //? FOR THE COLOURPICKER
-  
+  //? LOAD THE THEME ON START
+  const theme = localStorage.getItem("theme");
+  $scope.selected = theme !== null ? theme : "dark-knight";
+
   //? =========Recieve Message==========
   window.onmessage = function(e) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
+
     if (data.selectedTheme !== undefined) {
       $scope.changeTheme(data.selectedTheme)
-      localStorage.setItem("theme", data.selectedTheme); 
-      setTimeout(()=>{
-        $scope.selected = data.selectedTheme
-      }, 100)
+      // localStorage.setItem("theme", data.selectedTheme); 
+      // setTimeout(()=>{
+      //   $scope.selected = data.selectedTheme
+      // }, 100)
     }
   };
   
-
-  //? LOAD THE THEME ON START
-  const theme = localStorage.getItem("theme");
-  let currentTheme = theme ? `.${theme}` : ".dark-knight";
-  $scope.selected = theme ? theme : "dark-knight";
-  if (theme) $("html").removeClass().addClass(theme);
-
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
-    currentTheme = `.${theme}`; 
 
+    console.log('scope.slected vs theme', $scope.selected == theme)
+    
     $("html").removeAttr("style").removeClass()
     switch (theme) {
       case "light-theme":
@@ -128,7 +125,7 @@ app.controller("theme", function ($scope, $http) {
     const types = JSON.parse(localStorage.getItem("customTheme"));
     for (t in types) {
       for (v in types[t]) {
-        body.setProperty(`${v}`, `${types[t][v]}`);
+        $("html").get(0).style.setProperty(`${v}`, `${types[t][v]}`);
       }
     }
   };
@@ -145,7 +142,7 @@ app.controller("theme", function ($scope, $http) {
         files[f].href.endsWith("styles.css")
       ) {
         for (c in files[f].cssRules) {
-          if (files[f].cssRules[c].selectorText === `${currentTheme}`)
+          if (files[f].cssRules[c].selectorText === `.${$scope.selected}`)
             return files[f].cssRules[c].cssText;
         }
       }
@@ -155,7 +152,7 @@ app.controller("theme", function ($scope, $http) {
   //?========CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=========
   const loadSelectedTheme = (input) => {
     if (
-      currentTheme === ".custom-theme" &&
+      $scope.selected === "custom-theme" &&
       localStorage.getItem("customTheme") !== null
     ) {
       const gotback = JSON.parse(localStorage.getItem("customTheme"));
@@ -179,7 +176,7 @@ app.controller("theme", function ($scope, $http) {
         if (r.includes("accent")) storedPalette.accent[r] = `${results[r].trim()}`;
         if (r.includes("secondary")) storedPalette.secondary[r] = `${results[r].trim()}`;
         if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
-        body.setProperty(r, results[r]); //* load colours with js
+        $("html").get(0).style.setProperty(r, results[r]); //* load colours with js
       }
     }
   };
@@ -276,7 +273,7 @@ app.controller("theme", function ($scope, $http) {
           storedPalette[type][color] = rgb;
           
           //? display the currently generated colours
-          body.setProperty(color, rgb);
+          $("html").get(0).style.setProperty(color, rgb);
         }
       });
     });
