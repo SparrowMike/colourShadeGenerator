@@ -52,7 +52,6 @@ app.controller("theme", function ($scope, $http) {
 
   window.onmessage = function(e) {
     const data = e.data;
-    console.log(data)
     // if (e.origin !== 'http://localhost:1337') return;
     $scope.changeTheme(data.theme)
   };
@@ -121,7 +120,7 @@ app.controller("theme", function ($scope, $http) {
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
-    parent.postMessage({storedPalette: storedPalette, theme: $scope.selected}, '*')
+    parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme'}, '*')
   };
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
