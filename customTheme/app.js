@@ -52,8 +52,7 @@ app.controller("theme", function ($scope, $http) {
   window.addEventListener('message', function (e) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
-    $scope.selected = data;
-    $("html").removeClass().addClass(data);
+    $scope.selected = data.currentTheme;
   });
 
   //? CHANGE THE THEMES - TOGGLING CLASS
@@ -61,6 +60,8 @@ app.controller("theme", function ($scope, $http) {
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
     currentTheme = `.${theme}`; 
+    parent.postMessage({storedPalette: storedPalette, theme: theme}, '*')
+
     $("html").removeAttr("style").removeClass()
     switch (theme) {
       case "light-theme":
@@ -104,7 +105,7 @@ app.controller("theme", function ($scope, $http) {
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
-    parent.postMessage({currentPalette: storedPalette, theme: theme}, '*')
+    parent.postMessage({storedPalette: storedPalette, theme: theme}, '*')
   };
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
@@ -139,7 +140,7 @@ app.controller("theme", function ($scope, $http) {
   //?========CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=========
   const loadSelectedTheme = (input) => {
     if (
-      currentTheme === ".custom" &&
+      currentTheme === ".custom-theme" &&
       localStorage.getItem("customTheme") !== null
     ) {
       const gotback = JSON.parse(localStorage.getItem("customTheme"));
