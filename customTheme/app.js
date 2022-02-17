@@ -43,13 +43,6 @@ app.controller("theme", function ($scope, $http) {
   const body = $("html").get(0).style; //? FOR THE COLOURPICKER
 
   //? =========Recieve Message==========
-  // window.addEventListener('message', function (e) {
-  //   const data = e.data;
-  //   console.log(data)
-  //   // if (e.origin !== 'http://localhost:1337') return;
-  //   if (data.selectedTheme !== undefined) $scope.changeTheme(data.selectedTheme)
-  // });
-
   window.onmessage = function(e) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
@@ -132,7 +125,7 @@ app.controller("theme", function ($scope, $http) {
       }
     }
   };
-  if (theme === "custom") {
+  if (theme === "custom-theme") {
     loadValues();
   }
 
