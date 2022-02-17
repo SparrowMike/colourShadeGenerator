@@ -52,7 +52,11 @@ app.controller("theme", function ($scope, $http) {
   window.onmessage = function(e) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
-    if (data.selectedTheme !== undefined) $scope.changeTheme(data.selectedTheme)
+    if (data.selectedTheme !== undefined) {
+      $scope.changeTheme(data.selectedTheme)
+      $scope.selected = data.selectedTheme
+      localStorage.setItem("theme", data.selectedTheme); 
+    }
   };
 
   //? CHANGE THE THEMES - TOGGLING CLASS
@@ -105,7 +109,7 @@ app.controller("theme", function ($scope, $http) {
     $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
     $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme.secondary["--main-secondary-dark5"]);
   }
-  
+
   //?===================SAVE=====================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
@@ -113,7 +117,7 @@ app.controller("theme", function ($scope, $http) {
     parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme'}, '*')
   };
   $scope.sendCurrentTheme = () => {
-    parent.postMessage({storedPalette: '', theme: $scope.selected}, '*')
+    parent.postMessage({storedPalette: JSON.parse(localStorage.getItem("customTheme")), theme: $scope.selected}, '*')
   }
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
