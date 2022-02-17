@@ -130,26 +130,45 @@ body {
   --main-secondary-dark6: rgb(91, 10, 0);
   --main-secondary-dark7: rgb(54, 0, 0);
 }
-/*! TBC */
-.light-theme {
-  --accent-dark: rgb(58, 125, 131);
-  --accent: rgb(73, 143, 153);
-  --accent-light: rgb(82, 168, 204);
-  --main-bg-darkest: rgb(218, 219, 232);
-  --main-bg-darker: rgb(225, 227, 241);
-  --main-bg-dark: rgb(235, 236, 253);
-  --main-bg: rgb(235, 237, 255);
-  --main-bg-light: rgb(243, 245, 255);
-  --main-bg-lighter: rgb(249, 251, 255);
-  --main-bg-lightest: rgb(255, 255, 255);
-  --main-secondary: rgb(0, 0, 0);
-  --main-secondary-dark1: rgb(25, 25, 25);
-  --main-secondary-dark2: rgb(56, 56, 56);
-  --main-secondary-dark3: rgb(82, 83, 83);
-  --main-secondary-dark4: rgb(86, 86, 84);
-  --main-secondary-dark5: rgb(99, 99, 99);
-  --main-secondary-dark6: rgb(165, 165, 165);
-  --main-secondary-dark7: rgb(202, 202, 202);
+.aqua-lolly {
+  --accent-dark: rgb(255, 74, 81);
+  --accent: rgb(255, 109, 115);
+  --accent-light: rgb(255, 138, 143);
+  --main-bg-darkest: rgb(252, 252, 252);
+  --main-bg-darker: rgb(229, 236, 235);
+  --main-bg-dark: rgb(213, 224, 223);
+  --main-bg: rgb(199, 213, 212);
+  --main-bg-light: rgb(183, 203, 201);
+  --main-bg-lighter: rgb(158, 188, 185);
+  --main-bg-lightest: rgb(134, 160, 158);
+  --main-secondary: rgb(10, 34, 97);
+  --main-secondary-dark1: rgb(17, 47, 124);
+  --main-secondary-dark2: rgb(33, 67, 156);
+  --main-secondary-dark3: rgb(63, 101, 198);
+  --main-secondary-dark4: rgb(89, 125, 219);
+  --main-secondary-dark5: rgb(113, 148, 237);
+  --main-secondary-dark6: rgb(147, 175, 249);
+  --main-secondary-dark7: rgb(222, 229, 250);
+}
+.lush-blush {
+  --accent-dark: rgb(64, 63, 128);
+  --accent: rgb(87, 86, 150);
+  --accent-light: rgb(117, 116, 175);
+  --main-bg-darkest: rgb(252, 252, 252);
+  --main-bg-darker: rgb(254, 249, 246);
+  --main-bg-dark: rgb(245, 238, 234);
+  --main-bg: rgb(237, 226, 220);
+  --main-bg-light: rgb(235, 216, 206);
+  --main-bg-lighter: rgb(225, 202, 191);
+  --main-bg-lightest: rgb(187, 171, 171);
+  --main-secondary: rgb(171, 59, 97);
+  --main-secondary-dark1: rgb(187,76,113);
+  --main-secondary-dark2: rgb(203,92,129);
+  --main-secondary-dark3: rgb(211,106,141);
+  --main-secondary-dark4: rgb(219,118,151);
+  --main-secondary-dark5: rgb(225, 137, 166);
+  --main-secondary-dark6: rgb(226,160,182);
+  --main-secondary-dark7: rgb(228,206,214);
 }
 /*! TBC */
 .custom-theme {

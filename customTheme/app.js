@@ -48,19 +48,12 @@ app.controller("theme", function ($scope, $http) {
   $scope.selected = theme ? theme : "dark-knight";
   if (theme) $("html").removeClass().addClass(theme);
 
-  //? =========Recieve Message==========
-  window.addEventListener('message', function (e) {
-    const data = e.data;
-    // if (e.origin !== 'http://localhost:1337') return;
-    $scope.selected = data.currentTheme;
-  });
-
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
     currentTheme = `.${theme}`; 
-    parent.postMessage({storedPalette: storedPalette, theme: theme}, '*')
+    parent.postMessage({storedPalette: '', theme: theme}, '*')
 
     $("html").removeAttr("style").removeClass()
     switch (theme) {
@@ -81,6 +74,12 @@ app.controller("theme", function ($scope, $http) {
         break;
       case "rustic-pottery":
         $("html").addClass("rustic-pottery");
+        break;
+      case "aqua-lolly":
+        $("html").addClass("aqua-lolly");
+        break;
+      case "lush-blush":
+        $("html").addClass("lush-blush");
         break;
       case "custom-theme":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
@@ -174,6 +173,14 @@ app.controller("theme", function ($scope, $http) {
     if (localStorage.getItem("customTheme") !== null) {
       customPaletteColors()
     }
+  });
+
+  //? =========Recieve Message==========
+  window.addEventListener('message', function (e) {
+    const data = e.data;
+    // if (e.origin !== 'http://localhost:1337') return;
+    console.log(data)
+    $scope.selected = data.currentTheme;
   });
 
   //? CONVERT INCOMING RGB STRING TO OBJECT
