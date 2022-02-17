@@ -229,7 +229,7 @@
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
-        <div ng-repeat="theme in ['light', 'dark', 'custom']" id="defaultTheme" class={{theme}} ng-class="{active: theme == selected}" ng-click="changeTheme(theme)">
+        <div ng-repeat="theme in ['dark-knight', 'black-beauty', 'botanical-forest', 'pyramid-of-giza', 'rustic-pottery', 'aqua-lolly', 'lush-blush',  'custom-theme']" id="defaultTheme" class={{theme}} ng-class="{active: theme == selected}" ng-click="changeTheme(theme)">
           <h4>{{theme[0].toUpperCase() + theme.slice(1)}}</h4>
           <div id="circles">
             <div ng-repeat="c in ['one', 'two', 'three', 'four', 'five']" class={{c}}></div>
@@ -245,7 +245,7 @@
           </div>
           <div class="ui divider"></div>
         </div>
-        <button style="width: 100%; font-size: large; margin-top: 5px;" class="ui primary button" ng-click="saveValues(); changeTheme('custom')">Save</button>
+        <button style="width: 100%; font-size: large; margin-top: 5px;" class="ui primary button" ng-click="saveValues(); changeTheme('custom-theme')">Save</button>
       </div>
       <div id="previewSection">
         <h2>PreviewSection</h2>

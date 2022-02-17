@@ -1,13 +1,13 @@
 var app = angular.module("myApp", []);
 
 app.controller("theme", function ($scope, $http) {
-  $http.get('data/onlineFriends.json').then(function(response) {
+  $http.get("data/onlineFriends.json").then(function (response) {
     $scope.onlineFriends = response.data;
-  })
-  $http.get('data/messagesHistory.json').then(function(response) {
+  });
+  $http.get("data/messagesHistory.json").then(function (response) {
     $scope.messagesHistory = response.data;
-  })
-  
+  });
+
   //? OBJECT STORING PALETTE INCREMENT VALUES
   const paletteToFeed = {
     accent: {
@@ -16,14 +16,14 @@ app.controller("theme", function ($scope, $http) {
       "--accent-light": { r: 9, g: 25, b: 51 },
     },
     secondary: {
-      "--main-secondary": {r: 0, g: 0, b: 0},
-      "--main-secondary-dark1": {r: -25, g: -25, b: -25},
-      "--main-secondary-dark2": {r: -56, g: -56, b: -56},
-      "--main-secondary-dark3": {r: -82, g: -83, b: -83},
-      "--main-secondary-dark4": {r: -86, g: -86, b: -84},
-      "--main-secondary-dark5": {r: -99, g: -99, b: -99},
-      "--main-secondary-dark6": {r: -165, g: -165, b: -165},
-      "--main-secondary-dark7": {r: -202, g: -202, b: -202}
+      "--main-secondary": { r: 0, g: 0, b: 0 },
+      "--main-secondary-dark1": { r: -25, g: -25, b: -25 },
+      "--main-secondary-dark2": { r: -56, g: -56, b: -56 },
+      "--main-secondary-dark3": { r: -82, g: -83, b: -83 },
+      "--main-secondary-dark4": { r: -86, g: -86, b: -84 },
+      "--main-secondary-dark5": { r: -99, g: -99, b: -99 },
+      "--main-secondary-dark6": { r: -165, g: -165, b: -165 },
+      "--main-secondary-dark7": { r: -202, g: -202, b: -202 },
     },
     background: {
       "--main-bg-darkest": { r: -17, g: -18, b: -23 },
@@ -35,14 +35,12 @@ app.controller("theme", function ($scope, $http) {
       "--main-bg-lightest": { r: 30, g: 32, b: 36 },
     },
   };
-  Object.freeze(paletteToFeed)
+  Object.freeze(paletteToFeed);
 
   //? ==============UI MODAL================
   $scope.modal = () => {
-    $('.ui.modal')
-      .modal('show')
-    ;
-  }
+    $(".ui.modal").modal("show");
+  };
 
   //? OBJECT TO STORE THE CUSTOM THEME
   const storedPalette = { accent: {}, secondary: {}, background: {} };
@@ -51,32 +49,47 @@ app.controller("theme", function ($scope, $http) {
 
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
-  let currentTheme = theme ? `.${theme}` : ".dark";
-  $scope.selected = theme ? theme : "dark";
-  if (theme) $("html").removeClass("light dark custom").addClass(theme);
+  let currentTheme = theme ? `.${theme}` : ".black-beauty";
+  $scope.selected = theme ? theme : "black-beauty";
+  if (theme) $("html").removeClass().addClass(theme);
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
     currentTheme = `.${theme}`;
+    $("html").removeAttr("style").removeClass();
+
     switch (theme) {
-      case "light":
-        $("html")
-          .removeAttr("style")
-          .removeClass("dark custom")
-          .addClass("light");
+      case "light-theme":
+        $("html").addClass("light-theme");
         break;
-      case "dark":
-        $("html")
-          .removeAttr("style")
-          .removeClass("light custom")
-          .addClass("dark");
+      case "black-beauty":
+        $("html").addClass("black-beauty");
         break;
-      case "custom":
-        if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
+      case "dark-knight":
+        $("html").addClass("dark-knight");
+        break;
+      case "botanical-forest":
+        $("html").addClass("botanical-forest");
+        break;
+      case "pyramid-of-giza":
+        $("html").addClass("pyramid-of-giza");
+        break;
+      case "rustic-pottery":
+        $("html").addClass("rustic-pottery");
+        break;
+      case "aqua-lolly":
+        $("html").addClass("aqua-lolly");
+        break;
+      case "lush-blush":
+        $("html").addClass("lush-blush");
+        break;
+      case "custom-theme":
+        if (JSON.parse(localStorage.getItem("customTheme")) === null)
+          $("html").removeAttr("style");
         loadValues();
-        $("html").removeClass("light dark").addClass("custom");
+        $("html").addClass("custom-theme");
         break;
     }
     loadSelectedTheme(loadCurrentCss());
@@ -84,20 +97,34 @@ app.controller("theme", function ($scope, $http) {
 
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
-    const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom #circles > .one`).css("background", theme.accent["--accent-light"]);
-    $(`#defaultTheme.custom #circles > .two`).css("background", theme.accent["--accent-dark"]);
-    $(`#defaultTheme.custom #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
-    $(`#defaultTheme.custom #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
-    $(`#defaultTheme.custom #circles > .five`).css("background", theme.secondary["--main-secondary"]);
-  }
-
+    const theme = JSON.parse(localStorage.getItem("customTheme"));
+    $(`#defaultTheme.custom-theme #circles > .one`).css(
+      "background",
+      theme.accent["--accent-light"]
+    );
+    $(`#defaultTheme.custom-theme #circles > .two`).css(
+      "background",
+      theme.accent["--accent-dark"]
+    );
+    $(`#defaultTheme.custom-theme #circles > .three`).css(
+      "background",
+      theme.background["--main-bg-darkest"]
+    );
+    $(`#defaultTheme.custom-theme #circles > .four`).css(
+      "background",
+      theme.background["--main-bg-lightest"]
+    );
+    $(`#defaultTheme.custom-theme #circles > .five`).css(
+      "background",
+      theme.secondary["--main-secondary"]
+    );
+  };
 
   //?===================SAVE=====================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
-    customPaletteColors()
-    parent.postMessage(storedPalette, '*')
+    customPaletteColors();
+    parent.postMessage(storedPalette, "*");
   };
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
@@ -109,7 +136,7 @@ app.controller("theme", function ($scope, $http) {
       }
     }
   };
-  if (theme === "custom") {
+  if (theme === "custom-theme") {
     loadValues();
   }
 
@@ -132,7 +159,7 @@ app.controller("theme", function ($scope, $http) {
   //?========CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=========
   const loadSelectedTheme = (input) => {
     if (
-      currentTheme === ".custom" &&
+      currentTheme === ".custom-theme" &&
       localStorage.getItem("customTheme") !== null
     ) {
       const gotback = JSON.parse(localStorage.getItem("customTheme"));
@@ -141,9 +168,9 @@ app.controller("theme", function ($scope, $http) {
       storedPalette.background = { ...gotback.background };
     } else {
       try {
-        input = input.substring(input.indexOf("-"), input.indexOf("}"));
-      } catch(e) {
-        console.error(e)
+        input = input.substring(input.indexOf("--"), input.indexOf("}"));
+      } catch (e) {
+        console.error(e);
       }
       let results = {},
         attributes = input.split("; ");
@@ -153,9 +180,12 @@ app.controller("theme", function ($scope, $http) {
       }
       for (r in results) {
         if (results[r] === "" || results[r] === undefined) delete results[r];
-        if (r.includes("accent")) storedPalette.accent[r] = `${results[r].trim()}`;
-        if (r.includes("secondary")) storedPalette.secondary[r] = `${results[r].trim()}`;
-        if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
+        if (r.includes("accent"))
+          storedPalette.accent[r] = `${results[r].trim()}`;
+        if (r.includes("secondary"))
+          storedPalette.secondary[r] = `${results[r].trim()}`;
+        if (r.includes("bg"))
+          storedPalette.background[r] = `${results[r].trim()}`;
         body.setProperty(r, results[r]); //* load colours with js
       }
     }
@@ -164,7 +194,7 @@ app.controller("theme", function ($scope, $http) {
   $(document).ready(function () {
     loadSelectedTheme(loadCurrentCss());
     if (localStorage.getItem("customTheme") !== null) {
-      customPaletteColors()
+      customPaletteColors();
     }
   });
 
@@ -190,7 +220,7 @@ app.controller("theme", function ($scope, $http) {
       pickr = new Pickr({
         el: $(`.${type}Color`)[0],
         theme: "monolith",
-        appClass: 'pickr-theme',
+        appClass: "pickr-theme",
         swatches: [
           "rgba(244, 67, 54, 1)",
           "rgba(233, 30, 99, 1)",
@@ -211,7 +241,7 @@ app.controller("theme", function ($scope, $http) {
         defaultRepresentation: "RGBA",
         closeWithKey: "Escape",
         // Any combinations of top, left, bottom or right with one of these optional modifiers: start, middle, end
-        position: 'left-start',
+        position: "left-start",
         useAsButton: false,
         // default: current_color,
         comparison: false,
@@ -229,13 +259,21 @@ app.controller("theme", function ($scope, $http) {
         current_color = color.toRGBA().toString(0);
         $input.val(current_color).trigger("change");
 
-        $('tbody tr').remove()
+        $("tbody tr").remove();
 
         const currentValue = rgbToObj(current_color);
         for (color in storedPalette[type]) {
-          let rgbArr = []
-          if (type == 'secondary' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127) || 
-          type == 'background' && (currentValue.r >= 200 || currentValue.g >= 200 || currentValue.b >= 256)) {
+          let rgbArr = [];
+          if (
+            (type == "secondary" &&
+              (currentValue.r <= 90 ||
+                currentValue.g <= 50 ||
+                currentValue.b <= 127)) ||
+            (type == "background" &&
+              (currentValue.r >= 200 ||
+                currentValue.g >= 200 ||
+                currentValue.b >= 256))
+          ) {
             rgbArr = [
               rgbValues.r - paletteToFeed[type][color].r,
               rgbValues.g - paletteToFeed[type][color].g,
@@ -255,11 +293,13 @@ app.controller("theme", function ($scope, $http) {
           const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           //? keep the generated colour in the storePalette Object
           storedPalette[type][color] = rgb;
-          
+
           //? display the currently generated colours
           body.setProperty(color, rgb);
-          
-          $('tbody').append(`<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 1px 1px 1.5px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[type][color]}</td></tr>`)
+
+          $("tbody").append(
+            `<tr><td style='background: ${storedPalette[type][color]}; color: white; text-shadow: 1px 1px 1.5px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[type][color]}</td></tr>`
+          );
         }
         console.log(storedPalette[type]);
       });
