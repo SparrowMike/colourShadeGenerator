@@ -41,13 +41,6 @@ app.controller("theme", function ($scope, $http) {
   const storedPalette = { accent: {}, secondary: {}, background: {} };
 
   const body = $("html").get(0).style; //? FOR THE COLOURPICKER
-
-  //? =========Recieve Message==========
-  window.onmessage = function(e) {
-    const data = e.data;
-    // if (e.origin !== 'http://localhost:1337') return;
-    $scope.changeTheme(data.theme)
-  };
   
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
@@ -99,6 +92,13 @@ app.controller("theme", function ($scope, $http) {
     loadSelectedTheme(loadCurrentCss());
   };
 
+  //? =========Recieve Message==========
+  window.onmessage = function(e) {
+    const data = e.data;
+    // if (e.origin !== 'http://localhost:1337') return;
+    console.log('inside the iframe', data)
+    if (data.theme !== undefined) $scope.changeTheme(data.theme)
+  };
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
