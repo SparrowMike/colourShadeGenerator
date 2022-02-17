@@ -48,9 +48,13 @@ app.controller("theme", function ($scope, $http) {
   $scope.selected = theme ? theme : "dark-knight";
   if (theme) $("html").removeClass().addClass(theme);
 
-  $scope.sendCurrentTheme = () => {
-    parent.postMessage({storedPalette: '', theme: $scope.selected}, '*')
-  }
+  //? =========Recieve Message==========
+  window.onmessage = function(e) {
+    const data = e.data;
+    // if (e.origin !== 'http://localhost:1337') return;
+    if (data.selectedTheme !== undefined) $scope.changeTheme(data.selectedTheme)
+  };
+
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
@@ -92,13 +96,6 @@ app.controller("theme", function ($scope, $http) {
     loadSelectedTheme(loadCurrentCss());
   };
 
-  //? =========Recieve Message==========
-  window.onmessage = function(e) {
-    const data = e.data;
-    // if (e.origin !== 'http://localhost:1337') return;
-    if (data.selectedTheme !== undefined) $scope.changeTheme(data.selectedTheme)
-  };
-
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
@@ -115,6 +112,9 @@ app.controller("theme", function ($scope, $http) {
     customPaletteColors()
     parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme'}, '*')
   };
+  $scope.sendCurrentTheme = () => {
+    parent.postMessage({storedPalette: '', theme: $scope.selected}, '*')
+  }
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
   const loadValues = function () {
