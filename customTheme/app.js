@@ -96,8 +96,7 @@ app.controller("theme", function ($scope, $http) {
   window.onmessage = function(e) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
-    console.log('inside the iframe', data)
-    if (data.theme !== undefined) $scope.changeTheme(data.selectedTheme)
+    if (data.selectedTheme !== undefined) $scope.changeTheme(data.selectedTheme)
   };
 
   //?===================UPDATE CUSTOM PALETTE=====================
