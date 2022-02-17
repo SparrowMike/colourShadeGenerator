@@ -398,12 +398,12 @@ body {
 .avatar.myFriend {
   border: 0.25vw solid #51a8ff;
 }
-.myFriend {
+/* .myFriend {
   color: #51a8ff !important;
 }
 .mySelf {
   color: rgba(176, 141, 87, 1) !important;
-}
+} */
 .chatWindow {
   display: flex;
   border-top: 1px solid var(--main-bg-darker);
