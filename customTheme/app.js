@@ -49,12 +49,15 @@ app.controller("theme", function ($scope, $http) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
 
+    console.log(data.storedPalette)
     if (data.selectedTheme !== undefined) {
       $scope.changeTheme(data.selectedTheme)
       // localStorage.setItem("theme", data.selectedTheme); 
       // setTimeout(()=>{
       //   $scope.selected = data.selectedTheme
       // }, 100)
+      $('.active').removeClass('active')
+      $(`.${data.selectedTheme}`).addClass('active')
     }
   };
   
@@ -62,8 +65,6 @@ app.controller("theme", function ($scope, $http) {
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
-
-    console.log('scope.slected vs theme', $scope.selected == theme)
     
     $("html").removeAttr("style").removeClass()
     switch (theme) {
@@ -90,6 +91,18 @@ app.controller("theme", function ($scope, $http) {
         break;
       case "lush-blush":
         $("html").addClass("lush-blush");
+        break;
+      case "white-smoke":
+        $("html").addClass("white-smoke");
+        break;
+      case "prairie-dance":
+        $("html").addClass("prairie-dance");
+        break;
+      case "farsighted":
+        $("html").addClass("farsighted");
+        break;
+      case "hearts-desire":
+        $("html").addClass("hearts-desire");
         break;
       case "custom-theme":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")

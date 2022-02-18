@@ -170,6 +170,88 @@ body {
   --main-secondary-dark6: rgb(226,160,182);
   --main-secondary-dark7: rgb(228,206,214);
 }
+.white-smoke {
+  --accent-dark: rgb(48, 65, 97);
+  --accent: rgb(64, 87, 130);
+  --accent-light: rgb(159, 171, 192);
+
+  --main-bg-darkest: rgb(252, 252, 252);
+  --main-bg-darker: rgb(240, 240, 240);
+  --main-bg-dark: rgb(233, 233, 233);
+  --main-bg: rgb(228, 228, 228);
+  --main-bg-light: rgb(211, 211, 211);
+  --main-bg-lighter: rgb(199, 199, 199);
+  --main-bg-lightest: rgb(167, 167, 167);
+
+  --main-secondary: rgb(27, 28, 29);
+  --main-secondary-dark1: rgb(71, 71, 71);
+  --main-secondary-dark2: rgb(84, 84, 84);
+  --main-secondary-dark3: rgb(103, 103, 103);
+  --main-secondary-dark4: rgb(119, 119, 119);
+  --main-secondary-dark5: rgb(146, 146, 146);
+  --main-secondary-dark6: rgb(196, 196, 196);
+  --main-secondary-dark7: rgb(238, 238, 238);
+}
+.prairie-dance {
+  --accent-dark: rgb(174, 76, 76);
+  --accent: rgb(191, 100, 100);
+  --accent-light: rgb(208, 122, 122);
+  --main-bg-darkest: rgb(252, 252, 252);
+  --main-bg-darker: rgb(252, 248, 241);
+  --main-bg-dark: rgb(250, 244, 231);
+  --main-bg: rgb(243, 236, 218);
+  --main-bg-light: rgb(233, 224, 202);
+  --main-bg-lighter: rgb(221, 212, 190);
+  --main-bg-lightest: rgb(200, 188, 161);
+  --main-secondary: rgb(62, 79, 60);
+  --main-secondary-dark1: rgb(73, 91, 70);
+  --main-secondary-dark2: rgb(86, 104, 83);
+  --main-secondary-dark3: rgb(117, 126, 95);
+  --main-secondary-dark4: rgb(127, 136, 107);
+  --main-secondary-dark5: rgb(143, 151, 124);
+  --main-secondary-dark6: rgb(161, 169, 142);
+  --main-secondary-dark7: rgb(216, 222, 202);
+}
+.farsighted {
+  --accent-dark: rgb(114, 105, 211);
+  --accent: rgb(138, 131, 224);
+  --accent-light: rgb(159, 153, 230);
+  --main-bg-darkest: rgb(252, 252, 252);
+  --main-bg-darker: rgb(242, 242, 248);
+  --main-bg-dark: rgb(234, 234, 244);
+  --main-bg: rgb(227, 227, 239);
+  --main-bg-light: rgb(215, 215, 231);
+  --main-bg-lighter: rgb(206, 206, 225);
+  --main-bg-lightest: rgb(192, 192, 215);
+  --main-secondary: rgb(112, 105, 131);
+  --main-secondary-dark1: rgb(126, 119, 147);
+  --main-secondary-dark2: rgb(135, 128, 159);
+  --main-secondary-dark3: rgb(144, 136, 173);
+  --main-secondary-dark4: rgb(155, 146, 188);
+  --main-secondary-dark5: rgb(166, 157, 198);
+  --main-secondary-dark6: rgb(177, 169, 208);
+  --main-secondary-dark7: rgb(210, 204, 232);
+}
+.hearts-desire {
+  --accent-dark: rgb(242, 184, 151);
+  --accent: rgb(237, 200, 184);
+  --accent-light: rgb(243, 216, 204);
+  --main-bg-darkest: rgb(89, 3, 33);
+  --main-bg-darker: rgb(103, 7, 40);
+  --main-bg-dark: rgb(109, 10, 44);
+  --main-bg: rgb(113, 11, 46);
+  --main-bg-light: rgb(122, 19, 54);
+  --main-bg-lighter: rgb(128, 20, 57);
+  --main-bg-lightest: rgb(153, 45, 82);
+  --main-secondary: rgb(187, 178, 181);
+  --main-secondary-dark1: rgb(177, 164, 169);
+  --main-secondary-dark2: rgb(168, 151, 156);
+  --main-secondary-dark3: rgb(161, 140, 147);
+  --main-secondary-dark4: rgb(155, 136, 143);
+  --main-secondary-dark5: rgb(153, 128, 136);
+  --main-secondary-dark6: rgb(134, 102, 112);
+  --main-secondary-dark7: rgb(92, 63, 72);
+}
 /*! TBC */
 .custom-theme {
   --accent-dark: rgb(172, 89, 85);
