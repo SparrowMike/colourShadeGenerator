@@ -50,15 +50,13 @@ app.controller("theme", function ($scope, $http) {
     // if (e.origin !== 'http://localhost:1337') return;
 
     if (data.selectedTheme !== undefined) {
-      $scope.changeTheme(data.selectedTheme)
       $('.active').removeClass('active')
       $(`.${data.selectedTheme}`).addClass('active')
+      $scope.changeTheme(data.selectedTheme)
     }
     if (data.currentPalette !== undefined) {
-      $("html").removeAttr("style")
-      for (v in data.currentPalette) {
-        $("html").get(0).style.setProperty(`${v}`, `${data.currentPalette[v]}`);
-      }
+      localStorage.setItem("customTheme", data.currentPalette);  
+      customPaletteColors()
     }
   };
   
@@ -81,9 +79,6 @@ app.controller("theme", function ($scope, $http) {
       break;
       case "botanical-forest":
         $("html").addClass("botanical-forest");
-        break;
-      case "pyramid-of-giza":
-        $("html").addClass("pyramid-of-giza");
         break;
       case "rustic-pottery":
         $("html").addClass("rustic-pottery");

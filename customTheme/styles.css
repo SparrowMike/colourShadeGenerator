@@ -88,7 +88,7 @@ body {
   --main-secondary-dark6: rgba(69, 128, 114);
   --main-secondary-dark7: rgba(0, 58, 60);
 }
-.pyramid-of-giza {
+/* .pyramid-of-giza {
   --accent-dark: rgba(186, 113, 0);
   --accent: rgba(207, 135, 23);
   --accent-light: rgba(239, 153, 19);
@@ -109,7 +109,7 @@ body {
   --main-secondary-dark5: rgba(165, 157, 129);
   --main-secondary-dark6: rgba(116, 96, 72);
   --main-secondary-dark7: rgba(53, 39, 5);
-}
+} */
 .rustic-pottery {
   --accent-dark: rgb(215, 91, 63);
   --accent: rgb(230, 109, 85);
@@ -300,7 +300,7 @@ body {
   height: 50px;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid darkgrey;
+  border: 2px solid darkgrey;
   border-radius: 7px;
   margin: 8px 0;
 }
@@ -311,8 +311,8 @@ body {
 #defaultTheme.active {
   border: 2px solid black;
 }
-#defaultTheme h2 {
-  font-size: 22;
+#colorTemplates h2, #colors h2 {
+  font-size: 22px;
 }
 #defaultTheme h4 {
   padding-left: 10px;
