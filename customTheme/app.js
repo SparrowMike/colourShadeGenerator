@@ -48,9 +48,8 @@ app.controller("theme", function ($scope, $http) {
   window.onmessage = function(e) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
-
     if (data.selectedTheme !== undefined) {
-      $('.active').removeClass('active')
+      $('.defaultTheme').removeClass('active')
       $(`.${data.selectedTheme}`).addClass('active')
       $scope.changeTheme(data.selectedTheme)
     }
@@ -61,7 +60,7 @@ app.controller("theme", function ($scope, $http) {
   
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
-    $('.active').removeClass('active')
+    if (!$('.defaultTheme').hasClass('active')) $('.defaultTheme').removeClass('active')
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
     
@@ -174,9 +173,10 @@ app.controller("theme", function ($scope, $http) {
         results[entry.splice(0, 1)[0]] = entry.join(":");
       }
       for (r in results) {
-        if (results[r] === "" && results[r] === undefined) delete results[r];
-        storedPalette[r] = results[r].trim()
-        $("html").get(0).style.setProperty(r, results[r]); //* load colours with js
+        if (results[r] !== "" || r !== "") {
+          storedPalette[r] = results[r].trim()
+          $("html").get(0).style.setProperty(r, results[r]); //* load colours with js
+        }
       }
     }
   };
