@@ -55,7 +55,7 @@ app.controller("theme", function ($scope, $http) {
       $scope.changeTheme(data.selectedTheme)
     }
     if (data.currentPalette !== undefined) {
-      localStorage.setItem("customTheme", data.currentPalette);  
+      localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
     }
   };
   
