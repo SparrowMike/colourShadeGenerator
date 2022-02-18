@@ -38,7 +38,7 @@ app.controller("theme", function ($scope, $http) {
   Object.freeze(paletteToFeed)
 
   //? OBJECT TO STORE THE CUSTOM THEME
-  const storedPalette = { accent: {}, secondary: {}, background: {} };
+  let storedPalette = {};
 
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
@@ -56,7 +56,6 @@ app.controller("theme", function ($scope, $http) {
     }
     if (data.currentPalette !== undefined) {
       localStorage.setItem("customTheme", data.currentPalette);  
-      customPaletteColors()
     }
   };
   
@@ -113,11 +112,11 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme.accent["--accent-light"]);
-    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme.accent["--accent-dark"]);
-    $(`#defaultTheme.custom-theme #circles > .three`).css("background", theme.background["--main-bg-darkest"]);
-    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme.background["--main-bg-lightest"]);
-    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme.secondary["--main-secondary-dark5"]);
+    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme["--accent-light"]);
+    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme["--accent-dark"]);
+    $(`#defaultTheme.custom-theme #circles > .three`).css("background", theme["--main-bg-darkest"]);
+    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme["--main-bg-lightest"]);
+    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme["--main-secondary-dark5"]);
   }
 
   //?===================SAVE=====================
@@ -134,16 +133,11 @@ app.controller("theme", function ($scope, $http) {
   const loadValues = function () {
     const types = JSON.parse(localStorage.getItem("customTheme"));
     for (t in types) {
-      for (v in types[t]) {
-        $("html").get(0).style.setProperty(`${v}`, `${types[t][v]}`);
-      }
+      $("html").get(0).style.setProperty(`${t}`, `${types[t]}`);
     }
   };
-  if (theme === "custom-theme") {
-    loadValues();
-  }
 
-  //?=====GET COLOURS OF THE CURRENT THEME - CSS OR LOCALSTORAGE=====
+  //?=====GET COLOURS OF THE CURRENT THEME=====
   const loadCurrentCss = () => {
     const files = document.styleSheets;
     for (f in files) {
@@ -166,9 +160,7 @@ app.controller("theme", function ($scope, $http) {
       localStorage.getItem("customTheme") !== null
     ) {
       const gotback = JSON.parse(localStorage.getItem("customTheme"));
-      storedPalette.accent = { ...gotback.accent };
-      storedPalette.secondary = { ...gotback.secondary };
-      storedPalette.background = { ...gotback.background };
+      storedPalette = { ...gotback};
     } else {
       try {
         input = input.substring(input.indexOf("--"), input.indexOf("}"));
@@ -182,10 +174,8 @@ app.controller("theme", function ($scope, $http) {
         results[entry.splice(0, 1)[0]] = entry.join(":");
       }
       for (r in results) {
-        if (results[r] === "" || results[r] === undefined) delete results[r];
-        if (r.includes("accent")) storedPalette.accent[r] = `${results[r].trim()}`;
-        if (r.includes("secondary")) storedPalette.secondary[r] = `${results[r].trim()}`;
-        if (r.includes("bg")) storedPalette.background[r] = `${results[r].trim()}`;
+        if (results[r] === "" && results[r] === undefined) delete results[r];
+        storedPalette[r] = results[r].trim()
         $("html").get(0).style.setProperty(r, results[r]); //* load colours with js
       }
     }
@@ -195,6 +185,9 @@ app.controller("theme", function ($scope, $http) {
     loadSelectedTheme(loadCurrentCss());
     if (localStorage.getItem("customTheme") !== null) {
       customPaletteColors()
+    }
+    if (theme === "custom-theme") {
+      loadValues();
     }
   });
 
@@ -216,7 +209,7 @@ app.controller("theme", function ($scope, $http) {
     let $input = $("input.pickr-field");
     let current_color = $(".pickr-field").val() || "#041";
     let pickr;
-    Object.keys(storedPalette).forEach((type) => {
+    Object.keys(paletteToFeed).forEach((type) => {
       pickr = new Pickr({
         el: $(`.${type}Color`)[0],
         theme: "monolith",
@@ -258,7 +251,7 @@ app.controller("theme", function ($scope, $http) {
         $input.val(current_color).trigger("change");
 
         const currentValue = rgbToObj(current_color);
-        for (color in storedPalette[type]) {
+        for (color in paletteToFeed[type]) {
           let rgbArr = []
           if (type == 'secondary' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127)|| 
           type == 'background' && (currentValue.r >= 200 || currentValue.g >= 200 || currentValue.b >= 256)) {
@@ -280,7 +273,7 @@ app.controller("theme", function ($scope, $http) {
           }
           const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           //? keep the generated colour in the storePalette Object
-          storedPalette[type][color] = rgb;
+          storedPalette[color] = rgb;
           
           //? display the currently generated colours
           $("html").get(0).style.setProperty(color, rgb);
