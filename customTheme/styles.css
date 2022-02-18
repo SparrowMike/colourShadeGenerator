@@ -292,6 +292,9 @@ body {
 #previewSection {
   padding: 10px;
 }
+#colors .ui.divider {
+  border-bottom: 1px solid grey !important;
+}
 #defaultTheme {
   display: flex;
   height: 50px;
@@ -308,9 +311,13 @@ body {
 #defaultTheme.active {
   border: 2px solid black;
 }
+#defaultTheme h2 {
+  font-size: 22;
+}
 #defaultTheme h4 {
   padding-left: 10px;
   margin: 0;
+  font-size: 16px;
 }
 #defaultTheme #circles {
   display: flex;
@@ -549,7 +556,7 @@ body {
   display: relative;
   margin: 0 0.5vw;
   /* border-top: 1px solid var(--divider-light) !important; */
-  border-bottom: 1px solid grey !important;
+  border-bottom: 1px solid var(--main-secondary-dark6) !important;
 }
 .ui.divider span {
   position: sticky;

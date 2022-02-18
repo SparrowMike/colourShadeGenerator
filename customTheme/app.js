@@ -56,8 +56,8 @@ app.controller("theme", function ($scope, $http) {
     }
     if (data.currentPalette !== undefined) {
       $("html").removeAttr("style")
-      for (v in currentPalette) {
-        $("html").get(0).style.setProperty(`${v}`, `${currentPalette[v]}`);
+      for (v in data.currentPalette) {
+        $("html").get(0).style.setProperty(`${v}`, `${data.currentPalette[v]}`);
       }
     }
   };
