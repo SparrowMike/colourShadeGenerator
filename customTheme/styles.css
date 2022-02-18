@@ -549,7 +549,7 @@ body {
   display: relative;
   margin: 0 0.5vw;
   /* border-top: 1px solid var(--divider-light) !important; */
-  border-bottom: 1px solid var(--main-secondary-dark6) !important;
+  border-bottom: 1px solid grey !important;
 }
 .ui.divider span {
   position: sticky;

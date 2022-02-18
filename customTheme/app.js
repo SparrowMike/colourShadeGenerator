@@ -49,20 +49,22 @@ app.controller("theme", function ($scope, $http) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
 
-    console.log(data.storedPalette)
     if (data.selectedTheme !== undefined) {
       $scope.changeTheme(data.selectedTheme)
-      // localStorage.setItem("theme", data.selectedTheme); 
-      // setTimeout(()=>{
-      //   $scope.selected = data.selectedTheme
-      // }, 100)
       $('.active').removeClass('active')
       $(`.${data.selectedTheme}`).addClass('active')
+    }
+    if (data.currentPalette !== undefined) {
+      $("html").removeAttr("style")
+      for (v in currentPalette) {
+        $("html").get(0).style.setProperty(`${v}`, `${currentPalette[v]}`);
+      }
     }
   };
   
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
+    $('.active').removeClass('active')
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
     
