@@ -42,7 +42,7 @@ app.controller("theme", function ($scope, $http) {
 
   //? LOAD THE THEME ON START
   const theme = localStorage.getItem("theme");
-  $scope.selected = theme !== null ? theme : "dark-knight";
+  $scope.selected = theme !== null ? theme : "black-beauty";
 
   //? =========Recieve Message==========
   window.onmessage = function(e) {
@@ -60,7 +60,7 @@ app.controller("theme", function ($scope, $http) {
   
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
-    if (!$('.defaultTheme').hasClass('active')) $('.defaultTheme').removeClass('active')
+    if ($(`.defaultTheme:not(.${theme})`).hasClass('active')) $('.defaultTheme').removeClass('active')
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
     
