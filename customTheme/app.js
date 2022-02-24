@@ -11,29 +11,34 @@ app.controller("theme", function ($scope, $http) {
   //? OBJECT STORING PALETTE INCREMENT VALUES
   const paletteToFeed = {
     accent: {
-      "--accent-dark": { r: -15, g: -18, b: -22 },
-      "--accent": { r: 0, g: 0, b: 0 },
-      "--accent-light": { r: 9, g: 25, b: 51 },
+      "--accent-1": { r: -15, g: -18, b: -22 },
+      "--accent-2": { r: 0, g: 0, b: 0 },
+      "--accent-3": { r: 9, g: 25, b: 51 },
     },
-    secondary: {
-      "--main-secondary": {r: 0, g: 0, b: 0},
-      "--main-secondary-dark1": {r: -25, g: -25, b: -25},
-      "--main-secondary-dark2": {r: -56, g: -56, b: -56},
-      "--main-secondary-dark3": {r: -82, g: -83, b: -83},
-      "--main-secondary-dark4": {r: -86, g: -86, b: -84},
-      "--main-secondary-dark5": {r: -99, g: -99, b: -99},
-      "--main-secondary-dark6": {r: -165, g: -165, b: -165},
-      "--main-secondary-dark7": {r: -202, g: -202, b: -202}
+    text: {
+      "--text-1": {r: 0, g: 0, b: 0},
+      "--text-2": {r: -25, g: -25, b: -25},
+      "--text-3": {r: -56, g: -56, b: -56},
+      "--text-4": {r: -82, g: -83, b: -83},
+      "--text-5": {r: -86, g: -86, b: -84},
+      "--text-6": {r: -99, g: -99, b: -99},
     },
     background: {
-      "--main-bg-darkest": { r: -17, g: -18, b: -23 },
-      "--main-bg-darker": { r: -10, g: -10, b: -14 },
-      "--main-bg-dark": { r: 0, g: -1, b: -2 },
-      "--main-bg": { r: 0, g: 0, b: 0 },
-      "--main-bg-light": { r: 8, g: 8, b: 9 },
-      "--main-bg-lighter": { r: 14, g: 14, b: 17 },
-      "--main-bg-lightest": { r: 30, g: 32, b: 36 },
+      "--background-1": { r: -17, g: -18, b: -23 },
+      "--background-2": { r: -10, g: -10, b: -14 },
+      "--background-3": { r: 0, g: -1, b: -2 },
+      "--background-4": { r: 0, g: 0, b: 0 },
+      "--background-5": { r: 8, g: 8, b: 9 },
+      "--background-6": { r: 14, g: 14, b: 17 },
+      "--background-7": { r: 30, g: 32, b: 36 },
     },
+    divider: {
+      "--divider-lines-1": {r: 0, g: 0, b: 0},
+      "--divider-lines-2": {r: -82, g: -82, b: -82}
+    },
+    shadow: {
+      "--shadow": {r: 0, g: 0 ,b: 0}
+    }
   };
   Object.freeze(paletteToFeed)
 
@@ -111,11 +116,11 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme["--accent-light"]);
-    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme["--accent-dark"]);
-    $(`#defaultTheme.custom-theme #circles > .three`).css("background", theme["--main-bg-darkest"]);
-    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme["--main-bg-lightest"]);
-    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme["--main-secondary-dark5"]);
+    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme["--accent-3"]);
+    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme["--accent-1"]);
+    $(`#defaultTheme.custom-theme #circles > .three`).css("background", theme["--background-1"]);
+    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme["--background-7"]);
+    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme["--text-6"]);
   }
 
   //?===================SAVE=====================
@@ -253,7 +258,7 @@ app.controller("theme", function ($scope, $http) {
         const currentValue = rgbToObj(current_color);
         for (color in paletteToFeed[type]) {
           let rgbArr = []
-          if (type == 'secondary' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127)|| 
+          if (type == 'text' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127)|| 
           type == 'background' && (currentValue.r >= 200 || currentValue.g >= 200 || currentValue.b >= 256)) {
             rgbArr = [
               rgbValues.r - paletteToFeed[type][color].r,

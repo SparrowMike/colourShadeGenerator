@@ -13,265 +13,246 @@ body {
 }
 
 :root {
-  --success-dark: rgb(64, 146, 95); /* *(-16, -34, -24) */
-  --success: rgb(80, 170, 119); /* *base  */
-  --success-light: rbg(167, 213, 187); /* *(+87, +84, +68) */
-
+  --success-1: rgb(64, 146, 95); /* *(-16, -34, -24) */
+  --success-2: rgb(80, 170, 119); /* *base  */
+  --success-3: rgb(167, 213, 187); /* *(+87, +84, +68) */
+  
+  --error-1: rgb(176, 65, 65); /* *(-59, -22, -22) */
+  --error-2: rgb(235, 87, 87); /* *base */
+  --error-3: rgb(245, 171, 171); /* *(+10, +84, +84) */
+  
   --button-text-color: rgb(252, 252, 252);
-
-  --error-dark: rgb(176, 65, 65); /* *(-59, -22, -22) */
-  --error: rgb(235, 87, 87); /* *base */
-  --error-light: rgb(245, 171, 171); /* *(+10, +84, +84) */
-
+  
   --friend: rgb(81, 168, 255);
 }
 
 .black-beauty {
-  --accent-dark: rgb(229, 151, 29); /* *(-15, -18, -22) */
-  --accent: rgb(244, 169, 51); /* *base */
-  --accent-light: rgb(253, 194, 102); /* *(+9, +25, +51) */
+  --accent-1: rgb(229, 151, 29); /* *(-15, -18, -22) */
+  --accent-2: rgb(244, 169, 51); /* *base */
+  --accent-3: rgb(253, 194, 102); /* *(+9, +25, +51) */
 
-  --main-secondary: rgb(252, 252, 252); /* *base */
-  --main-secondary-dark1: rgb(227, 227, 227); /* *(-25, -25, -25) */
-  --main-secondary-dark2: rgb(196, 196, 196); /* *(-56, -56, -56) */
-  --main-secondary-dark3: rgb(170, 169, 169); /* *(-82, -83, -83) */
-  --main-secondary-dark4: rgb(166, 166, 168); /* *(-86, -86, -84) */
-  --main-secondary-dark5: rgb(153, 153, 153); /* *(-99, -99, -99) */
-  --main-secondary-dark6: rgb(87, 87, 87); /* *(-165, -165, -165) */
-  --main-secondary-dark7: rgb(50, 50, 50); /* *(-202, -202, -202) */
+  --text-1: rgb(252, 252, 252); /* *base */
+  --text-2: rgb(227, 227, 227); /* *(-25, -25, -25) */
+  --text-3: rgb(196, 196, 196); /* *(-56, -56, -56) */
+  --text-4: rgb(170, 169, 169); /* *(-82, -83, -83) */
+  --text-5: rgb(166, 166, 168); /* *(-86, -86, -84) */
+  --text-6: rgb(153, 153, 153); /* *(-99, -99, -99) */
 
-  --main-bg-darkest: rgb(20, 20, 20); /* *(-17,-18,-23) */
-  --main-bg-darker: rgb(27, 28, 29); /* *(-10,-10,-14) */
-  --main-bg-dark: rgb(37, 37, 41); /* *(0, -1, -2) */
-  --main-bg: rgb(37, 38, 43); /* *base */
-  --main-bg-light: rgb(45, 46, 52); /* *(+8, +8, +9) */
-  --main-bg-lighter: rgb(51, 52, 60); /* *(+14, +14, +17) */
-  --main-bg-lightest: rgb(67, 70, 79); /* *(+30, +32, +36) */
+  --background-1: rgb(20, 20, 20); /* *(-17,-18,-23) */
+  --background-2: rgb(27, 28, 29); /* *(-10,-10,-14) */
+  --background-3: rgb(37, 37, 41); /* *(0, -1, -2) */
+  --background-4: rgb(37, 38, 43); /* *base */
+  --background-5: rgb(45, 46, 52); /* *(+8, +8, +9) */
+  --background-6: rgb(51, 52, 60); /* *(+14, +14, +17) */
+  --background-7: rgb(67, 70, 79); /* *(+30, +32, +36) */
+  
+  --divider-lines-1: rgb(87, 87, 87); /* *base */
+  --divider-lines-2: rgb(170, 169, 169); /* *(-83, -82, -82) */
+
+  --shadow: rgb(20, 20, 20);
 }
 .dark-knight {
-  --accent-dark: rgb(224, 208, 162);
-  --accent: rgb(239, 225, 186, 1);
-  --accent-light: rgb(250, 240, 212);
-  --main-bg-darkest: rgb(6, 9, 33, 1);
-  --main-bg-darker: rgb(13, 17, 42);
-  --main-bg-dark: rgb(23, 26, 54);
-  --main-bg: rgb(23, 27, 56);
-  --main-bg-light: rgb(31, 35, 65);
-  --main-bg-lighter: rgb(37, 41, 73);
-  --main-bg-lightest: rgb(53, 59, 92);
-  --main-secondary: rgb(252, 252, 252, 1);
-  --main-secondary-dark1: rgb(210, 217, 224);
-  --main-secondary-dark2: rgb(200, 210, 220);
-  --main-secondary-dark3: rgb(158, 171, 185);
-  --main-secondary-dark4: rgb(151, 165, 181);
-  --main-secondary-dark5: rgb(133, 147, 164);
-  --main-secondary-dark6: rgb(79, 92, 108);
-  --main-secondary-dark7: rgb(29, 40, 53);
+  --accent-1: rgb(224, 208, 162);
+  --accent-2: rgb(239, 225, 186, 1);
+  --accent-3: rgb(250, 240, 212);
+  --background-1: rgb(6, 9, 33, 1);
+  --background-2: rgb(13, 17, 42);
+  --background-3: rgb(23, 26, 54);
+  --background-4: rgb(23, 27, 56);
+  --background-5: rgb(31, 35, 65);
+  --background-6: rgb(37, 41, 73);
+  --background-7: rgb(53, 59, 92);
+  --text-1: rgb(252, 252, 252, 1);
+  --text-2: rgb(210, 217, 224);
+  --text-3: rgb(200, 210, 220);
+  --text-4: rgb(158, 171, 185);
+  --text-5: rgb(151, 165, 181);
+  --text-6: rgb(133, 147, 164);
 }
 .botanical-forest {
-  --accent-dark: rgba(233, 115, 123);
-  --accent: rgba(238, 153, 159);
-  --accent-light: rgba(241, 179, 184);
-  --main-bg-darkest: rgba(0, 44, 38);
-  --main-bg-darker: rgba(5, 52, 47);
-  --main-bg-dark: rgba(15, 61, 59);
-  --main-bg: rgba(15, 62, 61);
-  --main-bg-light: rgba(23, 70, 70);
-  --main-bg-lighter: rgba(29, 76, 78);
-  --main-bg-lightest: rgba(45, 95, 97);
-  --main-secondary: rgba(228, 241, 238);
-  --main-secondary-dark1: rgba(172, 213, 203);
-  --main-secondary-dark2: rgba(159, 201, 191);
-  --main-secondary-dark3: rgba(132, 178, 167);
-  --main-secondary-dark4: rgba(110, 164, 151);
-  --main-secondary-dark5: rgba(102, 149, 138);
-  --main-secondary-dark6: rgba(69, 128, 114);
-  --main-secondary-dark7: rgba(0, 58, 60);
+  --accent-1: rgba(233, 115, 123);
+  --accent-2: rgba(238, 153, 159);
+  --accent-3: rgba(241, 179, 184);
+  --background-1: rgba(0, 44, 38);
+  --background-2: rgba(5, 52, 47);
+  --background-3: rgba(15, 61, 59);
+  --background-4: rgba(15, 62, 61);
+  --background-5: rgba(23, 70, 70);
+  --background-6: rgba(29, 76, 78);
+  --background-7: rgba(45, 95, 97);
+  --text-1: rgba(228, 241, 238);
+  --text-2: rgba(172, 213, 203);
+  --text-3: rgba(159, 201, 191);
+  --text-4: rgba(132, 178, 167);
+  --text-5: rgba(110, 164, 151);
+  --text-6: rgba(102, 149, 138);
 }
 /* .pyramid-of-giza {
-  --accent-dark: rgba(186, 113, 0);
-  --accent: rgba(207, 135, 23);
-  --accent-light: rgba(239, 153, 19);
+  --accent-1: rgba(186, 113, 0);
+  --accent-2: rgba(207, 135, 23);
+  --accent-3: rgba(239, 153, 19);
 
-  --main-bg-darkest: rgba(39, 27, 0);
-  --main-bg-darker: rgba(53, 38, 2);
-  --main-bg-dark: rgba(64, 47, 6);
-  --main-bg: rgba(64, 48, 8);
-  --main-bg-light: rgba(72, 56, 16);
-  --main-bg-lighter: rgba(78, 60, 25);
-  --main-bg-lightest: rgba(94, 71, 44);
+  --background-1: rgba(39, 27, 0);
+  --background-2: rgba(53, 38, 2);
+  --background-3: rgba(64, 47, 6);
+  --background-4: rgba(64, 48, 8);
+  --background-5: rgba(72, 56, 16);
+  --background-6: rgba(78, 60, 25);
+  --background-7: rgba(94, 71, 44);
 
-  --main-secondary: rgba(250, 241, 209);
-  --main-secondary-dark1: rgba(241, 231, 196);
-  --main-secondary-dark2: rgba(229, 218, 179);
-  --main-secondary-dark3: rgba(205, 194, 154);
-  --main-secondary-dark4: rgba(181, 169, 129);
-  --main-secondary-dark5: rgba(165, 157, 129);
-  --main-secondary-dark6: rgba(116, 96, 72);
-  --main-secondary-dark7: rgba(53, 39, 5);
+  --text-1: rgba(250, 241, 209);
+  --text-2: rgba(241, 231, 196);
+  --text-3: rgba(229, 218, 179);
+  --text-4: rgba(205, 194, 154);
+  --text-5: rgba(181, 169, 129);
+  --text-6: rgba(165, 157, 129);
 } */
 .rustic-pottery {
-  --accent-dark: rgb(215, 91, 63);
-  --accent: rgb(230, 109, 85);
-  --accent-light: rgb(239, 134, 136);
-  --main-bg-darkest: rgb(20, 11, 3);
-  --main-bg-darker: rgb(27, 18, 6);
-  --main-bg-dark: rgb(37, 27, 18);
-  --main-bg: rgb(37, 28, 20);
-  --main-bg-light: rgb(45, 36, 28);
-  --main-bg-lighter: rgb(51, 42, 37);
-  --main-bg-lightest: rgb(67, 60, 56);
-  --main-secondary: rgb(256, 175, 106);
-  --main-secondary-dark1: rgb(231, 150, 81);
-  --main-secondary-dark2: rgb(200, 119, 50);
-  --main-secondary-dark3: rgb(174, 92, 23);
-  --main-secondary-dark4: rgb(170, 89, 20);
-  --main-secondary-dark5: rgb(157, 76, 7);
-  --main-secondary-dark6: rgb(91, 10, 0);
-  --main-secondary-dark7: rgb(54, 0, 0);
+  --accent-1: rgb(215, 91, 63);
+  --accent-2: rgb(230, 109, 85);
+  --accent-3: rgb(239, 134, 136);
+  --background-1: rgb(20, 11, 3);
+  --background-2: rgb(27, 18, 6);
+  --background-3: rgb(37, 27, 18);
+  --background-4: rgb(37, 28, 20);
+  --background-5: rgb(45, 36, 28);
+  --background-6: rgb(51, 42, 37);
+  --background-7: rgb(67, 60, 56);
+  --text-1: rgb(256, 175, 106);
+  --text-2: rgb(231, 150, 81);
+  --text-3: rgb(200, 119, 50);
+  --text-4: rgb(174, 92, 23);
+  --text-5: rgb(170, 89, 20);
+  --text-6: rgb(157, 76, 7);
 }
 .aqua-lolly {
-  --accent-dark: rgb(255, 74, 81);
-  --accent: rgb(255, 109, 115);
-  --accent-light: rgb(255, 138, 143);
-  --main-bg-darkest: rgb(252, 252, 252);
-  --main-bg-darker: rgb(229, 236, 235);
-  --main-bg-dark: rgb(213, 224, 223);
-  --main-bg: rgb(199, 213, 212);
-  --main-bg-light: rgb(183, 203, 201);
-  --main-bg-lighter: rgb(158, 188, 185);
-  --main-bg-lightest: rgb(134, 160, 158);
-  --main-secondary: rgb(10, 34, 97);
-  --main-secondary-dark1: rgb(17, 47, 124);
-  --main-secondary-dark2: rgb(33, 67, 156);
-  --main-secondary-dark3: rgb(63, 101, 198);
-  --main-secondary-dark4: rgb(89, 125, 219);
-  --main-secondary-dark5: rgb(113, 148, 237);
-  --main-secondary-dark6: rgb(147, 175, 249);
-  --main-secondary-dark7: rgb(222, 229, 250);
+  --accent-1: rgb(255, 74, 81);
+  --accent-2: rgb(255, 109, 115);
+  --accent-3: rgb(255, 138, 143);
+  --background-1: rgb(252, 252, 252);
+  --background-2: rgb(229, 236, 235);
+  --background-3: rgb(213, 224, 223);
+  --background-4: rgb(199, 213, 212);
+  --background-5: rgb(183, 203, 201);
+  --background-6: rgb(158, 188, 185);
+  --background-7: rgb(134, 160, 158);
+  --text-1: rgb(10, 34, 97);
+  --text-2: rgb(17, 47, 124);
+  --text-3: rgb(33, 67, 156);
+  --text-4: rgb(63, 101, 198);
+  --text-5: rgb(89, 125, 219);
+  --text-6: rgb(113, 148, 237);
 }
 .lush-blush {
-  --accent-dark: rgb(64, 63, 128);
-  --accent: rgb(87, 86, 150);
-  --accent-light: rgb(117, 116, 175);
-  --main-bg-darkest: rgb(252, 252, 252);
-  --main-bg-darker: rgb(254, 249, 246);
-  --main-bg-dark: rgb(245, 238, 234);
-  --main-bg: rgb(237, 226, 220);
-  --main-bg-light: rgb(235, 216, 206);
-  --main-bg-lighter: rgb(225, 202, 191);
-  --main-bg-lightest: rgb(187, 171, 171);
-  --main-secondary: rgb(171, 59, 97);
-  --main-secondary-dark1: rgb(187,76,113);
-  --main-secondary-dark2: rgb(203,92,129);
-  --main-secondary-dark3: rgb(211,106,141);
-  --main-secondary-dark4: rgb(219,118,151);
-  --main-secondary-dark5: rgb(225, 137, 166);
-  --main-secondary-dark6: rgb(226,160,182);
-  --main-secondary-dark7: rgb(228,206,214);
+  --accent-1: rgb(64, 63, 128);
+  --accent-2: rgb(87, 86, 150);
+  --accent-3: rgb(117, 116, 175);
+  --background-1: rgb(252, 252, 252);
+  --background-2: rgb(254, 249, 246);
+  --background-3: rgb(245, 238, 234);
+  --background-4: rgb(237, 226, 220);
+  --background-5: rgb(235, 216, 206);
+  --background-6: rgb(225, 202, 191);
+  --background-7: rgb(187, 171, 171);
+  --text-1: rgb(171, 59, 97);
+  --text-2: rgb(187,76,113);
+  --text-3: rgb(203,92,129);
+  --text-4: rgb(211,106,141);
+  --text-5: rgb(219,118,151);
+  --text-6: rgb(225, 137, 166);
 }
 .white-smoke {
-  --accent-dark: rgb(48, 65, 97);
-  --accent: rgb(64, 87, 130);
-  --accent-light: rgb(159, 171, 192);
+  --accent-1: rgb(48, 65, 97);
+  --accent-2: rgb(64, 87, 130);
+  --accent-3: rgb(159, 171, 192);
 
-  --main-bg-darkest: rgb(252, 252, 252);
-  --main-bg-darker: rgb(240, 240, 240);
-  --main-bg-dark: rgb(233, 233, 233);
-  --main-bg: rgb(228, 228, 228);
-  --main-bg-light: rgb(211, 211, 211);
-  --main-bg-lighter: rgb(199, 199, 199);
-  --main-bg-lightest: rgb(167, 167, 167);
+  --background-1: rgb(252, 252, 252);
+  --background-2: rgb(240, 240, 240);
+  --background-3: rgb(233, 233, 233);
+  --background-4: rgb(228, 228, 228);
+  --background-5: rgb(211, 211, 211);
+  --background-6: rgb(199, 199, 199);
+  --background-7: rgb(167, 167, 167);
 
-  --main-secondary: rgb(27, 28, 29);
-  --main-secondary-dark1: rgb(71, 71, 71);
-  --main-secondary-dark2: rgb(84, 84, 84);
-  --main-secondary-dark3: rgb(103, 103, 103);
-  --main-secondary-dark4: rgb(119, 119, 119);
-  --main-secondary-dark5: rgb(146, 146, 146);
-  --main-secondary-dark6: rgb(196, 196, 196);
-  --main-secondary-dark7: rgb(238, 238, 238);
+  --text-1: rgb(27, 28, 29);
+  --text-2: rgb(71, 71, 71);
+  --text-3: rgb(84, 84, 84);
+  --text-4: rgb(103, 103, 103);
+  --text-5: rgb(119, 119, 119);
+  --text-6: rgb(146, 146, 146);
 }
 .prairie-dance {
-  --accent-dark: rgb(174, 76, 76);
-  --accent: rgb(191, 100, 100);
-  --accent-light: rgb(208, 122, 122);
-  --main-bg-darkest: rgb(252, 252, 252);
-  --main-bg-darker: rgb(252, 248, 241);
-  --main-bg-dark: rgb(250, 244, 231);
-  --main-bg: rgb(243, 236, 218);
-  --main-bg-light: rgb(233, 224, 202);
-  --main-bg-lighter: rgb(221, 212, 190);
-  --main-bg-lightest: rgb(200, 188, 161);
-  --main-secondary: rgb(62, 79, 60);
-  --main-secondary-dark1: rgb(73, 91, 70);
-  --main-secondary-dark2: rgb(86, 104, 83);
-  --main-secondary-dark3: rgb(117, 126, 95);
-  --main-secondary-dark4: rgb(127, 136, 107);
-  --main-secondary-dark5: rgb(143, 151, 124);
-  --main-secondary-dark6: rgb(161, 169, 142);
-  --main-secondary-dark7: rgb(216, 222, 202);
+  --accent-1: rgb(174, 76, 76);
+  --accent-2: rgb(191, 100, 100);
+  --accent-3: rgb(208, 122, 122);
+  --background-1: rgb(252, 252, 252);
+  --background-2: rgb(252, 248, 241);
+  --background-3: rgb(250, 244, 231);
+  --background-4: rgb(243, 236, 218);
+  --background-5: rgb(233, 224, 202);
+  --background-6: rgb(221, 212, 190);
+  --background-7: rgb(200, 188, 161);
+  --text-1: rgb(62, 79, 60);
+  --text-2: rgb(73, 91, 70);
+  --text-3: rgb(86, 104, 83);
+  --text-4: rgb(117, 126, 95);
+  --text-5: rgb(127, 136, 107);
+  --text-6: rgb(143, 151, 124);
 }
 .farsighted {
-  --accent-dark: rgb(114, 105, 211);
-  --accent: rgb(138, 131, 224);
-  --accent-light: rgb(159, 153, 230);
-  --main-bg-darkest: rgb(252, 252, 252);
-  --main-bg-darker: rgb(242, 242, 248);
-  --main-bg-dark: rgb(234, 234, 244);
-  --main-bg: rgb(227, 227, 239);
-  --main-bg-light: rgb(215, 215, 231);
-  --main-bg-lighter: rgb(206, 206, 225);
-  --main-bg-lightest: rgb(192, 192, 215);
-  --main-secondary: rgb(112, 105, 131);
-  --main-secondary-dark1: rgb(126, 119, 147);
-  --main-secondary-dark2: rgb(135, 128, 159);
-  --main-secondary-dark3: rgb(144, 136, 173);
-  --main-secondary-dark4: rgb(155, 146, 188);
-  --main-secondary-dark5: rgb(166, 157, 198);
-  --main-secondary-dark6: rgb(177, 169, 208);
-  --main-secondary-dark7: rgb(210, 204, 232);
+  --accent-1: rgb(114, 105, 211);
+  --accent-2: rgb(138, 131, 224);
+  --accent-3: rgb(159, 153, 230);
+  --background-1: rgb(252, 252, 252);
+  --background-2: rgb(242, 242, 248);
+  --background-3: rgb(234, 234, 244);
+  --background-4: rgb(227, 227, 239);
+  --background-5: rgb(215, 215, 231);
+  --background-6: rgb(206, 206, 225);
+  --background-7: rgb(192, 192, 215);
+  --text-1: rgb(112, 105, 131);
+  --text-2: rgb(126, 119, 147);
+  --text-3: rgb(135, 128, 159);
+  --text-4: rgb(144, 136, 173);
+  --text-5: rgb(155, 146, 188);
+  --text-6: rgb(166, 157, 198);
 }
 .hearts-desire {
-  --accent-dark: rgb(242, 184, 151);
-  --accent: rgb(237, 200, 184);
-  --accent-light: rgb(243, 216, 204);
-  --main-bg-darkest: rgb(89, 3, 33);
-  --main-bg-darker: rgb(103, 7, 40);
-  --main-bg-dark: rgb(109, 10, 44);
-  --main-bg: rgb(113, 11, 46);
-  --main-bg-light: rgb(122, 19, 54);
-  --main-bg-lighter: rgb(128, 20, 57);
-  --main-bg-lightest: rgb(153, 45, 82);
-  --main-secondary: rgb(187, 178, 181);
-  --main-secondary-dark1: rgb(177, 164, 169);
-  --main-secondary-dark2: rgb(168, 151, 156);
-  --main-secondary-dark3: rgb(161, 140, 147);
-  --main-secondary-dark4: rgb(155, 136, 143);
-  --main-secondary-dark5: rgb(153, 128, 136);
-  --main-secondary-dark6: rgb(134, 102, 112);
-  --main-secondary-dark7: rgb(92, 63, 72);
+  --accent-1: rgb(242, 184, 151);
+  --accent-2: rgb(237, 200, 184);
+  --accent-3: rgb(243, 216, 204);
+  --background-1: rgb(89, 3, 33);
+  --background-2: rgb(103, 7, 40);
+  --background-3: rgb(109, 10, 44);
+  --background-4: rgb(113, 11, 46);
+  --background-5: rgb(122, 19, 54);
+  --background-6: rgb(128, 20, 57);
+  --background-7: rgb(153, 45, 82);
+  --text-1: rgb(187, 178, 181);
+  --text-2: rgb(177, 164, 169);
+  --text-3: rgb(168, 151, 156);
+  --text-4: rgb(161, 140, 147);
+  --text-5: rgb(155, 136, 143);
+  --text-6: rgb(153, 128, 136);
 }
 /*! TBC */
 .custom-theme {
-  --accent-dark: rgb(172, 89, 85);
-  --accent: rgb(187, 107, 107);
-  --accent-light: rgb(196, 132, 158);
-  --main-secondary: rgb(1, 1, 1);
-  --main-secondary-dark1: rgb(26, 26, 26);
-  --main-secondary-dark2: rgb(57, 57, 57);
-  --main-secondary-dark3: rgb(83, 84, 84);
-  --main-secondary-dark4: rgb(87, 87, 85);
-  --main-secondary-dark5: rgb(100, 100, 100);
-  --main-secondary-dark6: rgb(166, 166, 166);
-  --main-secondary-dark7: rgb(203, 203, 203);
-  --main-bg-darkest: rgb(255, 255, 227);
-  --main-bg-darker: rgb(255, 254, 218);
-  --main-bg-dark: rgb(255, 245, 206);
-  --main-bg: rgb(255, 244, 204);
-  --main-bg-light: rgb(247, 236, 195);
-  --main-bg-lighter: rgb(241, 230, 187);
-  --main-bg-lightest: rgb(225, 212, 168);
+  --accent-1: rgb(172, 89, 85);
+  --accent-2: rgb(187, 107, 107);
+  --accent-3: rgb(196, 132, 158);
+  --text-1: rgb(1, 1, 1);
+  --text-2: rgb(26, 26, 26);
+  --text-3: rgb(57, 57, 57);
+  --text-4: rgb(83, 84, 84);
+  --text-5: rgb(87, 87, 85);
+  --text-6: rgb(100, 100, 100);
+  --background-1: rgb(255, 255, 227);
+  --background-2: rgb(255, 254, 218);
+  --background-3: rgb(255, 245, 206);
+  --background-4: rgb(255, 244, 204);
+  --background-5: rgb(247, 236, 195);
+  --background-6: rgb(241, 230, 187);
+  --background-7: rgb(225, 212, 168);
 }
 
 /* ?================SIDE PANEL============== */
@@ -332,19 +313,19 @@ body {
   border: 1px solid black;
 }
 #defaultTheme #circles > .one {
-  background: var(--accent-light);
+  background: var(--accent-3);
 }
 #defaultTheme #circles > .two {
-  background: var(--accent-dark);
+  background: var(--accent-1);
 }
 #defaultTheme #circles > .three {
-  background: var(--main-bg-darkest);
+  background: var(--background-1);
 }
 #defaultTheme #circles > .four {
-  background: var(--main-bg-lightest);
+  background: var(--background-7);
 }
 #defaultTheme #circles > .five {
-  background: var(--main-secondary-dark5);
+  background: var(--text-6);
 }
 
 /* ?============ COLORS =========== */
@@ -363,13 +344,13 @@ body {
   border: 2px solid black;
 }
 #accent #pickerContainer .pickr .pcr-button:after {
-  background: var(--accent);
+  background: var(--accent-2);
 }
 #secondary #pickerContainer .pickr .pcr-button:after {
-  background: var(--main-secondary);
+  background: var(--text-1);
 }
 #background #pickerContainer .pickr .pcr-button:after {
-  background: var(--main-bg);
+  background: var(--background-4);
 }
 .pickr-theme {
   background: #2d2e34;
@@ -386,14 +367,14 @@ body {
   width: 83%;
   height: 100%;
   overflow: hidden;
-  background: var(--main-bg-light);
+  background: var(--background-5);
 }
 
 /* ?============= MAIN NAVBAR ================= */
 .mainNavbar {
   width: 100%;
   height: 2.25vw;
-  background: var(--main-bg-light);
+  background: var(--background-5);
   display: flex;
   justify-content: space-between;
 }
@@ -406,7 +387,7 @@ body {
   margin: 0 8px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--main-secondary);
+  color: var(--text-1);
 }
 .mainNavbar .mainIcons,
 .mainNavbar .mainServer {
@@ -420,13 +401,13 @@ body {
   height: 1vw;
 }
 .mainNavbar .mainIcons path {
-  fill: var(--main-secondary-dark3);
+  fill: var(--text-4);
 }
 .mainNavbar .mainIcons .active path {
-  fill: var(--accent);
+  fill: var(--accent-2);
 }
 .mainNavbar .mainIcons > div:hover path {
-  fill: var(--accent);
+  fill: var(--accent-2);
   cursor: pointer;
 }
 
@@ -436,14 +417,14 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  background: var(--main-bg);
-  box-shadow: 1px 1px 3px 2px var(--main-bg-darker);
+  background: var(--background-4);
+  box-shadow: 0px 4px 7px 1px var(--shadow);
 }
 .serverNavbar .servers {
   height: 100%;
   width: 10vw;
   display: flex;
-  border-right: 1px solid var(--main-bg-lightest);
+  border-right: 1px solid var(--divider-lines-1);
   justify-content: center;
   align-items: center;
 }
@@ -451,32 +432,32 @@ body {
   width: 2vw;
 }
 .serverNavbar .servers.explore path {
-  fill: var(--main-secondary-dark3);
+  fill: var(--text-4);
 }
 .serverNavbar .servers.active {
-  background: var(--main-bg-light);
+  background: var(--background-5);
 }
 .serverNavbar .servers.active .icon {
   position: relative;
   left: 22%;
-  color: var(--main-secondary-dark3);
+  color: var(--text-4);
 }
 .serverNavbar .servers h4 {
   font-size: 0.75vw;
   font-weight: 700;
-  color: var(--main-secondary-dark3);
+  color: var(--text-4);
 }
 .serverNavbar .mini {
   padding: 0.15vw 0.25vw 0.15vw 0.4vw;
 }
 .serverNavbar .mini .plus {
-  color: var(--main-secondary-dark3);
+  color: var(--text-4);
 }
 .serverNavbar .exploreServers:hover,
 .serverNavbar .servers:hover,
 .serverNavbar .mini:hover {
   cursor: pointer;
-  background-color: var(--main-bg-lightest);
+  background-color: var(--background-7);
 }
 
 /* ?============= CHAT WINDOW ================= */
@@ -491,11 +472,11 @@ body {
 } */
 .chatWindow {
   display: flex;
-  border-top: 1px solid var(--main-bg-darker);
+  border-top: 1px solid var(--background-2);
   height: 100%;
 }
 .chatWindow .chat {
-  background: var(--main-bg-light);
+  background: var(--background-5);
   /* flex-grow: 6; */
   position: relative;
 }
@@ -509,18 +490,18 @@ body {
   height: 8vw;
   bottom: 0;
   width: 100%;
-  background: var(--main-bg-light);
+  background: var(--background-5);
 }
 .emoji-wysiwyg-editor:focus {
   outline: 0;
 }
 [contentEditable="true"]:empty:not(:focus):before {
   content: attr(data-text);
-  color: var(--main-secondary-dark5);
+  color: var(--text-6);
 }
 .emoji-wysiwyg-editor {
-  background-color: var(--main-bg);
-  color: var(--main-secondary);
+  background-color: var(--background-4);
+  color: var(--text-1);
   margin-bottom: 0;
   padding: 0.5vw;
   font-size: 0.75vw;
@@ -536,12 +517,12 @@ body {
   background: inherit;
 }
 .chatWindow .chat .ui.right.floated.inverted.segment .icon {
-  color: var(--main-secondary-dark3);
+  color: var(--text-4);
   margin: 0;
   font-size: 0.75vw;
 }
 .chatWindow .chat .ui.right.floated.inverted.segment .icon:hover {
-  color: var(--accent);
+  color: var(--accent-2);
   background: none;
 }
 .ui.inverted.button {
@@ -556,22 +537,21 @@ body {
 .ui.divider {
   display: relative;
   margin: 0 0.5vw;
-  /* border-top: 1px solid var(--divider-light) !important; */
-  border-bottom: 1px solid var(--main-secondary-dark6) !important;
+  border-bottom: 1px solid var(--divider-lines-1) !important;
 }
 .ui.divider span {
   position: sticky;
   left: 45%;
-  color: var(--main-secondary-dark6);
+  color: var(--divider-lines-1);
   font-size: 0.5vw;
-  border: 0.05vw solid var(--main-secondary-dark6);
+  border: 0.05vw solid var(--divider-lines-1);
   padding: 0.1vw;
   border-radius: 0.25vw;
   z-index: 1;
-  background: var(--main-bg-light);
+  background: var(--background-5);
 }
 .chat .messagesFrom {
-  background: var(--main-bg-lighter);
+  background: var(--background-6);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -594,22 +574,22 @@ body {
   top: 2.75vw;
   left: 2.75vw;
   border-radius: 50%;
-  border: 0.15vw solid var(--main-bg-dark);
+  border: 0.15vw solid var(--background-3);
 }
 .chat .messagesFrom .avatarName .name {
   margin-left: 1vw;
 }
 .chat .messagesFrom .avatarName h4 {
   font-size: 1vw;
-  color: var(--main-secondary-dark1);
+  color: var(--text-2);
   margin: 0;
 }
 .chat .messagesFrom .avatarName p {
-  color: var(--main-secondary-dark4);
+  color: var(-text-5-dark4);
   font-size: 0.75vw;
 }
 .chat .messagesFrom i {
-  color: var(--main-secondary);
+  color: var(--text-1);
   margin-right: 1.5vw;
 }
 .chat .displayMessages .directMsg .directMsgAvtNname,
@@ -624,24 +604,24 @@ body {
   position: absolute;
   bottom: 9.75vw;
   right: 1vw;
-  background: var(--main-bg-lighter);
+  background: var(--background-6);
   border-radius: 0.5vw 0.5vw 0 0;
 }
 .chat .displayMessages .directMsg .message .icons div {
   padding: 0.3vw;
 }
 .chat .displayMessages .directMsg .message .icons div:hover {
-  background: var(--main-bg-lightest);
+  background: var(--background-7);
 }
 .chat .displayMessages .directMsg .message .icons i {
   font-size: 0.8vw;
-  color: var(--main-secondary-dark5);
+  color: var(--text-6);
 }
 .chat .displayMessages .directMsg:hover .icons {
   display: flex;
 }
 .chat .displayMessages .directMsg:hover {
-  background: var(--main-bg-lighter);
+  background: var(--background-6);
 }
 .chat .displayMessages .directMsg {
   position: relative;
@@ -660,20 +640,20 @@ body {
   top: 1.9vw;
   left: 1.9vw;
   border-radius: 50%;
-  border: 0.125vw solid var(--main-bg-dark);
+  border: 0.125vw solid var(--background-3);
 }
 .chat .displayMessages .directMsg .directMsgAvtNname h4 {
   font-size: 0.9vw;
-  color: var(--main-secondary);
+  color: var(--text-1);
 }
 .chat .displayMessages .directMsg .message h4 {
   margin-top: 0.5vw;
   font-size: 0.75vw;
-  color: var(--main-secondary);
+  color: var(--text-1);
 }
 .chat .displayMessages .directMsg .message p {
   font-size: 0.75vw;
-  color: var(--main-secondary-dark5);
+  color: var(--text-6);
   /* margin: 0.5vw; */
   min-width: 3vw;
   margin-left: 1vw;
@@ -682,20 +662,20 @@ body {
 /* ?============= CHAT WINDOW MESSAGE HISTORY LIST ================= */
 .chatWindow .chatHistory {
   min-width: 17vw;
-  background: var(--main-bg);
+  background: var(--background-4);
   /* flex-grow: .75; */
 }
 .chatWindow .chatHistory .ui.icon i {
   font-size: 0.75vw;
-  color: var(--main-secondary);
+  color: var(--text-1);
 }
 .chatWindow .chatHistory .ui.icon input {
-  background: var(--main-bg-light);
+  background: var(--background-5);
   border: none !important;
   box-shadow: none !important;
   padding: 0.85;
   cursor: text;
-  color: var(--main-secondary);
+  color: var(--text-1);
   outline: 0;
   border-radius: 0;
   font-size: 0.75vw;
@@ -703,12 +683,12 @@ body {
 }
 .chatWindow .chatHistory .ui.icon input::placeholder {
   font-size: 0.75vw;
-  color: var(--main-secondary-dark5);
+  color: var(--text-6);
 }
 .chatWindow .chatHistory .searchMessage {
   display: flex;
   align-items: center;
-  background: var(--main-bg-light);
+  background: var(--background-5);
 }
 .chatWindow .chatHistory .searchMessage .input {
   flex-grow: 1;
@@ -717,7 +697,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--accent-dark);
+  background: var(--accent-1);
   border-radius: 0.25vw;
   height: 1.5vw;
   padding: 0.2vw 0.5vw;
@@ -727,13 +707,13 @@ body {
 .chatWindow .chatHistory .newMessage h4 {
   margin: 0;
   font-size: 0.6vw;
-  color: var(--main-bg-darkest);
+  color: var(--background-1);
 }
 .chatWindow .chatHistory .newMessage .comments {
   /* margin: 0 1vw 1vw 0; */
   font-size: 0.75vw;
   height: 1.1vw;
-  color: var(--main-bg-darkest);
+  color: var(--background-1);
 }
 .chatWindow .chatHistory .messageHistory {
   height: calc(100% - 8vw);
@@ -745,10 +725,10 @@ body {
   height: 3vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer:hover {
-  background-color: var(--main-bg-light);
+  background-color: var(--background-5);
 }
 .chatWindow .chatHistory .messageHistory #messageContainer.active {
-  background-color: var(--main-bg-light);
+  background-color: var(--background-5);
 }
 .chatWindow .chatHistory .messageHistory #messageContainer {
   display: flex;
@@ -778,7 +758,7 @@ body {
   width: 0.6vw;
   height: 0.6vw;
   background: #77d570;
-  border: 0.125vw solid var(--main-bg-dark);
+  border: 0.125vw solid var(--background-3);
 }
 .chatWindow
   .chatHistory
@@ -798,12 +778,12 @@ body {
 }
 .chatWindow .chatHistory .messageHistory #messageContainer h4 {
   margin: 0;
-  color: var(--main-secondary);
+  color: var(--text-1);
   font-size: 0.75vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .nameAndMessage p {
   margin: 0.2vw 0 0 0;
-  color: var(--main-secondary-dark5);
+  color: var(--text-6);
   font-size: 0.7vw;
 }
 
@@ -847,7 +827,7 @@ body {
   .doubleCheck
   .icon {
   font-size: 0.65vw;
-  color: var(--accent);
+  color: var(--accent-2);
 }
 .chatWindow
   .chatHistory
@@ -857,11 +837,11 @@ body {
   .message
   > i {
   margin: 0.2vw 0.2vw 0 0;
-  color: var(--main-secondary-dark5);
+  color: var(--text-6);
   font-size: 0.65vw;
 }
 .chatWindow .chatHistory .messageHistory #messageContainer .timeAndNoty .time {
-  color: var(--main-secondary-dark5);
+  color: var(--text-6);
   margin: 0;
   font-size: 0.65vw;
 }
@@ -888,20 +868,20 @@ body {
 /* ?============= CHAT WINDOW FRIENDS PANEL ================= */
 .chatWindow .chatSidePanel {
   min-width: 16vw;
-  /* border-left: 1px solid var(--main-bg-lightest); */
-  background: var(--main-bg-dark);
+  /* border-left: 1px solid var(--background-7); */
+  background: var(--background-3);
   height: 100%;
   /* flex-grow: .75; */
   z-index: 1;
-  box-shadow: 0.5vw 0.85vw 0.75vw var(--main-bg-dark);
+  box-shadow: 0.5vw 0.85vw 0.75vw var(--shadow);
 }
 .chatWindow .chatSidePanel .friendsPanel .header {
   height: 2vw;
   padding: 0.5vw 0.5vw;
-  background: var(--main-bg-light);
+  background: var(--background-5);
 }
 .chatWindow .chatSidePanel .friendsPanel .header h4 {
-  color: var(--main-secondary);
+  color: var(--text-1);
   font-size: 1vw;
 }
 .chatWindow .chatSidePanel .friendsPanel .filterTypes,
@@ -911,40 +891,40 @@ body {
 .chatWindow .chatSidePanel .filter,
 .chatWindow .chatHistory .filterTypes .filter {
   margin: 0.05vw;
-  background: var(--main-bg-light);
+  background: var(--background-5);
   width: 100%;
   height: 2vw;
-  /* border-bottom: 1px solid var(--main-bg-lightest); */
+  /* border-bottom: 1px solid var(--background-7); */
 }
 .chatWindow .chatSidePanel .filter .OnlineDot {
   margin-right: 0.25vw;
   width: 0.5vw;
   height: 0.5vw;
   border-radius: 50%;
-  border: 1px solid var(--main-bg-dark);
+  border: 1px solid var(--background-3);
   background: #77d570;
 }
 .chatWindow .chatSidePanel .friendsPanel .filterTypes .filter,
 .chatWindow .chatHistory .filterTypes .filter {
   display: flex;
-  color: var(--main-secondary-dark3);
+  color: var(--text-4);
   justify-content: center;
   align-items: center;
 }
 .chatWindow .chatSidePanel .filter h4,
 .chatWindow .chatHistory .filterTypes .filter h4 {
-  color: var(--main-secondary);
+  color: var(--text-1);
   font-size: 0.75vw;
 }
 .chatWindow .chatSidePanel > .friendsPanel .filterTypes > .active,
 .chatWindow .chatHistory .filterTypes > .active {
-  color: var(--main-secondary-dark1);
-  background: var(--main-bg-lighter);
+  color: var(--text-2);
+  background: var(--background-6);
 }
 .chatWindow .chatSidePanel > .friendsPanel .filterTypes .filter:hover,
 .chatWindow .chatHistory .filterTypes .filter:hover {
-  color: var(--main-secondary-dark1);
-  background: var(--main-bg-lighter);
+  color: var(--text-2);
+  background: var(--background-6);
   cursor: pointer;
 }
 .chatWindow .chatSidePanel .friendsList {
@@ -960,10 +940,10 @@ body {
   justify-content: space-between;
 }
 .chatWindow .chatSidePanel .friendsList .friend:hover {
-  background: var(--main-bg-lighter);
+  background: var(--background-6);
 }
 .chatWindow .chatSidePanel .friendsList .friend:hover h4 {
-  color: var(--main-secondary);
+  color: var(--text-1);
 }
 .chatWindow .chatSidePanel .user {
   position: relative;
@@ -971,7 +951,7 @@ body {
   align-items: center;
 }
 .chatWindow .chatSidePanel .user h4 {
-  color: var(--main-secondary-dark5);
+  color: var(--text-6);
   font-size: 0.75vw;
   margin: 0;
 }
@@ -989,7 +969,7 @@ body {
   width: 0.5vw;
   height: 0.5vw;
   background: #77d570;
-  border: 0.1vw solid var(--main-bg-dark);
+  border: 0.1vw solid var(--background-3);
 }
 .chatWindow .chatSidePanel .icons {
   display: flex;
@@ -999,16 +979,16 @@ body {
   border-radius: 50%;
   margin-right: 0.25vw;
   padding: 0.2vw;
-  background: var(--main-bg-light);
+  background: var(--background-5);
 }
 .chatWindow .chatSidePanel .icons > .comments {
-  color: var(--main-secondary);
+  color: var(--text-1);
 }
 .chatWindow .chatSidePanel .icons > .trash {
   color: #eb5757;
 }
 .chatWindow .chatSidePanel .icons .icon:hover {
-  background: var(--main-bg-lightest);
+  background: var(--background-7);
 }
 
 /* ?====================SCROLL BAR==================== */
@@ -1021,11 +1001,11 @@ body {
 .friendsList::-webkit-scrollbar-thumb,
 .displayMessages::-webkit-scrollbar-thumb,
 .messageHistory::-webkit-scrollbar-thumb {
-  background: var(--main-bg-lightest);
+  background: var(--background-7);
   border-radius: 1vw;
 }
 .friendsList::-webkit-scrollbar-thumb:hover,
 .displayMessages::-webkit-scrollbar-thumb:hover,
 .messageHistory::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--accent-2);
 }
