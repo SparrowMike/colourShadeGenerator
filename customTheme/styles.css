@@ -537,6 +537,7 @@ body {
 .ui.divider {
   display: relative;
   margin: 0 0.5vw;
+  border-top: none !important;
   border-bottom: 1px solid var(--divider-lines-1) !important;
 }
 .ui.divider span {
@@ -585,7 +586,7 @@ body {
   margin: 0;
 }
 .chat .messagesFrom .avatarName p {
-  color: var(-text-5-dark4);
+  color: var(--text-5);
   font-size: 0.75vw;
 }
 .chat .messagesFrom i {
