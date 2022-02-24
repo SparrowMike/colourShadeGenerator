@@ -541,7 +541,7 @@ body {
   border-bottom: 1px solid var(--divider-lines-1) !important;
 }
 .ui.divider span {
-  position: sticky;
+  position: absolute;
   left: 45%;
   color: var(--divider-lines-1);
   font-size: 0.5vw;
@@ -550,6 +550,7 @@ body {
   border-radius: 0.25vw;
   z-index: 1;
   background: var(--background-5);
+  top: 4.25vw;
 }
 .chat .messagesFrom {
   background: var(--background-6);
