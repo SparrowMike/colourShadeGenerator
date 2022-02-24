@@ -16,13 +16,13 @@ body {
   --success-1: rgb(64, 146, 95); /* *(-16, -34, -24) */
   --success-2: rgb(80, 170, 119); /* *base  */
   --success-3: rgb(167, 213, 187); /* *(+87, +84, +68) */
-  
+
   --error-1: rgb(176, 65, 65); /* *(-59, -22, -22) */
   --error-2: rgb(235, 87, 87); /* *base */
   --error-3: rgb(245, 171, 171); /* *(+10, +84, +84) */
-  
+
   --button-text-color: rgb(252, 252, 252);
-  
+
   --friend: rgb(81, 168, 255);
 }
 
@@ -31,13 +31,6 @@ body {
   --accent-2: rgb(244, 169, 51); /* *base */
   --accent-3: rgb(253, 194, 102); /* *(+9, +25, +51) */
 
-  --text-1: rgb(252, 252, 252); /* *base */
-  --text-2: rgb(227, 227, 227); /* *(-25, -25, -25) */
-  --text-3: rgb(196, 196, 196); /* *(-56, -56, -56) */
-  --text-4: rgb(170, 169, 169); /* *(-82, -83, -83) */
-  --text-5: rgb(166, 166, 168); /* *(-86, -86, -84) */
-  --text-6: rgb(153, 153, 153); /* *(-99, -99, -99) */
-
   --background-1: rgb(20, 20, 20); /* *(-17,-18,-23) */
   --background-2: rgb(27, 28, 29); /* *(-10,-10,-14) */
   --background-3: rgb(37, 37, 41); /* *(0, -1, -2) */
@@ -45,7 +38,14 @@ body {
   --background-5: rgb(45, 46, 52); /* *(+8, +8, +9) */
   --background-6: rgb(51, 52, 60); /* *(+14, +14, +17) */
   --background-7: rgb(67, 70, 79); /* *(+30, +32, +36) */
-  
+
+  --text-1: rgb(252, 252, 252); /* *base */
+  --text-2: rgb(227, 227, 227); /* *(-25, -25, -25) */
+  --text-3: rgb(196, 196, 196); /* *(-56, -56, -56) */
+  --text-4: rgb(170, 169, 169); /* *(-82, -83, -83) */
+  --text-5: rgb(166, 166, 168); /* *(-86, -86, -84) */
+  --text-6: rgb(153, 153, 153); /* *(-99, -99, -99) */
+
   --divider-lines-1: rgb(87, 87, 87); /* *base */
   --divider-lines-2: rgb(170, 169, 169); /* *(-83, -82, -82) */
 
@@ -68,6 +68,9 @@ body {
   --text-4: rgb(158, 171, 185);
   --text-5: rgb(151, 165, 181);
   --text-6: rgb(133, 147, 164);
+  --divider-lines-1: rgb(82, 84, 110);
+  --divider-lines-2: rgb(0, 2, 28);
+  --shadow: rgb(66, 73, 144);
 }
 .botanical-forest {
   --accent-1: rgba(233, 115, 123);
@@ -86,12 +89,14 @@ body {
   --text-4: rgba(132, 178, 167);
   --text-5: rgba(110, 164, 151);
   --text-6: rgba(102, 149, 138);
+  --divider-lines-1: rgb(105, 127, 133);
+  --divider-lines-2: rgb(23, 45, 51);
+  --shadow: rgb(40, 108, 118);
 }
 /* .pyramid-of-giza {
   --accent-1: rgba(186, 113, 0);
   --accent-2: rgba(207, 135, 23);
   --accent-3: rgba(239, 153, 19);
-
   --background-1: rgba(39, 27, 0);
   --background-2: rgba(53, 38, 2);
   --background-3: rgba(64, 47, 6);
@@ -99,13 +104,15 @@ body {
   --background-5: rgba(72, 56, 16);
   --background-6: rgba(78, 60, 25);
   --background-7: rgba(94, 71, 44);
-
   --text-1: rgba(250, 241, 209);
   --text-2: rgba(241, 231, 196);
   --text-3: rgba(229, 218, 179);
   --text-4: rgba(205, 194, 154);
   --text-5: rgba(181, 169, 129);
   --text-6: rgba(165, 157, 129);
+  --divider-lines-1: rgb(87, 87, 87);
+  --divider-lines-2: rgb(170, 169, 169);
+  --shadow: rgb(20, 20, 20);
 } */
 .rustic-pottery {
   --accent-1: rgb(215, 91, 63);
@@ -124,6 +131,9 @@ body {
   --text-4: rgb(174, 92, 23);
   --text-5: rgb(170, 89, 20);
   --text-6: rgb(157, 76, 7);
+  --divider-lines-1: rgb(95, 83, 47);
+  --divider-lines-2: rgb(13, 1, 0);
+  --shadow: rgb(108, 100, 38);
 }
 .aqua-lolly {
   --accent-1: rgb(255, 74, 81);
@@ -142,6 +152,9 @@ body {
   --text-4: rgb(63, 101, 198);
   --text-5: rgb(89, 125, 219);
   --text-6: rgb(113, 148, 237);
+  --shadow: rgb(48, 56, 63);
+  --divider-lines-1: rgb(93, 100, 106);
+  --divider-lines-2: rgb(11, 18, 24);
 }
 .lush-blush {
   --accent-1: rgb(64, 63, 128);
@@ -155,17 +168,19 @@ body {
   --background-6: rgb(225, 202, 191);
   --background-7: rgb(187, 171, 171);
   --text-1: rgb(171, 59, 97);
-  --text-2: rgb(187,76,113);
-  --text-3: rgb(203,92,129);
-  --text-4: rgb(211,106,141);
-  --text-5: rgb(219,118,151);
+  --text-2: rgb(187, 76, 113);
+  --text-3: rgb(203, 92, 129);
+  --text-4: rgb(211, 106, 141);
+  --text-5: rgb(219, 118, 151);
   --text-6: rgb(225, 137, 166);
+  --shadow: rgb(81, 20, 41);
+  --divider-lines-1: rgb(167, 80, 110);
+  --divider-lines-2: rgb(85, 0, 28);
 }
 .white-smoke {
   --accent-1: rgb(48, 65, 97);
   --accent-2: rgb(64, 87, 130);
   --accent-3: rgb(159, 171, 192);
-
   --background-1: rgb(252, 252, 252);
   --background-2: rgb(240, 240, 240);
   --background-3: rgb(233, 233, 233);
@@ -173,13 +188,15 @@ body {
   --background-5: rgb(211, 211, 211);
   --background-6: rgb(199, 199, 199);
   --background-7: rgb(167, 167, 167);
-
   --text-1: rgb(27, 28, 29);
   --text-2: rgb(71, 71, 71);
   --text-3: rgb(84, 84, 84);
   --text-4: rgb(103, 103, 103);
   --text-5: rgb(119, 119, 119);
   --text-6: rgb(146, 146, 146);
+  --shadow: rgb(42, 31, 35);
+  --divider-lines-1: rgb(94, 94, 94);
+  --divider-lines-2: rgb(12, 12, 12);
 }
 .prairie-dance {
   --accent-1: rgb(174, 76, 76);
@@ -198,6 +215,9 @@ body {
   --text-4: rgb(117, 126, 95);
   --text-5: rgb(127, 136, 107);
   --text-6: rgb(143, 151, 124);
+  --divider-lines-1: rgb(154, 152, 141);
+  --divider-lines-2: rgb(72, 70, 59);
+  --shadow: rgb(38, 26, 30);
 }
 .farsighted {
   --accent-1: rgb(114, 105, 211);
@@ -216,6 +236,9 @@ body {
   --text-4: rgb(144, 136, 173);
   --text-5: rgb(155, 146, 188);
   --text-6: rgb(166, 157, 198);
+  --divider-lines-1: rgb(104, 107, 142);
+  --divider-lines-2: rgb(22, 25, 60);
+  --shadow: rgb(18, 23, 77);
 }
 .hearts-desire {
   --accent-1: rgb(242, 184, 151);
@@ -234,25 +257,31 @@ body {
   --text-4: rgb(161, 140, 147);
   --text-5: rgb(155, 136, 143);
   --text-6: rgb(153, 128, 136);
+  --divider-lines-1: rgb(171, 111, 131);
+  --divider-lines-2: rgb(89, 29, 49);
+  --shadow: rgb(212, 145, 168);
 }
 /*! TBC */
 .custom-theme {
-  --accent-1: rgb(172, 89, 85);
-  --accent-2: rgb(187, 107, 107);
-  --accent-3: rgb(196, 132, 158);
-  --text-1: rgb(1, 1, 1);
-  --text-2: rgb(26, 26, 26);
-  --text-3: rgb(57, 57, 57);
-  --text-4: rgb(83, 84, 84);
-  --text-5: rgb(87, 87, 85);
-  --text-6: rgb(100, 100, 100);
-  --background-1: rgb(255, 255, 227);
-  --background-2: rgb(255, 254, 218);
-  --background-3: rgb(255, 245, 206);
-  --background-4: rgb(255, 244, 204);
-  --background-5: rgb(247, 236, 195);
-  --background-6: rgb(241, 230, 187);
-  --background-7: rgb(225, 212, 168);
+  --accent-1: rgb(217, 124, 55);
+  --accent-2: rgb(232, 142, 77);
+  --accent-3: rgb(241, 167, 128);
+  --background-1: rgb(78, 54, 0);
+  --background-2: rgb(85, 62, 0);
+  --background-3: rgb(95, 71, 11);
+  --background-4: rgb(95, 72, 13);
+  --background-5: rgb(103, 80, 22);
+  --background-6: rgb(109, 86, 30);
+  --background-7: rgb(125, 104, 49);
+  --text-1: rgb(175, 162, 70);
+  --text-2: rgb(200, 187, 95);
+  --text-3: rgb(231, 218, 126);
+  --text-4: rgb(255, 245, 153);
+  --text-5: rgb(255, 248, 154);
+  --text-6: rgb(255, 255, 169);
+  --divider-lines-1: rgb(150, 140, 66);
+  --divider-lines-2: rgb(68, 58, 0);
+  --shadow: rgb(255, 193, 7);
 }
 
 /* ?================SIDE PANEL============== */
@@ -292,7 +321,8 @@ body {
 #defaultTheme.active {
   border: 2px solid black;
 }
-#colorTemplates h2, #colors h2 {
+#colorTemplates h2,
+#colors h2 {
   font-size: 22px;
 }
 #defaultTheme h4 {
@@ -346,11 +376,17 @@ body {
 #accent #pickerContainer .pickr .pcr-button:after {
   background: var(--accent-2);
 }
-#secondary #pickerContainer .pickr .pcr-button:after {
+#text #pickerContainer .pickr .pcr-button:after {
   background: var(--text-1);
 }
 #background #pickerContainer .pickr .pcr-button:after {
   background: var(--background-4);
+}
+#divider #pickerContainer .pickr .pcr-button:after {
+  background: var(--divider-lines-1);
+}
+#shadow #pickerContainer .pickr .pcr-button:after {
+  background: var(--shadow);
 }
 .pickr-theme {
   background: #2d2e34;
