@@ -1136,10 +1136,10 @@ input:checked + .slider:before {
   border-color: inherit;
 }
 .slider.round.disabled {
-  background: var(--background-1) !important;
+  background: var(--background-7) !important;
 }
 .slider.round.disabled:before {
-  background-color: var(--background-7) !important;
+  background-color: var(--background-1) !important;
 }
 [data-tooltip]::before {
   display: none;
