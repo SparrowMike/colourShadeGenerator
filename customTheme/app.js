@@ -258,8 +258,7 @@ app.controller("theme", function ($scope, $http) {
         const currentValue = rgbToObj(current_color);
         for (color in paletteToFeed[type]) {
           let rgbArr = []
-          if (type == 'text' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127)|| 
-          type == 'background' && (currentValue.r >= 200 || currentValue.g >= 200 || currentValue.b >= 256)) {
+          if (type == 'text' && (currentValue.r <= 90 || currentValue.g <= 90 || currentValue.b <= 90)) {
             rgbArr = [
               rgbValues.r - paletteToFeed[type][color].r,
               rgbValues.g - paletteToFeed[type][color].g,
