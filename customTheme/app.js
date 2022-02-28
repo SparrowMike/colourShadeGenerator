@@ -243,20 +243,20 @@ app.controller("theme", function ($scope, $http) {
         const currentValue = rgbToObj(current_color);
         for (color in paletteToFeed[type]) {
           let rgbArr = []
-          // if (type == 'text' && (currentValue.r <= 90 || currentValue.g <= 50 || currentValue.b <= 127)|| 
-          // type == 'background' && (currentValue.r >= 200 || currentValue.g >= 200 || currentValue.b >= 256)) {
-          //   rgbArr = [
-          //     rgbValues.r - paletteToFeed[type][color].r,
-          //     rgbValues.g - paletteToFeed[type][color].g,
-          //     rgbValues.b - paletteToFeed[type][color].b,
-          //   ];
-          // } else {
+          // type == 'background' && (currentValue.r >= 200 || currentValue.g >= 200 || currentValue.b >= 256)
+          if (type == 'text' && (currentValue.r <= 90 || currentValue.g <= 90 || currentValue.b <= 90)) {
+            rgbArr = [
+              rgbValues.r - paletteToFeed[type][color].r,
+              rgbValues.g - paletteToFeed[type][color].g,
+              rgbValues.b - paletteToFeed[type][color].b,
+            ];
+          } else {
             rgbArr = [
               rgbValues.r + paletteToFeed[type][color].r,
               rgbValues.g + paletteToFeed[type][color].g,
               rgbValues.b + paletteToFeed[type][color].b,
             ];
-          // }
+          }
           for (c in rgbArr) {
             if (rgbArr[c] >= 255) rgbArr[c] = 255;
             if (rgbArr[c] <= 0) rgbArr[c] = 0;
@@ -268,7 +268,7 @@ app.controller("theme", function ($scope, $http) {
           //? display the currently generated colours
           $("html").get(0).style.setProperty(color, rgb);
           $("tbody").append(
-            `<tr><td style='background: ${storedPalette[color]}; color: white; text-shadow: 1px 1px 1.5px black; width: 55%;'>${color}</td><td style='width: 45%'>${storedPalette[color]}</td></tr>`
+            `<tr><td style='background: ${storedPalette[color]}; color: white; text-shadow: 1px 1px 1.5px black; width: 40%;'>${color}</td><td style='width: 45%'>${storedPalette[color]}</td></tr>`
           );
         }
         // console.table(storedPalette);
