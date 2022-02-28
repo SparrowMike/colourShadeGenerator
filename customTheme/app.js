@@ -275,7 +275,12 @@ app.controller("theme", function ($scope, $http) {
             if (rgbArr[c] >= 255) rgbArr[c] = 255;
             if (rgbArr[c] <= 0) rgbArr[c] = 0;
           }
-          const rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+          let rgb = ''
+          if (color === '--shadow') {
+            rgb = `rgba(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]}, 50%)`;
+          } else {
+            rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+          }
           //? keep the generated colour in the storePalette Object
           storedPalette[color] = rgb;
           
