@@ -49,7 +49,7 @@ body {
   --divider-lines-1: rgb(87, 87, 87); /* *base */
   --divider-lines-2: rgb(170, 169, 169); /* *(-83, -82, -82) */
 
-  --shadow: rgb(20, 20, 20);
+  --shadow: rgba(20, 20, 20, 0.5);
 }
 .dark-knight {
   --accent-1: rgb(224, 208, 162);
@@ -68,9 +68,9 @@ body {
   --text-4: rgb(158, 171, 185);
   --text-5: rgb(151, 165, 181);
   --text-6: rgb(133, 147, 164);
-  --divider-lines-1: rgb(82, 84, 110);
-  --divider-lines-2: rgb(0, 2, 28);
-  --shadow: rgb(66, 73, 144);
+  --divider-lines-1: rgb(79, 92, 108);
+  --divider-lines-2: rgb(158, 171, 185);
+  --shadow: rgba(6, 9, 33, 0.5);
 }
 .botanical-forest {
   --accent-1: rgba(233, 115, 123);
@@ -89,31 +89,10 @@ body {
   --text-4: rgba(132, 178, 167);
   --text-5: rgba(110, 164, 151);
   --text-6: rgba(102, 149, 138);
-  --divider-lines-1: rgb(105, 127, 133);
-  --divider-lines-2: rgb(23, 45, 51);
-  --shadow: rgb(40, 108, 118);
+  --divider-lines-1: rgb(69, 128, 114);
+  --divider-lines-2: rgb(132, 178, 167);
+  --shadow: rgba(0, 44, 38, 0.5);
 }
-/* .pyramid-of-giza {
-  --accent-1: rgba(186, 113, 0);
-  --accent-2: rgba(207, 135, 23);
-  --accent-3: rgba(239, 153, 19);
-  --background-1: rgba(39, 27, 0);
-  --background-2: rgba(53, 38, 2);
-  --background-3: rgba(64, 47, 6);
-  --background-4: rgba(64, 48, 8);
-  --background-5: rgba(72, 56, 16);
-  --background-6: rgba(78, 60, 25);
-  --background-7: rgba(94, 71, 44);
-  --text-1: rgba(250, 241, 209);
-  --text-2: rgba(241, 231, 196);
-  --text-3: rgba(229, 218, 179);
-  --text-4: rgba(205, 194, 154);
-  --text-5: rgba(181, 169, 129);
-  --text-6: rgba(165, 157, 129);
-  --divider-lines-1: rgb(87, 87, 87);
-  --divider-lines-2: rgb(170, 169, 169);
-  --shadow: rgb(20, 20, 20);
-} */
 .rustic-pottery {
   --accent-1: rgb(215, 91, 63);
   --accent-2: rgb(230, 109, 85);
@@ -131,9 +110,9 @@ body {
   --text-4: rgb(174, 92, 23);
   --text-5: rgb(170, 89, 20);
   --text-6: rgb(157, 76, 7);
-  --divider-lines-1: rgb(95, 83, 47);
-  --divider-lines-2: rgb(13, 1, 0);
-  --shadow: rgb(108, 100, 38);
+  --divider-lines-1: rgb(97, 49, 9);
+  --divider-lines-2: rgb(174, 92, 23);
+  --shadow: rgba(22, 11, 3, 0.5);
 }
 .aqua-lolly {
   --accent-1: rgb(255, 74, 81);
@@ -152,9 +131,9 @@ body {
   --text-4: rgb(63, 101, 198);
   --text-5: rgb(89, 125, 219);
   --text-6: rgb(113, 148, 237);
-  --shadow: rgb(48, 56, 63);
-  --divider-lines-1: rgb(93, 100, 106);
-  --divider-lines-2: rgb(11, 18, 24);
+  --shadow: rgba(10, 34, 97, 0.35);
+  --divider-lines-1: rgb(147, 175, 249);
+  --divider-lines-2: rgb(63, 101, 198);
 }
 .lush-blush {
   --accent-1: rgb(64, 63, 128);
@@ -173,7 +152,7 @@ body {
   --text-4: rgb(211, 106, 141);
   --text-5: rgb(219, 118, 151);
   --text-6: rgb(225, 137, 166);
-  --shadow: rgb(81, 20, 41);
+  --shadow: rgba(81, 20, 41, 0.35);
   --divider-lines-1: rgb(167, 80, 110);
   --divider-lines-2: rgb(85, 0, 28);
 }
@@ -194,9 +173,9 @@ body {
   --text-4: rgb(103, 103, 103);
   --text-5: rgb(119, 119, 119);
   --text-6: rgb(146, 146, 146);
-  --shadow: rgb(42, 31, 35);
-  --divider-lines-1: rgb(94, 94, 94);
-  --divider-lines-2: rgb(12, 12, 12);
+  --shadow: rgba(27, 28, 29, 0.35);
+  --divider-lines-1: rgb(196, 196, 196);
+  --divider-lines-2: rgb(103, 103, 103);
 }
 .prairie-dance {
   --accent-1: rgb(174, 76, 76);
@@ -215,9 +194,9 @@ body {
   --text-4: rgb(117, 126, 95);
   --text-5: rgb(127, 136, 107);
   --text-6: rgb(143, 151, 124);
-  --divider-lines-1: rgb(154, 152, 141);
-  --divider-lines-2: rgb(72, 70, 59);
-  --shadow: rgb(38, 26, 30);
+  --divider-lines-1: rgb(161, 169, 142);
+  --divider-lines-2: rgb(117, 126, 95);
+  --shadow: rgba(62, 79, 60, 0.35);
 }
 .farsighted {
   --accent-1: rgb(114, 105, 211);
@@ -236,9 +215,9 @@ body {
   --text-4: rgb(144, 136, 173);
   --text-5: rgb(155, 146, 188);
   --text-6: rgb(166, 157, 198);
-  --divider-lines-1: rgb(104, 107, 142);
-  --divider-lines-2: rgb(22, 25, 60);
-  --shadow: rgb(18, 23, 77);
+  --divider-lines-1: rgb(177, 169, 208);
+  --divider-lines-2: rgb(144, 136, 173);
+  --shadow: rgba(112, 105, 131, 0.35);
 }
 .hearts-desire {
   --accent-1: rgb(242, 184, 151);
@@ -257,11 +236,10 @@ body {
   --text-4: rgb(161, 140, 147);
   --text-5: rgb(155, 136, 143);
   --text-6: rgb(153, 128, 136);
-  --divider-lines-1: rgb(171, 111, 131);
-  --divider-lines-2: rgb(89, 29, 49);
-  --shadow: rgb(212, 145, 168);
+  --divider-lines-1: rgb(134, 102, 112);
+  --divider-lines-2: rgb(161, 140, 147);
+  --shadow: rgba(89, 3, 33, 0.35);
 }
-/*! TBC */
 .custom-theme {
   --accent-1: rgb(217, 124, 55);
   --accent-2: rgb(232, 142, 77);
@@ -281,7 +259,7 @@ body {
   --text-6: rgb(255, 255, 169);
   --divider-lines-1: rgb(150, 140, 66);
   --divider-lines-2: rgb(68, 58, 0);
-  --shadow: rgb(255, 193, 7);
+  --shadow: rgba(255, 193, 7, 0.35);
 }
 
 /* ?================SIDE PANEL============== */
