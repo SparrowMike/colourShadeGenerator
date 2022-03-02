@@ -157,9 +157,9 @@ body {
   --text-4: rgb(211, 106, 141);
   --text-5: rgb(219, 118, 151);
   --text-6: rgb(225, 137, 166);
-  --shadow: rgba(81, 20, 41, 0.35);
-  --divider-lines-1: rgb(167, 80, 110);
-  --divider-lines-2: rgb(85, 0, 28);
+  --shadow: rgba(171, 59, 97, 0.35);
+  --divider-lines-1: rgb(226, 160, 182);
+  --divider-lines-2: rgb(211, 106, 141);
 }
 .white-smoke {
   --accent-1: rgb(48, 65, 97);
@@ -179,7 +179,7 @@ body {
   --text-5: rgb(119, 119, 119);
   --text-6: rgb(146, 146, 146);
   --shadow: rgba(27, 28, 29, 0.35);
-  --divider-lines-1: rgb(196, 196, 196);
+  --divider-lines-1: rgb(146, 146, 146);
   --divider-lines-2: rgb(103, 103, 103);
 }
 .prairie-dance {
@@ -241,7 +241,7 @@ body {
   --text-4: rgb(161, 140, 147);
   --text-5: rgb(155, 136, 143);
   --text-6: rgb(153, 128, 136);
-  --divider-lines-1: rgb(134, 102, 112);
+  --divider-lines-1: rgb(118, 90, 100);
   --divider-lines-2: rgb(161, 140, 147);
   --shadow: rgba(89, 3, 33, 0.35);
 }
