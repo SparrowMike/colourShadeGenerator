@@ -194,6 +194,7 @@ app.controller("theme", function ($scope, $http) {
     if (theme === "custom-theme") {
       loadValues();
     }
+    picker()
   });
 
   //? CONVERT INCOMING RGB STRING TO OBJECT
@@ -210,12 +211,10 @@ app.controller("theme", function ($scope, $http) {
   }
 
   //!======================PICKR============================
-  $(document).ready(function () {
+  const picker = () => {
     let $input = $("input.pickr-field");
-    let current_color = $(".pickr-field").val() || "#041";
-    let pickr;
     Object.keys(paletteToFeed).forEach((type) => {
-      pickr = new Pickr({
+      let pickr = new Pickr({
         el: $(`.${type}Color`)[0],
         theme: "monolith",
         appClass: 'pickr-theme',
@@ -239,7 +238,11 @@ app.controller("theme", function ($scope, $http) {
         closeWithKey: "Escape",
         position: 'left-start',
         useAsButton: false,
-        // default: current_color,
+        default: type == 'background' ? storedPalette[`--${type}-4`] :
+          type == 'accent' ? storedPalette[`--${type}-2`] :
+          type == 'divider' ? storedPalette[`--${type}-lines-1`] :
+          type == 'shadow' ? storedPalette[`--${type}`] :
+          storedPalette[`--${type}-1`],
         comparison: false,
         components: {
           preview: false,
@@ -289,5 +292,5 @@ app.controller("theme", function ($scope, $http) {
         }
       });
     });
-  });
+  }
 });
