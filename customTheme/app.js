@@ -71,38 +71,8 @@ app.controller("theme", function ($scope, $http) {
     
     $("html").removeAttr("style").removeClass()
     switch (theme) {
-      case "light-theme":
-        $("html").addClass("light-theme");
-        break;
-      case "black-beauty":
-        $("html").addClass("black-beauty");
-        break;
-      case "dark-knight":
-        $("html").addClass("dark-knight");
-      break;
-      case "botanical-forest":
-        $("html").addClass("botanical-forest");
-        break;
-      case "rustic-pottery":
-        $("html").addClass("rustic-pottery");
-        break;
-      case "aqua-lolly":
-        $("html").addClass("aqua-lolly");
-        break;
-      case "lush-blush":
-        $("html").addClass("lush-blush");
-        break;
-      case "white-smoke":
-        $("html").addClass("white-smoke");
-        break;
-      case "prairie-dance":
-        $("html").addClass("prairie-dance");
-        break;
-      case "farsighted":
-        $("html").addClass("farsighted");
-        break;
-      case "hearts-desire":
-        $("html").addClass("hearts-desire");
+      case theme:
+        $("html").addClass(theme);
         break;
       case "custom-theme":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
