@@ -71,15 +71,15 @@ app.controller("theme", function ($scope, $http) {
     
     $("html").removeAttr("style").removeClass()
     switch (theme) {
-      case theme:
-        $("html").addClass(theme);
-        break;
       case "custom-theme":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
         loadValues();
         $("html").addClass("custom-theme");
         break;
-    }
+      case theme:
+        $("html").addClass(theme);
+        break;
+      }
     loadSelectedTheme(loadCurrentCss());
   };
 
