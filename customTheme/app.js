@@ -86,11 +86,11 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme["--accent-3"]);
-    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme["--accent-1"]);
+    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme["--accent-2"]);
+    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme["--text-1"]);
     $(`#defaultTheme.custom-theme #circles > .three`).css("background", theme["--background-1"]);
-    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme["--background-7"]);
-    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme["--text-6"]);
+    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme["--divider-lines-1"]);
+    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme["--shadow"]);
   }
 
   //?===================SAVE=====================
