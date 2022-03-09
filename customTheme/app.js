@@ -238,7 +238,6 @@ app.controller("theme", function ($scope, $http) {
   }
 
   $(document).ready(function () {
-    console.log('ready')
     loadSelectedTheme(loadCurrentCss());
     if (localStorage.getItem("customTheme") !== null) {
       customPaletteColors()
@@ -251,19 +250,12 @@ app.controller("theme", function ($scope, $http) {
 
   //? =========Recieve Message==========
   window.onmessage = function(e) {
-    console.log('message')
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
+    $('.defaultTheme').removeClass('active')
+    $(`.${data.selectedTheme}`).addClass('active')
     localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
     localStorage.setItem("theme", data.selectedTheme);  
-    // if (data.storedPalette !== undefined || data.currentPalette !== undefined) {
-    // $('.defaultTheme').removeClass('active')
-    // $(`.${data.selectedTheme}`).addClass('active')
     $scope.changeTheme(data.selectedTheme)
-    // if(data.selectedTheme === 'custom-theme') {
-    //   customPaletteColors()
-    //   loadValues()
-    // }
-    // }
   };
 });
