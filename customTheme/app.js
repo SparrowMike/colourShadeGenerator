@@ -53,13 +53,12 @@ app.controller("theme", function ($scope, $http) {
   window.onmessage = function(e) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
-    if (data.selectedTheme !== undefined) {
+    if (data.selectedTheme !== undefined || data.currentPalette !== undefined) {
       $('.defaultTheme').removeClass('active')
       $(`.${data.selectedTheme}`).addClass('active')
       $scope.changeTheme(data.selectedTheme)
-    }
-    if (data.currentPalette !== undefined) {
       localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
+      customPaletteColors()
     }
   };
   
@@ -76,10 +75,8 @@ app.controller("theme", function ($scope, $http) {
         loadValues();
         $("html").addClass("custom-theme");
         break;
-      case theme:
-        $("html").addClass(theme);
-        break;
       }
+      $("html").addClass(theme);
     loadSelectedTheme(loadCurrentCss());
   };
 
