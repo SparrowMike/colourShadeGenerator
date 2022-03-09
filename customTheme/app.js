@@ -49,19 +49,6 @@ app.controller("theme", function ($scope, $http) {
   const theme = localStorage.getItem("theme");
   $scope.selected = theme !== null ? theme : "black-beauty";
 
-  //? =========Recieve Message==========
-  window.onmessage = function(e) {
-    const data = e.data;
-    // if (e.origin !== 'http://localhost:1337') return;
-    if (data.selectedTheme !== undefined || data.currentPalette !== undefined) {
-      $('.defaultTheme').removeClass('active')
-      $(`.${data.selectedTheme}`).addClass('active')
-      $scope.changeTheme(data.selectedTheme)
-      localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
-      customPaletteColors()
-    }
-  };
-  
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     if ($(`.defaultTheme:not(.${theme})`).hasClass('active')) $('.defaultTheme').removeClass('active')
@@ -153,17 +140,6 @@ app.controller("theme", function ($scope, $http) {
     }
   };
 
-  $(document).ready(function () {
-    loadSelectedTheme(loadCurrentCss());
-    if (localStorage.getItem("customTheme") !== null) {
-      customPaletteColors()
-    }
-    if (theme === "custom-theme") {
-      loadValues();
-    }
-    picker()
-  });
-
   //? CONVERT INCOMING RGB STRING TO OBJECT
   let rgbValues = new Object();
   function rgbToObj(rgb) {
@@ -177,7 +153,7 @@ app.controller("theme", function ($scope, $http) {
     return rgbValues;
   }
 
-  //!======================PICKR============================
+  //?======================PICKR============================
   const picker = () => {
     let $input = $("input.pickr-field");
     Object.keys(paletteToFeed).forEach((type) => {
@@ -260,4 +236,28 @@ app.controller("theme", function ($scope, $http) {
       });
     });
   }
+
+  $(document).ready(function () {
+    loadSelectedTheme(loadCurrentCss());
+    if (localStorage.getItem("customTheme") !== null) {
+      customPaletteColors()
+    }
+    if (theme === "custom-theme") {
+      loadValues();
+    }
+    picker()
+  });
+
+  //? =========Recieve Message==========
+  window.onmessage = function(e) {
+    const data = e.data;
+    // if (e.origin !== 'http://localhost:1337') return;
+    if (data.selectedTheme !== undefined || data.currentPalette !== undefined) {
+      $('.defaultTheme').removeClass('active')
+      $(`.${data.selectedTheme}`).addClass('active')
+      $scope.changeTheme(data.selectedTheme)
+      localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
+      customPaletteColors()
+    }
+  };
 });
