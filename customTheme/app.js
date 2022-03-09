@@ -253,11 +253,14 @@ app.controller("theme", function ($scope, $http) {
     const data = e.data;
     // if (e.origin !== 'http://localhost:1337') return;
     if (data.selectedTheme !== undefined || data.currentPalette !== undefined) {
-      $('.defaultTheme').removeClass('active')
-      $(`.${data.selectedTheme}`).addClass('active')
-      $scope.changeTheme(data.selectedTheme)
-      localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
-      customPaletteColors()
+      setTimeout(()=>{
+        localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
+        $('.defaultTheme').removeClass('active')
+        $(`.${data.selectedTheme}`).addClass('active')
+        $scope.changeTheme(data.selectedTheme)
+        customPaletteColors()
+        loadValues()
+      })
     }
   };
 });
