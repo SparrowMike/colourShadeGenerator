@@ -257,11 +257,13 @@ app.controller("theme", function ($scope, $http) {
     localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
     localStorage.setItem("theme", data.selectedTheme);  
     // if (data.storedPalette !== undefined || data.currentPalette !== undefined) {
-    $('.defaultTheme').removeClass('active')
-    $(`.${data.selectedTheme}`).addClass('active')
-      $scope.changeTheme(data.selectedTheme)
-      customPaletteColors()
-      loadValues()
+    // $('.defaultTheme').removeClass('active')
+    // $(`.${data.selectedTheme}`).addClass('active')
+    $scope.changeTheme(data.selectedTheme)
+    // if(data.selectedTheme === 'custom-theme') {
+    //   customPaletteColors()
+    //   loadValues()
+    // }
     // }
   };
 });
