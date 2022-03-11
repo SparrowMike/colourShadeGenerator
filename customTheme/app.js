@@ -70,11 +70,11 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme["--accent-2"]);
-    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme["--text-1"]);
-    $(`#defaultTheme.custom-theme #circles > .three`).css("background", theme["--background-1"]);
-    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme["--divider-lines-1"]);
-    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme["--shadow"]);
+    $(`#defaultTheme.custom-theme #circles > .accent`).css("background", theme["--accent-2"]);
+    $(`#defaultTheme.custom-theme #circles > .text `).css("background", theme["--text-1"]);
+    $(`#defaultTheme.custom-theme #circles > .background `).css("background", theme["--background-1"]);
+    $(`#defaultTheme.custom-theme #circles > .divider `).css("background", theme["--divider-lines-1"]);
+    $(`#defaultTheme.custom-theme #circles > .shadow `).css("background", theme["--shadow"]);
   }
 
   //?===================SAVE=====================
@@ -251,7 +251,7 @@ app.controller("theme", function ($scope, $http) {
   //? =========Recieve Message==========
   window.onmessage = function(e) {
     const data = e.data;
-    // if (e.origin !== 'http://localhost:1337') return;
+    if (e.origin === 'http://127.0.0.1:5500' || e.origin === 'https://mock-up-three.vercel.app/') return;
     $('.defaultTheme').removeClass('active')
     $(`.${data.selectedTheme}`).addClass('active')
     localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  

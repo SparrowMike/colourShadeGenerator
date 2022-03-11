@@ -325,19 +325,19 @@ body {
   margin-right: 2px;
   border: 1px solid black;
 }
-#defaultTheme #circles > .one {
+#defaultTheme #circles > .accent {
   background: var(--accent-2);
 }
-#defaultTheme #circles > .two {
+#defaultTheme #circles > .text  {
   background: var(--text-1);
 }
-#defaultTheme #circles > .three {
+#defaultTheme #circles > .background  {
   background: var(--background-1);
 }
-#defaultTheme #circles > .four {
+#defaultTheme #circles > .divider  {
   background: var(--divider-lines-1);
 }
-#defaultTheme #circles > .five {
+#defaultTheme #circles > .shadow  {
   background: var(--shadow);
 }
 
