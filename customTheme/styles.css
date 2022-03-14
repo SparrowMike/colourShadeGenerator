@@ -35,6 +35,7 @@ body {
   --accent-1: rgb(229, 151, 29); /* *(-15, -18, -22) */
   --accent-2: rgb(244, 169, 51); /* *base */
   --accent-3: rgb(253, 194, 102); /* *(+9, +25, +51) */
+  --accent-4: rgb(255, 218, 160); /* *(+11, +49, +109) */
 
   --background-1: rgb(20, 20, 20); /* *(-17,-18,-23) */
   --background-2: rgb(27, 28, 29); /* *(-10,-10,-14) */
@@ -60,6 +61,7 @@ body {
   --accent-1: rgb(224, 208, 162);
   --accent-2: rgb(239, 225, 186, 1);
   --accent-3: rgb(250, 240, 212);
+  --accent-4: rgb(254, 249, 236);
   --background-1: rgb(6, 9, 33, 1);
   --background-2: rgb(13, 17, 42);
   --background-3: rgb(23, 26, 54);
@@ -81,6 +83,7 @@ body {
   --accent-1: rgba(233, 115, 123);
   --accent-2: rgba(238, 153, 159);
   --accent-3: rgba(241, 179, 184);
+  --accent-4: rgb(252, 210, 213);
   --background-1: rgba(0, 44, 38);
   --background-2: rgba(5, 52, 47);
   --background-3: rgba(15, 61, 59);
@@ -102,6 +105,7 @@ body {
   --accent-1: rgb(215, 91, 63);
   --accent-2: rgb(230, 109, 85);
   --accent-3: rgb(239, 134, 136);
+  --accent-4: rgb(241, 177, 178);
   --background-1: rgb(20, 11, 3);
   --background-2: rgb(27, 18, 6);
   --background-3: rgb(37, 27, 18);
@@ -123,6 +127,7 @@ body {
   --accent-1: rgb(255, 74, 81);
   --accent-2: rgb(255, 109, 115);
   --accent-3: rgb(255, 138, 143);
+  --accent-4: rgb(255, 188, 191);
   --background-1: rgb(252, 252, 252);
   --background-2: rgb(229, 236, 235);
   --background-3: rgb(213, 224, 223);
@@ -136,14 +141,15 @@ body {
   --text-4: rgb(63, 101, 198);
   --text-5: rgb(89, 125, 219);
   --text-6: rgb(113, 148, 237);
-  --shadow: rgba(10, 34, 97, 0.35);
   --divider-lines-1: rgb(147, 175, 249);
   --divider-lines-2: rgb(63, 101, 198);
+  --shadow: rgba(10, 34, 97, 0.35);
 }
 .lush-blush {
   --accent-1: rgb(64, 63, 128);
   --accent-2: rgb(87, 86, 150);
   --accent-3: rgb(117, 116, 175);
+  --accent-4: rgb(157, 156, 200);
   --background-1: rgb(252, 252, 252);
   --background-2: rgb(254, 249, 246);
   --background-3: rgb(245, 238, 234);
@@ -157,14 +163,15 @@ body {
   --text-4: rgb(211, 106, 141);
   --text-5: rgb(219, 118, 151);
   --text-6: rgb(225, 137, 166);
-  --shadow: rgba(171, 59, 97, 0.35);
   --divider-lines-1: rgb(226, 160, 182);
   --divider-lines-2: rgb(211, 106, 141);
+  --shadow: rgba(171, 59, 97, 0.35);
 }
 .white-smoke {
   --accent-1: rgb(48, 65, 97);
   --accent-2: rgb(64, 87, 130);
   --accent-3: rgb(159, 171, 192);
+  --accent-4: rgb(193, 202, 218);
   --background-1: rgb(252, 252, 252);
   --background-2: rgb(240, 240, 240);
   --background-3: rgb(233, 233, 233);
@@ -178,14 +185,15 @@ body {
   --text-4: rgb(103, 103, 103);
   --text-5: rgb(119, 119, 119);
   --text-6: rgb(146, 146, 146);
-  --shadow: rgba(27, 28, 29, 0.35);
   --divider-lines-1: rgb(146, 146, 146);
   --divider-lines-2: rgb(103, 103, 103);
+  --shadow: rgba(27, 28, 29, 0.35);
 }
 .prairie-dance {
   --accent-1: rgb(174, 76, 76);
   --accent-2: rgb(191, 100, 100);
   --accent-3: rgb(208, 122, 122);
+  --accent-4: rgb(224, 162, 162);
   --background-1: rgb(252, 252, 252);
   --background-2: rgb(252, 248, 241);
   --background-3: rgb(250, 244, 231);
@@ -207,6 +215,7 @@ body {
   --accent-1: rgb(114, 105, 211);
   --accent-2: rgb(138, 131, 224);
   --accent-3: rgb(159, 153, 230);
+  --accent-4: rgb(185, 181, 237);
   --background-1: rgb(252, 252, 252);
   --background-2: rgb(242, 242, 248);
   --background-3: rgb(234, 234, 244);
@@ -228,6 +237,7 @@ body {
   --accent-1: rgb(242, 184, 151);
   --accent-2: rgb(237, 200, 184);
   --accent-3: rgb(243, 216, 204);
+  --accent-4: rgb(250, 237, 232);
   --background-1: rgb(89, 3, 33);
   --background-2: rgb(103, 7, 40);
   --background-3: rgb(109, 10, 44);
@@ -249,6 +259,7 @@ body {
   --accent-1: rgb(217, 124, 55);
   --accent-2: rgb(232, 142, 77);
   --accent-3: rgb(241, 167, 128);
+  --accent-4: rgb(253, 194, 102); 
   --background-1: rgb(78, 54, 0);
   --background-2: rgb(85, 62, 0);
   --background-3: rgb(95, 71, 11);
