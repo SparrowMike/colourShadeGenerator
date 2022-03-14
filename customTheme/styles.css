@@ -336,20 +336,20 @@ body {
   margin-right: 2px;
   border: 1px solid black;
 }
-#defaultTheme #circles > .one {
-  background: var(--accent-3);
+#defaultTheme #circles > .accent {
+  background: var(--accent-2);
 }
-#defaultTheme #circles > .two {
-  background: var(--accent-1);
+#defaultTheme #circles > .text  {
+  background: var(--text-1);
 }
-#defaultTheme #circles > .three {
+#defaultTheme #circles > .background  {
   background: var(--background-1);
 }
-#defaultTheme #circles > .four {
-  background: var(--background-7);
+#defaultTheme #circles > .divider  {
+  background: var(--divider-lines-1);
 }
-#defaultTheme #circles > .five {
-  background: var(--text-6);
+#defaultTheme #circles > .shadow  {
+  background: var(--shadow);
 }
 
 /* ?============ COLORS =========== */

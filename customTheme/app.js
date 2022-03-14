@@ -49,20 +49,6 @@ app.controller("theme", function ($scope, $http) {
   const theme = localStorage.getItem("theme");
   $scope.selected = theme !== null ? theme : "black-beauty";
 
-  //? =========Recieve Message==========
-  window.onmessage = function(e) {
-    const data = e.data;
-    // if (e.origin !== 'http://localhost:1337') return;
-    if (data.selectedTheme !== undefined) {
-      $('.defaultTheme').removeClass('active')
-      $(`.${data.selectedTheme}`).addClass('active')
-      $scope.changeTheme(data.selectedTheme)
-    }
-    if (data.currentPalette !== undefined) {
-      localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
-    }
-  };
-  
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
     if ($(`.defaultTheme:not(.${theme})`).hasClass('active')) $('.defaultTheme').removeClass('active')
@@ -71,56 +57,24 @@ app.controller("theme", function ($scope, $http) {
     
     $("html").removeAttr("style").removeClass()
     switch (theme) {
-      case "light-theme":
-        $("html").addClass("light-theme");
-        break;
-      case "black-beauty":
-        $("html").addClass("black-beauty");
-        break;
-      case "dark-knight":
-        $("html").addClass("dark-knight");
-      break;
-      case "botanical-forest":
-        $("html").addClass("botanical-forest");
-        break;
-      case "rustic-pottery":
-        $("html").addClass("rustic-pottery");
-        break;
-      case "aqua-lolly":
-        $("html").addClass("aqua-lolly");
-        break;
-      case "lush-blush":
-        $("html").addClass("lush-blush");
-        break;
-      case "white-smoke":
-        $("html").addClass("white-smoke");
-        break;
-      case "prairie-dance":
-        $("html").addClass("prairie-dance");
-        break;
-      case "farsighted":
-        $("html").addClass("farsighted");
-        break;
-      case "hearts-desire":
-        $("html").addClass("hearts-desire");
-        break;
       case "custom-theme":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
         loadValues();
         $("html").addClass("custom-theme");
         break;
-    }
+      }
+      $("html").addClass(theme);
     loadSelectedTheme(loadCurrentCss());
   };
 
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom-theme #circles > .one`).css("background", theme["--accent-3"]);
-    $(`#defaultTheme.custom-theme #circles > .two`).css("background", theme["--accent-1"]);
-    $(`#defaultTheme.custom-theme #circles > .three`).css("background", theme["--background-1"]);
-    $(`#defaultTheme.custom-theme #circles > .four`).css("background", theme["--background-7"]);
-    $(`#defaultTheme.custom-theme #circles > .five`).css("background", theme["--text-6"]);
+    $(`#defaultTheme.custom-theme #circles > .accent`).css("background", theme["--accent-2"]);
+    $(`#defaultTheme.custom-theme #circles > .text `).css("background", theme["--text-1"]);
+    $(`#defaultTheme.custom-theme #circles > .background `).css("background", theme["--background-1"]);
+    $(`#defaultTheme.custom-theme #circles > .divider `).css("background", theme["--divider-lines-1"]);
+    $(`#defaultTheme.custom-theme #circles > .shadow `).css("background", theme["--shadow"]);
   }
 
   //?===================SAVE=====================
@@ -186,16 +140,6 @@ app.controller("theme", function ($scope, $http) {
     }
   };
 
-  $(document).ready(function () {
-    loadSelectedTheme(loadCurrentCss());
-    if (localStorage.getItem("customTheme") !== null) {
-      customPaletteColors()
-    }
-    if (theme === "custom-theme") {
-      loadValues();
-    }
-  });
-
   //? CONVERT INCOMING RGB STRING TO OBJECT
   let rgbValues = new Object();
   function rgbToObj(rgb) {
@@ -209,13 +153,11 @@ app.controller("theme", function ($scope, $http) {
     return rgbValues;
   }
 
-  //!======================PICKR============================
-  $(document).ready(function () {
+  //?======================PICKR============================
+  const picker = () => {
     let $input = $("input.pickr-field");
-    let current_color = $(".pickr-field").val() || "#041";
-    let pickr;
     Object.keys(paletteToFeed).forEach((type) => {
-      pickr = new Pickr({
+      let pickr = new Pickr({
         el: $(`.${type}Color`)[0],
         theme: "monolith",
         appClass: 'pickr-theme',
@@ -239,7 +181,11 @@ app.controller("theme", function ($scope, $http) {
         closeWithKey: "Escape",
         position: 'left-start',
         useAsButton: false,
-        // default: current_color,
+        default: type == 'background' ? storedPalette[`--${type}-4`] :
+          type == 'accent' ? storedPalette[`--${type}-2`] :
+          type == 'divider' ? storedPalette[`--${type}-lines-1`] :
+          type == 'shadow' ? storedPalette[`--${type}`] :
+          storedPalette[`--${type}-1`],
         comparison: false,
         components: {
           preview: false,
@@ -289,5 +235,27 @@ app.controller("theme", function ($scope, $http) {
         }
       });
     });
+  }
+
+  $(document).ready(function () {
+    loadSelectedTheme(loadCurrentCss());
+    if (localStorage.getItem("customTheme") !== null) {
+      customPaletteColors()
+    }
+    if (theme === "custom-theme") {
+      loadValues();
+    }
+    picker()
   });
+
+  //? =========Recieve Message==========
+  window.onmessage = function(e) {
+    const data = e.data;
+    if (e.origin === 'http://127.0.0.1:5500' || e.origin === 'https://mock-up-three.vercel.app/') return;
+    $('.defaultTheme').removeClass('active')
+    $(`.${data.selectedTheme}`).addClass('active')
+    localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
+    localStorage.setItem("theme", data.selectedTheme);  
+    $scope.changeTheme(data.selectedTheme)
+  };
 });

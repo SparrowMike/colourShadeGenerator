@@ -208,7 +208,7 @@
         <div ng-repeat="theme in ['black-beauty', 'dark-knight', 'botanical-forest', 'rustic-pottery', 'aqua-lolly', 'lush-blush', 'white-smoke', 'prairie-dance', 'farsighted', 'hearts-desire', 'custom-theme']" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="theme === selected ? 'active' : ''" ng-click="changeTheme(theme); sendCurrentTheme()">
           <h4>{{theme.split('-').join(' ');}}</h4>
           <div id="circles">
-            <div ng-repeat="c in ['one', 'two', 'three', 'four', 'five']" class={{c}}></div>
+            <div ng-repeat="type in ['accent', 'text', 'background', 'divider', 'shadow']" class={{type}}></div>
           </div> 
         </div>
       </div>
@@ -221,7 +221,7 @@
           </div>
           <div class="ui divider"></div>
         </div>
-        <button style="width: 100%; font-size: large; margin-top: 5px;" class="ui primary button" ng-click="saveValues(); changeTheme('custom-theme')">Save</button>
+        <button style="width: 100%; font-size: large; margin-top: 5px;" class="ui primary button" ng-click="saveValues(); changeTheme('custom-theme')" data-tooltip="This save button will store currently selected colours as a custom theme">Save</button>
       </div>
       </div>
     </div>
