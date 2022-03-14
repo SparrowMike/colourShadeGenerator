@@ -59,10 +59,10 @@ body {
 }
 .dark-knight {
   --accent-1: rgb(224, 208, 162);
-  --accent-2: rgb(239, 225, 186, 1);
+  --accent-2: rgb(239, 225, 186);
   --accent-3: rgb(250, 240, 212);
   --accent-4: rgb(254, 249, 236);
-  --background-1: rgb(6, 9, 33, 1);
+  --background-1: rgb(6, 9, 33);
   --background-2: rgb(13, 17, 42);
   --background-3: rgb(23, 26, 54);
   --background-4: rgb(23, 27, 56);
@@ -256,26 +256,26 @@ body {
   --shadow: rgba(89, 3, 33, 0.35);
 }
 .custom-theme {
-  --accent-1: rgb(217, 124, 55);
-  --accent-2: rgb(232, 142, 77);
-  --accent-3: rgb(241, 167, 128);
-  --accent-4: rgb(253, 194, 102); 
-  --background-1: rgb(78, 54, 0);
-  --background-2: rgb(85, 62, 0);
-  --background-3: rgb(95, 71, 11);
-  --background-4: rgb(95, 72, 13);
-  --background-5: rgb(103, 80, 22);
-  --background-6: rgb(109, 86, 30);
-  --background-7: rgb(125, 104, 49);
-  --text-1: rgb(175, 162, 70);
-  --text-2: rgb(200, 187, 95);
-  --text-3: rgb(231, 218, 126);
-  --text-4: rgb(255, 245, 153);
-  --text-5: rgb(255, 248, 154);
-  --text-6: rgb(255, 255, 169);
-  --divider-lines-1: rgb(150, 140, 66);
-  --divider-lines-2: rgb(68, 58, 0);
-  --shadow: rgba(255, 193, 7, 0.35);
+  --accent-1: rgb(0, 151, 222); 
+  --accent-2: rgb(3, 169, 244); 
+  --accent-3: rgb(12, 194, 255); 
+  --accent-4: rgb(14, 218, 255); 
+  --text-1: rgb(0, 150, 218); 
+  --text-2: rgb(25, 175, 243); 
+  --text-3: rgb(56, 206, 255); 
+  --text-4: rgb(82, 233, 255); 
+  --text-5: rgb(86, 236, 255); 
+  --text-6: rgb(99, 249, 255); 
+  --background-1: rgb(0, 5, 15); 
+  --background-2: rgb(0, 13, 24); 
+  --background-3: rgb(3, 22, 36); 
+  --background-4: rgb(3, 23, 38); 
+  --background-5: rgb(11, 31, 47); 
+  --background-6: rgb(17, 37, 55);
+  --background-7: rgb(33, 55, 74);
+  --divider-lines-1: rgb(19, 71, 95); 
+  --divider-lines-2: rgb(0, 0, 13); 
+  --shadow: rgba(26, 38, 43, 50%);
 }
 
 /* ?================SIDE PANEL============== */

@@ -14,6 +14,7 @@ app.controller("theme", function ($scope, $http) {
       "--accent-1": { r: -15, g: -18, b: -22 },
       "--accent-2": { r: 0, g: 0, b: 0 },
       "--accent-3": { r: 9, g: 25, b: 51 },
+      "--accent-4": { r: 11, g: 49, b: 109 },
     },
     text: {
       "--text-1": {r: 0, g: 0, b: 0},
@@ -60,7 +61,6 @@ app.controller("theme", function ($scope, $http) {
       case "custom-theme":
         if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
         loadValues();
-        $("html").addClass("custom-theme");
         break;
       }
       $("html").addClass(theme);
@@ -81,11 +81,18 @@ app.controller("theme", function ($scope, $http) {
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
-    parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme', savedTheme: true}, '*')
+    // parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme', savedTheme: true}, '*')
+
+    ['https://genesiv.com/app', 'https://staging.genesiv.com/app', 'https://www.tradingroom.sg/app']
+    .map((domain) => parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme', savedTheme: true}, domain));
   };
   $scope.sendCurrentTheme = () => {
-    parent.postMessage({storedPalette: JSON.parse(localStorage.getItem("customTheme")), theme: $scope.selected, savedTheme: false}, '*')
+    // parent.postMessage({storedPalette: JSON.parse(localStorage.getItem("customTheme")), theme: $scope.selected, savedTheme: false}, '*')
+
+    ['https://genesiv.com/app', 'https://staging.genesiv.com/app', 'https://www.tradingroom.sg/app']
+    .map((domain) => parent.postMessage({storedPalette: JSON.parse(localStorage.getItem("customTheme")), theme: $scope.selected, savedTheme: false}, domain));
   }
+  
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
   const loadValues = function () {
@@ -223,9 +230,9 @@ app.controller("theme", function ($scope, $http) {
           }
           let rgb = ''
           if (color === '--shadow') {
-            rgb = `rgba(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]}, 50%)`;
+            rgb = ` rgba(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]}, 50%)`;
           } else {
-            rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+            rgb = ` rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           }
           //? keep the generated colour in the storePalette Object
           storedPalette[color] = rgb;
