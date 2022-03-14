@@ -81,15 +81,11 @@ app.controller("theme", function ($scope, $http) {
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     customPaletteColors()
-    // parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme', savedTheme: true}, '*')
-
-    ['https://genesiv.com/app', 'https://staging.genesiv.com/app', 'https://www.tradingroom.sg/app']
+    ['https://genesiv.com/', 'https://staging.genesiv.com/', 'https://www.tradingroom.sg/', 'http://localhost:1337/']
     .map((domain) => parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme', savedTheme: true}, domain));
   };
   $scope.sendCurrentTheme = () => {
-    // parent.postMessage({storedPalette: JSON.parse(localStorage.getItem("customTheme")), theme: $scope.selected, savedTheme: false}, '*')
-
-    ['https://genesiv.com/app', 'https://staging.genesiv.com/app', 'https://www.tradingroom.sg/app']
+    ['https://genesiv.com/', 'https://staging.genesiv.com/', 'https://www.tradingroom.sg/', 'http://localhost:1337/']
     .map((domain) => parent.postMessage({storedPalette: JSON.parse(localStorage.getItem("customTheme")), theme: $scope.selected, savedTheme: false}, domain));
   }
   
