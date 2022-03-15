@@ -276,11 +276,12 @@ app.controller("theme", function ($scope, $http) {
   window.onmessage = function(e) {
     const data = e.data;
     if (e.origin === 'http://127.0.0.1:5501' || e.origin === 'https://mock-up-three.vercel.app/') return;
-    storedPalette = data.currentPalette 
     $('.defaultTheme').removeClass('active')
     $(`.${data.selectedTheme}`).addClass('active')
     localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
     localStorage.setItem("theme", data.selectedTheme);  
+    storedPalette = JSON.stringify(data.currentPalette);
     $scope.changeTheme(data.selectedTheme)
+    customPaletteColors()
   };
 });
