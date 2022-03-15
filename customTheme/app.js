@@ -67,6 +67,7 @@ app.controller("theme", function ($scope, $http) {
       $("html").addClass(theme);
     loadSelectedTheme(loadCurrentCss());
     updatePickrColours()
+    console.log(storedPalette)
   };
 
   //?===================UPDATE CUSTOM PALETTE=====================
@@ -90,7 +91,6 @@ app.controller("theme", function ($scope, $http) {
         'rgb(0, 0, 0)')
     }
   }
-  // rustic pottery background
 
   //?===================SAVE=====================
   $scope.saveValues = () => {
@@ -228,7 +228,7 @@ app.controller("theme", function ($scope, $http) {
         const currentValue = rgbToObj(current_color);
         for (color in paletteToFeed[type]) {
           let rgbArr = []
-          if (type == 'text' && (currentValue.r <= 90 || currentValue.g <= 90 || currentValue.b <= 90)) {
+          if (type === 'text' && (currentValue.r <= 90 || currentValue.g <= 90 || currentValue.b <= 90)) {
             rgbArr = [
               rgbValues.r - paletteToFeed[type][color].r,
               rgbValues.g - paletteToFeed[type][color].g,
@@ -278,12 +278,12 @@ app.controller("theme", function ($scope, $http) {
     if (e.origin === 'http://127.0.0.1:5501' || e.origin === 'https://mock-up-three.vercel.app/') return;
     $('.defaultTheme').removeClass('active')
     $(`.${data.selectedTheme}`).addClass('active')
-    localStorage.setItem("theme", data.selectedTheme);  
-    $scope.changeTheme(data.selectedTheme)
     if (JSON.stringify(data.currentPalette) !== '{}') {
-      storedPalette = JSON.stringify(data.currentPalette);
       localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
+      storedPalette = JSON.stringify(data.currentPalette);
       customPaletteColors()
     }
+    localStorage.setItem("theme", data.selectedTheme);  
+    $scope.changeTheme(data.selectedTheme)
   };
 });
