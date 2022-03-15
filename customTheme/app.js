@@ -274,15 +274,17 @@ app.controller("theme", function ($scope, $http) {
   //? =========Recieve Message==========
   window.onmessage = function(e) {
     const data = e.data;
-    if (e.origin === 'http://127.0.0.1:5501' || e.origin === 'https://mock-up-three.vercel.app/') return;
+    if (e.origin === 'http://127.0.0.1:5500' || e.origin === 'https://mock-up-three.vercel.app/') return;
     $('.defaultTheme').removeClass('active')
     $(`.${data.selectedTheme}`).addClass('active')
     if (JSON.stringify(data.currentPalette) !== '{}') {
       localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
-      storedPalette = JSON.stringify(data.currentPalette);
-      customPaletteColors()
+      // storedPalette = JSON.stringify(data.currentPalette);
+      // customPaletteColors()
+    } else {
+      localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
     }
-    localStorage.setItem("theme", data.selectedTheme);  
+    localStorage.setItem("theme", data.selectedTheme); 
     $scope.changeTheme(data.selectedTheme)
   };
 });
