@@ -258,7 +258,7 @@ app.controller("theme", function ($scope, $http) {
   //? =========Recieve Message==========
   window.onmessage = function(e) {
     const data = e.data;
-    if (e.origin === 'http://127.0.0.1:5500' || e.origin === 'https://mock-up-three.vercel.app/') return;
+    if (e.origin === 'http://127.0.0.1:5501' || e.origin === 'https://mock-up-three.vercel.app/') return;
     $('.defaultTheme').removeClass('active')
     $(`.${data.selectedTheme}`).addClass('active')
     localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
