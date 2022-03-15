@@ -203,6 +203,7 @@ app.controller("theme", function ($scope, $http) {
         closeWithKey: "Escape",
         position: 'left-start',
         useAsButton: false,
+        closeOnScroll: true,
         default:  type === 'background' ? storedPalette[`--background-4`] :
         type === 'accent' ? storedPalette[`--accent-2`] :
         type === 'divider' ? storedPalette[`--divider-lines-1`] :
