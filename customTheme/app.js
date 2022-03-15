@@ -188,11 +188,11 @@ app.controller("theme", function ($scope, $http) {
         closeWithKey: "Escape",
         position: 'left-start',
         useAsButton: false,
-        default: type == 'background' ? storedPalette[`--${type}-4`] :
-          type == 'accent' ? storedPalette[`--${type}-2`] :
-          type == 'divider' ? storedPalette[`--${type}-lines-1`] :
-          type == 'shadow' ? storedPalette[`--${type}`] :
-          storedPalette[`--${type}-1`],
+        default: type == 'background' ? storedPalette[`--background-4`] :
+          type == 'accent' ? storedPalette[`--accent-2`] :
+          type == 'divider' ? storedPalette[`--divider-lines-1`] :
+          type == 'shadow' ? storedPalette[`--shadow`] :
+          storedPalette[`--text-1`],
         comparison: false,
         components: {
           preview: false,
