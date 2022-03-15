@@ -277,6 +277,7 @@ app.controller("theme", function ($scope, $http) {
     const data = e.data;
     if (e.origin === 'http://127.0.0.1:5501' || e.origin === 'https://mock-up-three.vercel.app/') return;
     $('.defaultTheme').removeClass('active')
+    console.log(e.data)
     $(`.${data.selectedTheme}`).addClass('active')
     localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
     localStorage.setItem("theme", data.selectedTheme);  
