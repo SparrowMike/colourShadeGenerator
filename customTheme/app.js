@@ -67,7 +67,6 @@ app.controller("theme", function ($scope, $http) {
       $("html").addClass(theme);
     loadSelectedTheme(loadCurrentCss());
     updatePickrColours()
-    console.log(storedPalette)
   };
 
   //?===================UPDATE CUSTOM PALETTE=====================
