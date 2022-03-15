@@ -47,6 +47,7 @@ app.controller("theme", function ($scope, $http) {
   let storedPalette = {};
 
   //? LOAD THE THEME ON START
+  let pickr = {}
   const theme = localStorage.getItem("theme");
   $scope.selected = theme !== null ? theme : "black-beauty";
 
@@ -65,6 +66,7 @@ app.controller("theme", function ($scope, $http) {
       }
       $("html").addClass(theme);
     loadSelectedTheme(loadCurrentCss());
+    updatePickrColours()
   };
 
   //?===================UPDATE CUSTOM PALETTE=====================
@@ -76,6 +78,19 @@ app.controller("theme", function ($scope, $http) {
     $(`#defaultTheme.custom-theme #circles > .divider `).css("background", theme["--divider-lines-1"]);
     $(`#defaultTheme.custom-theme #circles > .shadow `).css("background", theme["--shadow"]);
   }
+      
+  const updatePickrColours = () => {
+    for(let type in paletteToFeed) {
+      pickr[type].setColor(
+        type === 'background' ? storedPalette['--background-4'] :
+        type === 'accent' ? storedPalette['--accent-2'] :
+        type === 'divider' ? storedPalette['--divider-lines-1'] :
+        type === 'shadow' ? storedPalette['--shadow'] :
+        type === 'text' ? storedPalette['--text-1'] :
+        'rgb(0, 0, 0)')
+    }
+  }
+  // rustic pottery background
 
   //?===================SAVE=====================
   $scope.saveValues = () => {
@@ -164,7 +179,7 @@ app.controller("theme", function ($scope, $http) {
   const picker = () => {
     let $input = $("input.pickr-field");
     Object.keys(paletteToFeed).forEach((type) => {
-      let pickr = new Pickr({
+      pickr[type] = new Pickr({
         el: $(`.${type}Color`)[0],
         theme: "monolith",
         appClass: 'pickr-theme',
@@ -188,11 +203,12 @@ app.controller("theme", function ($scope, $http) {
         closeWithKey: "Escape",
         position: 'left-start',
         useAsButton: false,
-        default: type == 'background' ? storedPalette[`--background-4`] :
-          type == 'accent' ? storedPalette[`--accent-2`] :
-          type == 'divider' ? storedPalette[`--divider-lines-1`] :
-          type == 'shadow' ? storedPalette[`--shadow`] :
-          storedPalette[`--text-1`],
+        default:  type === 'background' ? storedPalette[`--background-4`] :
+        type === 'accent' ? storedPalette[`--accent-2`] :
+        type === 'divider' ? storedPalette[`--divider-lines-1`] :
+        type === 'shadow' ? storedPalette[`--shadow`] :
+        type === 'text' ? storedPalette[`--text-1`] :
+        '#fff',
         comparison: false,
         components: {
           preview: false,
@@ -204,7 +220,7 @@ app.controller("theme", function ($scope, $http) {
           },
         },
       });
-      pickr.on("change", function (color, instance) {
+      pickr[type].on("change", function (color, instance) {
         current_color = color.toRGBA().toString(0);
         $input.val(current_color).trigger("change");
 
@@ -230,9 +246,9 @@ app.controller("theme", function ($scope, $http) {
           }
           let rgb = ''
           if (color === '--shadow') {
-            rgb = ` rgba(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]}, 50%)`;
+            rgb = `rgba(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]}, 0.5)`;
           } else {
-            rgb = ` rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+            rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           }
           //? keep the generated colour in the storePalette Object
           storedPalette[color] = rgb;
