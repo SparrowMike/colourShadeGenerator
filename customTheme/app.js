@@ -280,7 +280,7 @@ app.controller("theme", function ($scope, $http) {
     if (JSON.stringify(data.currentPalette) !== '{}') {
       localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
       // storedPalette = JSON.stringify(data.currentPalette);
-      // customPaletteColors()
+      customPaletteColors()
     } else {
       localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
     }
