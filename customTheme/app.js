@@ -262,7 +262,7 @@ app.controller("theme", function ($scope, $http) {
 
   $(document).ready(function () {
     loadSelectedTheme(loadCurrentCss());
-    if (localStorage.getItem("customTheme") !== null) {
+    if (localStorage.getItem("customTheme") !== 'null') {
       customPaletteColors()
     }
     if (theme === "custom-theme") {
