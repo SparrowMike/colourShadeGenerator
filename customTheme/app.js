@@ -43,11 +43,18 @@ app.controller("theme", function ($scope, $http) {
   };
   Object.freeze(paletteToFeed)
 
+
   //? OBJECT TO STORE THE CUSTOM THEME
   let storedPalette = {};
+  const objectForPickerColour = {accent: '--accent-2', text: '--text-1', background: '--background-4', divider: '--divider-lines-1', shadow: '--shadow'}
+
 
   //? LOAD THE THEME ON START
   let pickr = {}
+  let localStorageCustomTheme = !['', null, undefined, 'null', {}].includes(localStorage.getItem("customTheme"))
+    ? JSON.parse(localStorage.getItem("customTheme"))
+    : undefined 
+  
   const theme = localStorage.getItem("theme");
   $scope.selected = theme !== null ? theme : "black-beauty";
 
@@ -71,22 +78,17 @@ app.controller("theme", function ($scope, $http) {
 
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
-    const theme = JSON.parse(localStorage.getItem("customTheme"))
-    $(`#defaultTheme.custom-theme #circles > .accent`).css("background", theme["--accent-2"]);
-    $(`#defaultTheme.custom-theme #circles > .text `).css("background", theme["--text-1"]);
-    $(`#defaultTheme.custom-theme #circles > .background `).css("background", theme["--background-1"]);
-    $(`#defaultTheme.custom-theme #circles > .divider `).css("background", theme["--divider-lines-1"]);
-    $(`#defaultTheme.custom-theme #circles > .shadow `).css("background", theme["--shadow"]);
+    if (objectForPickerColour !== undefined) {
+      for(let type in objectForPickerColour) {
+        $(`#defaultTheme.custom-theme #circles > .${type}`).css("background", localStorageCustomTheme[objectForPickerColour[type]]);
+      }
+    }
   }
       
   const updatePickrColours = () => {
-    for(let type in paletteToFeed) {
+    for(let type in objectForPickerColour) {
       pickr[type].setColor(
-        type === 'background' ? storedPalette['--background-4'] :
-        type === 'accent' ? storedPalette['--accent-2'] :
-        type === 'divider' ? storedPalette['--divider-lines-1'] :
-        type === 'shadow' ? storedPalette['--shadow'] :
-        type === 'text' ? storedPalette['--text-1'] :
+        type === type ? storedPalette[objectForPickerColour[type]] :
         'rgb(0, 0, 0)')
     }
   }
@@ -94,25 +96,25 @@ app.controller("theme", function ($scope, $http) {
   //?===================SAVE=====================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
+    localStorageCustomTheme = storedPalette
     customPaletteColors()
     parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme', savedTheme: true}, '*')
-
-    // ['https://genesiv.com/app', 'https://staging.genesiv.com/app', 'https://www.tradingroom.sg/app']
-    // .map((domain) => parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme', savedTheme: true}, domain));
   };
-  $scope.sendCurrentTheme = () => {
-    parent.postMessage({storedPalette: JSON.parse(localStorage.getItem("customTheme")), theme: $scope.selected, savedTheme: false}, '*')
 
-    // ['https://genesiv.com/app', 'https://staging.genesiv.com/app', 'https://www.tradingroom.sg/app']
-    // .map((domain) => parent.postMessage({storedPalette: JSON.parse(localStorage.getItem("customTheme")), theme: $scope.selected, savedTheme: false}, domain));
+  $scope.sendCurrentTheme = () => {
+    if (localStorageCustomTheme !== undefined) {
+      parent.postMessage({storedPalette: localStorageCustomTheme, theme: $scope.selected, savedTheme: false}, '*')
+    } else {
+      parent.postMessage({theme: $scope.selected, savedTheme: false}, '*')
+    }
   }
-  
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
   const loadValues = function () {
-    const types = JSON.parse(localStorage.getItem("customTheme"));
-    for (t in types) {
-      $("html").get(0).style.setProperty(`${t}`, `${types[t]}`);
+    if(localStorageCustomTheme !== undefined) {
+      for (t in localStorageCustomTheme) {
+        $("html").get(0).style.setProperty(`${t}`, `${localStorageCustomTheme[t]}`);
+      }
     }
   };
 
@@ -134,18 +136,11 @@ app.controller("theme", function ($scope, $http) {
 
   //?========CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=========
   const loadSelectedTheme = (input) => {
-    if (
-      $scope.selected === "custom-theme" &&
-      localStorage.getItem("customTheme") !== null
-    ) {
-      const gotback = JSON.parse(localStorage.getItem("customTheme"));
-      storedPalette = { ...gotback};
+    if ($scope.selected === "custom-theme" 
+    && !['', null, undefined, 'null'].includes(localStorage.getItem("customTheme"))) {
+      storedPalette = { ...localStorageCustomTheme};
     } else {
-      try {
-        input = input.substring(input.indexOf("--"), input.indexOf("}"));
-      } catch(e) {
-        console.error(e)
-      }
+      input = input.substring(input.indexOf("--"), input.indexOf("}"));
       let results = {},
         attributes = input.split("; ");
       for (i = 0; i < attributes.length; i++) {
@@ -208,7 +203,7 @@ app.controller("theme", function ($scope, $http) {
         type === 'divider' ? storedPalette[`--divider-lines-1`] :
         type === 'shadow' ? storedPalette[`--shadow`] :
         type === 'text' ? storedPalette[`--text-1`] :
-        '#fff',
+        'rgb(0, 0, 0)',
         comparison: false,
         components: {
           preview: false,
@@ -262,7 +257,7 @@ app.controller("theme", function ($scope, $http) {
 
   $(document).ready(function () {
     loadSelectedTheme(loadCurrentCss());
-    if (localStorage.getItem("customTheme") !== 'null') {
+    if (!['', null, undefined, 'null', {}].includes(localStorageCustomTheme)) {
       customPaletteColors()
     }
     if (theme === "custom-theme") {
@@ -277,9 +272,9 @@ app.controller("theme", function ($scope, $http) {
     if (e.origin === 'http://127.0.0.1:5500' || e.origin === 'https://mock-up-three.vercel.app/') return;
     $('.defaultTheme').removeClass('active')
     $(`.${data.selectedTheme}`).addClass('active')
-    if (JSON.stringify(data.currentPalette) !== '{}') {
+    if (!['', null, undefined, 'null', {}].includes(JSON.stringify(data.currentPalette))) {
       localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
-      // storedPalette = JSON.stringify(data.currentPalette);
+      localStorageCustomTheme = data.currentPalette;
       customPaletteColors()
     } else {
       localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
