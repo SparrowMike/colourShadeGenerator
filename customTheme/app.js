@@ -46,12 +46,36 @@ app.controller("theme", function ($scope, $http) {
 
   //? OBJECT TO STORE THE CUSTOM THEME
   let storedPalette = {};
-  const objectForPickerColour = {accent: '--accent-2', text: '--text-1', background: '--background-4', divider: '--divider-lines-1', shadow: '--shadow'}
 
+  const objectForPickerColour = {
+    accent: '--accent-2', 
+    text: '--text-1', 
+    background: '--background-4', 
+    divider: '--divider-lines-1', 
+    shadow: '--shadow'
+  }
+  
+  const swatches = [
+    "rgba(244, 67, 54, 1)",
+    "rgba(233, 30, 99, 1)",
+    "rgba(156, 39, 176, 1)",
+    "rgba(103, 58, 183, 1)",
+    "rgba(63, 81, 181, 1)",
+    "rgba(33, 150, 243, 1)",
+    "rgba(3, 169, 244, 1)",
+    "rgba(0, 188, 212, 1)",
+    "rgba(0, 150, 136, 1)",
+    "rgba(76, 175, 80, 1)",
+    "rgba(139, 195, 74, 1)",
+    "rgba(205, 220, 57, 1)",
+    "rgba(255, 223, 1, 1)",
+    "rgba(255, 193, 7, 1)"
+  ]
 
   //? LOAD THE THEME ON START
   let pickr = {}
-  let localStorageCustomTheme = !['', null, undefined, 'null', {}].includes(localStorage.getItem("customTheme"))
+  let localStorageCustomTheme = !['', null, undefined, 'null', {}]
+    .includes(localStorage.getItem("customTheme"))
     ? JSON.parse(localStorage.getItem("customTheme"))
     : undefined 
   
@@ -60,18 +84,18 @@ app.controller("theme", function ($scope, $http) {
 
   //? CHANGE THE THEMES - TOGGLING CLASS
   $scope.changeTheme = (theme) => {
-    if ($(`.defaultTheme:not(.${theme})`).hasClass('active')) $('.defaultTheme').removeClass('active')
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
-    
     $("html").removeAttr("style").removeClass()
+    if ($(`.defaultTheme:not(.${theme})`).hasClass('active')) {
+      $('.defaultTheme').removeClass('active')
+    }
     switch (theme) {
       case "custom-theme":
-        if (JSON.parse(localStorage.getItem("customTheme")) === null) $("html").removeAttr("style")
         loadValues();
         break;
       }
-      $("html").addClass(theme);
+    $("html").addClass(theme);
     loadSelectedTheme(loadCurrentCss());
     updatePickrColours()
   };
@@ -80,7 +104,8 @@ app.controller("theme", function ($scope, $http) {
   const customPaletteColors = () => {
     if (objectForPickerColour !== undefined) {
       for(let type in objectForPickerColour) {
-        $(`#defaultTheme.custom-theme #circles > .${type}`).css("background", localStorageCustomTheme[objectForPickerColour[type]]);
+        return $(`#defaultTheme.custom-theme #circles > .${type}`)
+        .css("background", localStorageCustomTheme[objectForPickerColour[type]]);
       }
     }
   }
@@ -88,8 +113,9 @@ app.controller("theme", function ($scope, $http) {
   const updatePickrColours = () => {
     for(let type in objectForPickerColour) {
       pickr[type].setColor(
-        type === type ? storedPalette[objectForPickerColour[type]] :
-        'rgb(0, 0, 0)')
+        type
+        ? storedPalette[objectForPickerColour[type]] 
+        : 'rgb(0, 0, 0)')
     }
   }
 
@@ -177,28 +203,14 @@ app.controller("theme", function ($scope, $http) {
         el: $(`.${type}Color`)[0],
         theme: "monolith",
         appClass: 'pickr-theme',
-        swatches: [
-          "rgba(244, 67, 54, 1)",
-          "rgba(233, 30, 99, 1)",
-          "rgba(156, 39, 176, 1)",
-          "rgba(103, 58, 183, 1)",
-          "rgba(63, 81, 181, 1)",
-          "rgba(33, 150, 243, 1)",
-          "rgba(3, 169, 244, 1)",
-          "rgba(0, 188, 212, 1)",
-          "rgba(0, 150, 136, 1)",
-          "rgba(76, 175, 80, 1)",
-          "rgba(139, 195, 74, 1)",
-          "rgba(205, 220, 57, 1)",
-          "rgba(255, 223, 1, 1)",
-          "rgba(255, 193, 7, 1)",
-        ],
+        swatches: [...swatches],
         defaultRepresentation: "RGBA",
         closeWithKey: "Escape",
         position: 'left-start',
         useAsButton: false,
         closeOnScroll: true,
-        default:  type === 'background' ? storedPalette[`--background-4`] :
+        default: 
+        type === 'background' ? storedPalette[`--background-4`] :
         type === 'accent' ? storedPalette[`--accent-2`] :
         type === 'divider' ? storedPalette[`--divider-lines-1`] :
         type === 'shadow' ? storedPalette[`--shadow`] :
@@ -269,7 +281,7 @@ app.controller("theme", function ($scope, $http) {
   //? =========Recieve Message==========
   window.onmessage = function(e) {
     const data = e.data;
-    if (e.origin === 'http://127.0.0.1:5500' || e.origin === 'https://mock-up-three.vercel.app/') return;
+    if (e.origin === 'https://mock-up-three.vercel.app/') return;
     $('.defaultTheme').removeClass('active')
     $(`.${data.selectedTheme}`).addClass('active')
     if (!['', null, undefined, 'null', {}].includes(JSON.stringify(data.currentPalette))) {
@@ -279,7 +291,9 @@ app.controller("theme", function ($scope, $http) {
     } else {
       localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
     }
-    localStorage.setItem("theme", data.selectedTheme); 
-    $scope.changeTheme(data.selectedTheme)
+    if (data.selectedTheme) {
+      localStorage.setItem("theme", data.selectedTheme); 
+      $scope.changeTheme(data.selectedTheme) 
+    }
   };
 });
