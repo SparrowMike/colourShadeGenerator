@@ -44,9 +44,10 @@ app.controller("theme", function ($scope, $http) {
   Object.freeze(paletteToFeed)
 
 
-  //? OBJECT TO STORE THE CUSTOM THEME
+  //?=====OBJECT TO STORE THE CUSTOM THEME======
   let storedPalette = {};
-
+  
+  //?==========updatePickrColours feed==========
   const objectForPickerColour = {
     accent: '--accent-2', 
     text: '--text-1', 
@@ -55,6 +56,7 @@ app.controller("theme", function ($scope, $http) {
     shadow: '--shadow'
   }
   
+  //?=============PICKR SWATHCES================
   const swatches = [
     "rgba(244, 67, 54, 1)",
     "rgba(233, 30, 99, 1)",
@@ -72,7 +74,7 @@ app.controller("theme", function ($scope, $http) {
     "rgba(255, 193, 7, 1)"
   ]
 
-  //? LOAD THE THEME ON START
+  //?==============GLOBAL VARIABLES=============
   let pickr = {}
   let localStorageCustomTheme = !['', null, undefined, 'null', {}]
     .includes(localStorage.getItem("customTheme"))
@@ -82,7 +84,7 @@ app.controller("theme", function ($scope, $http) {
   const theme = localStorage.getItem("theme");
   $scope.selected = theme !== null ? theme : "black-beauty";
 
-  //? CHANGE THE THEMES - TOGGLING CLASS
+  //?=======CHANGE THE THEMES - TOGGLING CLASS========
   $scope.changeTheme = (theme) => {
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
@@ -104,12 +106,13 @@ app.controller("theme", function ($scope, $http) {
   const customPaletteColors = () => {
     if (objectForPickerColour !== undefined) {
       for(let type in objectForPickerColour) {
-        return $(`#defaultTheme.custom-theme #circles > .${type}`)
+        $(`#defaultTheme.custom-theme #circles > .${type}`)
         .css("background", localStorageCustomTheme[objectForPickerColour[type]]);
       }
     }
   }
-      
+
+  //?===================PICKR CURRENT COLOUR======================
   const updatePickrColours = () => {
     for(let type in objectForPickerColour) {
       pickr[type].setColor(
@@ -119,14 +122,16 @@ app.controller("theme", function ($scope, $http) {
     }
   }
 
-  //?===================SAVE=====================
+  //?====================SAVE/STORE BUTTON=======================
   $scope.saveValues = () => {
     localStorage.setItem("customTheme", JSON.stringify(storedPalette));
     localStorageCustomTheme = storedPalette
     customPaletteColors()
     parent.postMessage({storedPalette: storedPalette, theme: 'custom-theme', savedTheme: true}, '*')
   };
-
+  
+  
+  //?===========UPDATE PARENT THEME ON THEME CHANGE==============
   $scope.sendCurrentTheme = () => {
     if (localStorageCustomTheme !== undefined) {
       parent.postMessage({storedPalette: localStorageCustomTheme, theme: $scope.selected, savedTheme: false}, '*')
@@ -144,7 +149,7 @@ app.controller("theme", function ($scope, $http) {
     }
   };
 
-  //?=====GET COLOURS OF THE CURRENT THEME=====
+  //?==========GET COLOURS OF THE CURRENT THEME========
   const loadCurrentCss = () => {
     const files = document.styleSheets;
     for (f in files) {
@@ -160,7 +165,7 @@ app.controller("theme", function ($scope, $http) {
     }
   };
 
-  //?========CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=========
+  //?=====CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=====
   const loadSelectedTheme = (input) => {
     if ($scope.selected === "custom-theme" 
     && !['', null, undefined, 'null'].includes(localStorage.getItem("customTheme"))) {
@@ -182,7 +187,7 @@ app.controller("theme", function ($scope, $http) {
     }
   };
 
-  //? CONVERT INCOMING RGB STRING TO OBJECT
+  //?=========CONVERT INCOMING RGB STRING TO OBJECT==========
   let rgbValues = new Object();
   function rgbToObj(rgb) {
     let colors = ["r", "g", "b", "a"];
@@ -209,8 +214,7 @@ app.controller("theme", function ($scope, $http) {
         position: 'left-start',
         useAsButton: false,
         closeOnScroll: true,
-        default: 
-        type === 'background' ? storedPalette[`--background-4`] :
+        default: type === 'background' ? storedPalette[`--background-4`] :
         type === 'accent' ? storedPalette[`--accent-2`] :
         type === 'divider' ? storedPalette[`--divider-lines-1`] :
         type === 'shadow' ? storedPalette[`--shadow`] :
@@ -267,6 +271,7 @@ app.controller("theme", function ($scope, $http) {
     });
   }
 
+  //? ===========RUN ON START OF THE APP============
   $(document).ready(function () {
     loadSelectedTheme(loadCurrentCss());
     if (!['', null, undefined, 'null', {}].includes(localStorageCustomTheme)) {
@@ -278,7 +283,7 @@ app.controller("theme", function ($scope, $http) {
     picker()
   });
 
-  //? =========Recieve Message==========
+  //? ==============Recieve Message==============
   window.onmessage = function(e) {
     const data = e.data;
     if (e.origin === 'https://mock-up-three.vercel.app/') return;
