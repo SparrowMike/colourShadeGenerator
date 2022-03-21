@@ -296,7 +296,7 @@ app.controller("theme", function ($scope, $http) {
     }
     if (data.selectedTheme) {
       localStorage.setItem("theme", data.selectedTheme); 
-      $scope.changeTheme(data.selectedTheme) 
+      $scope.changeTheme(`${data.selectedTheme}`) 
     }
   };
 });
