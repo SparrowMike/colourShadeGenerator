@@ -295,6 +295,8 @@ app.controller("theme", function ($scope, $http) {
       localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
     }
     if (data.selectedTheme) {
+      $('.defaultTheme').removeClass('active')
+      $(`.${data.selectedTheme}`).addClass('active')
       localStorage.setItem("theme", data.selectedTheme); 
       $scope.changeTheme(`${data.selectedTheme}`) 
     }
