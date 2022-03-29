@@ -285,7 +285,6 @@ app.controller("theme", function ($scope, $http) {
 
   //? ==============Recieve Message==============
   window.onmessage = function(e) {
-    localStorage.removeItem('customTheme')
     const data = e.data;
     if (['https://mock-up-three.vercel.app/', 'http://127.0.0.1:5501'].includes(e.origin)) return;
     if (!['', null, undefined, 'null', {}].includes(JSON.stringify(data.currentPalette))) {
@@ -293,7 +292,8 @@ app.controller("theme", function ($scope, $http) {
       localStorageCustomTheme = data.currentPalette;
       customPaletteColors()
     } else {
-      localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
+      localStorage.removeItem('customTheme')
+      // localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
     }
     if (data.selectedTheme) {
       $('.defaultTheme').removeClass('active')
