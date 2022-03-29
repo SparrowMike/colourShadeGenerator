@@ -286,19 +286,17 @@ app.controller("theme", function ($scope, $http) {
   //? ==============Recieve Message==============
   window.onmessage = function(e) {
     const data = e.data;
-    if (['https://mock-up-three.vercel.app/', 'http://127.0.0.1:5501'].includes(e.origin)) return;
-    // localStorage.removeItem('customTheme')
+    if (['https://mock-up-three.vercel.app/', 'http://127.0.0.1:5500'].includes(e.origin)) return;
     if (!['', null, undefined, 'null', {}].includes(JSON.stringify(data.currentPalette))) {
       localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
       localStorageCustomTheme = data.currentPalette;
       customPaletteColors()
-      console.log('currentPalette', localStorageCustomTheme)
     } else {
-      console.log('no current palette', localStorageCustomTheme)
-      localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
+      localStorage.removeItem('customTheme')
+      localStorageCustomTheme = {}
+      customPaletteColors()
     }
     if (data.selectedTheme) {
-      console.log('set class', data)
       $('.defaultTheme').removeClass('active')
       $(`.${data.selectedTheme}`).addClass('active')
       localStorage.setItem("theme", data.selectedTheme); 
