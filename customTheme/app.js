@@ -104,10 +104,13 @@ app.controller("theme", function ($scope, $http) {
 
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
-    if (objectForPickerColour !== undefined) {
-      for(let type in objectForPickerColour) {
+    for(let type in objectForPickerColour) {
+      if (localStorageCustomTheme !== undefined) {
+          $(`#defaultTheme.custom-theme #circles > .${type}`)
+          .css("background", localStorageCustomTheme[objectForPickerColour[type]]);
+      } else {
         $(`#defaultTheme.custom-theme #circles > .${type}`)
-        .css("background", localStorageCustomTheme[objectForPickerColour[type]]);
+        .css("background", '');
       }
     }
   }
@@ -293,7 +296,7 @@ app.controller("theme", function ($scope, $http) {
       customPaletteColors()
     } else {
       localStorage.removeItem('customTheme')
-      localStorageCustomTheme = {}
+      localStorageCustomTheme = undefined
       customPaletteColors()
     }
     if (data.selectedTheme) {
