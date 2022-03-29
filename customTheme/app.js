@@ -287,12 +287,12 @@ app.controller("theme", function ($scope, $http) {
   window.onmessage = function(e) {
     const data = e.data;
     if (['https://mock-up-three.vercel.app/', 'http://127.0.0.1:5501'].includes(e.origin)) return;
+    localStorage.removeItem('customTheme')
     if (!['', null, undefined, 'null', {}].includes(JSON.stringify(data.currentPalette))) {
       localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
       localStorageCustomTheme = data.currentPalette;
       customPaletteColors()
-    } else {
-      localStorage.removeItem('customTheme')
+    // } else {
       // localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
     }
     if (data.selectedTheme) {
