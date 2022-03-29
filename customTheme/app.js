@@ -273,6 +273,7 @@ app.controller("theme", function ($scope, $http) {
 
   //? ===========RUN ON START OF THE APP============
   $(document).ready(function () {
+    localStorage.removeItem('customTheme')
     loadSelectedTheme(loadCurrentCss());
     if (!['', null, undefined, 'null', {}].includes(localStorageCustomTheme)) {
       customPaletteColors()
@@ -292,8 +293,7 @@ app.controller("theme", function ($scope, $http) {
       localStorageCustomTheme = data.currentPalette;
       customPaletteColors()
     } else {
-      // localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
-      localStorage.removeItem('customTheme')
+      localStorage.setItem("customTheme", JSON.stringify(storedPalette));  
     }
     if (data.selectedTheme) {
       $('.defaultTheme').removeClass('active')
