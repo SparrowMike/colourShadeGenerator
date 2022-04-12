@@ -1,10 +1,21 @@
-/* * {
-  transition: background-color 0.1s ease, color 0.1s ease; 
-} */
+* {
+  /* transition: background-color 0.1s ease, color 0.1s ease;  */
+  scrollbar-color: var(--accent-2) var(--background-2);
+  scrollbar-width: thin;
+}
 
 ::selection  {
   background: var(--accent-2) !important;
   color: var(--background-1) !important;
+}
+
+::-webkit-scrollbar {
+  width: 0.3vw !important;
+  height: 2vw !important;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-2) !important;
+  border-radius: 1vw;
 }
 
 html,
@@ -415,13 +426,13 @@ body {
 }
 .mainNavbar .mainServer .content {
   margin: 0 8px;
-  font-size: 15px;
+  font-size: 1.1vw;
   font-weight: 700;
   color: var(--text-1);
 }
 .mainNavbar .mainIcons,
 .mainNavbar .mainServer {
-  padding: 0 15px;
+  padding: 0vw 1vw;
   display: flex;
   align-items: center;
 }
@@ -461,6 +472,10 @@ body {
 .serverNavbar .servers.explore {
   width: 2vw;
 }
+.serverNavbar .servers.explore svg {
+  width: 1.1vw;
+  height: 1.1vw;
+}
 .serverNavbar .servers.explore path {
   fill: var(--text-4);
 }
@@ -471,6 +486,7 @@ body {
   position: relative;
   left: 22%;
   color: var(--text-4);
+  font-size: 0.8vw;
 }
 .serverNavbar .servers h4 {
   font-size: 0.75vw;
@@ -482,6 +498,7 @@ body {
 }
 .serverNavbar .mini .plus {
   color: var(--text-4);
+  font-size: 0.8vw;
 }
 .serverNavbar .exploreServers:hover,
 .serverNavbar .servers:hover,
@@ -622,6 +639,7 @@ body {
 }
 .chat .messagesFrom i {
   color: var(--text-1);
+  font-size: 1vw;
   margin-right: 1.5vw;
 }
 .chat .displayMessages .directMsg .directMsgAvtNname,
@@ -1021,23 +1039,4 @@ body {
 }
 .chatWindow .chatSidePanel .icons .icon:hover {
   background: var(--background-7);
-}
-
-/* ?====================SCROLL BAR==================== */
-.friendsList::-webkit-scrollbar,
-.displayMessages::-webkit-scrollbar,
-.messageHistory::-webkit-scrollbar {
-  width: 0.3vw;
-  height: 2vw;
-}
-.friendsList::-webkit-scrollbar-thumb,
-.displayMessages::-webkit-scrollbar-thumb,
-.messageHistory::-webkit-scrollbar-thumb {
-  background: var(--background-7);
-  border-radius: 1vw;
-}
-.friendsList::-webkit-scrollbar-thumb:hover,
-.displayMessages::-webkit-scrollbar-thumb:hover,
-.messageHistory::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-2);
 }
