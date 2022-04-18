@@ -1,5 +1,5 @@
 * {
-  /* transition: background-color 0.1s ease, color 0.1s ease;  */
+  /* transition: background-color 0.6s ease, color 0.3s ease; */
   scrollbar-color: var(--accent-2) var(--background-2);
   scrollbar-width: thin;
 }
@@ -13,6 +13,7 @@
   width: 0.3vw !important;
   height: 2vw !important;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--accent-2) !important;
   border-radius: 1vw;
@@ -299,7 +300,17 @@ body {
   z-index: 1;
   float: right;
   box-shadow: 2px 4px 5px black;
+  scrollbar-color: rgb(128,128,128) rgb(222,222,222);
+  scrollbar-width: thin;
 }
+#sidePanel::-webkit-scrollbar {
+  width: 0.4vw !important;
+  height: 2vw !important;
+}
+#sidePanel::-webkit-scrollbar-thumb {
+  background: rgb(128,128,128) !important;
+  border-radius: 1vw;
+} 
 
 /* ?=============== COLORS TEMPLATES =============== */
 #colorTemplates,
@@ -562,6 +573,7 @@ body {
   margin: 0;
   padding: 0.25vw;
   background: inherit;
+  background: transparent;
 }
 .chatWindow .chat .ui.right.floated.inverted.segment .icon {
   color: var(--text-4);
@@ -720,7 +732,7 @@ body {
   color: var(--text-1);
 }
 .chatWindow .chatHistory .ui.icon input {
-  background: var(--background-5);
+  background: transparent;
   border: none !important;
   box-shadow: none !important;
   padding: 0.85;
