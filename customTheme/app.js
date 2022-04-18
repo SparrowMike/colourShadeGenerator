@@ -228,7 +228,7 @@ app.controller("theme", function ($scope, $http) {
           preview: false,
           hue: true,
           interaction: {
-            // hex: true,
+            hex: true,
             rgba: true,
             input: true,
           },
