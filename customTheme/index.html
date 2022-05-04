@@ -205,11 +205,11 @@
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
-        <label class="switch">
+        <label class="themeSwitch">
           <input type="checkbox">
           <span class="slider round"></span>
         </label>
-        <div ng-repeat="theme in themes[currentMode]" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="theme === selected ? 'active' : ''" ng-click="changeTheme(theme); sendCurrentTheme()">
+        <div ng-repeat="theme in themes[themes.currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="theme === themes[themes.currentMode].slectedTheme ? 'active' : ''" ng-click="changeTheme(theme); sendCurrentTheme()">
           <h4>{{theme.split('-').join(' ');}}</h4>
           <div id="circles">
             <div ng-repeat="type in ['accent', 'text', 'background', 'divider', 'shadow']" class={{type}}></div>

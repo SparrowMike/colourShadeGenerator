@@ -45,17 +45,25 @@ app.controller("theme", function ($scope, $http) {
 
   //?===============THEMES=================
   $scope.themes = {
-    light: ['aqua-lolly', 'lush-blush', 'white-smoke', 'prairie-dance', 'farsighted', 'custom-theme'], 
-    dark:['botanical-forest', 'hearts-desire', 'rustic-pottery', 'black-beauty', 'dark-knight', 'custom-theme']}
-
-  $scope.currentMode = 'dark'
-  let darkMode = true
+    darkMode: true,
+    currentMode: 'dark',
+    light: {
+      slectedTheme: 'white-smoke',
+      themes: ['white-smoke', 'prairie-dance', 'farsighted', 'aqua-lolly', 'lush-blush', 'custom-theme-light'],
+      storedPalette: {},
+    }, 
+    dark: {
+      slectedTheme: 'black-beauty',
+      themes: ['black-beauty', 'dark-knight', 'rustic-pottery', 'botanical-forest', 'hearts-desire', 'custom-theme-dark'],
+      storedPalette: {},
+    }
+  }
   
-  $('input[type="checkbox"]').change(()=>{
-    darkMode = !darkMode
-    darkMode ? $scope.currentMode = 'dark' : $scope.currentMode = 'light' 
-    
+  $('.themeSwitch input[type="checkbox"]').change(()=>{
+    $scope.themes.darkMode = !$scope.themes.darkMode
+    $scope.themes.darkMode ? $scope.themes.currentMode = 'dark' : $scope.themes.currentMode = 'light' 
     $scope.$apply()
+    $scope.changeTheme($scope.themes[$scope.themes.currentMode].slectedTheme)
   })
 
   //?=====OBJECT TO STORE THE CUSTOM THEME======
@@ -100,6 +108,12 @@ app.controller("theme", function ($scope, $http) {
 
   //?=======CHANGE THE THEMES - TOGGLING CLASS========
   $scope.changeTheme = (theme) => {
+    if($scope.themes.darkMode){
+      $scope.themes.dark.slectedTheme = theme
+    } else {
+      $scope.themes.light.slectedTheme = theme
+    }
+
     $scope.selected = theme;
     localStorage.setItem("theme", theme);
     $("html").removeAttr("style").removeClass()
@@ -198,7 +212,7 @@ app.controller("theme", function ($scope, $http) {
       for (r in results) {
         if (results[r] !== "" || r !== "") {
           storedPalette[r] = results[r].trim()
-          $("html").get(0).style.setProperty(r, results[r]); //* load colours with js
+          // $("html").get(0).style.setProperty(r, results[r]); //* load colours with js
         }
       }
     }
