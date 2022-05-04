@@ -266,7 +266,7 @@ body {
   --divider-lines-2: rgb(161, 140, 147);
   --shadow: rgba(89, 3, 33, 0.35);
 }
-.custom-theme {
+.custom-theme-dark {
   --accent-1: rgb(0, 151, 222); 
   --accent-2: rgb(3, 169, 244); 
   --accent-3: rgb(12, 194, 255); 
@@ -287,6 +287,28 @@ body {
   --divider-lines-1: rgb(19, 71, 95); 
   --divider-lines-2: rgb(0, 0, 13); 
   --shadow: rgba(26, 38, 43, 0.5);
+}
+.custom-theme-light {
+  --accent-1:rgb(61, 157, 58);
+  --accent-2:rgb(76, 175, 80);
+  --accent-3:rgb(85, 200, 131);
+  --accent-4:rgb(87, 224, 189);
+  --text-1:rgb(0, 0, 0);
+  --text-2:rgb(25, 25, 25);
+  --text-3:rgb(56, 56, 56);
+  --text-4:rgb(82, 83, 83);
+  --text-5:rgb(86, 86, 84);
+  --text-6:rgb(99, 99, 99);
+  --background-1:rgb(210, 221, 209);
+  --background-2:rgb(217, 229, 218);
+  --background-3:rgb(227, 238, 230);
+  --background-4:rgb(227, 239, 232);
+  --background-5:rgb(235, 247, 241);
+  --background-6:rgb(241, 253, 249);
+  --background-7:rgb(255, 255, 255);
+  --divider-lines-1:rgb(135, 156, 111);
+  --divider-lines-2:rgb(53, 74, 29);
+  --shadow:rgba(0, 150, 136, 0.5);
 }
 
 /* ?================SIDE PANEL============== */
