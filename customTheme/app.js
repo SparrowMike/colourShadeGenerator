@@ -43,6 +43,20 @@ app.controller("theme", function ($scope, $http) {
   };
   Object.freeze(paletteToFeed)
 
+  //?===============THEMES=================
+  $scope.themes = {
+    light: ['aqua-lolly', 'lush-blush', 'white-smoke', 'prairie-dance', 'farsighted', 'custom-theme'], 
+    dark:['botanical-forest', 'hearts-desire', 'rustic-pottery', 'black-beauty', 'dark-knight', 'custom-theme']}
+
+  $scope.currentMode = 'dark'
+  let darkMode = true
+  
+  $('input[type="checkbox"]').change(()=>{
+    darkMode = !darkMode
+    darkMode ? $scope.currentMode = 'dark' : $scope.currentMode = 'light' 
+    
+    $scope.$apply()
+  })
 
   //?=====OBJECT TO STORE THE CUSTOM THEME======
   let storedPalette = {};
