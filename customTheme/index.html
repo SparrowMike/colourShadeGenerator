@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-controller="theme" lang="en" ng-app="myApp" ng-class="themes[themes.darkMode ? 'dark' : 'light'].selectedTheme">
+<html ng-controller="theme" lang="en" ng-app="myApp" ng-class="themes[darkMode ? 'dark' : 'light'].selectedTheme">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
@@ -209,7 +209,7 @@
           <input type="checkbox" class="darkLightTheme">
           <span class="slider round"></span>
         </label>
-        <div ng-repeat="theme in themes[themes.darkMode ? 'dark' : 'light'].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="theme === themes[themes.darkMode ? 'dark' : 'light'].selectedTheme ? 'active' : ''" ng-click="changeTheme(theme); sendCurrentTheme()">
+        <div ng-repeat="theme in themes[currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="theme === themes[currentMode].selectedTheme ? 'active' : ''" ng-click="changeTheme(theme); sendCurrentTheme()">
           <h4>{{theme.split('-').join(' ');}}</h4>
           <div id="circles">
             <div ng-repeat="type in ['accent', 'text', 'background', 'divider', 'shadow']" class={{type}}></div>

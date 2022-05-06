@@ -77,15 +77,14 @@ app.controller("theme", function ($scope, $http) {
     ? JSON.parse(localStorage.getItem("customTheme"))
     : undefined 
   
-  const theme = localStorage.getItem("theme");
-  $scope.selected = theme !== null ? theme : "black-beauty";
+  const themes = JSON.parse(localStorage.getItem('themes'));
+  const darkMode = JSON.parse(localStorage.getItem('darkMode'))
   
-  const themes = JSON.parse(localStorage.getItem("themes"));
-  let currentMode = themes.darkMode ? 'dark' : 'light';
+  $scope.darkMode = darkMode !== null ? darkMode : true;
+  $scope.currentMode = $scope.darkMode ? 'dark' : 'light';
 
   //?===============THEMES=================
   $scope.themes = {
-    darkMode: themes?.darkMode !== undefined ? themes.darkMode : true, //! move over to its own slot
     dark: {
       selectedTheme: themes.dark.selectedTheme !== null ? themes.dark.selectedTheme : 'black-beauty',
       themes: ['black-beauty', 'dark-knight', 'rustic-pottery', 'botanical-forest', 'hearts-desire', 'custom-theme-dark'],
@@ -100,11 +99,11 @@ app.controller("theme", function ($scope, $http) {
 
   //?==========DARK/LIGHT MODE============
   $('.themeSwitch input[type="checkbox"]').change(()=>{
-    $scope.themes.darkMode = !$scope.themes.darkMode
-    $scope.themes.darkMode ? currentMode = 'dark' : currentMode = 'light' 
-    localStorage.setItem("themes", JSON.stringify($scope.themes));
+    $scope.darkMode = !$scope.darkMode
+    $scope.darkMode ? $scope.currentMode = 'dark' : $scope.currentMode = 'light' 
+    localStorage.setItem("darkMode", ($scope.darkMode));
     $scope.$apply()
-    $scope.changeTheme($scope.themes[currentMode].selectedTheme)
+    $scope.changeTheme($scope.themes[$scope.currentMode].selectedTheme)
   })
 
   //?=====OBJECT TO STORE THE CUSTOM THEME======
@@ -112,21 +111,13 @@ app.controller("theme", function ($scope, $http) {
 
   //?=======CHANGE THE THEMES - TOGGLING CLASS========
   $scope.changeTheme = (theme) => {
-    if($scope.themes.darkMode){
+    if($scope.darkMode){
       $scope.themes.dark.selectedTheme = theme
     } else {
       $scope.themes.light.selectedTheme = theme
     }
 
-    $scope.selected = theme;
-    console.log($scope.themes)
-    console.log($scope.themes.dark.selectedTheme)
-
-  
-  
     localStorage.setItem("themes", JSON.stringify($scope.themes));
-
-    localStorage.setItem("theme", theme);
 
     $("html").removeAttr("style").removeClass()
     if ($(`.defaultTheme:not(.${theme})`).hasClass('active')) {
@@ -177,9 +168,11 @@ app.controller("theme", function ($scope, $http) {
   //?===========UPDATE PARENT THEME ON THEME CHANGE==============
   $scope.sendCurrentTheme = () => {
     if (localStorageCustomTheme !== undefined) {
-      parent.postMessage({storedPalette: localStorageCustomTheme, theme: $scope.selected, savedTheme: false}, '*')
+      parent.postMessage({
+        storedPalette: localStorageCustomTheme, theme: $scope.themes[$scope.currentMode].selectedTheme, savedTheme: false
+      }, '*')
     } else {
-      parent.postMessage({theme: $scope.selected, savedTheme: false}, '*')
+      parent.postMessage({theme: $scope.themes[$scope.currentMode].selectedTheme, savedTheme: false}, '*')
     }
   }
 
@@ -201,7 +194,7 @@ app.controller("theme", function ($scope, $http) {
         files[f].href.endsWith("styles.css")
       ) {
         for (c in files[f].cssRules) {
-          if (files[f].cssRules[c].selectorText === `.${$scope.selected}`)
+          if (files[f].cssRules[c].selectorText === `.${$scope.themes[$scope.currentMode].selectedTheme}`)
             return files[f].cssRules[c].cssText;
         }
       }
@@ -210,7 +203,7 @@ app.controller("theme", function ($scope, $http) {
 
   //?=====CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=====
   const loadSelectedTheme = (input) => {
-    if ($scope.selected === "custom-theme" && !['', null, undefined, 'null'].includes(localStorage.getItem("customTheme"))) {
+    if ($scope.themes[$scope.currentMode].selectedTheme.includes("custom-theme") && !['', null, undefined, 'null'].includes(localStorage.getItem("customTheme"))) {
       storedPalette = { ...localStorageCustomTheme};
     } else {
       input = input.substring(input.indexOf("--"), input.indexOf("}"));
@@ -315,14 +308,14 @@ app.controller("theme", function ($scope, $http) {
 
   //? ===========RUN ON START OF THE APP============
   $(document).ready(function () {
-    if (!$scope.themes.darkMode) {
+    if (!$scope.darkMode) {
       $('.darkLightTheme').attr('checked', true);
     }
     loadSelectedTheme(loadCurrentCss());
     if (!['', null, undefined, 'null', {}].includes(localStorageCustomTheme)) {
       customPaletteColors()
     }
-    if (theme === "custom-theme") {
+    if ($scope.themes[$scope.currentMode].selectedTheme.includes("custom-theme")) {
       loadValues();
     }
     picker()
