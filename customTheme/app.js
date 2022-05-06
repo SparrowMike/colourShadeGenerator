@@ -86,12 +86,12 @@ app.controller("theme", function ($scope, $http) {
   //?===============THEMES=================
   $scope.themes = {
     dark: {
-      selectedTheme: themes.dark.selectedTheme !== null ? themes.dark.selectedTheme : 'black-beauty',
+      selectedTheme: themes?.dark?.selectedTheme !== undefined ? themes.dark.selectedTheme : 'black-beauty',
       themes: ['black-beauty', 'dark-knight', 'rustic-pottery', 'botanical-forest', 'hearts-desire', 'custom-theme-dark'],
       storedPalette: {},
     },
     light: {
-      selectedTheme: themes.light.selectedTheme !== null ? themes.light.selectedTheme : 'white-smoke',
+      selectedTheme: themes?.light?.selectedTheme !== undefined ? themes.light.selectedTheme : 'white-smoke',
       themes: ['white-smoke', 'prairie-dance', 'farsighted', 'aqua-lolly', 'lush-blush', 'custom-theme-light'],
       storedPalette: {},
     }
