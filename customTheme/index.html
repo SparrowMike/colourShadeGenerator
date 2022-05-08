@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-controller="theme" lang="en" ng-app="myApp" ng-class="themes[darkMode ? 'dark' : 'light'].selectedTheme">
+<html ng-controller="theme" lang="en" ng-app="myApp" ng-class="serverOwnerPreference[currentMode].selectedTheme">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
@@ -205,11 +205,13 @@
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
-        <label class="themeSwitch">
-          <input type="checkbox" class="darkLightTheme">
-          <span class="slider round"></span>
-        </label>
-        <div ng-repeat="theme in themes[currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="theme === themes[currentMode].selectedTheme ? 'active' : ''" ng-click="changeTheme(theme); sendCurrentTheme()">
+        <div class="themeSwitch">
+          <label class="switch">
+            <input type="checkbox" class="darkLightTheme">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div ng-repeat="theme in themes[currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="theme === serverOwnerPreference[currentMode].selectedTheme ? 'active' : ''" ng-click="changeTheme(theme); sendCurrentTheme()">
           <h4>{{theme.split('-').join(' ');}}</h4>
           <div id="circles">
             <div ng-repeat="type in ['accent', 'text', 'background', 'divider', 'shadow']" class={{type}}></div>
