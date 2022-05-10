@@ -79,20 +79,11 @@ app.controller("theme", function ($scope, $http) {
     }
   }
 
-  //?==============GLOBAL VARIABLES=============
-  let localStorageCustomTheme = !['', null, undefined, 'null', {}]
-    .includes(localStorage.getItem("customTheme"))
-    ? JSON.parse(localStorage.getItem("customTheme"))
-    : undefined 
-  
-  const pickr = {}
+  //?================LOCAL STORAGE===================
   const serverOwnerPreference = JSON.parse(localStorage.getItem('serverOwnerPreference'));
   const darkMode = localStorage.getItem('darkMode')
-  
-  $scope.darkMode = darkMode === null ? true : darkMode === 'dark' ? true : false;
-  $scope.currentMode = $scope.darkMode ? 'dark' : 'light';
 
-  //?========SERVER OWNER PREFERENCE=========
+  //?============SERVER OWNER PREFERENCE=============
   $scope.serverOwnerPreference = {
     dark: {
       selectedTheme: serverOwnerPreference?.dark?.selectedTheme !== undefined 
@@ -111,6 +102,18 @@ app.controller("theme", function ($scope, $http) {
         : {},
     }
   }
+
+  $scope.darkMode = darkMode === null ? true : darkMode === 'dark' ? true : false;
+  $scope.currentMode = $scope.darkMode ? 'dark' : 'light';
+
+  //?==============GLOBAL VARIABLES=============
+  // let localStorageCustomTheme = !['', null, undefined, 'null', {}]
+  //   .includes(localStorage.getItem("customTheme"))
+  //   ? JSON.parse(localStorage.getItem("customTheme"))
+  //   : undefined 
+  
+  const storedPalette = {dark: {}, light: {}}
+  const pickr = {}
   
   //?==========DARK/LIGHT MODE============
   $('.themeSwitch input[type="checkbox"]').change(()=>{
@@ -123,10 +126,12 @@ app.controller("theme", function ($scope, $http) {
 
   //?=======CHANGE THE THEMES - TOGGLING CLASS========
   $scope.changeTheme = (theme) => {
+    localStorage.setItem("serverOwnerPreference", JSON.stringify({...$scope.serverOwnerPreference, selectedTheme: theme}));
     $scope.serverOwnerPreference[$scope.currentMode].selectedTheme = theme
 
-    localStorage.setItem("serverOwnerPreference", JSON.stringify($scope.serverOwnerPreference));
-
+    console.log(storedPalette.dark)
+    console.log($scope.serverOwnerPreference[$scope.currentMode])
+    
     $("html").removeAttr("style").removeClass()
     if ($(`.defaultTheme:not(.${theme})`).hasClass('active')) {
       $('.defaultTheme').removeClass('active')
@@ -159,25 +164,28 @@ app.controller("theme", function ($scope, $http) {
     for(let type in objectForPickerColour) {
       pickr[type].setColor(
         type
-        ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[objectForPickerColour[type]] 
+        ? storedPalette[$scope.currentMode][objectForPickerColour[type]]
         : 'rgb(0, 0, 0)')
     }
   }
 
   //?====================SAVE/STORE BUTTON=======================
   $scope.saveValues = () => {
-    localStorage.setItem("serverOwnerPreference", JSON.stringify($scope.serverOwnerPreference));
-    localStorageCustomTheme = $scope.serverOwnerPreference[$scope.currentMode].storedPalette
+    $scope.changeTheme($scope.darkMode ? 'custom-theme-dark' : 'custom-theme-light')
     customPaletteColors()
-    parent.postMessage({storedPalette: $scope.serverOwnerPreference[$scope.currentMode].storedPalette, theme: 'custom-theme', savedTheme: true}, '*')
+    
+    $scope.serverOwnerPreference[$scope.currentMode].storedPalette = storedPalette[$scope.currentMode]
+    localStorage.setItem("serverOwnerPreference", JSON.stringify($scope.serverOwnerPreference)); //! storedPalette ?
+    
+    // parent.postMessage({storedPalette: $scope.serverOwnerPreference[$scope.currentMode].storedPalette, theme: 'custom-theme', savedTheme: true}, '*') //! storedPalette?
   };
   
   
   //?===========UPDATE PARENT THEME ON THEME CHANGE==============
   $scope.sendCurrentTheme = () => {
-    if (localStorageCustomTheme !== undefined) {
+    if ($scope.serverOwnerPreference[$scope.currentMode].storedPalette !== undefined) {
       parent.postMessage({
-        storedPalette: localStorageCustomTheme, theme: $scope.serverOwnerPreference[$scope.currentMode].selectedTheme, savedTheme: false
+        storedPalette: $scope.serverOwnerPreference[$scope.currentMode].storedPalette, theme: $scope.serverOwnerPreference[$scope.currentMode].selectedTheme, savedTheme: false //! storedPalette ?
       }, '*')
     } else {
       parent.postMessage({theme: $scope.serverOwnerPreference[$scope.currentMode].selectedTheme, savedTheme: false}, '*')
@@ -186,9 +194,9 @@ app.controller("theme", function ($scope, $http) {
 
   //?========LOAD VALUES FROM THE LOCAL STORAGE=========
   const loadValues = function () {
-    if(localStorageCustomTheme !== undefined) {
-      for (t in localStorageCustomTheme) {
-        $("html").get(0).style.setProperty(`${t}`, `${localStorageCustomTheme[t]}`);
+    if($scope.serverOwnerPreference[$scope.currentMode].storedPalette !== undefined) {
+      for (t in $scope.serverOwnerPreference[$scope.currentMode].storedPalette) {
+        $("html").get(0).style.setProperty(`${t}`, `${$scope.serverOwnerPreference[$scope.currentMode].storedPalette[t]}`);
       }
     }
   };
@@ -212,7 +220,8 @@ app.controller("theme", function ($scope, $http) {
   //?=====CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=====
   const loadSelectedTheme = (input) => {
     if ($scope.serverOwnerPreference[$scope.currentMode].selectedTheme.includes("custom-theme") && !['', null, undefined, 'null'].includes(localStorage.getItem("serverOwnerPreference"))) {
-      $scope.serverOwnerPreference[$scope.currentMode].storedPalette = { ...localStorageCustomTheme};
+      storedPalette[$scope.currentMode] = { ...$scope.serverOwnerPreference[$scope.currentMode].storedPalette};
+
     } else {
       input = input.substring(input.indexOf("--"), input.indexOf("}"));
       let results = {},
@@ -223,7 +232,7 @@ app.controller("theme", function ($scope, $http) {
       }
       for (r in results) {
         if (results[r] !== "" || r !== "") {
-          $scope.serverOwnerPreference[$scope.currentMode].storedPalette[r] = results[r].trim()
+          storedPalette[$scope.currentMode][r] = results[r].trim()
           $("html").get(0).style.setProperty(r, results[r]); //* load colours with js
         }
       }
@@ -259,15 +268,15 @@ app.controller("theme", function ($scope, $http) {
         closeOnScroll: true,
         default:
           type === 'background' 
-            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--background-4`]
+            ? storedPalette[$scope.currentMode][`--background-4`]
             : type === 'accent' 
-            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--accent-2`]
+            ? storedPalette[$scope.currentMode][`--accent-2`]
             : type === 'divider' 
-            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--divider-lines-1`]
+            ? storedPalette[$scope.currentMode][`--divider-lines-1`]
             : type === 'shadow' 
-            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--shadow`]
+            ? storedPalette[$scope.currentMode][`--shadow`]
             : type === 'text' 
-            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--text-1`]
+            ? storedPalette[$scope.currentMode][`--text-1`]
             : 'rgb(0, 0, 0)',
         comparison: false,
         components: {
@@ -311,7 +320,7 @@ app.controller("theme", function ($scope, $http) {
             rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           }
           //? keep the generated colour in the storePalette Object
-          $scope.serverOwnerPreference[$scope.currentMode].storedPalette[color] = rgb;
+          $scope.serverOwnerPreference[$scope.currentMode][color] = rgb;
           
           //? display the currently generated colours
           $("html").get(0).style.setProperty(color, rgb);
@@ -325,13 +334,17 @@ app.controller("theme", function ($scope, $http) {
     if (!$scope.darkMode) {
       $('.darkLightTheme').attr('checked', true);
     }
+
     loadSelectedTheme(loadCurrentCss());
-    if (!['', null, undefined, 'null', {}].includes(localStorageCustomTheme)) {
+
+    if (!['', null, undefined, 'null', {}].includes($scope.serverOwnerPreference[$scope.currentMode].storedPalette)) {
       customPaletteColors()
     }
+
     if ($scope.serverOwnerPreference[$scope.currentMode].selectedTheme.includes("custom-theme")) {
       loadValues();
     }
+
     picker()
   });
 
@@ -339,20 +352,24 @@ app.controller("theme", function ($scope, $http) {
   window.onmessage = function(e) {
     const data = e.data;
     if (['https://mock-up-three.vercel.app', 'http://127.0.0.1:5500'].includes(e.origin)) return;
+
     if (!['', null, undefined, 'null', {}].includes(JSON.stringify(data.currentPalette))) {
       localStorage.setItem("customTheme", JSON.stringify(data.currentPalette));  
-      localStorageCustomTheme = data.currentPalette;
+      // localStorageCustomTheme = data.currentPalette;
       customPaletteColors()
     } else {
       localStorage.removeItem('customTheme')
-      localStorageCustomTheme = undefined
+      // localStorageCustomTheme = undefined
       customPaletteColors()
     }
+
     if (data.selectedTheme) {
       $('.defaultTheme').removeClass('active')
       $(`.${data.selectedTheme}`).addClass('active')
       localStorage.setItem("theme", data.selectedTheme); 
       $scope.changeTheme(`${data.selectedTheme}`) 
     }
+
   };
+
 });
