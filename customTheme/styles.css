@@ -1,5 +1,5 @@
 * {
-  /* transition: background-color 0.1s ease, color 0.1s ease;  */
+  /* transition: background-color 0.4s ease, color 0.2s ease;  */
   scrollbar-color: var(--accent-2) var(--background-2);
   scrollbar-width: thin;
 }
@@ -466,6 +466,10 @@ body {
   padding: 0 0.8vw;
   display: flex;
   align-items: center;
+}
+.mainNavbar .mainIcons div {
+  display: flex;
+  justify-content: center;
 }
 .mainNavbar .mainIcons svg {
   margin: 0 0.7vw;
@@ -948,10 +952,8 @@ body {
 /* ?============= CHAT WINDOW FRIENDS PANEL ================= */
 .chatWindow .chatSidePanel {
   min-width: 16vw;
-  /* border-left: 1px solid var(--background-7); */
   background: var(--background-3);
   height: 100%;
-  /* flex-grow: .75; */
   z-index: 1;
   box-shadow: 0.5vw 0.85vw 0.75vw var(--shadow);
 }
@@ -974,7 +976,6 @@ body {
   background: var(--background-5);
   width: 100%;
   height: 2vw;
-  /* border-bottom: 1px solid var(--background-7); */
 }
 .chatWindow .chatSidePanel .filter .OnlineDot {
   margin-right: 0.25vw;
@@ -1069,4 +1070,50 @@ body {
 }
 .chatWindow .chatSidePanel .icons .icon:hover {
   background: var(--background-7);
+}
+
+/* ?============= LIGHT/DARK THEME MODE SWITCH ================= */
+.themeSwitch {
+  position: relative;
+  width: 40px;
+  height: 20px;
+}
+.themeSwitch label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-4);
+  border-radius: 50px;
+  cursor: pointer;
+  outline: 1px solid var(--divider-lines-1);
+}
+.themeSwitch input {
+  position: absolute;
+  display: none;
+}
+.themeSwitch .slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+.themeSwitch input:checked ~ .slider {
+  background-color: var(--background-4);
+}
+.themeSwitch .slider::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: inset 5px -3px 1px 0px var(--accent-1);
+  transition: 0.3s;
+}
+.themeSwitch input:checked ~ .slider::before {
+  transform: translateX(20px);
+  background-color: var(--accent-1);
+  box-shadow: none;
 }

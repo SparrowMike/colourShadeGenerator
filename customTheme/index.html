@@ -25,6 +25,12 @@
           <h1 class="content">Direct Messages</h1>
         </div>
         <div class="mainIcons">
+          <div class="themeSwitch" style="margin-right: 50px;">
+            <label class="switch">
+              <input type="checkbox" class="darkLightTheme">
+              <span class="slider round"></span>
+            </label>
+          </div>
           <div>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14.3671 2H3.47617C2.66198 2 2 2.66231 2 3.47617V11.3491C2 12.1633 2.66198 12.8253 3.47617 12.8253C4.50916 12.8253 4.64792 12.8253 4.64792 12.8253H4.95234V15.2856C4.95234 15.7245 5.48442 15.9414 5.79212 15.6337C7.16594 14.2595 6.20118 15.2246 8.45615 12.9697C8.54865 12.8771 8.67331 12.8253 8.80419 12.8253H14.3671C15.181 12.8253 15.8433 12.1633 15.8433 11.3491C15.8433 6.75461 15.8433 8.08186 15.8433 3.47617C15.8433 2.66231 15.181 2 14.3671 2ZM4.46032 4.95234H11.4148C11.6867 4.95234 11.9068 5.17245 11.9068 5.4444C11.9068 5.71634 11.6867 5.93646 11.4148 5.93646H4.46032C4.18837 5.93646 3.96826 5.71634 3.96826 5.4444C3.96826 5.17245 4.18837 4.95234 4.46032 4.95234ZM9.44653 9.87298H4.46032C4.18837 9.87298 3.96826 9.65286 3.96826 9.38092C3.96826 9.10898 4.18837 8.88886 4.46032 8.88886H9.44653C9.71847 8.88886 9.93858 9.10898 9.93858 9.38092C9.93858 9.65286 9.71847 9.87298 9.44653 9.87298ZM13.383 7.90472H4.46032C4.18837 7.90472 3.96826 7.6846 3.96826 7.41266C3.96826 7.14071 4.18837 6.9206 4.46032 6.9206H13.383C13.655 6.9206 13.8751 7.14071 13.8751 7.41266C13.8751 7.6846 13.655 7.90472 13.383 7.90472Z" fill="#939393"></path>
@@ -205,12 +211,6 @@
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
-        <div class="themeSwitch">
-          <label class="switch">
-            <input type="checkbox" class="darkLightTheme">
-            <span class="slider round"></span>
-          </label>
-        </div>
         <div ng-repeat="theme in themes[currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="{'active' : theme === serverOwnerPreference[currentMode].selectedTheme}" ng-click="changeTheme(theme); sendCurrentTheme()">
           <h4>{{theme.split('-').join(' ');}}</h4>
           <div id="circles" ng-class="{'custom' : $last}">
