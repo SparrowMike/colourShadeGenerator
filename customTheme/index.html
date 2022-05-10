@@ -211,9 +211,9 @@
             <span class="slider round"></span>
           </label>
         </div>
-        <div ng-repeat="theme in themes[currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="theme === serverOwnerPreference[currentMode].selectedTheme ? 'active' : ''" ng-click="changeTheme(theme); sendCurrentTheme()">
+        <div ng-repeat="theme in themes[currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="{'active' : theme === serverOwnerPreference[currentMode].selectedTheme}" ng-click="changeTheme(theme); sendCurrentTheme()">
           <h4>{{theme.split('-').join(' ');}}</h4>
-          <div id="circles">
+          <div id="circles" ng-class="{'custom' : $last}">
             <div ng-repeat="type in ['accent', 'text', 'background', 'divider', 'shadow']" class={{type}}></div>
           </div> 
         </div>

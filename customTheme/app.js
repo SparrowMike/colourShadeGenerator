@@ -69,19 +69,6 @@ app.controller("theme", function ($scope, $http) {
     shadow: '--shadow'
   }
 
-  //?==============GLOBAL VARIABLES=============
-  let localStorageCustomTheme = !['', null, undefined, 'null', {}]
-  .includes(localStorage.getItem("customTheme"))
-  ? JSON.parse(localStorage.getItem("customTheme"))
-  : undefined 
-  
-  const pickr = {}
-  const serverOwnerPreference = JSON.parse(localStorage.getItem('serverOwnerPreference'));
-  const darkMode = JSON.parse(localStorage.getItem('darkMode'))
-  
-  $scope.darkMode = darkMode !== null ? darkMode : true; //? can change for regular variable rather than scope
-  $scope.currentMode = $scope.darkMode ? 'dark' : 'light';
-
   //?===============THEMES=================
   $scope.themes = {
     dark: {
@@ -91,7 +78,20 @@ app.controller("theme", function ($scope, $http) {
       themes: ['white-smoke', 'prairie-dance', 'farsighted', 'aqua-lolly', 'lush-blush', 'custom-theme-light'],
     }
   }
+
+  //?==============GLOBAL VARIABLES=============
+  let localStorageCustomTheme = !['', null, undefined, 'null', {}]
+    .includes(localStorage.getItem("customTheme"))
+    ? JSON.parse(localStorage.getItem("customTheme"))
+    : undefined 
   
+  const pickr = {}
+  const serverOwnerPreference = JSON.parse(localStorage.getItem('serverOwnerPreference'));
+  const darkMode = localStorage.getItem('darkMode')
+  
+  $scope.darkMode = darkMode === null ? true : darkMode === 'dark' ? true : false;
+  $scope.currentMode = $scope.darkMode ? 'dark' : 'light';
+
   //?========SERVER OWNER PREFERENCE=========
   $scope.serverOwnerPreference = {
     dark: {
@@ -111,7 +111,7 @@ app.controller("theme", function ($scope, $http) {
         : {},
     }
   }
-
+  
   //?==========DARK/LIGHT MODE============
   $('.themeSwitch input[type="checkbox"]').change(()=>{
     $scope.darkMode = !$scope.darkMode
@@ -144,11 +144,11 @@ app.controller("theme", function ($scope, $http) {
   //?===================UPDATE CUSTOM PALETTE=====================
   const customPaletteColors = () => {
     for(let type in objectForPickerColour) {
-      if (localStorageCustomTheme !== undefined) {
-          $(`#defaultTheme.custom-theme #circles > .${type}`)
-          .css("background", localStorageCustomTheme[objectForPickerColour[type]]);
+      if ($scope.serverOwnerPreference[$scope.currentMode].storedPalette !== undefined) {
+          $(`#defaultTheme #circles.custom > .${type}`)
+          .css("background", $scope.serverOwnerPreference[$scope.currentMode].storedPalette[objectForPickerColour[type]]);
       } else {
-        $(`#defaultTheme.custom-theme #circles > .${type}`)
+        $(`#defaultTheme #circles.custom > .${type}`)
         .css("background", '');
       }
     }
@@ -211,7 +211,7 @@ app.controller("theme", function ($scope, $http) {
 
   //?=====CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=====
   const loadSelectedTheme = (input) => {
-    if ($scope.serverOwnerPreference[$scope.currentMode].selectedTheme.includes("custom-theme") && !['', null, undefined, 'null'].includes(localStorage.getItem("customTheme"))) {
+    if ($scope.serverOwnerPreference[$scope.currentMode].selectedTheme.includes("custom-theme") && !['', null, undefined, 'null'].includes(localStorage.getItem("serverOwnerPreference"))) {
       $scope.serverOwnerPreference[$scope.currentMode].storedPalette = { ...localStorageCustomTheme};
     } else {
       input = input.substring(input.indexOf("--"), input.indexOf("}"));
