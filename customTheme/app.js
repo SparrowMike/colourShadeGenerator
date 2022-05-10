@@ -41,7 +41,6 @@ app.controller("theme", function ($scope, $http) {
       "--shadow": {r: 0, g: 0 ,b: 0}
     }
   };
-  Object.freeze(paletteToFeed)
 
   //?=============PICKR SWATHCES================
   const swatches = [
@@ -96,12 +95,20 @@ app.controller("theme", function ($scope, $http) {
   //?========SERVER OWNER PREFERENCE=========
   $scope.serverOwnerPreference = {
     dark: {
-      selectedTheme: serverOwnerPreference?.dark?.selectedTheme !== undefined ? serverOwnerPreference.dark.selectedTheme : 'black-beauty',
-      storedPalette: serverOwnerPreference?.dark?.storedPalette !== undefined ? serverOwnerPreference.dark.storedPalette : {},
+      selectedTheme: serverOwnerPreference?.dark?.selectedTheme !== undefined 
+        ? serverOwnerPreference.dark.selectedTheme 
+        : 'black-beauty',
+      storedPalette: serverOwnerPreference?.dark?.storedPalette !== undefined 
+        ? serverOwnerPreference.dark.storedPalette 
+        : {},
     },
     light: {
-      selectedTheme: serverOwnerPreference?.light?.selectedTheme !== undefined ? serverOwnerPreference.light.selectedTheme : 'white-smoke',
-      storedPalette: serverOwnerPreference?.light?.selectedTheme !== undefined ? serverOwnerPreference.light.selectedTheme : {},
+      selectedTheme: serverOwnerPreference?.light?.selectedTheme !== undefined 
+        ? serverOwnerPreference.light.selectedTheme 
+        : 'white-smoke',
+      storedPalette: serverOwnerPreference?.light?.storedPalette !== undefined 
+        ? serverOwnerPreference.light.storedPalette 
+        : {},
     }
   }
 
@@ -109,7 +116,7 @@ app.controller("theme", function ($scope, $http) {
   $('.themeSwitch input[type="checkbox"]').change(()=>{
     $scope.darkMode = !$scope.darkMode
     $scope.darkMode ? $scope.currentMode = 'dark' : $scope.currentMode = 'light' 
-    localStorage.setItem("darkMode", ($scope.darkMode));
+    localStorage.setItem("darkMode", $scope.currentMode);
     $scope.$apply()
     $scope.changeTheme($scope.serverOwnerPreference[$scope.currentMode].selectedTheme)
   })
@@ -250,12 +257,18 @@ app.controller("theme", function ($scope, $http) {
         position: 'left-start',
         useAsButton: false,
         closeOnScroll: true,
-        default: type === 'background' ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--background-4`] :
-        type === 'accent' ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--accent-2`] :
-        type === 'divider' ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--divider-lines-1`] :
-        type === 'shadow' ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--shadow`] :
-        type === 'text' ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--text-1`] :
-        'rgb(0, 0, 0)',
+        default:
+          type === 'background' 
+            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--background-4`]
+            : type === 'accent' 
+            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--accent-2`]
+            : type === 'divider' 
+            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--divider-lines-1`]
+            : type === 'shadow' 
+            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--shadow`]
+            : type === 'text' 
+            ? $scope.serverOwnerPreference[$scope.currentMode].storedPalette[`--text-1`]
+            : 'rgb(0, 0, 0)',
         comparison: false,
         components: {
           preview: false,
