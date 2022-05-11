@@ -102,79 +102,45 @@ app.controller("theme", function ($scope, $http) {
         : {},
     }
   }
-
+  
+  //?==============GLOBAL VARIABLES=============
   $scope.darkMode = darkMode === null ? true : darkMode === 'dark' ? true : false;
   $scope.currentMode = $scope.darkMode ? 'dark' : 'light';
-
-  //?==============GLOBAL VARIABLES=============
-  // let localStorageCustomTheme = !['', null, undefined, 'null', {}]
-  //   .includes(localStorage.getItem("customTheme"))
-  //   ? JSON.parse(localStorage.getItem("customTheme"))
-  //   : undefined 
-  
   const storedPalette = {dark: {}, light: {}}
   const pickr = {}
   
   //?==========DARK/LIGHT MODE============
-  $('.themeSwitch input[type="checkbox"]').change(()=>{
+  $('.themeSwitch input[type="checkbox"]').change(() => {
     $scope.darkMode = !$scope.darkMode
     $scope.darkMode ? $scope.currentMode = 'dark' : $scope.currentMode = 'light' 
     localStorage.setItem("darkMode", $scope.currentMode);
     $scope.$apply()
+    customPaletteColors()
     $scope.changeTheme($scope.serverOwnerPreference[$scope.currentMode].selectedTheme)
   })
 
   //?=======CHANGE THE THEMES - TOGGLING CLASS========
   $scope.changeTheme = (theme) => {
-    localStorage.setItem("serverOwnerPreference", JSON.stringify({...$scope.serverOwnerPreference, selectedTheme: theme}));
     $scope.serverOwnerPreference[$scope.currentMode].selectedTheme = theme
+    localStorage.setItem("serverOwnerPreference", JSON.stringify({...$scope.serverOwnerPreference, selectedTheme: theme}));
 
-    console.log(storedPalette.dark)
-    console.log($scope.serverOwnerPreference[$scope.currentMode])
-    
     $("html").removeAttr("style").removeClass()
-    if ($(`.defaultTheme:not(.${theme})`).hasClass('active')) {
-      $('.defaultTheme').removeClass('active')
-    }
-    switch (theme) {
-      case theme.includes('custom-theme'):
-        loadValues();
-        break;
-      }
+    $(`.defaultTheme:not(.${theme})`).hasClass('active') && $('.defaultTheme').removeClass('active')
+
+    theme.includes('custom-theme') && loadValues();
+
     $("html").addClass(theme);
     loadSelectedTheme(loadCurrentCss());
     updatePickrColours()
   };
 
-  //?===================UPDATE CUSTOM PALETTE=====================
-  const customPaletteColors = () => {
-    for(let type in objectForPickerColour) {
-      if ($scope.serverOwnerPreference[$scope.currentMode].storedPalette !== undefined) {
-          $(`#defaultTheme #circles.custom > .${type}`)
-          .css("background", $scope.serverOwnerPreference[$scope.currentMode].storedPalette[objectForPickerColour[type]]);
-      } else {
-        $(`#defaultTheme #circles.custom > .${type}`)
-        .css("background", '');
-      }
-    }
-  }
-
-  //?===================PICKR CURRENT COLOUR======================
-  const updatePickrColours = () => {
-    for(let type in objectForPickerColour) {
-      pickr[type].setColor(
-        type
-        ? storedPalette[$scope.currentMode][objectForPickerColour[type]]
-        : 'rgb(0, 0, 0)')
-    }
-  }
-
   //?====================SAVE/STORE BUTTON=======================
   $scope.saveValues = () => {
     $scope.changeTheme($scope.darkMode ? 'custom-theme-dark' : 'custom-theme-light')
+    $scope.serverOwnerPreference[$scope.currentMode].storedPalette = storedPalette[$scope.currentMode]
+    
     customPaletteColors()
     
-    $scope.serverOwnerPreference[$scope.currentMode].storedPalette = storedPalette[$scope.currentMode]
     localStorage.setItem("serverOwnerPreference", JSON.stringify($scope.serverOwnerPreference)); //! storedPalette ?
     
     // parent.postMessage({storedPalette: $scope.serverOwnerPreference[$scope.currentMode].storedPalette, theme: 'custom-theme', savedTheme: true}, '*') //! storedPalette?
@@ -184,9 +150,11 @@ app.controller("theme", function ($scope, $http) {
   //?===========UPDATE PARENT THEME ON THEME CHANGE==============
   $scope.sendCurrentTheme = () => {
     if ($scope.serverOwnerPreference[$scope.currentMode].storedPalette !== undefined) {
+
       parent.postMessage({
         storedPalette: $scope.serverOwnerPreference[$scope.currentMode].storedPalette, theme: $scope.serverOwnerPreference[$scope.currentMode].selectedTheme, savedTheme: false //! storedPalette ?
       }, '*')
+
     } else {
       parent.postMessage({theme: $scope.serverOwnerPreference[$scope.currentMode].selectedTheme, savedTheme: false}, '*')
     }
@@ -220,8 +188,7 @@ app.controller("theme", function ($scope, $http) {
   //?=====CONVERT loadCurrentCss FUNCTION INTO OBJECT AND STORE IT IN storedPalette=====
   const loadSelectedTheme = (input) => {
     if ($scope.serverOwnerPreference[$scope.currentMode].selectedTheme.includes("custom-theme") && !['', null, undefined, 'null'].includes(localStorage.getItem("serverOwnerPreference"))) {
-      storedPalette[$scope.currentMode] = { ...$scope.serverOwnerPreference[$scope.currentMode].storedPalette};
-
+      storedPalette[$scope.currentMode] = $scope.serverOwnerPreference[$scope.currentMode].storedPalette;
     } else {
       input = input.substring(input.indexOf("--"), input.indexOf("}"));
       let results = {},
@@ -251,7 +218,28 @@ app.controller("theme", function ($scope, $http) {
     });
     return rgbValues;
   }
-
+  
+  //?===================UPDATE CUSTOM PALETTE CIRCLES=====================
+  const customPaletteColors = () => {
+    for(let type in objectForPickerColour) {
+      if ($scope.serverOwnerPreference[$scope.currentMode].storedPalette !== undefined) {
+          $(`#defaultTheme #circles.custom > .${type}`)
+          .css("background", $scope.serverOwnerPreference[$scope.currentMode].storedPalette[objectForPickerColour[type]]);
+      } else {
+        $(`#defaultTheme #circles.custom > .${type}`)
+        .css("background", '');
+      }
+    }
+  }
+  //?===================PICKR CURRENT COLOUR SQUARE======================
+  const updatePickrColours = () => {
+    for(let type in objectForPickerColour) {
+      pickr[type].setColor(
+        type
+        ? storedPalette[$scope.currentMode][objectForPickerColour[type]]
+        : 'rgb(0, 0, 0)')
+    }
+  }
   //?======================PICKR============================
   const picker = () => {
     let $input = $("input.pickr-field");
@@ -320,7 +308,7 @@ app.controller("theme", function ($scope, $http) {
             rgb = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
           }
           //? keep the generated colour in the storePalette Object
-          $scope.serverOwnerPreference[$scope.currentMode][color] = rgb;
+          storedPalette[$scope.currentMode][color] = rgb;
           
           //? display the currently generated colours
           $("html").get(0).style.setProperty(color, rgb);
@@ -331,9 +319,7 @@ app.controller("theme", function ($scope, $http) {
 
   //? ===========RUN ON START OF THE APP============
   $(document).ready(function () {
-    if (!$scope.darkMode) {
-      $('.darkLightTheme').attr('checked', true);
-    }
+    !$scope.darkMode && $('.darkLightTheme').attr('checked', true);
 
     loadSelectedTheme(loadCurrentCss());
 
@@ -341,9 +327,7 @@ app.controller("theme", function ($scope, $http) {
       customPaletteColors()
     }
 
-    if ($scope.serverOwnerPreference[$scope.currentMode].selectedTheme.includes("custom-theme")) {
-      loadValues();
-    }
+    $scope.serverOwnerPreference[$scope.currentMode].selectedTheme.includes("custom-theme") && loadValues();
 
     picker()
   });
