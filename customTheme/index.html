@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-controller="theme" lang="en" ng-app="myApp" ng-class="serverOwnerPreference[currentMode].selectedTheme">
+<html ng-controller="theme" lang="en" ng-app="myApp">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
@@ -211,7 +211,7 @@
     <div id="sidePanel">
       <div id="colorTemplates">
         <h2>Color Templates</h2>
-        <div ng-repeat="theme in themes[currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="{'active' : theme === serverOwnerPreference[currentMode].selectedTheme}" ng-click="changeTheme(theme); sendCurrentTheme()">
+        <div ng-repeat="theme in themes[currentMode].themes" id="defaultTheme" class="{{theme}} defaultTheme" ng-class="{'active' : theme === serverOwnerThemes[currentMode]}" ng-click="changeTheme(theme); sendCurrentTheme()">
           <h4>{{theme.split('-').join(' ');}}</h4>
           <div id="circles" ng-class="{'custom' : $last}">
             <div ng-repeat="type in ['accent', 'text', 'background', 'divider', 'shadow']" class={{type}}></div>
