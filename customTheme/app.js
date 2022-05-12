@@ -85,6 +85,7 @@ app.controller("theme", function ($scope, $http) {
 
   //?============SERVER OWNER PREFERENCE=============
   $scope.serverOwnerPreference = {
+      selectedTheme: serverOwnerThemes?.light?.selectedTheme !== undefined 
     dark: {
       selectedTheme: serverOwnerPreference?.dark?.selectedTheme !== undefined 
         ? serverOwnerPreference.dark.selectedTheme 
