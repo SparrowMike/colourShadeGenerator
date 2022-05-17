@@ -192,7 +192,7 @@ app.controller("theme", function ($scope, $http) {
     if (serverOwnerPalettes[$scope.currentMode] !== undefined) {
       parent.postMessage({serverOwnerPalettes: serverOwnerPalettes, serverOwnerThemes: $scope.serverOwnerThemes, savedTheme: true}, '*') 
     } else {
-      parent.postMessage({serverOwnerThemes: serverOwnerPalettes, savedTheme: false}, '*')
+      parent.postMessage({serverOwnerThemes: $scope.serverOwnerThemes, savedTheme: false}, '*')
     }
   }
 

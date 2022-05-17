@@ -1077,6 +1077,9 @@ body {
   position: relative;
   width: 40px;
   height: 20px;
+
+  display: block;
+  margin: 0 auto;
 }
 .themeSwitch label {
   position: absolute;
