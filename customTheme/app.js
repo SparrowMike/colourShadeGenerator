@@ -345,7 +345,7 @@ app.controller("theme", function ($scope, $http) {
       $('.defaultTheme').removeClass('active')
       $(`.${data.selectedTheme}`).addClass('active')
       localStorage.setItem("serverOwnerThemes", data.selectedTheme); 
-      // $scope.$apply()
+      $scope.$apply()
       customPaletteColors()
       $scope.changeTheme(`${data.selectedTheme}`) 
     }
