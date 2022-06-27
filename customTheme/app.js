@@ -130,7 +130,7 @@ app.controller("theme", function ($scope, $http) {
   // $('.themeSwitch input[type="checkbox"]').change(() => {
   //   $scope.darkMode = !$scope.darkMode
   //   $scope.darkMode ? $scope.currentMode = 'dark' : $scope.currentMode = 'light' 
-  //   localStorage.setItem("darkMode", $scope.currentMode);
+  //   // localStorage.setItem("darkMode", $scope.currentMode);
   //   $scope.$apply()
   //   customPaletteColors()
   //   $scope.changeTheme($scope.serverOwnerThemes[$scope.currentMode])
@@ -338,15 +338,16 @@ app.controller("theme", function ($scope, $http) {
       localStorage.removeItem('serverPalettes')
       serverOwnerPalettes[$scope.currentMode] = undefined;
     }
-    customPaletteColors()
-    $scope.changeTheme($scope.serverOwnerThemes[$scope.currentMode])
+    
+    $scope.currentMode = data.currentMode;
 
-    // if (data.serverOwnerThemes[$scope.currentMode]) {
     if (data.selectedTheme) {
       $('.defaultTheme').removeClass('active')
-      $(`.${data.serverOwnerThemes[$scope.currentMode]}`).addClass('active')
-      localStorage.setItem("serverOwnerThemes", data.serverOwnerThemes); 
-      $scope.changeTheme(`${data.serverOwnerThemes[$scope.currentMode]}`) 
+      $(`.${data.selectedTheme[$scope.currentMode]}`).addClass('active')
+      localStorage.setItem("serverOwnerThemes", data.selectedTheme); 
+      $scope.$apply()
+      customPaletteColors()
+      $scope.changeTheme(`${data.selectedTheme[$scope.currentMode]}`) 
     }
   };
 });
