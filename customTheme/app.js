@@ -343,11 +343,11 @@ app.controller("theme", function ($scope, $http) {
 
     if (data.selectedTheme) {
       $('.defaultTheme').removeClass('active')
-      $(`.${data.selectedTheme[$scope.currentMode]}`).addClass('active')
+      $(`.${data.selectedTheme}`).addClass('active')
       localStorage.setItem("serverOwnerThemes", data.selectedTheme); 
-      $scope.$apply()
+      // $scope.$apply()
       customPaletteColors()
-      $scope.changeTheme(`${data.selectedTheme[$scope.currentMode]}`) 
+      $scope.changeTheme(`${data.selectedTheme}`) 
     }
   };
 });
