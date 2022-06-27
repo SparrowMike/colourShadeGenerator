@@ -341,7 +341,8 @@ app.controller("theme", function ($scope, $http) {
     customPaletteColors()
     $scope.changeTheme($scope.serverOwnerThemes[$scope.currentMode])
 
-    if (data.serverOwnerThemes[$scope.currentMode]) {
+    // if (data.serverOwnerThemes[$scope.currentMode]) {
+    if (data.selectedTheme) {
       $('.defaultTheme').removeClass('active')
       $(`.${data.serverOwnerThemes[$scope.currentMode]}`).addClass('active')
       localStorage.setItem("serverOwnerThemes", data.serverOwnerThemes); 
