@@ -127,14 +127,14 @@ app.controller("theme", function ($scope, $http) {
   };
 
   //?==========DARK/LIGHT MODE============
-  $('.themeSwitch input[type="checkbox"]').change(() => {
-    $scope.darkMode = !$scope.darkMode
-    $scope.darkMode ? $scope.currentMode = 'dark' : $scope.currentMode = 'light' 
-    localStorage.setItem("darkMode", $scope.currentMode);
-    $scope.$apply()
-    customPaletteColors()
-    $scope.changeTheme($scope.serverOwnerThemes[$scope.currentMode])
-  })
+  // $('.themeSwitch input[type="checkbox"]').change(() => {
+  //   $scope.darkMode = !$scope.darkMode
+  //   $scope.darkMode ? $scope.currentMode = 'dark' : $scope.currentMode = 'light' 
+  //   localStorage.setItem("darkMode", $scope.currentMode);
+  //   $scope.$apply()
+  //   customPaletteColors()
+  //   $scope.changeTheme($scope.serverOwnerThemes[$scope.currentMode])
+  // })
 
   //?=======CHANGE THE THEMES - TOGGLING CLASS========
   $scope.changeTheme = (theme) => {
@@ -339,6 +339,7 @@ app.controller("theme", function ($scope, $http) {
       serverOwnerPalettes[$scope.currentMode] = undefined;
     }
     customPaletteColors()
+    $scope.changeTheme($scope.serverOwnerThemes[$scope.currentMode])
 
     if (data.serverOwnerThemes[$scope.currentMode]) {
       $('.defaultTheme').removeClass('active')
