@@ -1,3 +1,7 @@
+export const themesOptions = {
+  dark: ['blackBeauty', 'darkKnight', 'rusticPottery', 'botanicalForest', 'heartsDesire', 'customThemeDark'],
+  light: ['whiteSmoke', 'prairieDance', 'farsighted', 'aquaLolly', 'lushBlush', 'customThemeLight'],
+};
 // :root {
 // --success - 1: rgb(64, 146, 95);
 // --success - 2: rgb(80, 170, 119);
