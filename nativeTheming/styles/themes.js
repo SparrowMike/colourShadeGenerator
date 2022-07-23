@@ -2,64 +2,28 @@ export const themesOptions = {
   dark: ['blackBeauty', 'darkKnight', 'rusticPottery', 'botanicalForest', 'heartsDesire', 'customThemeDark'],
   light: ['whiteSmoke', 'prairieDance', 'farsighted', 'aquaLolly', 'lushBlush', 'customThemeLight'],
 };
-// :root {
-// --success - 1: rgb(64, 146, 95);
-// --success - 2: rgb(80, 170, 119);
-// --success - 3: rgb(167, 213, 187);
+ 
+export const global = {
+  success1: 'rgb(64, 146, 95)',
+  success2: 'rgb(80, 170, 119)',
+  success3: 'rgb(167, 213, 187)',
+  error1: 'rgb(176, 65, 65)',
+  error2: 'rgb(235, 87, 87)',
+  error3: 'rgb(245, 171, 171)',
+  buttonTextColor: 'rgb(252, 252, 252)', // for buttons with success of error background
+  friend: 'rgb(81, 168, 255)',
+  globalNotificationRed: '#F44C3C', 
 
-// --error - 1: rgb(176, 65, 65);
-// --error - 2: rgb(235, 87, 87);
-// --error - 3: rgb(245, 171, 171);
-
-// --button - text - color: rgb(252, 252, 252);
-
-// --friend: rgb(81, 168, 255);
-
-// --global - notification - red: #F44C3C;
-
-/*? ====================== TBC ======================= ?*/
-// --facebook - color: #3c5a96!important;
-// --linkedln - color: #1178b3!important;
-// --mailchimp - color: #2c9ab7!important;
-// --microsoft - color: #f35426!important;
-// --twitter - color: #2aa3ef!important;
-// --pinterest - color: #bb0f23!important;
-// --paypal - color: #053385!important;
-// --reddit - color: #fc471e!important;
-// --google - color: #e8453c!important;
-// --dropbox - color: #1581e2!important;
-// --rss - color: #f0652f!important;
-// --salesforce - color: #2399bf!important;
-// --dribble - color: #e84f89!important;
-// --instagram - color: #713dbb!important;
-// --slack - color: #de1d64!important;
-// --youtube - color: #fc0d1b!important;
-/*? ================================================= ?*/
-
-/* !================================================== */
-/* ! Strictly for color picker only * Settings/Roles * */
-// --role - red - color: #EB5757;
-// --role - purple - color: #7D53FD;
-// --role - blue - color: #3EA1FD;
-// --role - orange - color: #F87D51;
-// --role - grey - color - two: #BCBAA5;
-// --role - grey - color - one: #999999;
-// --role - yellow - color: #FF9C00;
-// --role - green - color: #77d570;
-// --role - black - color: #1b1c1d;
-
-/* ?==================Server Colors=================== */
-// --rosered: #EB5757;
-// --custompurple: #7D53FD;
-// --skyblue: #667EFD;
-// --custompink: #F87D51;
-// --offwhite: #BCBAA5;
-// --customgrey:#999999;
-// --customyellow: #F4A933;
-// --customlemon: #77D570;
-/* !================================================== */
-
-// }
+  roleGreyColorOne: '#999999',
+  roleGreyColorTwo: '#BCBAA5',
+  roleYellowColor: '#FF9C00',
+  roleBlueColor: '#3EA1FD',
+  rolePurpleColor: '#7D53FD',
+  roleGreenColor: '#77d570',
+  roleRedColor: '#EB5757',
+  roleOrangeColor: '#F87D51',
+  roleBlackColor: '#1b1c1d',
+}
 
 export const blackBeauty = {
   accent1: 'rgb(229, 151, 29)',
@@ -336,3 +300,32 @@ export const customThemeLight = {
   dividerlines2: 'rgb(53, 74, 29)',
   shadow: 'rgba(0, 150, 136, .5)',
 };
+
+/* !================================================== */
+// --facebook - color: #3c5a96!important;
+// --linkedln - color: #1178b3!important;
+// --mailchimp - color: #2c9ab7!important;
+// --microsoft - color: #f35426!important;
+// --twitter - color: #2aa3ef!important;
+// --pinterest - color: #bb0f23!important;
+// --paypal - color: #053385!important;
+// --reddit - color: #fc471e!important;
+// --google - color: #e8453c!important;
+// --dropbox - color: #1581e2!important;
+// --rss - color: #f0652f!important;
+// --salesforce - color: #2399bf!important;
+// --dribble - color: #e84f89!important;
+// --instagram - color: #713dbb!important;
+// --slack - color: #de1d64!important;
+// --youtube - color: #fc0d1b!important;
+
+/* ?==================Server Colors=================== */
+// --customgrey:#999999;
+// --offwhite: #BCBAA5;
+// --customyellow: #F4A933;
+// --rosered: #EB5757;
+// --custompurple: #7D53FD;
+// --skyblue: #667EFD;
+// --custompink: #F87D51;
+// --customlemon: #77D570;
+/* !================================================== */

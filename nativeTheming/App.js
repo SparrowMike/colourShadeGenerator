@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Switch } from 'react-native';
 import * as themes from './styles/themes.js';
 import * as utils from './utils/utils.js'
-import styles from './styles/styles.js';
+import styling from './styles/styles.js';
 import ThemeButton from './components/ThemeButton.js';
 
 const App = () => {
@@ -11,10 +11,10 @@ const App = () => {
 
   const currentMode = darkMode ? 'dark' : 'light';
   const currentTheme = themes[serverTheme[currentMode]];
-  const currentClass = styles(currentTheme);
+  const styles = styling(currentTheme);
   
   return (
-    <View style={[currentClass.align, currentClass.background4]}>
+    <View style={[styles.align, styles.background4]}>
       <Switch
         trackColor={{ false: currentTheme.background7, true: currentTheme.background7 }}
         thumbColor={currentTheme.accent1}
@@ -22,10 +22,10 @@ const App = () => {
         onValueChange={() => setDarkMode(darkMode => !darkMode)}
         value={!darkMode}
       />
-      <Text style={currentClass.currentThemeText}>
+      <Text style={styles.currentThemeText}>
         Current theme
       </Text>
-      <Text style={[currentClass.currentThemeText, {marginBottom: 50, color:  currentTheme.text4}]}>
+      <Text style={[styles.currentThemeText, {marginBottom: 50, color:  currentTheme.text4}]}>
         {utils.splitString(serverTheme[currentMode], ' ')}
       </Text>
       {themes.themesOptions[currentMode].map((theme, index) => {
@@ -33,7 +33,7 @@ const App = () => {
           <ThemeButton 
             theme={theme}
             index={index} 
-            currentClass={currentClass} 
+            styles={styles} 
             serverTheme={serverTheme} 
             setServerTheme={setServerTheme}
             currentMode={currentMode} 
