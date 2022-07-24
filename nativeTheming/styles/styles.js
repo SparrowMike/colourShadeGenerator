@@ -3,7 +3,7 @@ import { global } from "./themes";
 
 const width = Dimensions.get("window").width; 
 
-export default styling = (currentTheme) => StyleSheet.create({
+export default Styles = (currentTheme) => StyleSheet.create({
   align: {
     flex: 1,
     justifyContent: 'center',

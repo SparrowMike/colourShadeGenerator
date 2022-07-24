@@ -3,11 +3,10 @@ import * as themes from './../styles/themes.js';
 import * as utils from './../utils/utils.js';
 import { Text, TouchableOpacity } from 'react-native';
 
-const ThemeButton = ({theme, index, styles, serverTheme, setServerTheme, currentMode}) => {
+const ThemeButton = ({theme, styles, serverTheme, setServerTheme, currentMode}) => {
   const currentTheme = themes[theme];
   return (
     <TouchableOpacity 
-      key={index} 
       onPress={() => setServerTheme({ ...serverTheme, [currentMode]: theme })}
       style={[ 
         styles.appButtonContainer, { 

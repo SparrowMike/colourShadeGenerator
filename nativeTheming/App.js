@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Switch } from 'react-native';
 import * as themes from './styles/themes.js';
 import * as utils from './utils/utils.js'
-import styling from './styles/styles.js';
+import Styles from './styles/styles.js';
 import ThemeButton from './components/ThemeButton.js';
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
 
   const currentMode = darkMode ? 'dark' : 'light';
   const currentTheme = themes[serverTheme[currentMode]];
-  const styles = styling(currentTheme);
+  const styles = Styles(currentTheme);
   
   return (
     <View style={[styles.align, styles.background4]}>
@@ -32,7 +32,7 @@ const App = () => {
         return (
           <ThemeButton 
             theme={theme}
-            index={index} 
+            key={index} 
             styles={styles} 
             serverTheme={serverTheme} 
             setServerTheme={setServerTheme}
