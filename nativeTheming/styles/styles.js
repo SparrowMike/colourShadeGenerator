@@ -3,21 +3,26 @@ import { global } from "./themes";
 
 const width = Dimensions.get("window").width; 
 
-export default Styles = (currentTheme) => StyleSheet.create({
+export default Styles = (currentStyles) => StyleSheet.create({
   align: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
-  background4: {
-    backgroundColor: currentTheme.background4,
+  mainBackground: {
+    backgroundColor: currentStyles.background4,
   },
 
-  currentThemeText: {
+  mainTheme: {
     fontWeight: '900',
     fontSize: 24,
-    color: currentTheme.text1,
+    color: currentStyles.text1,
+  },
+
+  loadCustomTheme: {
+    backgroundColor: global.success2, 
+    marginTop: 55
   },
 
   appButtonContainer: {

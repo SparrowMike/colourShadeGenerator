@@ -1,21 +1,31 @@
 import React from 'react';
 import * as themes from './../styles/themes.js';
-import * as utils from './../utils/utils.js';
+import { splitString } from './../utils/utils.js';
 import { Text, TouchableOpacity } from 'react-native';
 
 const ThemeButton = ({theme, styles, serverTheme, setServerTheme, currentMode}) => {
-  const currentTheme = themes[theme];
+  // const currentTheme = themes[theme];
+  const currentTheme = 
+    theme.includes('custom') && serverTheme[currentMode].palette !== null 
+      ? serverTheme[currentMode].palette 
+      : themes[theme]
+
   return (
     <TouchableOpacity 
-      onPress={() => setServerTheme({ ...serverTheme, [currentMode]: theme })}
+      onPress={() => setServerTheme({ 
+        ...serverTheme, 
+        [currentMode]: { 
+          theme: theme, 
+          palette: serverTheme[currentMode].palette 
+        }})}
       style={[ 
         styles.appButtonContainer, { 
         backgroundColor: currentTheme.background7, 
         borderWidth: 2,
-        borderColor: theme == serverTheme[currentMode] ? currentTheme.accent1 : 'transparent'
+        borderColor: theme == serverTheme[currentMode].theme ? currentTheme.accent1 : 'transparent'
       }]} >
         <Text style={[styles.appButtonText, { color: currentTheme.accent1 }]}>
-          {utils.splitString(theme, ' ')}
+          {splitString(theme, ' ')}
         </Text>
     </TouchableOpacity>
   )

@@ -1,32 +1,53 @@
 import React, { useState } from 'react';
-import { View, Text, Switch } from 'react-native';
+import { View, Text, Switch, TouchableOpacity } from 'react-native';
 import * as themes from './styles/themes.js';
-import * as utils from './utils/utils.js'
+import { splitString } from './utils/utils.js'
 import Styles from './styles/styles.js';
 import ThemeButton from './components/ThemeButton.js';
+import * as customTheme from './styles/customThemes.js';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
-  const [serverTheme, setServerTheme] = useState({ dark: 'blackBeauty', light: 'whiteSmoke' });
+  const [serverTheme, setServerTheme] = useState({ 
+    dark: { theme: 'blackBeauty', palette: null }, 
+    light: { theme: 'whiteSmoke', palette: null } 
+  });
 
   const currentMode = darkMode ? 'dark' : 'light';
-  const currentTheme = themes[serverTheme[currentMode]];
-  const styles = Styles(currentTheme);
+  const currentTheme = serverTheme[currentMode].theme
+  const currentStyles = 
+    currentTheme.includes('custom') && serverTheme[currentMode].palette !== null 
+      ? serverTheme[currentMode].palette 
+      : themes[currentTheme];
+
+  const globalStyles = themes.global;
+  const styles = Styles(currentStyles);
+
+  console.log(serverTheme)
   
+  const loadCustomTheme = (customTheme) => {
+    if (currentTheme.includes('custom')) {
+      for (let i in customTheme) {
+        Object.assign(customTheme, {[i.replaceAll('-', '')]: customTheme[i] })[i];
+      }
+      return customTheme
+    }
+  };
+ 
   return (
-    <View style={[styles.align, styles.background4]}>
+    <View style={[styles.align, styles.mainBackground]}>
       <Switch
-        trackColor={{ false: currentTheme.background7, true: currentTheme.background7 }}
-        thumbColor={currentTheme.accent1}
-        ios_backgroundColor={currentTheme.background7}
+        trackColor={{ false: currentStyles.background7, true: currentStyles.background7 }}
+        thumbColor={currentStyles.accent1}
+        ios_backgroundColor={currentStyles.background7}
         onValueChange={() => setDarkMode(darkMode => !darkMode)}
         value={!darkMode}
       />
-      <Text style={styles.currentThemeText}>
+      <Text style={styles.mainTheme}>
         Current theme
       </Text>
-      <Text style={[styles.currentThemeText, {marginBottom: 50, color:  currentTheme.text4}]}>
-        {utils.splitString(serverTheme[currentMode], ' ')}
+      <Text style={[styles.mainTheme, { marginBottom: 50, color:  currentStyles.text4 }]}>
+        {splitString(currentTheme, ' ')}
       </Text>
       {themes.themesOptions[currentMode].map((theme, index) => {
         return (
@@ -40,6 +61,20 @@ const App = () => {
           />
         )
       })}
+     {currentTheme.includes('custom') && 
+        <TouchableOpacity 
+        style={[ styles.appButtonContainer, styles.loadCustomTheme ]} 
+        onPress={() => setServerTheme({ 
+          ...serverTheme, 
+          [currentMode]: { 
+            theme: serverTheme[currentMode].theme, 
+            palette: loadCustomTheme(customTheme[currentTheme])
+          }})} >
+          <Text style={[styles.appButtonText, { color: globalStyles.buttonTextColor }]}>
+            Load new custom theme
+          </Text>
+        </TouchableOpacity>
+      } 
     </View>
   );
 };
