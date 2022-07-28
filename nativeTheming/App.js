@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, TouchableOpacity } from 'react-native';
 import * as themes from './styles/themes.js';
-import { splitString } from './utils/utils.js'
+import { splitString, loadCustomTheme } from './utils/utils.js'
 import Styles from './styles/styles.js';
 import ThemeButton from './components/ThemeButton.js';
 import * as customTheme from './styles/customThemes.js';
@@ -9,8 +9,8 @@ import * as customTheme from './styles/customThemes.js';
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [serverTheme, setServerTheme] = useState({ 
-    dark: { theme: 'blackBeauty', palette: null }, 
-    light: { theme: 'whiteSmoke', palette: null } 
+    dark: { theme: 'black-beauty', palette: null }, 
+    light: { theme: 'white-smoke', palette: null } 
   });
 
   const currentMode = darkMode ? 'dark' : 'light';
@@ -19,18 +19,11 @@ const App = () => {
   const currentStyles = 
     currentTheme.includes('custom') && serverTheme[currentMode].palette !== null 
       ? serverTheme[currentMode].palette 
-      : themes[currentTheme];
+      : themes[currentTheme.replaceAll('-', '')];
 
   const globalStyles = themes.global;
   const styles = Styles(currentStyles);
 
-  const loadCustomTheme = (customTheme) => {
-    for (let color in customTheme) {
-      Object.assign(customTheme, {[color.replaceAll('-', '')]: customTheme[color] })[color];
-    }
-    return customTheme
-  };
- 
   return (
     <View style={[styles.align, styles.mainBackground]}>
       <Switch
@@ -64,7 +57,10 @@ const App = () => {
           ...serverTheme, 
           [currentMode]: { 
             theme: serverTheme[currentMode].theme, 
-            palette: loadCustomTheme(customTheme[currentMode === 'dark' ? 'customThemeDark' : 'customThemeLight'])
+            palette: loadCustomTheme(customTheme[currentMode === 'dark' 
+              ? 'customthemedark' 
+              : 'customthemelight'
+            ])
           }})} >
         <Text style={[styles.appButtonText, { color: globalStyles.buttonTextColor }]}>
           Load new custom theme

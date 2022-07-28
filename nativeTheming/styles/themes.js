@@ -1,6 +1,6 @@
 export const themesOptions = {
-  dark: ['blackBeauty', 'darkKnight', 'rusticPottery', 'botanicalForest', 'heartsDesire', 'customThemeDark'],
-  light: ['whiteSmoke', 'prairieDance', 'farsighted', 'aquaLolly', 'lushBlush', 'customThemeLight'],
+  dark: ['black-beauty', 'dark-knight', 'rustic-pottery', 'botanical-forest', 'hearts-desire', 'custom-theme-dark'],
+  light: ['white-smoke', 'prairie-dance', 'farsighted', 'aqua-lolly', 'lush-blush', 'custom-theme-light'],
 };
  
 export const global = {
@@ -25,7 +25,7 @@ export const global = {
   roleBlackColor: '#1b1c1d',
 }
 
-export const blackBeauty = {
+export const blackbeauty = {
   accent1: 'rgb(229, 151, 29)',
   accent2: 'rgb(244, 169, 51)',
   accent3: 'rgb(253, 194, 102)',
@@ -48,7 +48,7 @@ export const blackBeauty = {
   shadow: 'rgba(20, 20, 20, .5)',
 };
 
-export const darkKnight = {
+export const darkknight = {
   accent1: 'rgb(224, 208, 162)',
   accent2: 'rgb(239, 225, 186)',
   accent3: 'rgb(250, 240, 212)',
@@ -71,7 +71,7 @@ export const darkKnight = {
   shadow: 'rgba(6, 9, 33, .5)',
 };
 
-export const botanicalForest = {
+export const botanicalforest = {
   accent1: 'rgb(233, 115, 123)',
   accent2: 'rgb(238, 153, 159)',
   accent3: 'rgb(241, 179, 184)',
@@ -94,7 +94,7 @@ export const botanicalForest = {
   shadow: 'rgba(0, 44, 38, .5)',
 };
 
-export const rusticPottery = {
+export const rusticpottery = {
   accent1: 'rgb(215, 91, 63)',
   accent2: 'rgb(230, 109, 85)',
   accent3: 'rgb(239, 134, 136)',
@@ -117,7 +117,7 @@ export const rusticPottery = {
   shadow: 'rgba(22, 11, 3, .5)',
 };
 
-export const aquaLolly = {
+export const aqualolly = {
   accent1: 'rgb(255, 74, 81)',
   accent2: 'rgb(255, 109, 115)',
   accent3: 'rgb(255, 138, 143)',
@@ -140,7 +140,7 @@ export const aquaLolly = {
   shadow: 'rgba(10, 34, 97, .35)',
 };
 
-export const lushBlush = {
+export const lushblush = {
   accent1: 'rgb(64, 63, 128)',
   accent2: 'rgb(87, 86, 150)',
   accent3: 'rgb(117, 116, 175)',
@@ -163,7 +163,7 @@ export const lushBlush = {
   shadow: 'rgba(171, 59, 97, .35)',
 };
 
-export const whiteSmoke = {
+export const whitesmoke = {
   accent1: 'rgb(48, 65, 97)',
   accent2: 'rgb(64, 87, 130)',
   accent3: 'rgb(159, 171, 192)',
@@ -186,7 +186,7 @@ export const whiteSmoke = {
   shadow: 'rgba(27, 28, 29, .35)',
 };
 
-export const prairieDance = {
+export const prairiedance = {
   accent1: 'rgb(174, 76, 76)',
   accent2: 'rgb(191, 100, 100)',
   accent3: 'rgb(208, 122, 122)',
@@ -232,7 +232,7 @@ export const farsighted = {
   shadow: 'rgba(112, 105, 131, .35)',
 };
 
-export const heartsDesire = {
+export const heartsdesire = {
   accent1: 'rgb(242, 184, 151)',
   accent2: 'rgb(237, 200, 184)',
   accent3: 'rgb(243, 216, 204)',
@@ -255,7 +255,7 @@ export const heartsDesire = {
   shadow: 'rgba(89, 3, 33, .35)',
 };
 
-export const customThemeDark = {
+export const customthemedark = {
   accent1: 'rgb(0, 151, 222)',
   accent2: 'rgb(3, 169, 244)',
   accent3: 'rgb(12, 194, 255)',
@@ -278,7 +278,7 @@ export const customThemeDark = {
   shadow: 'rgba(26, 38, 43, .5)',
 };
 
-export const customThemeLight = {
+export const customthemelight = {
   accent1: 'rgb(61, 157, 58)',
   accent2: 'rgb(76, 175, 80)',
   accent3: 'rgb(85, 200, 131)',

@@ -7,8 +7,8 @@ const ThemeButton = ({theme, styles, serverTheme, setServerTheme, currentMode}) 
   const currentTheme = 
     theme.includes('custom') && serverTheme[currentMode].palette !== null 
       ? serverTheme[currentMode].palette 
-      : themes[theme]
-
+      : themes[theme.replaceAll('-', '')]
+      
   return (
     <TouchableOpacity 
       onPress={() => setServerTheme({ 

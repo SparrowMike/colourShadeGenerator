@@ -1,4 +1,4 @@
-export const customThemeDark = {
+export const customthemedark = {
     '--accent-1': 'rgb(204, 222, 0)',
     '--accent-2': 'rgb(219, 240, 20)',
     '--accent-3': 'rgb(228, 255, 71)',
@@ -21,7 +21,7 @@ export const customThemeDark = {
     '--text-6': 'rgb(156, 115, 0)'
 }
 
-export const customThemeLight = {
+export const customthemelight = {
     '--accent-1': 'rgb(207, 29, 184)',
     '--accent-2': 'rgb(222, 47, 206)',
     '--accent-3': 'rgb(231, 72, 255)',
