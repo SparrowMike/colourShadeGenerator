@@ -4,7 +4,6 @@ import { splitString } from './../utils/utils.js';
 import { Text, TouchableOpacity } from 'react-native';
 
 const ThemeButton = ({theme, styles, serverTheme, setServerTheme, currentMode}) => {
-  // const currentTheme = themes[theme];
   const currentTheme = 
     theme.includes('custom') && serverTheme[currentMode].palette !== null 
       ? serverTheme[currentMode].palette 

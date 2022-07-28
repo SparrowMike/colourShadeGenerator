@@ -15,6 +15,7 @@ const App = () => {
 
   const currentMode = darkMode ? 'dark' : 'light';
   const currentTheme = serverTheme[currentMode].theme
+
   const currentStyles = 
     currentTheme.includes('custom') && serverTheme[currentMode].palette !== null 
       ? serverTheme[currentMode].palette 
@@ -23,15 +24,11 @@ const App = () => {
   const globalStyles = themes.global;
   const styles = Styles(currentStyles);
 
-  console.log(serverTheme)
-  
   const loadCustomTheme = (customTheme) => {
-    if (currentTheme.includes('custom')) {
-      for (let i in customTheme) {
-        Object.assign(customTheme, {[i.replaceAll('-', '')]: customTheme[i] })[i];
-      }
-      return customTheme
+    for (let color in customTheme) {
+      Object.assign(customTheme, {[color.replaceAll('-', '')]: customTheme[color] })[color];
     }
+    return customTheme
   };
  
   return (
@@ -61,20 +58,30 @@ const App = () => {
           />
         )
       })}
-     {currentTheme.includes('custom') && 
-        <TouchableOpacity 
+      <TouchableOpacity 
         style={[ styles.appButtonContainer, styles.loadCustomTheme ]} 
         onPress={() => setServerTheme({ 
           ...serverTheme, 
           [currentMode]: { 
             theme: serverTheme[currentMode].theme, 
-            palette: loadCustomTheme(customTheme[currentTheme])
+            palette: loadCustomTheme(customTheme[currentMode === 'dark' ? 'customThemeDark' : 'customThemeLight'])
           }})} >
-          <Text style={[styles.appButtonText, { color: globalStyles.buttonTextColor }]}>
-            Load new custom theme
-          </Text>
-        </TouchableOpacity>
-      } 
+        <Text style={[styles.appButtonText, { color: globalStyles.buttonTextColor }]}>
+          Load new custom theme
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+        style={[ styles.appButtonContainer, { backgroundColor: globalStyles.error2} ]} 
+        onPress={() => setServerTheme({ 
+          ...serverTheme, 
+          [currentMode]: { 
+            theme: serverTheme[currentMode].theme, 
+            palette: null
+          }})} >
+        <Text style={[styles.appButtonText, { color: globalStyles.buttonTextColor }]}>
+          Clear custom theme
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
